@@ -1,0 +1,74 @@
+{% set name = "TraceInv" %}
+{% set data = load_setup_py_data() %}
+
+package:
+    name: "{{ name|lower }}"
+    version: "{{ data['version'] }}"
+
+source:
+    path: ..
+
+build:
+    number: 0
+    script: 
+        - {{ PYTHON }} -m pip install dist/*.whl -vvv  # [osx]
+        - {{ PYTHON }} -m pip install . -vv  # [not osx]
+        # - {{ PYTHON }} -m pip install . --single-version-externally-managed --record=record.txt -vvv  # [not osx]
+        # - {{ PYTHON }} -m pip install . --single-version-externally-managed --record=record.txt --ignore-installed --no-cache-dir -vvv  # [not osx]
+    # script: sh ./build_macos.sh     # [mac]
+        # - export CFLAGS="${CFLAGS} -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk"; {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt
+        # - export SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk; {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt
+        # - export CFLAGS="${CFLAGS} -isysroot ${CONDA_BUILD_SYSROOT}"; {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt
+    # script: # - python setup.py install . --single-version-externally-managed --record=record.txt -vvv
+    # script: {{ PYTHON }} -m pip install . --single-version-externally-managed --record=record.txt --no-deps --ignore-installed --no-cache-dir -vvv
+    # script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+    build:
+        - {{ compiler('c') }}
+        - llvm-openmp  # [osx]
+
+    host:
+        # - python {{ python }}
+        - python
+        - numpy>1.11
+        - cython>=0.29
+        - pip
+        - llvm-openmp  # [osx]
+    run:
+        # - python {{ python }}
+        - python
+        - numpy>1.11
+        # - {{ pin_compatible('numpy') }}
+        - scipy
+        - suitesparse
+        - matplotlib
+        - seaborn
+        - llvm-openmp  # [osx]
+
+test:
+    imports:
+        - TraceInv
+        - TraceInv.ComputeLogDeterminant
+        - TraceInv.ComputeTraceOfInverse
+        - TraceInv.GenerateMatrix
+        - TraceInv.InterpolateTraceOfInverse
+    requires:
+        - pytest
+        - pytest-cov
+        - pytest-runner
+
+about:
+    home: {{ data['url'] }}
+    license: MIT
+    license_family: MIT
+    license_file: LICENSE.txt
+    summary: {{ data['description'] }}
+    description: {{ data['description'] }}
+    doc_url: https://ameli.github.io/TraceInv/index.html
+    doc_source_url: https://github.com/ameli/TraceInv/blob/main/README.rst
+    dev_url: https://github.com/ameli/TraceInv
+
+extra:
+    recipe-maintainers:
+        - ameli

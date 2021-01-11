@@ -1,0 +1,131 @@
+name: deploy-pypi
+
+on:
+    push:
+        branches:
+            - main
+    release:
+        types:
+            - published
+
+jobs:
+    build_wheels:
+        name: Build wheels on ${{ matrix.os }}
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+                os: [ubuntu-latest, windows-latest, macos-latest]
+                
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            
+            - name: Setup Python 
+              uses: actions/setup-python@v2
+
+            - name: Install cibuildwheel
+              run: |
+                  python -m pip install cibuildwheel==1.7.1
+            
+            - name: Install Visual C++ for Python 2.7
+              if: runner.os == 'Windows'
+              run: choco install vcpython27 -f -y
+
+            - name: Install OpenMP and numpy for mac
+              if: runner.os == 'macos'
+              run: |
+                  # This is needed to import numpy in pypy3 (but not needed for pypy2 and CPython)
+                  brew install openblas
+                  OPENBLAS="$(brew --prefix openblas)"
+                  pip3 install numpy
+            
+            - name: Build wheels
+              run: python -m cibuildwheel --output-dir wheelhouse
+              env:
+                  CIBW_BUILD: "*-manylinux_x86_64 *-macosx_x86_64 *-win_amd64"
+                  CIBW_SKIP: "pp3*-macosx*"
+                  CIBW_BUILD_VERBOSITY: 1
+                  CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
+            
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                  path: ./wheelhouse/*.whl
+                  
+    build_sdist:
+        name: Build source distribution
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Install Python
+              uses: actions/setup-python@v2
+            
+            - name: Build sdist
+              run: python setup.py sdist
+            
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                  path: dist/*.tar.gz
+
+    upload_pypi:
+        needs: [build_wheels, build_sdist]
+        runs-on: ubuntu-latest
+        name: Publish to PyPi
+        
+        # upload to PyPI on every tag starting with 'v'
+        # if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
+        # alternatively, to publish when a GitHub Release is created, use the following rule:
+        # if: github.event_name == 'release' && github.event.action == 'published'
+        steps:
+            - name: Download artifacts
+              uses: actions/download-artifact@v2
+              with:
+                  name: artifact
+                  path: dist
+            
+            - name: Upload to PyPi
+              uses: pypa/gh-action-pypi-publish@master
+              with:
+                  verbose: true
+                  user: __token__
+                  password: ${{ secrets.pypi_password }}
+
+    test_pypi:
+        needs: [upload_pypi]
+        name: Test on ${{ matrix.os }} and Pyhton ${{ matrix.python-version }}
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+                os: [ubuntu-latest, windows-latest, macos-latest]
+                python-version: [2.7, 3.6, 3.7, 3.8, 3.9]
+
+        steps:
+            - name: Setup Python ${{ matrix.python-version }}
+              uses: actions/setup-python@v2
+              with:
+                  python-version: ${{ matrix.python-version }}
+
+            - name: Install packages
+              run: |
+                  python -m pip install --upgrade pip
+                  python -m pip install pytest-cov
+                  python -m pip install special_functions
+
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Install Visual C++ for Python 2.7
+              if: |
+                  runner.os == 'Windows' &&
+                  matrix.python-version == '2.7'
+              run: choco install vcpython27 -f -y
+
+            - name: Test
+              run: |
+                  mv special_functions special_functions-DoNotImport
+                  pytest

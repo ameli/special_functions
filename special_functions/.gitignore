@@ -1,0 +1,42 @@
+# ===
+# Vim
+# ===
+
+*.vim
+*.sw[op]
+
+# ======
+# Python
+# ======
+
+# cache
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# C extentions
+*.so
+*.o
+
+# Distribution
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+sdist/
+tmp/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Test and coverage
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Sphinx documentation
+docs/_build/
