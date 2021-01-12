@@ -1,3 +1,5 @@
+# distutils: language = c++
+
 # =======
 # Imports
 # =======
@@ -8,6 +10,10 @@ from libc.stdlib cimport exit
 from libc.math cimport INFINITY, NAN, M_PI_2, isnan, round, exp, sqrt
 
 # Importing from cython/includes/libcpp/complex.pxd
+# Note: since complex.h is imported from libcpp, as a cpp library, this *.pyx
+# file should be cythonized into a *.cpp file (not *.c). To instruct cython to
+# translate this file into a cpp file, add "# distutils: language = c++" on the
+# first line of this file.
 cdef extern from "<complex.h>":
     double complex exp(double complex z) nogil
     double complex sqrt(double complex z) nogil

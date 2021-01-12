@@ -53,28 +53,6 @@ except ImportError:
     from Cython.Build import cythonize
 
 
-# ================================
-# find cython modules in directory
-# ================================
-
-def find_cython_modules_in_directory(directory):
-    """
-    Finds all files ending with ``.pyx`` in a directory, and returns a list of
-    their basename without the extension.
-    """
-
-    modules = []
-    extension = '.pyx'
-
-    for root, dirs, files in os.walk(directory):
-        for filename in files:
-            if filename.endswith(extension):
-                filename_without_ext = os.path.splitext(filename)[0]
-                modules.append(filename_without_ext)
-
-    return modules
-
-
 # =============
 # configuration
 # =============
@@ -118,7 +96,7 @@ def configuration(parent_package='', top_path=None):
         cython_build_dir = 'build'
 
     # Cythontize *.pyx files to generate *.c files.
-    cythonize(
+    extensions = cythonize(
             os.path.join('.', package_name, '*.pyx'),
             build_dir=cython_build_dir,
             include_path=[os.path.join('.', package_name)],
@@ -130,25 +108,12 @@ def configuration(parent_package='', top_path=None):
                 "embedsignature": True
             })
 
-    # Get a list of all *.pyx files (cython modules)
-    package_directory = os.path.join('.', package_name)
-    modules = find_cython_modules_in_directory(package_directory)
-
     # add extensions to config per each *.c file
-    for module in modules:
-
-        # extension name
-        extension_name = package_name + '.' + module
-
-        # source *.c file and header *.h file
-        source_dir = os.path.join(cython_build_dir, package_name, module+'.c')
-        include_dir = os.path.join('.', package_name)
-
-        # add an extension
+    for extension in extensions:
         config.add_extension(
-                extension_name,
-                sources=[source_dir],
-                include_dirs=[include_dir],
+                extension.name,
+                sources=extension.sources,
+                include_dirs=extension.include_dirs,
                 extra_compile_args=['-fPIC', '-O3'],
                 libraries=['amos', 'cephes'])
 
@@ -292,6 +257,9 @@ def main(argv):
     # otherwise, we will use setuptools.setup
     run_build = parse_setup_arguments()
 
+    # Note: setuptools.setup must be imported before numpy.distutils.core.setup
+    # so that some input commands (like bdist_wheel) work properly with the
+    # numpy.distutil.core.setup.
     from setuptools import setup
 
     if run_build:

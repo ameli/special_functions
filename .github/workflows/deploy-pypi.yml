@@ -39,6 +39,10 @@ jobs:
                   brew install openblas
                   OPENBLAS="$(brew --prefix openblas)"
                   pip3 install numpy
+
+            - name: Install fortran compiler on mac
+              if: runner.os == 'macos'
+              run: brew install gfortran
             
             - name: Build wheels
               run: python -m cibuildwheel --output-dir wheelhouse
@@ -127,5 +131,5 @@ jobs:
 
             - name: Test
               run: |
-                  mv special_functions special_functions-DoNotImport
+                  mv special_functions special_functions_do_dot_import
                   pytest
