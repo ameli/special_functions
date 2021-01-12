@@ -47,4 +47,4 @@ prune .git
 prune tmp
 prune .tox
 prune .github
-prune conda-recipe
+prune conda_recipe
