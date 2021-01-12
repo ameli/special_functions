@@ -36,7 +36,9 @@ jobs:
               run: |
                   python -m pip install --upgrade pytest
                   python -m pip install --upgrade pytest-cov
-                  python setup.py test 
+                  # python setup.py test 
+                  mv special_functions special_functions_do_not_import
+                  pytest
 
             - name: Coverage
               run: |

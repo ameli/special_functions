@@ -1,28 +1,28 @@
-********
-TraceInv
-********
+*****************
+special functions
+*****************
 
-|travis-devel| |codecov-devel| |licence| |format| |pypi| |implementation| |pyversions|
+|codecov-devel| |licence| |format| |pypi| |implementation| |pyversions|
 
-A python package to compute the trace of the inverse of a matrix or a linear matrix function.
+A package to provide both cython and python API for special functions.
 
 .. For users
-..     * `Documentation <https://ameli.github.io/TraceInv/index.html>`_
-..     * `PyPi package <https://pypi.org/project/TraceInv/>`_
-..     * `Source code <https://github.com/ameli/TraceInv>`_
+..     * `Documentation <https://ameli.github.io/special_functions/index.html>`_
+..     * `PyPi package <https://pypi.org/project/special_functions/>`_
+..     * `Source code <https://github.com/ameli/special_functions>`_
 ..
 .. For developers
-..     * `API <https://ameli.github.io/TraceInv/_modules/modules.html>`_
-..     * `Travis-CI <https://travis-ci.com/github/ameli/TraceInv>`_
-..     * `Codecov <https://codecov.io/gh/ameli/TraceInv>`_
+..     * `API <https://ameli.github.io/special_functions/_modules/modules.html>`_
+..     * `Travis-CI <https://travis-ci.com/github/ameli/special_functions>`_
+..     * `Codecov <https://codecov.io/gh/ameli/special_functions>`_
 
-+------------------------------------------------------------------+-------------------------------------------------------------------+
-|    For users                                                     | For developers                                                    |
-+==================================================================+===================================================================+
-| * `Documentation <https://ameli.github.io/TraceInv/index.html>`_ | * `API <https://ameli.github.io/TraceInv/_modules/modules.html>`_ |
-| * `PyPi package <https://pypi.org/project/TraceInv/>`_           | * `Travis-CI <https://travis-ci.com/github/ameli/TraceInv>`_      |
-| * `Anaconda Cloud <https://anaconda.org/s-ameli/traceinv>`_      | * `Codecov <https://codecov.io/gh/ameli/TraceInv>`_               |
-+------------------------------------------------------------------+-------------------------------------------------------------------+
++---------------------------------------------------------------------------+----------------------------------------------------------------------------+
+|    For users                                                              | For developers                                                             |
++===========================================================================+============================================================================+
+| * `Documentation <https://ameli.github.io/special_functions/index.html>`_ | * `API <https://ameli.github.io/special_functions/_modules/modules.html>`_ |
+| * `PyPi package <https://pypi.org/project/special_functions/>`_           | * `Travis-CI <https://travis-ci.com/github/ameli/special_functions>`_      |
+| * `Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_      | * `Codecov <https://codecov.io/gh/ameli/special_functions>`_               |
++---------------------------------------------------------------------------+----------------------------------------------------------------------------+
 
 ***********
 Description
@@ -33,7 +33,7 @@ This package computes the trace of inverse of two forms of matrices:
 1. **Fixed Matrix:** For an invertible matrix |image01| (sparse of dense), this package computes |image02|.
 2. **One-Parameter Affine Matrix Function:** |image05|, where |image01| and |image03| are symmetric and positive-definite matrices and ``t`` is a real parameter. This package can interpolate the function
 
-.. image:: https://raw.githubusercontent.com/ameli/TraceInv/main/docs/images/image06.svg
+.. image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image06.svg
    :align: center
 
 **Application:**
@@ -41,316 +41,133 @@ This package computes the trace of inverse of two forms of matrices:
 
 These interpolation methods are described in [Ameli-2020]_. 
 
-.. |image00| image:: https://raw.githubusercontent.com/ameli/TraceInv/main/docs/images/image00.svg
-.. |image01| image:: https://raw.githubusercontent.com/ameli/TraceInv/main/docs/images/image01.svg
-.. |image02| image:: https://raw.githubusercontent.com/ameli/TraceInv/main/docs/images/image02.svg
-.. |image03| image:: https://raw.githubusercontent.com/ameli/TraceInv/main/docs/images/image03.svg
-.. |image04| image:: https://raw.githubusercontent.com/ameli/TraceInv/main/docs/images/image04.svg
-.. |image05| image:: https://raw.githubusercontent.com/ameli/TraceInv/main/docs/images/image05.svg
-.. |image06| image:: https://raw.githubusercontent.com/ameli/TraceInv/main/docs/images/image06.svg
+.. |image00| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image00.svg
+.. |image01| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image01.svg
+.. |image02| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image02.svg
+.. |image03| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image03.svg
+.. |image04| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image04.svg
+.. |image05| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image05.svg
+.. |image06| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image06.svg
 
 *******
 Install
 *******
 
-=============
-Prerequisites
-=============
+This package does not have any dependencies at runtime, and can be installed on Linux, macOS, and Windows platforms and supports both python 2 and 3.
 
-The prerequisite packages are:
+-----------------
+Install from PyPi
+-----------------
 
-* **Required:** ``numpy`` and ``scipy``.
-* **Required:** ``matplotlib`` and ``seaborn``, but only required to run the `examples <https://github.com/ameli/TraceInv#examples>`_.
-* **Optional:** ``ray`` and ``scikit-sparse`` can improve performance, but not required.
+|pypi| |format| |implementation| |pyversions|
 
-By installing TraceInv `below <https://github.com/ameli/TraceInv#install>`_, the *required* prerequisite packages (but not the *optional* packages) in the above will be installed automatically and no other action is needed. However, if desired, the *optional* packages should be installed `manually <https://github.com/ameli/TraceInv#install-optional-packages>`_.
+The recommended installation method is through the package available at `PyPi <https://pypi.org/project/special_functions>`_ by
 
-================
-Install TraceInv
-================
+::
+      
+    python -m pip install special_functions
 
-Install by either of the following ways:
+.. _Install_Conda:
 
-* **Method 1:** The recommended way is to install through the package available at `PyPi <https://pypi.org/project/TraceInv>`_:
+---------------------------
+Install from Anaconda Cloud
+---------------------------
 
-  ::
+|conda| |conda-version| |conda-platform|
 
-    python -m pip install TraceInv
-
-
-* **Method 2:** download the source code and install by:
-
-  ::
-
-    git clone https://github.com/ameli/TraceInv.git
-    cd TraceInv
-    python -m pip install -e .
-
-=========================
-Install Optional Packages
-=========================
-
-Installing the additional packages can improve the performance, but not required. 
-
----------------
-Install ``ray``
----------------
+Install through the package available at `Conda <https://anaconda.org/s-ameli/special_functions>`_ by
 
 ::
 
-    python -m pip install ray
+    conda install -c s-ameli special_functions
 
-When ``ray`` is needed:
-    To run the `examples <https://github.com/ameli/TraceInv#examples>`_, you may install the ``ray`` package to leverage the parallel processing used in generate large sparse matrices. However, the examples can still produce results without installing ``ray``.
+.. _Build_Locally:
 
--------------------------
-Install ``scikit-sparse``
--------------------------
+--------------------
+Build Source Locally
+--------------------
 
-1. Install `Suite Sarse <https://people.engr.tamu.edu/davis/suitesparse.html>`_, which is distributed by ``libsuitesparse-dev`` package, and can be installed with ``apt`` package manager in Linux (*Debian, Ubuntu, Mint*) by
+|release|
+
+1. Install the build dependencies ``cython``, and ``numpy``:
+
+   ::
+         
+       python -m pip install cython
+       python -m pip install numpy>1.11
+
+2. Clone the source code
    
    ::
+       
+       git clone https://github.com/ameli/special_functions.git
+       cd special_functions
 
-       sudo apt install libsuitesparse-dev  
-
-   Replace ``apt`` in the above with the native package manager of your operating system, such as ``yum`` for  *Redhat, Fedora, and CentOS Linux*, ``pacman`` for *Arch Linux*, and ``brew`` for *macOS*.
-
-   Alternatively, if you are using *Anaconda* python distribution (on either of the operating systems), install Suite Sparse by:
-
-   ::
-
-       sudo conda install -c conda-forge suitesparse
-
-2. Install ``scikit-sparse`` package:
+3. Build the package locally
 
    ::
        
-       python -m pip install scikit-sparse
+       python setup build
 
-When ``scikit-sparse`` is needed:
-    In ``TraceInv`` package, one of the methods to compute the trace of a matrix is by the *Cholesky decomposition*. If the input matrix is *sparse*, the Cholesky decomposition is computed using ``scikit-sparse`` if available. But if this package is not available, the ``scipy`` package is used instead.
+4. Install the package
+
+   ::
+       
+       python setup install
+
+   The above command may need to be run with ``sudo``.
 
 *****
 Usage
 *****
 
-The package TraceInv provides three sub-packages:
+You can ``import`` or ``cimport`` this package respectively in python or cython code, as shown in the two examples below.
 
-======================================  =====================================================================
-Sub-Package                             Description
-======================================  =====================================================================
-``TraceInv.GenerateMatrix``             Generates symmetric and positive-definite matrices for test purposes.
-``TraceInv.ComputeTraceOfInverse``      Computes trace of inverse for a fixed matrix.
-``TraceInv.InterpolateTraceOfInverse``  Interpolates trace of inverse for a linear matrix function.
-======================================  =====================================================================
+=======================
+1. Use in a Cython Code
+=======================
 
-The next two sections presents minimalistic examples respectively for:
+This example compute Bessel function :math:`K_{\\nu}(z)` and its first and
+second derivatives for a complex argument. The python's ``gil`` can be
+optionally released, especially when this feature is needed during parallel
+OpenMP environments.
 
-1. Fixed matrix using ``ComputeTraceOfInvers`` module.
-2. One-parameter affine matrix function using ``InterpolateTraceOfInverse`` module.
+.. code-block:: python
+
+    >>> # cimport module in a *.pyx file
+    >>> from special_functions cimport besselk
+
+    >>> # Declare typed variables
+    >>> cdef double nu = 2.5
+    >>> cdef double complex z = 1+2j
+    >>> cdef double complex d0k, d1k, d2k
+
+    >>> # Releasing gil to secure maximum cythonic speedup
+    >>> with nogil:
+    ...     d0k = besselk(nu, z, 0)    # no derivative
+    ...     d1k = besselk(nu, z, 1)    # 1st derivative
+    ...     d2k = besselk(nu, z, 2)    # 2nd derivative
 
 =========================
-1. Usage for Fixed Matrix
+2. Usage in a Python Code
 =========================
 
-.. code-block:: python
-
-   >>> from TraceInv import GenerateMatrix
-   >>> from TraceInv import ComputeTraceOfInverse
-   
-   >>> # Generate a symmetric positive-definite matrix of the shape (20**2,20**2)
-   >>> A = GenerateMatrix(NumPoints=20)
-   
-   >>> # Compute trace of inverse
-   >>> trace = ComputeTraceOfInverse(A)
-
-In the above, the class ``GenerateMatrix`` produces a sample matrix for test purposes. 
-
-The ``ComputeTraceOfInverse`` class in the above code employs the Cholesky method by default to compute the trace of inverse. However, the user may choose other methods given in the table below.
-
-===================  ====================================  ==============  =============  =============
-``ComputeMethod``    Description                           Matrix size     Matrix type    Results       
-===================  ====================================  ==============  =============  =============
-``'cholesky'``       Cholesky decomposition                small           dense, sparse  exact          
-``'hutchinson'``     Hutchinson's randomized method        small or large  dense, sparse  approximation
-``'SLQ'``            Stochastic Lanczos Quadrature method  small or large  dense, sparse  approximation
-===================  ====================================  ==============  =============  =============  
-
-The desired method of computation can be passed through the ``ComputeMethod`` argument when calling ``ComputeTraceOfInverse``. For instance, in the following example, we apply the *Hutchinson's randomized estimator* method:
+This example compute Bessel function :math:`K_{\\nu}(z)` and its first and
+second derivatives for a complex argument. Note, this function uses the
+global lock interpreter (``gil``).
 
 .. code-block:: python
 
-   >>> # Using hutchinson method with 20 Monte-Carlo iterations
-   >>> trace = ComputeTraceOfInverse(A,ComputeMethod='hutchinson',NumIterations=20)
+    >>> # import module in a *.py file
+    >>> from special_functions import besselk
 
-Each of the methods in the above accept some options. For instance, the Hutchinson's method accepts ``NumIterations`` argument, which sets the number of Monte-Carlo trials. To see the detailed list of all arguments for each method, see the `API <https://ameli.github.io/TraceInv/_modules/modules.html>`__ of the package.
+    >>> # Declare typed variables
+    >>> nu = 2.5
+    >>> z = 1+2j
 
-.. _Affine-Matrix:
-
-=================================================
-2. Usage for One-Parameter Affine Matrix Function
-=================================================
-
-The module ``InterpolateTraceOfInverse`` interpolates the trace of the inverse of ``A + tB``, as shown by the example below.
-
-.. code-block:: python
-    
-   >>> from TraceInv import GenerateMatrix
-   >>> from TraceInv import InterpolateTraceOfInverse
-   
-   >>> # Generate a symmetric positive-definite matrix of the shape (20**2,20**2)
-   >>> A = GenerateMatrix(NumPoints=20)
-   
-   >>> # Define some interpolant points
-   >>> InterpolantPoints = [1e-2,1e-1,1,1e+1]
-   
-   >>> # Create an interpolating TraceInv object
-   >>> TI = InterpolateTraceOfInverse(A,InterpolantPoints=InterpolantPoints)
-   
-   >>> # Interpolate A+tI at some inquiry point t
-   >>> t = 4e-1
-   >>> trace = TI.Interpolate(t)
-
-In the above code, we only provided the matrix ``A`` to the module ``InterpolateTraceOfInverse``, which then it assumes ``B`` is identity matrix by default. To compute the trace of the inverse of ``A + tB`` where ``B`` is not identity matrix, pass both ``A`` and ``B`` to ``InterpolateTraceOfInverse`` as follows.
-
-.. code-block:: python
-
-   >>> # Generate two different symmetric positive-definite matrices
-   >>> A = GenerateMatrix(NumPoints=20,DecorrelationScale=1e-1)
-   >>> B = GenerateMatrix(NumPoints=20,DecorrelationScale=2e-2)
-   
-   >>> # Create an interpolating TraceInv object
-   >>> TI = InterpolateTraceOfInverse(A,B,InterpolantPoints=InterpolantPoints)
-
-The parameter ``DecorrelationScale`` of the class ``GenerateMatrix`` in the above specifies the scale of correlation function used to form a positive-definite matrix. We specified two correlation scales to generate different matrices ``A`` and ``B``. The user may use their own matrix data.
-
-Interpolation for an array of inquiries points can be made by:
-
-.. code-block:: python
-
-   >>> # Create an array of inquiry points
-   >>> import numpy
-   >>> t_array = numpy.logspace(-3,+3,5)
-   >>> traces = TI.Interpolate(t_array,InterpolantPoints=InterpolantPoints)
-
-The module ``InterpolateTraceOfInverse`` can employ various interpolation methods listed in the table below. The method of interpolation can be set by ``InterpolationMethod`` argument when calling ``InterpolateTraceOfInverse``. The default method is ``RMBF``.
-
-=======================  =========================================  ============  =============  ============
-``InterpolationMethod``  Description                                Matrix size   Matrix type    Results
-=======================  =========================================  ============  =============  ============
-``'EXT'``                Computes trace directly, no interpolation  Small         dense, sparse  exact
-``'EIG'``                Uses Eigenvalues of matrix                 Small         dense, sparse  exact
-``'MBF'``                Monomial Basis Functions                   Small, large  dense, sparse  interpolated
-``'RMBF'``               Root monomial basis functions              small, large  dense, sparse  interpolated
-``'RBF'``                Radial basis functions                     small, large  dense, sparse  interpolated
-``'RPF'``                Rational polynomial functions              small, large  dense, sparse  interpolated
-=======================  =========================================  ============  =============  ============
-
-The ``InterpolateTraceOfInverse`` module internally defines an object of ``ComputeTraceOfInverse`` to evaluate the trace of inverse at the given interpolant points ``InterpolantPoints``. You can pass the options for this internal ``ComputeTraceOfInverse`` object by ``ComputeOptions`` argument when initializing  ``InterpolateTraceOfInverse``, such as in the example below.
-
-.. code-block:: python
-    
-   >>> # Specify options of the internal ComputeTraceOfInverse object in a dictionary
-   >>> ComputeOptions = \
-   ... {
-   ...     'ComputeMethod': 'hutchinson',
-   ...     'NumIterations': 20
-   ... }
-   
-   >>> # Pass options by ComputeOptions argument
-   >>> TI = InterpolateTraceOfInverse(A,
-   ...             InterpolantPoints=InterpolantPoints,
-   ...             InterpolatingMethod='RMBF',
-   ...             ComputeOptions=ComputeOptions)
-
-.. _ref_Examples:
-
-********
-Examples
-********
-
-Three examples are provided in |examplesdir|_, which aim to reproduce the figures presented in [Ameli-2020]_. Namely, in that reference,
-
-Before running examples:
-   To run the examples, you may not need to install the ``TraceInv`` package. Rather, download the source code and install requirements:
-
-   ::
-    
-       # Download
-       git clone https://github.com/ameli/TraceInv.git
-
-       # Install prerequisite packages
-       cd TraceInv
-       python -m pip install --upgrade -r requirements.txt
-    
-   Then, run either of the examples as described below.
-
-
-=========
-Example 1
-=========
-
-Run the script |example1|_ by
-
-::
-
-    python examples/Plot_TraceInv_FullRank.py
-
-The script generates the figure below (see Figure 2 of [Ameli-2020]_).
-
-.. image:: https://raw.githubusercontent.com/ameli/TraceInv/main/docs/images/Example1.svg
-   :align: center
-
-=========
-Example 2
-=========
-
-Run the script |example2|_ by
-
-::
-
-    python examples/Plot_TraceInv_IllConditioned.py
-
-The script generates the figure below (see also  Figure 3 of [Ameli-2020]_).
-
-.. image:: https://raw.githubusercontent.com/ameli/TraceInv/main/docs/images/Example2.svg
-   :align: center
-
-=========
-Example 3
-=========
-
-Run the script |example3|_ by
-
-::
-
-    python examples/Plot_GeneralizedCrossValidation.py
-
-The script generates the figure below and prints the processing times of the computations. See more details in Figure 3 and results of Table 2 of [Ameli-2020]_.
-
-.. image:: https://raw.githubusercontent.com/ameli/TraceInv/main/docs/images/GeneralizedCrossValidation.svg
-   :width: 550
-   :align: center
-
-********
-Citation
-********
-
-.. [Ameli-2020] Ameli, S., and Shadden. S. C. (2020). Interpolating the Trace of the Inverse of Matrix **A** + t **B**. `arXiv:2009.07385 <https://arxiv.org/abs/2009.07385>`__ [math.NA]
-
-::
-
-    @misc{AMELI-2020,
-        title={Interpolating the Trace of the Inverse of Matrix $\mathbf{A} + t \mathbf{B}$},
-        author={Siavash Ameli and Shawn C. Shadden},
-        year={2020},
-        month = sep,
-        eid = {arXiv:2009.07385},
-        eprint={2009.07385},
-        archivePrefix={arXiv},
-        primaryClass={math.NA},
-        howpublished={\emph{arXiv}: 2009.07385 [math.NA]},
-    }
+    >>> d0k = besselk(nu, z)       # no derivative
+    >>> d1k = besselk(nu, z, 1)    # 1st derivative
+    >>> d2k = besselk(nu, z, 2)    # 2nd derivative
 
 ****************
 Acknowledgements
@@ -360,27 +177,26 @@ Acknowledgements
 * American Heart Association #18EIA33900046
 
 .. |examplesdir| replace:: ``/examples`` 
-.. _examplesdir: https://github.com/ameli/TraceInv/blob/main/examples
-.. |example1| replace:: ``/examples/Plot_TraceInv_FullRank.py``
-.. _example1: https://github.com/ameli/TraceInv/blob/main/examples/Plot_TraceInv_FullRank.py
-.. |example2| replace:: ``/examples/Plot_TraceInv_IllConditioned.py``
-.. _example2: https://github.com/ameli/TraceInv/blob/main/examples/Plot_TraceInv_IllConditioned.py
+.. _examplesdir: https://github.com/ameli/special_functions/blob/main/examples
+.. |example1| replace:: ``/examples/Plot_special_functions_FullRank.py``
+.. _example1: https://github.com/ameli/special_functions/blob/main/examples/Plot_special_functions_FullRank.py
+.. |example2| replace:: ``/examples/Plot_special_functions_IllConditioned.py``
+.. _example2: https://github.com/ameli/special_functions/blob/main/examples/Plot_special_functions_IllConditioned.py
 .. |example3| replace:: ``/examples/Plot_GeneralizedCorssValidation.py``
-.. _example3: https://github.com/ameli/TraceInv/blob/main/examples/Plot_GeneralizedCrossValidation.py
+.. _example3: https://github.com/ameli/special_functions/blob/main/examples/Plot_GeneralizedCrossValidation.py
 
-.. |travis-devel| image:: https://img.shields.io/travis/com/ameli/TraceInv
-   :target: https://travis-ci.com/github/ameli/TraceInv
-.. |codecov-devel| image:: https://img.shields.io/codecov/c/github/ameli/TraceInv
-   :target: https://codecov.io/gh/ameli/TraceInv
-.. |licence| image:: https://img.shields.io/github/license/ameli/TraceInv
+   :target: https://travis-ci.com/github/ameli/special_functions
+.. |codecov-devel| image:: https://img.shields.io/codecov/c/github/ameli/special_functions
+   :target: https://codecov.io/gh/ameli/special_functions
+.. |licence| image:: https://img.shields.io/github/license/ameli/special_functions
    :target: https://opensource.org/licenses/MIT
-.. |travis-devel-linux| image:: https://img.shields.io/travis/com/ameli/TraceInv?env=BADGE=linux&label=build&branch=main
-   :target: https://travis-ci.com/github/ameli/TraceInv
-.. |travis-devel-osx| image:: https://img.shields.io/travis/com/ameli/TraceInv?env=BADGE=osx&label=build&branch=main
-   :target: https://travis-ci.com/github/ameli/TraceInv
-.. |travis-devel-windows| image:: https://img.shields.io/travis/com/ameli/TraceInv?env=BADGE=windows&label=build&branch=main
-   :target: https://travis-ci.com/github/ameli/TraceInv
-.. |implementation| image:: https://img.shields.io/pypi/implementation/TraceInv
-.. |pyversions| image:: https://img.shields.io/pypi/pyversions/TraceInv
-.. |format| image:: https://img.shields.io/pypi/format/TraceInv
-.. |pypi| image:: https://img.shields.io/pypi/v/TraceInv
+.. |travis-devel-linux| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=linux&label=build&branch=main
+   :target: https://travis-ci.com/github/ameli/special_functions
+.. |travis-devel-osx| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=osx&label=build&branch=main
+   :target: https://travis-ci.com/github/ameli/special_functions
+.. |travis-devel-windows| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=windows&label=build&branch=main
+   :target: https://travis-ci.com/github/ameli/special_functions
+.. |implementation| image:: https://img.shields.io/pypi/implementation/special_functions
+.. |pyversions| image:: https://img.shields.io/pypi/pyversions/special_functions
+.. |format| image:: https://img.shields.io/pypi/format/special_functions
+.. |pypi| image:: https://img.shields.io/pypi/v/special_functions

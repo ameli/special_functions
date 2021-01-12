@@ -2,9 +2,9 @@
 Install
 *******
 
-===================
-Python Dependencies
-===================
+============
+Dependencies
+============
 
 This package does not have any dependencies at runtime.
 
