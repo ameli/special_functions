@@ -80,7 +80,8 @@ def configuration(parent_package='', top_path=None):
             sources=[
                 os.path.join(extern_directory, 'cephes', 'bessel', '*.c'),
                 os.path.join(extern_directory, 'cephes', 'cprob', '*.c'),
-                os.path.join(extern_directory, 'cephes', 'eval', '*.c')
+                os.path.join(extern_directory, 'cephes', 'eval', '*.c'),
+                os.path.join(extern_directory, 'cephes', 'cmath', '*.c')
             ],
             include_dirs=[
                 os.path.join(extern_directory, 'cephes', 'eval')
@@ -115,7 +116,10 @@ def configuration(parent_package='', top_path=None):
                 sources=extension.sources,
                 include_dirs=extension.include_dirs,
                 extra_compile_args=['-fPIC', '-O3'],
-                libraries=['amos', 'cephes'])
+                libraries=['amos', 'cephes'],
+                library_dirs=["."],               # Test
+                language='c++')                   # Test
+                # runtime_library_dirs=["."])       # Test
 
     config.add_data_files((package_name, 'LICENSE.txt'))
     config.add_data_files((package_name, 'AUTHORS.txt'))
