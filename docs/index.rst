@@ -1,6 +1,6 @@
-********
+*****************
 special_functions
-********
+*****************
 
 |travis-devel| |codecov-devel| |docs| |licence| |platforms| |conda-version| |conda| |format| |pypi| |implementation| |pyversions|
 

@@ -109,7 +109,7 @@ def configuration(parent_package='', top_path=None):
                 "embedsignature": True
             })
 
-    # add extensions to config per each *.c file
+    # Add extensions to config per each *.c file
     for extension in extensions:
         config.add_extension(
                 extension.name,
@@ -117,16 +117,16 @@ def configuration(parent_package='', top_path=None):
                 include_dirs=extension.include_dirs,
                 extra_compile_args=['-fPIC', '-O3'],
                 libraries=['amos', 'cephes'],
-                library_dirs=["."],               # Test
-                language='c++')                   # Test
-                # runtime_library_dirs=["."])       # Test
+                library_dirs=["."],
+                language=extension.language)
 
+    # Additional files, particularly, the API files to (c)import (*.pxd, *.py)
+    config.add_data_files(os.path.join(package_name, '*.pxd'))     # cython API
+    config.add_data_files(os.path.join(package_name, '*.py'))      # python API
     config.add_data_files((package_name, 'LICENSE.txt'))
     config.add_data_files((package_name, 'AUTHORS.txt'))
     config.add_data_files((package_name, 'README.rst'))
     config.add_data_files((package_name, 'CHANGELOG.rst'))
-    config.add_data_files(os.path.join(package_name, '*.pxd'))     # cython API
-    config.add_data_files(os.path.join(package_name, '*.py'))      # python API
 
     return config
 

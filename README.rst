@@ -127,7 +127,7 @@ You can ``import`` or ``cimport`` this package respectively in python or cython 
 1. Use in a Cython Code
 =======================
 
-This example compute Bessel function :math:`K_{\\nu}(z)` and its first and
+This example compute Bessel function :math:`K_{\nu}(z)` and its first and
 second derivatives for a complex argument. The python's ``gil`` can be
 optionally released, especially when this feature is needed during parallel
 OpenMP environments.
@@ -152,7 +152,7 @@ OpenMP environments.
 2. Usage in a Python Code
 =========================
 
-This example compute Bessel function :math:`K_{\\nu}(z)` and its first and
+This example compute Bessel function :math:`K_{\nu}(z)` and its first and
 second derivatives for a complex argument. Note, this function uses the
 global lock interpreter (``gil``).
 
@@ -185,7 +185,6 @@ Acknowledgements
 .. |example3| replace:: ``/examples/Plot_GeneralizedCorssValidation.py``
 .. _example3: https://github.com/ameli/special_functions/blob/main/examples/Plot_GeneralizedCrossValidation.py
 
-   :target: https://travis-ci.com/github/ameli/special_functions
 .. |codecov-devel| image:: https://img.shields.io/codecov/c/github/ameli/special_functions
    :target: https://codecov.io/gh/ameli/special_functions
 .. |licence| image:: https://img.shields.io/github/license/ameli/special_functions

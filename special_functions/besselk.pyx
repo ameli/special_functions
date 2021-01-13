@@ -1,5 +1,3 @@
-# distutils: language  = c++
-
 # =======
 # Imports
 # =======
@@ -7,16 +5,8 @@
 from cython import boundscheck, wraparound
 from libc.stdio cimport printf
 from libc.stdlib cimport exit
-from libc.math cimport INFINITY, NAN, M_PI_2, isnan, round, exp, sqrt
-
-# Importing from cython/includes/libcpp/complex.pxd
-# Note: since complex.h is imported from libcpp, as a cpp library, this *.pyx
-# file should be cythonized into a *.cpp file (not *.c). To instruct cython to
-# translate this file into a cpp file, add "# distutils: language = c++" on the
-# first line of this file.
-cdef extern from "<complex.h>":
-    double complex exp(double complex z) nogil
-    double complex sqrt(double complex z) nogil
+from libc.math cimport INFINITY, NAN, M_PI_2, isnan, round, exp, sqrt, sin, cos
+from _complex_functions cimport complex_sqrt, complex_exp
 
 
 # ==================
@@ -213,22 +203,25 @@ cdef double complex _complex_besselk_half_integer_order(
     if nu < 0:
         nu = -nu
 
-    cdef double complex k_nu_1
-    cdef double complex k_nu_2
+    cdef double complex k_nu_1    # used for nu-1
+    cdef double complex k_nu_2    # used for nu-2
+    cdef double complex k_nu      # output
 
     if nu == 0.5:
 
         if z.imag == 0:
-            return sqrt(M_PI_2 / z.real) * exp(-z.real)
+            k_nu = sqrt(M_PI_2 / z.real) * exp(-z.real)
         else:
-            return sqrt(M_PI_2 / z) * exp(-z)
+            k_nu = (sqrt(M_PI_2) / complex_sqrt(z)) * complex_exp(-z)
 
     else:
 
         # Using recusrive formula
         k_nu_1 = _complex_besselk_half_integer_order(nu-1, z)
         k_nu_2 = _complex_besselk_half_integer_order(nu-2, z)
-        return ((2.0 * (nu-1)) / z) * k_nu_1 + k_nu_2
+        k_nu = ((2.0 * (nu-1)) / z) * k_nu_1 + k_nu_2
+
+    return k_nu
 
 
 # ==========================
