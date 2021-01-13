@@ -65,6 +65,10 @@ def configuration(parent_package='', top_path=None):
     extern_directory_name = '_extern'
     extern_directory = os.path.join('.', package_name, extern_directory_name)
 
+    macros = []
+    if sys.platform == 'win32':
+        macros.append(('_USE_MATH_DEFINES',None))
+
     # amos (fortran library)
     config.add_library(
             'amos',
@@ -72,7 +76,8 @@ def configuration(parent_package='', top_path=None):
                 os.path.join(extern_directory, 'amos', '*.f'),
                 os.path.join(extern_directory, 'mach', '*.f')
             ],
-            extra_f77_compile_args=['-O3', '-fPIC'])
+            extra_f77_compile_args=['-O3', '-fPIC'],
+            macros=macros)
 
     # cephes (c library)
     config.add_library(
@@ -86,7 +91,8 @@ def configuration(parent_package='', top_path=None):
             include_dirs=[
                 os.path.join(extern_directory, 'cephes', 'eval')
             ],
-            extra_compiler_args=['-O3', '-fPIC'])
+            extra_compiler_args=['-O3', '-fPIC'],
+            macros=macros)
 
     # If envirinment var "CYTHON_BUILD_IN_SOURCE" exists, cython builds *.c
     # files in the source code, otherwise in /build.
@@ -118,7 +124,8 @@ def configuration(parent_package='', top_path=None):
                 extra_compile_args=['-fPIC', '-O3'],
                 libraries=['amos', 'cephes'],
                 library_dirs=["."],
-                language=extension.language)
+                language=extension.language,
+                define_macros=macros)
 
     # Additional files, particularly, the API files to (c)import (*.pxd, *.py)
     config.add_data_files(os.path.join(package_name, '*.pxd'))     # cython API
@@ -243,6 +250,7 @@ def main(argv):
         zip_safe=False,    # the package can run out of an .egg file
         extras_require={
             'test': [
+                'scipy',
                 'pytest-cov',
                 'codecov'
             ],
