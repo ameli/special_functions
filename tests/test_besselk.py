@@ -6,8 +6,15 @@
 
 import sys
 from special_functions import besselk
-import scipy
-from scipy.special import kn, kv, kvp
+from scipy.special import k0, k1, kn, kv, kvp
+from math import isnan, isinf, copysign
+import warnings
+warnings.filterwarnings(
+        "ignore",
+        message="invalid value encountered in double_scalars")
+warnings.filterwarnings(
+        "ignore",
+        message="invalid value encountered in cdouble_scalars")
 
 
 # ================
@@ -16,7 +23,7 @@ from scipy.special import kn, kv, kvp
 
 def validate_besselk(nu, z, n):
     """
-    Compares thr results of besselk function with scipy.special. If the return
+    Compares the results of besselk function with scipy.special. If the return
     is zero, the result matches with scipy.special.
     """
 
@@ -25,26 +32,67 @@ def validate_besselk(nu, z, n):
 
     # Compute using scipy.special package
     if n == 0:
-        if int(nu) == nu and z.imag == 0:
-            k_scipy = scipy.special.kn(nu, z)
+        if not isinstance(z, complex) and nu == 0:
+            k_scipy = k0(z)
+        elif not isinstance(z, complex) and nu == 1:
+            k_scipy = k1(z)
+        elif not isinstance(z, complex) and round(nu) == nu:
+            k_scipy = kn(nu, z)
         else:
-            k_scipy = scipy.special.kv(nu, z)
+            k_scipy = kv(nu, z)
     else:
-        k_scipy = scipy.special.kvp(nu, z, n)
+        k_scipy = kvp(nu, z, n)
 
     # Compare
     error = k_specf - k_scipy
 
-    tolerance = 1e-15
-    if error.real < tolerance and error.real > -tolerance and \
-       error.imag < tolerance and error.imag > -tolerance:
+    tolerance = 1e-14
+    if isinstance(error, float) and isinf(k_specf) and isinf(k_scipy) \
+            and (copysign(1, k_specf) == copysign(1, k_scipy)):
         error_detected = False
+
+    elif isinstance(error, complex) and isinf(k_specf.real) and \
+            isinf(k_scipy.real) and \
+            (copysign(1, k_specf.real) == copysign(1, k_scipy.real)):
+        error_detected = False
+
+    elif isinstance(error, float) and isnan(k_specf) and isnan(k_scipy):
+        error_detected = False
+
+    elif isinstance(error, complex) and isnan(k_specf.real) and \
+            isnan(k_scipy.real):
+        error_detected = False
+
+    elif error.real < tolerance and error.real > -tolerance and \
+            error.imag < tolerance and error.imag > -tolerance:
+        error_detected = False
+
     else:
         error_detected = True
-        print('ERROR: nu: %0.2f, z: (%0.2f,%0.2f), n: %d'
-              % (nu, z.real, z.imag, n), end=" ")
-        print(' k_nu: (%f,%f)' % (k_specf.real, k_specf.imag), end=" ")
-        print(' != (%f,%f)' % (k_scipy.real, k_scipy.imag))
+        if isinstance(z, complex):
+            print('ERROR: nu: %+0.2f, z: (%+0.2f,%+0.2f), n: %d, '
+                  % (nu, z.real, z.imag, n), end=" ")
+        else:
+            print('ERROR: nu: %+0.2f, z: (%+0.2f,.....), n: %d, '
+                  % (nu, z.real, n), end=" ")
+
+        if isinstance(k_specf, complex):
+            print('k_nu: (%+0.3f,%+0.3f) '
+                  % (k_specf.real, k_specf.imag), end=" ")
+        else:
+            print('k_nu: (%+0.3f,......) ' % (k_specf), end=" ")
+
+        if isinstance(k_scipy, complex):
+            print('!= (%+0.3f,%+0.3f), '
+                  % (k_scipy.real, k_scipy.imag), end=" ")
+        else:
+            print('!= (%+0.3f,......), ' % (k_scipy), end=" ")
+
+        if isinstance(error, complex):
+            print('error: (%+0.3e,%+0.3e)'
+                  % (error.real, error.imag))
+        else:
+            print('error: (%+0.3e,..........)' % (error))
 
     return error_detected
 
@@ -58,44 +106,21 @@ def test_besselk():
     Test for :mod:`special_functions.besselk` module.
     """
 
-    nu_real = 1.6
-    nu_half = 2.5
-    nu_intg = 1.0
+    nu_list = [1.4, 1.6, -1.4, -1.6, 0.5, -1.5, 2.5, -2.5, 1, -1, 0]
+    z_list = [0.0, 0.0 + 0.0j, 2.0, -2.0, 2.0j, -2.0j, -2.0 + 0.0j, 2.0 + 0.0j,
+              -2.0 - 1.0j, -2.0 + 1.0j, 2.0 + 1.0j, 2.0 - 1.0j]
+    max_derivative = 4
+    error_detected = False
 
-    z_real = 2.0
-    z_cmpl = 2.0 - 1j
+    # Check all combinations of parameters
+    for nu in nu_list:
+        for z in z_list:
+            for n in range(max_derivative):
+                error = validate_besselk(nu, z, n)
+                if error:
+                    error_detected = True
 
-    n_0 = 0
-    n_1 = 1
-    n_2 = 2
-
-    error_detected = []
-
-    # Test real nu
-    error_detected.append(validate_besselk(nu_real, z_real, n_0))
-    error_detected.append(validate_besselk(nu_real, z_real, n_1))
-    error_detected.append(validate_besselk(nu_real, z_real, n_2))
-    error_detected.append(validate_besselk(nu_real, z_cmpl, n_0))
-    error_detected.append(validate_besselk(nu_real, z_cmpl, n_1))
-    error_detected.append(validate_besselk(nu_real, z_cmpl, n_2))
-
-    # Test half-integer nu
-    error_detected.append(validate_besselk(nu_half, z_real, n_0))
-    error_detected.append(validate_besselk(nu_half, z_real, n_1))
-    error_detected.append(validate_besselk(nu_half, z_real, n_2))
-    error_detected.append(validate_besselk(nu_half, z_cmpl, n_0))
-    error_detected.append(validate_besselk(nu_half, z_cmpl, n_1))
-    error_detected.append(validate_besselk(nu_half, z_cmpl, n_2))
-
-    # Test integer nu
-    error_detected.append(validate_besselk(nu_intg, z_real, n_0))
-    error_detected.append(validate_besselk(nu_intg, z_real, n_1))
-    error_detected.append(validate_besselk(nu_intg, z_real, n_2))
-    error_detected.append(validate_besselk(nu_intg, z_cmpl, n_0))
-    error_detected.append(validate_besselk(nu_intg, z_cmpl, n_1))
-    error_detected.append(validate_besselk(nu_intg, z_cmpl, n_2))
-
-    if any(error_detected):
+    if error_detected:
         raise RuntimeError('A mismatch of calculation with scipy detected.')
     else:
         print('OK')

@@ -2,7 +2,167 @@
 # Imports
 # =======
 
+from .besselj import py_besselj
+from .bessely import py_bessely
+from .besseli import py_besseli
 from .besselk import py_besselk
+from .besselh import py_besselh
+
+from .cbesselj import py_cbesselj
+from .cbessely import py_cbessely
+from .cbesseli import py_cbesseli
+from .cbesselk import py_cbesselk
+from .cbesselh import py_cbesselh
+
+
+# =======
+# besselj
+# =======
+
+def besselj(nu, z, n=0):
+    """
+    Computes Bessel function or its derivative,
+    :math:`\\partial J_{\\nu}(z) / \\partial z`.
+
+    **Example:**
+
+    The two example computes Bessel function :math:`J_{\\nu}(z)` and its first
+    and second derivatives. Note, this function uses the global lock
+    interpreter (``gil``).
+
+    The example below demonstrates real argument.
+
+    .. code-block:: python
+
+        >>> # import module in a *.py file
+        >>> from special_functions import besselj
+
+        >>> # Declare typed variables
+        >>> nu = 2.5
+        >>> z = 2.0
+
+        >>> d0j = besselj(nu, z)       # no derivative
+        >>> d1j = besselj(nu, z, 1)    # 1st derivative
+        >>> d2j = besselj(nu, z, 2)    # 2nd derivative
+
+    The example below demonstrates complex argument.
+
+    .. code-block:: python
+
+        >>> # Declare typed variables
+        >>> nu = 2.5
+        >>> z = 2.0+1.0j
+
+        >>> d0j = besselj(nu, z)       # no derivative
+        >>> d1j = besselj(nu, z, 1)    # 1st derivative
+        >>> d2j = besselj(nu, z, 2)    # 2nd derivative
+    """
+
+    # Call pure cythonic function
+    if isinstance(z, complex):
+        return py_cbesselj(nu, z, n)
+    else:
+        return py_besselj(nu, z, n)
+
+
+# =======
+# bessely
+# =======
+
+def bessely(nu, z, n=0):
+    """
+    Computes Bessel function or its derivative,
+    :math:`\\partial Y_{\\nu}(z) / \\partial z`.
+
+    **Example:**
+
+    The two example computes Bessel function :math:`Y_{\\nu}(z)` and its first
+    and second derivatives. Note, this function uses the global lock
+    interpreter (``gil``).
+
+    The example below demonstrates real argument.
+
+    .. code-block:: python
+
+        >>> # import module in a *.py file
+        >>> from special_functions import bessely
+
+        >>> # Declare typed variables
+        >>> nu = 2.5
+        >>> z = 2.0
+
+        >>> d0y = bessely(nu, z)       # no derivative
+        >>> d1y = bessely(nu, z, 1)    # 1st derivative
+        >>> d2y = bessely(nu, z, 2)    # 2nd derivative
+
+    The example below demonstrates complex argument.
+
+    .. code-block:: python
+
+        >>> # Declare typed variables
+        >>> nu = 2.5
+        >>> z = 2.0+1.0j
+
+        >>> d0y = bessely(nu, z)       # no derivative
+        >>> d1y = bessely(nu, z, 1)    # 1st derivative
+        >>> d2y = bessely(nu, z, 2)    # 2nd derivative
+    """
+
+    # Call pure cythonic function
+    if isinstance(z, complex):
+        return py_cbessely(nu, z, n)
+    else:
+        return py_bessely(nu, z, n)
+
+
+# =======
+# besseli
+# =======
+
+def besseli(nu, z, n=0):
+    """
+    Computes Bessel function or its derivative,
+    :math:`\\partial I_{\\nu}(z) / \\partial z`.
+
+    **Example:**
+
+    The two example computes Bessel function :math:`I_{\\nu}(z)` and its first
+    and second derivatives. Note, this function uses the global lock
+    interpreter (``gil``).
+
+    The example below demonstrates real argument.
+
+    .. code-block:: python
+
+        >>> # import module in a *.py file
+        >>> from special_functions import besseli
+
+        >>> # Declare typed variables
+        >>> nu = 2.5
+        >>> z = 2.0
+
+        >>> d0i = besseli(nu, z)       # no derivative
+        >>> d1i = besseli(nu, z, 1)    # 1st derivative
+        >>> d2i = besseli(nu, z, 2)    # 2nd derivative
+
+    The example below demonstrates complex argument.
+
+    .. code-block:: python
+
+        >>> # Declare typed variables
+        >>> nu = 2.5
+        >>> z = 2.0+1.0j
+
+        >>> d0i = besseli(nu, z)       # no derivative
+        >>> d1i = besseli(nu, z, 1)    # 1st derivative
+        >>> d2i = besseli(nu, z, 2)    # 2nd derivative
+    """
+
+    # Call pure cythonic function
+    if isinstance(z, complex):
+        return py_cbesseli(nu, z, n)
+    else:
+        return py_besseli(nu, z, n)
 
 
 # =======
@@ -11,11 +171,99 @@ from .besselk import py_besselk
 
 def besselk(nu, z, n=0):
     """
-    Wrapper for the cython function :func:`besselk` at ``besselk.pyx``.
+    Computes Bessel function or its derivative,
+    :math:`\\partial K_{\\nu}(z) / \\partial z`.
 
-    This function calls ``py_besselk()`` in the file  ``besselk.pyx``,  which
-    is a wrap for ``besselk()`` in that file. Thus, the python API also have
-    the same name ``besselk`` as the cythin API does.
+    **Example:**
+
+    The two example computes Bessel function :math:`K_{\\nu}(z)` and its first
+    and second derivatives. Note, this function uses the global lock
+    interpreter (``gil``).
+
+    The example below demonstrates real argument.
+
+    .. code-block:: python
+
+        >>> # import module in a *.py file
+        >>> from special_functions import besselk
+
+        >>> # Declare typed variables
+        >>> nu = 2.5
+        >>> z = 2.0
+
+        >>> d0k = besselk(nu, z)       # no derivative
+        >>> d1k = besselk(nu, z, 1)    # 1st derivative
+        >>> d2k = besselk(nu, z, 2)    # 2nd derivative
+
+    The example below demonstrates complex argument.
+
+    .. code-block:: python
+
+        >>> # Declare typed variables
+        >>> nu = 2.5
+        >>> z = 2.0+1.0j
+
+        >>> d0k = bessely(nu, k)       # no derivative
+        >>> d1k = bessely(nu, k, 1)    # 1st derivative
+        >>> d2k = bessely(nu, k, 2)    # 2nd derivative
     """
 
-    return py_besselk(nu, z, n)
+    # Call pure cythonic function
+    if isinstance(z, complex):
+        return py_cbesselk(nu, z, n)
+    else:
+        return py_besselk(nu, z, n)
+
+
+# =======
+# besselh
+# =======
+
+def besselh(nu, k, z, n=0):
+    """
+    Computes Bessel function or its derivative,
+    :math:`\\partial H^{(1)}_{\\nu}(z) / \\partial z` and
+    :math:`\\partial H^{(2)}_{\\nu}(z) / \\partial z`.
+
+    **Example:**
+
+    The two example computes Bessel function :math:`H^{(k)}_{\\nu}(z)` and its
+    first and second derivatives for :math:`k = 1, 2`. Note, this function uses
+    the global lock interpreter (``gil``).
+
+    The example below demonstrates real argument and :math:`k = 1`. Note that
+    the output variables are compelx, despite the input ``z`` is real.
+
+    .. code-block:: python
+
+        >>> # import module in a *.py file
+        >>> from special_functions import besselh
+
+        >>> # Declare typed variables
+        >>> nu = 2.5
+        >>> k = 1
+        >>> z = 2.0
+
+        >>> d0h = besselh(nu, k, z)       # no derivative
+        >>> d1h = besselh(nu, k, z, 1)    # 1st derivative
+        >>> d2h = besselh(nu, k, z, 2)    # 2nd derivative
+
+    The example below demonstrates complex argument and :math:`k = 2`.
+
+    .. code-block:: python
+
+        >>> # Declare typed variables
+        >>> nu = 2.5
+        >>> k = 2
+        >>> z = 2.0+1.0j
+
+        >>> d0h = besselh(nu, k, z)       # no derivative
+        >>> d1h = besselh(nu, k, z, 1)    # 1st derivative
+        >>> d2h = besselh(nu, k, z, 2)    # 2nd derivative
+    """
+
+    # Call pure cythonic function
+    if isinstance(z, complex):
+        return py_cbesselh(nu, k, z, n)
+    else:
+        return py_besselh(nu, k, z, n)

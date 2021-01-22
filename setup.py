@@ -58,40 +58,44 @@ except ImportError:
 # =============
 
 def configuration(parent_package='', top_path=None):
+    """
+    A utility function from numpy.distutils.misc_util to compile Fortran and C
+    codes. This function will be passed to numpy.distutil.core.setup().
+    """
+
     config = Configuration(None, parent_package, top_path)
 
     # Define extern directory where external libraries source codes are.
     package_name = 'special_functions'
-    extern_directory_name = '_extern'
-    extern_directory = os.path.join('.', package_name, extern_directory_name)
+    extern_dir_name = '_extern'
+    extern_dir = os.path.join('.', package_name, extern_dir_name)
 
     macros = []
     if sys.platform == 'win32':
-        macros.append(('_USE_MATH_DEFINES',None))
+        macros.append(('_USE_MATH_DEFINES', None))
 
     # amos (fortran library)
     config.add_library(
             'amos',
             sources=[
-                os.path.join(extern_directory, 'amos', '*.f'),
-                os.path.join(extern_directory, 'mach', '*.f')
+                os.path.join(extern_dir, 'amos', 'mach', '*.f'),
+                os.path.join(extern_dir, 'amos', 'double_precision', '*.f'),
+                os.path.join(extern_dir, 'amos', 'single_precision', '*.f')
             ],
-            extra_f77_compile_args=['-O3', '-fPIC'],
             macros=macros)
 
     # cephes (c library)
     config.add_library(
             'cephes',
             sources=[
-                os.path.join(extern_directory, 'cephes', 'bessel', '*.c'),
-                os.path.join(extern_directory, 'cephes', 'cprob', '*.c'),
-                os.path.join(extern_directory, 'cephes', 'eval', '*.c'),
-                os.path.join(extern_directory, 'cephes', 'cmath', '*.c')
+                os.path.join(extern_dir, 'cephes', 'bessel', '*.c'),
+                os.path.join(extern_dir, 'cephes', 'cprob', '*.c'),
+                os.path.join(extern_dir, 'cephes', 'eval', '*.c'),
+                os.path.join(extern_dir, 'cephes', 'cmath', '*.c')
             ],
             include_dirs=[
-                os.path.join(extern_directory, 'cephes', 'eval')
+                os.path.join(extern_dir, 'cephes', 'eval')
             ],
-            extra_compiler_args=['-O3', '-fPIC'],
             macros=macros)
 
     # If envirinment var "CYTHON_BUILD_IN_SOURCE" exists, cython builds *.c
@@ -107,6 +111,7 @@ def configuration(parent_package='', top_path=None):
             os.path.join('.', package_name, '*.pyx'),
             build_dir=cython_build_dir,
             include_path=[os.path.join('.', package_name)],
+            language_level="3",
             compiler_directives={
                 'boundscheck': False,
                 'cdivision': True,
@@ -121,7 +126,6 @@ def configuration(parent_package='', top_path=None):
                 extension.name,
                 sources=extension.sources,
                 include_dirs=extension.include_dirs,
-                extra_compile_args=['-fPIC', '-O3'],
                 libraries=['amos', 'cephes'],
                 library_dirs=["."],
                 language=extension.language,
@@ -189,12 +193,19 @@ def main(argv):
     author = open(author_file, 'r').read().rstrip()
 
     # Requirements
-    # requirements_file = os.path.join(directory, "requirements.txt")
-    # requirements = [i.strip() for i in open(requirements_file, 'r').readlines()]
+    # requirements_filename = os.path.join(directory, "requirements.txt")
+    # requirements_file = open(requirements_filename, 'r')
+    # requirements = [i.strip() for i in requirements_file.readlines()]
 
     # ReadMe
     readme_file = os.path.join(directory, 'README.rst')
     long_description = open(readme_file, 'r').read()
+
+    # URLs
+    url = 'https://github.com/ameli/special_functions'
+    download_url = url + '/archive/main.zip'
+    documentation_url = url + '/blob/main/README.rst'
+    tracker_url = url + '/issues'
 
     # inputs to numpy.distutils.core.setup
     metadata = dict(
@@ -206,8 +217,8 @@ def main(argv):
         long_description=long_description,
         keywords="""special-functions bessel-function airy-function
             gamma-function""",
-        url='https://github.com/ameli/special_functions',
-        download_url='https://github.com/ameli/special_functions/archive/main.zip',
+        url=url,
+        download_url=download_url,
         platforms=['Linux', 'OSX', 'Windows'],
         classifiers=[
             'Programming Language :: Python :: 2.7',
@@ -230,9 +241,9 @@ def main(argv):
     additional_metadata = dict(
         long_description_content_type='text/x-rst',
         project_urls={
-            "Documentation": "https://github.com/ameli/special_functions/blob/main/README.rst",
-            "Source": "https://github.com/ameli/special_functions",
-            "Tracker": "https://github.com/ameli/special_functions/issues",
+            "Documentation": documentation_url,
+            "Source": url,
+            "Tracker": tracker_url
         },
         # ext_modules=ExternalModules,
         # include_dirs=[numpy.get_include()],
@@ -246,7 +257,7 @@ def main(argv):
             'pytest',
             'pytest-cov'],
         include_package_data=True,
-        # cmdclass={'build_ext': CustomBuildExtension},
+        # cmdclass={'build_ext': custom_build_extension},
         zip_safe=False,    # the package can run out of an .egg file
         extras_require={
             'test': [
@@ -275,7 +286,7 @@ def main(argv):
     from setuptools import setup
 
     if run_build:
-        from numpy.distutils.core import setup
+        from numpy.distutils.core import setup   # noqa: F811
         metadata['configuration'] = configuration
     else:
         metadata.update(additional_metadata)

@@ -53,6 +53,41 @@ A common difficulty in such application is that the matrices are generally large
 ..    special_functions.InterpolateTraceOfInverse
 ..    special_functions.GenerateMatrix
 
+*****************
+List of Functions
+*****************
+
+**Bessel Functions** of order |image01|, real or complex argument |image02|, or their |image03| derivative.
+
+========================  ==============================  =========  =============================================================================
+Syntax                    Return type                     Symbol     Description
+========================  ==============================  =========  =============================================================================
+``besselj(nu, z, n)``     ``double``, ``double complex``  |image04|  :ref:`Bessel function of the first kind of order <besselj>`
+``bessely(nu, z, n)``     ``double``, ``double complex``  |image05|  :ref:`Bessel function of the second kind of order <bessely>` (Weber function)
+``besseli(nu, z, n)``     ``double``, ``double complex``  |image06|  :ref:`Modified Bessel function of the first kind <besseli>`
+``besselk(nu, z, n)``     ``double``, ``double complex``  |image07|  :ref:`Modified Bessel function of the second kind <besselk>`
+``besselh(nu, k, z, n)``  ``double``, ``double complex``  |image08|  :ref:`Bessel function of the third kind of order <besselh>` (Hankel function)
+========================  ==============================  =========  =============================================================================
+
+**Function Arguments:**
+
+========  ==============================  =========  =====================================================================================================
+Argument   Type                           Symbol     Description
+========  ==============================  =========  =====================================================================================================
+``nu``    ``double``, ``int``             |image01|  Parameter of functions (such as order of Bessel functions). Real number.
+``z``     ``double``, ``double complex``  |image02|  Argument of the functions. Can be real or complex number.
+``n``     ``int``                         |image03|  Derivative of function with respect to |image02|. Non-negative integer. Zero indicates no derivative.
+========  ==============================  =========  =====================================================================================================
+
+.. |image01| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image01.svg
+.. |image02| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image02.svg
+.. |image03| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image03.svg
+.. |image04| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image04.svg
+.. |image05| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image05.svg
+.. |image06| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image06.svg
+.. |image07| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image07.svg
+.. |image08| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image08.svg
+
 =========
 Tutorials
 =========
