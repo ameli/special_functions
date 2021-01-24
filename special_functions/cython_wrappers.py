@@ -14,6 +14,8 @@ from .cbesseli import py_cbesseli
 from .cbesselk import py_cbesselk
 from .cbesselh import py_cbesselh
 
+from .lngamma import py_lngamma
+
 
 # =======
 # besselj
@@ -37,7 +39,6 @@ def besselj(nu, z, n=0):
         >>> # import module in a *.py file
         >>> from special_functions import besselj
 
-        >>> # Declare typed variables
         >>> nu = 2.5
         >>> z = 2.0
 
@@ -49,7 +50,6 @@ def besselj(nu, z, n=0):
 
     .. code-block:: python
 
-        >>> # Declare typed variables
         >>> nu = 2.5
         >>> z = 2.0+1.0j
 
@@ -87,7 +87,6 @@ def bessely(nu, z, n=0):
         >>> # import module in a *.py file
         >>> from special_functions import bessely
 
-        >>> # Declare typed variables
         >>> nu = 2.5
         >>> z = 2.0
 
@@ -99,7 +98,6 @@ def bessely(nu, z, n=0):
 
     .. code-block:: python
 
-        >>> # Declare typed variables
         >>> nu = 2.5
         >>> z = 2.0+1.0j
 
@@ -137,7 +135,6 @@ def besseli(nu, z, n=0):
         >>> # import module in a *.py file
         >>> from special_functions import besseli
 
-        >>> # Declare typed variables
         >>> nu = 2.5
         >>> z = 2.0
 
@@ -149,7 +146,6 @@ def besseli(nu, z, n=0):
 
     .. code-block:: python
 
-        >>> # Declare typed variables
         >>> nu = 2.5
         >>> z = 2.0+1.0j
 
@@ -187,7 +183,6 @@ def besselk(nu, z, n=0):
         >>> # import module in a *.py file
         >>> from special_functions import besselk
 
-        >>> # Declare typed variables
         >>> nu = 2.5
         >>> z = 2.0
 
@@ -199,7 +194,6 @@ def besselk(nu, z, n=0):
 
     .. code-block:: python
 
-        >>> # Declare typed variables
         >>> nu = 2.5
         >>> z = 2.0+1.0j
 
@@ -239,7 +233,6 @@ def besselh(nu, k, z, n=0):
         >>> # import module in a *.py file
         >>> from special_functions import besselh
 
-        >>> # Declare typed variables
         >>> nu = 2.5
         >>> k = 1
         >>> z = 2.0
@@ -252,7 +245,6 @@ def besselh(nu, k, z, n=0):
 
     .. code-block:: python
 
-        >>> # Declare typed variables
         >>> nu = 2.5
         >>> k = 2
         >>> z = 2.0+1.0j
@@ -267,3 +259,34 @@ def besselh(nu, k, z, n=0):
         return py_cbesselh(nu, k, z, n)
     else:
         return py_besselh(nu, k, z, n)
+
+
+# =======
+# lngamma
+# =======
+
+def lngamma(x):
+    """
+    Computes the natural logarithm of Gamma function. THis function is a
+    wrapper for ``gamma`` function in cephes library.
+
+    **Example:**
+
+    This example computes :math:`\\ln \\Gamma(x)` for real argument. Note, this
+    function uses python's  global lock interpreter (``gil``).
+
+    .. code-block:: python
+
+        >>> # cimport module in a *.py file
+        >>> from special_functions import lngamma
+
+        >>> x = 2.0
+        >>> y = lngamma(x)
+
+    .. seealso::
+
+        * :funct:`lngamma`: cython wrapper to this function.
+    """
+
+    # Call pure cythonic function
+    return py_lngamma(x)

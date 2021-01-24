@@ -7,7 +7,6 @@ import textwrap
 from cython import boundscheck, wraparound
 from libc.stdio cimport printf
 from libc.stdlib cimport exit
-from math import nan
 from libc.math cimport INFINITY, NAN, M_PI, M_2_PI, isnan
 from libc.math cimport round, fabs, sqrt, cos, sin, copysign
 

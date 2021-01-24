@@ -92,10 +92,10 @@ special\_functions.cython\_wrappers module
    :undoc-members:
    :show-inheritance:
 
-special\_functions.gamma module
--------------------------------
+special\_functions.lngamma module
+---------------------------------
 
-.. automodule:: special_functions.gamma
+.. automodule:: special_functions.lngamma
    :members:
    :undoc-members:
    :show-inheritance:

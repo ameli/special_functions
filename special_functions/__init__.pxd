@@ -10,9 +10,12 @@ from special_functions.cbesseli import cbesseli
 from special_functions.cbesselk import cbesselk
 from special_functions.cbesselh import cbesselh
 
+from special_functions.lngamma import lngamma
+
 __all__ = [
         besselj, cbesselj,
         bessely, cbessely,
         besseli, cbesseli,
         besselk, cbesselk,
-        besselh, cbesselh]
+        besselh, cbesselh,
+        lngamma]
