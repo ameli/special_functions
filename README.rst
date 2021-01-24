@@ -124,6 +124,7 @@ Syntax                    Return type                     Symbol     Description
 ``besseli(nu, z, n)``     ``double``, ``double complex``  |image06|  `Modified Bessel function of the first kind <besseli>`_
 ``besselk(nu, z, n)``     ``double``, ``double complex``  |image07|  `Modified Bessel function of the second kind <besselk>`_
 ``besselh(nu, k, z, n)``  ``double``, ``double complex``  |image08|  `Bessel function of the third kind <besselh>`_ (Hankel function)
+``lngamma(x)``            ``double````                    |image09|  `Natural logarithm of Gamma function <lngamma>`_
 ========================  ==============================  =========  =============================================================================
 
 **Function Arguments:**
@@ -143,6 +144,8 @@ Argument   Type                           Symbol     Description
 .. |image05| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image05.svg
 .. |image06| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image06.svg
 .. |image07| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image07.svg
+.. |image08| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image08.svg
+.. |image09| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image09.svg
 
 *******
 Example
