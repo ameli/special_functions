@@ -131,5 +131,6 @@ jobs:
 
             - name: Test
               run: |
+                  python -m pip install -r tests/requirements.txt
                   mv special_functions special_functions_do_dot_import
                   pytest
