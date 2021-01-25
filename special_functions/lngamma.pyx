@@ -12,7 +12,6 @@ from libc.math cimport INFINITY, NAN, isnan, round
 
 # Externs from Cephes library
 cdef extern from "cephes_wrapper.h":
-    # double gamma(double x) nogil
     double lgam(double x) nogil
 
 
@@ -71,5 +70,4 @@ cdef double lngamma(double x) nogil:
     if (x <= 0) and (round(x) == x):
         return INFINITY
 
-    # return gamma(x)
     return lgam(x)
