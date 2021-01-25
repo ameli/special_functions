@@ -9,9 +9,6 @@ import os
 import sys
 import subprocess
 
-# Test
-os.environ["CC"] = "clang"
-
 
 # ===============
 # Install Package

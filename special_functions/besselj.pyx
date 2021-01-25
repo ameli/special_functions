@@ -122,7 +122,9 @@ cdef double besselj(
     cdef double tolerance = 1e-16
     if n == 0:
 
-        if round(nu) == nu:
+        # if round(nu) == nu:
+        # Test
+        if round(nu) == nu and (nu == 0 or nu == 1):
             return _real_besselj_integer_order(int(nu), z)
         elif round(nu + 0.5) == nu + 0.5:
             return _real_besselj_half_integer_order(nu, z)
@@ -238,8 +240,8 @@ cdef double _real_besselj_derivative(
     cdef double combination = 1.0
     cdef double summand = besselj(nu-n, z, 0)
 
-    # for i in range(1, n+1):
-    #     combination *= phase * (n-i+1) / i
-    #     summand += combination * besselj(nu-n + 2*i, z, 0)
+    for i in range(1, n+1):
+        combination *= phase * (n-i+1) / i
+        summand += combination * besselj(nu-n + 2*i, z, 0)
 
     return summand / (2.0**n)
