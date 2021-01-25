@@ -120,6 +120,12 @@ def configuration(parent_package='', top_path=None):
                 "embedsignature": True
             })
 
+    # Test
+    if sys.platform == "win32":
+        lib_path = os.path.join('.', 'build', 'temp.win-amd64-3.8')
+    else:
+        lib_path = '.'
+
     # Add extensions to config per each *.c file
     for extension in extensions:
         config.add_extension(
@@ -127,7 +133,8 @@ def configuration(parent_package='', top_path=None):
                 sources=extension.sources,
                 include_dirs=extension.include_dirs,
                 libraries=['amos', 'cephes'],
-                library_dirs=["."],
+                # library_dirs=["."],
+                library_dirs=[lib_path],
                 language=extension.language,
                 define_macros=macros)
 

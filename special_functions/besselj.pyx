@@ -122,8 +122,6 @@ cdef double besselj(
     cdef double tolerance = 1e-16
     if n == 0:
 
-        # if round(nu) == nu:
-        # Test
         if round(nu) == nu and (nu == 0 or nu == 1):
             return _real_besselj_integer_order(int(nu), z)
         elif round(nu + 0.5) == nu + 0.5:
@@ -215,7 +213,8 @@ cdef double _real_besselj_integer_order(
     elif nu == 1:
         return j1(z)
     else:
-        return jn(nu, z)
+        printf('nu should be 0 or 1.\n')
+        exit(1)
 
 
 # =======================
