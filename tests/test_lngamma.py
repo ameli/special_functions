@@ -85,7 +85,7 @@ def test_lngamma():
     Test for :mod:`special_functions.bessely` module.
     """
 
-    x_list = [0.0, 1.0, 2.0, 1.5, 2.5, 1.6]
+    x_list = [0.0, 1.0, 1.5, 1.6, 2.0, 2.5, 3.0]
     error_detected = False
 
     # Check all combinations of parameters

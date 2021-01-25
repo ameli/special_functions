@@ -1,16 +1,16 @@
-from special_functions.besselj import besselj
-from special_functions.bessely import bessely
-from special_functions.besseli import besseli
-from special_functions.besselk import besselk
-from special_functions.besselh import besselh
+from special_functions.besselj cimport besselj
+from special_functions.bessely cimport bessely
+from special_functions.besseli cimport besseli
+from special_functions.besselk cimport besselk
+from special_functions.besselh cimport besselh
 
-from special_functions.cbesselj import cbesselj
-from special_functions.cbessely import cbessely
-from special_functions.cbesseli import cbesseli
-from special_functions.cbesselk import cbesselk
-from special_functions.cbesselh import cbesselh
+from special_functions.cbesselj cimport cbesselj
+from special_functions.cbessely cimport cbessely
+from special_functions.cbesseli cimport cbesseli
+from special_functions.cbesselk cimport cbesselk
+from special_functions.cbesselh cimport cbesselh
 
-from special_functions.lngamma import lngamma
+from special_functions.lngamma cimport lngamma
 
 __all__ = [
         besselj, cbesselj,

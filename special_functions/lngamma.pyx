@@ -3,7 +3,7 @@
 # =======
 
 from cython import boundscheck, wraparound
-from libc.math cimport NAN, isnan
+from libc.math cimport INFINITY, NAN, isnan, round
 
 
 # ==================
@@ -12,7 +12,8 @@ from libc.math cimport NAN, isnan
 
 # Externs from Cephes library
 cdef extern from "cephes_wrapper.h":
-    double gamma(double x) nogil
+    # double gamma(double x) nogil
+    double lgam(double x) nogil
 
 
 # ==========
@@ -67,4 +68,8 @@ cdef double lngamma(double x) nogil:
     if isnan(x):
         return NAN
 
-    return gamma(x)
+    if (x <= 0) and (round(x) == x):
+        return INFINITY
+
+    # return gamma(x)
+    return lgam(x)

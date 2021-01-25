@@ -11,6 +11,7 @@ double j0(double x);
 double j1(double x);
 double jn(int nu, double x);
 double yn(int nu, double x);
-double gamma(double x);
+// double gamma(double x);
+double lgam(double x);
 
 #endif

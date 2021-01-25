@@ -207,7 +207,10 @@ cdef double _real_bessely_integer_order(
     real argument :math:`z`.
     """
 
-    return yn(nu, z)
+    if z == 0:
+        return -INFINITY
+    else:
+        return yn(nu, z)
 
 
 # =======================
