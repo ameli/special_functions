@@ -1,9 +1,9 @@
-name: build-windows
+name: build-windows-2
 
 on:
-    # push:
-    #     branches:
-    #         - main
+    push:
+        branches:
+            - main
     release:
         types: 
             - published
@@ -18,26 +18,31 @@ jobs:
                 python-version: ['2.7', '3.6', '3.7', '3.8', '3.9', 'pypy-2.7', 'pypy-3.7']
 
         steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-
-            - name: Set up Python ${{ matrix.python-version }}
-              uses: actions/setup-python@v2
+            - name: Setup Miniconda
+              uses: conda-incubator/setup-miniconda@v2
               with:
+                  auto-update-conda: true
                   python-version: ${{ matrix.python-version }}
+                  activate-environment: myenv
 
             - name: Install Visual C++ for Python 2.7
               if: matrix.python-version == '2.7'
               run: choco install vcpython27 -f -y
 
+            - name: Checkout
+              uses: actions/checkout@v2
+
             - name: Install package and dependencies
               run: |
+                  export PATH="$HOME/miniconda/bin:$PATH"
                   python -m pip install --upgrade pip
                   python -m pip install --upgrade numpy
+                  python -m pip install --upgrade scipy
                   python -m pip install .
 
             - name: Test
               run: |
+                  export PATH="$HOME/miniconda/bin:$PATH"
                   python -m pip install --upgrade pytest
                   python -m pip install --upgrade pytest-cov
                   python -m pip install -r tests/requirements.txt

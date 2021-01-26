@@ -28,6 +28,7 @@ recursive-include examples *.rst
 recursive-include notebooks *.ipynb
 recursive-include tests *.py
 recursive-include tests *.rst
+recursive-include tests *.txt
 
 include CHANGELOG.rst
 include README.rst
