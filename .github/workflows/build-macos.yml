@@ -31,8 +31,8 @@ jobs:
 
             - name: Install package and dependencies
               run: |
-                  brew install openblas
-                  OPENBLAS="$(brew --prefix openblas)"
+                  # brew install openblas
+                  # OPENBLAS="$(brew --prefix openblas)"
                   python -m pip install --upgrade pip
                   python -m pip install --upgrade numpy
                   python -m pip install .

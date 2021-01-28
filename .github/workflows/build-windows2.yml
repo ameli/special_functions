@@ -1,9 +1,9 @@
 name: build-windows-2
 
 on:
-    push:
-        branches:
-            - main
+    # push:
+        # branches:
+            # - main
     release:
         types: 
             - published
