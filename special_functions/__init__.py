@@ -1,3 +1,5 @@
+from .__config__ import show  # noqa: F401
+
 from .cython_wrappers import besselj
 from .cython_wrappers import bessely
 from .cython_wrappers import besseli

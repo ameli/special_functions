@@ -9,7 +9,7 @@ on:
             - published
 
 jobs:
-    build_wheels:
+    build_wheels_unix:
         name: Build wheels on ${{ matrix.os }}
         runs-on: ${{ matrix.os }}
         strategy:
@@ -58,12 +58,12 @@ jobs:
                   path: ./wheelhouse/*.whl
 
     build_wheels_windows:
-        name: Build wheels on ${{ matrix.os }}
+        name: Build wheels on ${{ matrix.python-version }}
         runs-on: windows-latest
         strategy:
             fail-fast: false
             matrix:
-                python-version: ['2.7', '3.6', '3.7', '3.8', '3.9', 'pypy-2.7', 'pypy-3.7']
+                python-version: ['3.6', '3.7', '3.8', '3.9']
 
         steps:
             - name: Setup Miniconda
@@ -111,7 +111,7 @@ jobs:
                   path: dist/*.tar.gz
 
     upload_pypi:
-        needs: [build_wheels, build_sdist]
+        needs: [build_wheels_unix, build_wheels_windows, build_sdist]
         runs-on: ubuntu-latest
         name: Publish to PyPi
         

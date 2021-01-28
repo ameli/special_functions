@@ -2,7 +2,6 @@
 # Imports
 # =======
 
-import textwrap
 from cython import boundscheck, wraparound
 from libc.stdio cimport printf
 from libc.stdlib cimport exit
@@ -121,12 +120,11 @@ cdef double besselk(
             output = _complex_besselk_real_order(nu, z + 0j)
 
             # Check if the complex functions returned zero imaginary part
-            if (fabs(output.imag) > tolerance):
-                raise ValueError(textwrap.dedent(
-                    """
-                    Mismatch of real input and complex output detected.
-                    %f, input: %f, output: %e + %ej)
-                    """ % (z, output.real, output.imag)))
+            if fabs(output.imag) > tolerance:
+                printf('Mismatch of real input and complex output detected. ')
+                printf('input: %f, output: %e + %ej.\n',
+                       z, output.real, output.imag)
+                exit(1)
             else:
                 return output.real
 

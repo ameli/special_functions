@@ -3,7 +3,6 @@
 # =======
 
 # External modules
-import textwrap
 from cython import boundscheck, wraparound
 from libc.stdio cimport printf
 from libc.stdlib cimport exit

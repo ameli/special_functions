@@ -1,3 +1,5 @@
+from .__config__ import show
+
 from special_functions.besselj cimport besselj
 from special_functions.bessely cimport bessely
 from special_functions.besseli cimport besseli

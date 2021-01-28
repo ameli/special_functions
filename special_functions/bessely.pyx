@@ -3,7 +3,6 @@
 # =======
 
 # External modules
-import textwrap
 from cython import boundscheck, wraparound
 from libc.stdio cimport printf
 from libc.stdlib cimport exit
@@ -122,18 +121,17 @@ cdef double bessely(
 
         if round(nu) == nu:
             return _real_bessely_integer_order(int(nu), z)
-        elif (round(nu + 0.5) == nu + 0.5):
+        elif round(nu + 0.5) == nu + 0.5:
             return _real_bessely_half_integer_order(nu, z)
         else:
             output = _complex_bessely_real_order(nu, z + 0j)
 
             # Check if the complex functions returned zero imaginary part
-            if (fabs(output.imag) > tolerance):
-                raise ValueError(textwrap.dedent(
-                    """
-                    Mismatch of real input and complex output detected.
-                    input: %f, output: %e + %ej)
-                    """ % (z, output.real, output.imag)))
+            if fabs(output.imag) > tolerance:
+                printf('Mismatch of real input and complex output detected. ')
+                printf('input: %f, output: %e + %ej.\n',
+                       z, output.real, output.imag)
+                exit(1)
             else:
                 return output.real
 

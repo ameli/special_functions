@@ -3,7 +3,6 @@
 # =======
 
 # External modules
-import textwrap
 from cython import boundscheck, wraparound
 from libc.stdio cimport printf
 from libc.stdlib cimport exit
@@ -131,11 +130,10 @@ cdef double besselj(
 
             # Check if the complex functions returned zero imaginary part
             if fabs(output.imag) > tolerance:
-                raise ValueError(textwrap.dedent(
-                    """
-                    Mismatch of real input and complex output detected.
-                    input: %f, output: %e + %ej)
-                    """ % (z, output.real, output.imag)))
+                printf('Mismatch of real input and complex output detected. ')
+                printf('input: %f, output: %e + %ej.\n',
+                       z, output.real, output.imag)
+                exit(1)
             else:
                 return output.real
 
