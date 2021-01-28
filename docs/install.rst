@@ -6,7 +6,12 @@ Install
 Dependencies
 ============
 
-This package does not have any dependencies at runtime.
+* **At runtime:** This package does not need any python dependencies at runtime.
+* **For tests:** To run tests, ``scipy`` package is required, and can be installed by
+
+  ::
+
+      python -m pip install -r tests/requirements.txt
 
 .. _InstallationMethods:
 
@@ -46,9 +51,9 @@ Install through the package available at `Conda <https://anaconda.org/s-ameli/sp
 
 .. _Build_Locally:
 
---------------------
-Build Source Locally
---------------------
+------------------------
+Install from Source Code
+------------------------
 
 |release|
 
@@ -66,37 +71,24 @@ Build Source Locally
        git clone https://github.com/ameli/special_functions.git
        cd special_functions
 
-3. Build the package locally
+3. Build and install the package
 
    ::
        
-       python setup build
-
-4. Install the package
-
-   ::
-       
-       python setup install
+       python -m pip install .
 
    The above command may need to be run with ``sudo``.
 
-.. The third installation method does not install the dependencies automatically. The dependencies should be installed separately such as with ``pip`` below. In the same root directory of the package (where the file ``requirements.txt`` can be found) run
-..
-.. ::
-..
-..     python -m pip install -r requirements.txt
-..
-.. Alternatively, the dependencies can be installed with ``conda`` by
-..
-.. ::
-..
-..     conda install --file requirements.txt
+.. note::
+
+    To properly import the *installed* package, change the current working direcrtory to a directory *outside* of the source code. That is, importing the package fails if the current working directory is the source code directory.
+
 
 ==============================
 Install in Virtual Environment
 ==============================
 
-If you do not want the installation to occupy your main python's site-packages, you may install the package in an isolated virtual environment. Below, we describe the installation procedure in two common virtual environments, namely, :ref:`virtualenv <virtualenv_env>` and :ref:`conda <conda_env>`.
+If you do not want the installation to occupy your main python's site-packages, you may install the package in an isolated virtual environment. Below describes the installation procedure in two common virtual environments, namely, :ref:`virtualenv <virtualenv_env>` and :ref:`conda <conda_env>`.
 
 .. _virtualenv_env:
 

@@ -78,19 +78,12 @@ Build Source Locally
        git clone https://github.com/ameli/special_functions.git
        cd special_functions
 
-3. Build the package locally
+3. Install the package (may need to be run with ``sudo``)
 
    ::
        
-       python setup build
+       python -m pip install .
 
-4. Install the package
-
-   ::
-       
-       python setup install
-
-   The above command may need to be run with ``sudo``.
 
 ****
 Test
@@ -114,28 +107,73 @@ and test the package with
 List of Functions
 *****************
 
-**Bessel Functions** of order |image01|, real or complex argument |image02|, or their |image03| derivative.
+---------------------------------------
+Python API (Complex and Real Functions)
+---------------------------------------
 
-========================  ==============================  =========  =============================================================================
-Syntax                    Return type                     Symbol     Description
-========================  ==============================  =========  =============================================================================
-``besselj(nu, z, n)``     ``double``, ``double complex``  |image04|  `Bessel function of the first kind <besselj>`_
-``bessely(nu, z, n)``     ``double``, ``double complex``  |image05|  `Bessel function of the second kind <bessely>`_ (Weber function)
-``besseli(nu, z, n)``     ``double``, ``double complex``  |image06|  `Modified Bessel function of the first kind <besseli>`_
-``besselk(nu, z, n)``     ``double``, ``double complex``  |image07|  `Modified Bessel function of the second kind <besselk>`_
-``besselh(nu, k, z, n)``  ``double``, ``double complex``  |image08|  `Bessel function of the third kind <besselh>`_ (Hankel function)
-``lngamma(x)``            ``double````                    |image09|  `Natural logarithm of Gamma function <lngamma>`_
-========================  ==============================  =========  =============================================================================
+In the followings |image01| is the order of Bessel functions, |image02| is the argument of the functions which can be real or complex number, and |image03| is the derivative order of the functions. Also, |image00| is the real argument.
 
-**Function Arguments:**
+========================  =========  =============================================================================
+Syntax                    Symbol     Description
+========================  =========  =============================================================================
+``besselj(nu, z, n)``     |image04|  `Bessel function of the first kind <besselj>`_
+``bessely(nu, z, n)``     |image05|  `Bessel function of the second kind <bessely>`_ (Weber function)
+``besseli(nu, z, n)``     |image06|  `Modified Bessel function of the first kind <besseli>`_
+``besselk(nu, z, n)``     |image07|  `Modified Bessel function of the second kind <besselk>`_
+``besselh(nu, k, z, n)``  |image08|  `Bessel function of the third kind <besselh>`_ (Hankel function)
+``lngamma(x)``            |image09|  `Natural logarithm of Gamma function <lngamma>`_
+========================  =========  =============================================================================
 
-========  ==============================  =========  =====================================================================================================
+---------------------------
+Cython API (Real Functions)
+---------------------------
+
+========================  ===========  =========  =============================================================================
+Syntax                    Return type  Symbol     Description
+========================  ===========  =========  =============================================================================
+``besselj(nu, z, n)``     ``double``   |image04|  `Bessel function of the first kind <besselj>`_
+``bessely(nu, z, n)``     ``double``   |image05|  `Bessel function of the second kind <bessely>`_ (Weber function)
+``besseli(nu, z, n)``     ``double``   |image06|  `Modified Bessel function of the first kind <besseli>`_
+``besselk(nu, z, n)``     ``double``   |image07|  `Modified Bessel function of the second kind <besselk>`_
+``besselh(nu, k, z, n)``  ``double``   |image08|  `Bessel function of the third kind <besselh>`_ (Hankel function)
+``lngamma(x)``            ``double``   |image09|  `Natural logarithm of Gamma function <lngamma>`_
+========================  ===========  =========  =============================================================================
+
+**Typed Arguments:**
+
+========  ===================  =========  ================================================================================================================
 Argument   Type                           Symbol     Description
-========  ==============================  =========  =====================================================================================================
+========  ===================  =========  ================================================================================================================
 ``nu``    ``double``, ``int``             |image01|  Parameter of functions (such as order of Bessel functions). Real number.
-``z``     ``double``, ``double complex``  |image02|  Argument of the functions. Can be real or complex number.
+``z``     ``double``           |image02|  Argument of the functions. Can be real or complex number.
 ``n``     ``int``                         |image03|  Derivative of function with respect to |image02|. Non-negative integer. Zero indicates no derivative.
-========  ==============================  =========  =====================================================================================================
+========  ===================  =========  ================================================================================================================
+
+------------------------------
+Cython API (Complex Functions)
+------------------------------
+
+========================  ==================  =========  =============================================================================
+Syntax                    Return type         Symbol     Description
+========================  ==================  =========  =============================================================================
+``besselj(nu, z, n)``     ``double complex``  |image04|  `Bessel function of the first kind <besselj>`_
+``bessely(nu, z, n)``     ``double complex``  |image05|  `Bessel function of the second kind <bessely>`_ (Weber function)
+``besseli(nu, z, n)``     ``double complex``  |image06|  `Modified Bessel function of the first kind <besseli>`_
+``besselk(nu, z, n)``     ``double complex``  |image07|  `Modified Bessel function of the second kind <besselk>`_
+``besselh(nu, k, z, n)``  ``double complex``  |image08|  `Bessel function of the third kind <besselh>`_ (Hankel function)
+``lngamma(x)``                                |image09|  `Natural logarithm of Gamma function <lngamma>`_
+========================  ==================  =========  =============================================================================
+
+
+**Typed Arguments:**
+
+========  ==================  =========  =================================================================================================================
+Argument   Type               Symbol     Description
+========  ==================  =========  =================================================================================================================
+``nu``    ``double``, ``int``             |image01|  Parameter of functions (such as order of Bessel functions). Real number.
+``z``     ``double complex``  |image02|  Argument of the functions. Can be real or complex number.
+``n``     ``int``                         |image03|  Derivative of function with respect to |image02|. Non-negative integer. Zero indicates no derivative.
+========  ==================  =========  =================================================================================================================
 
 .. |image01| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image01.svg
 .. |image02| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image02.svg
@@ -151,13 +189,17 @@ Argument   Type                           Symbol     Description
 Example
 *******
 
-It is possible to ``import`` and/or ``cimport`` the functions, respectively in *python* or *cython* environment as shown in the two examples below.
+To examples below show examples in *python* or *cython* environment.
 
 --------------------
 Use in a Cython Code
 --------------------
 
-This example uses ``besselk`` to compute the modified Bessel function of the second kind and its first and second derivatives for a complex argument. The python's ``gil`` can be optionally released, especially when this feature is needed during parallel OpenMP environments.
+~~~~~~~~~~~~~
+Real Function
+~~~~~~~~~~~~~
+
+This example uses te real ``besselk`` to compute the modified Bessel function of the second kind and its first and second derivatives for a real argument. The python's ``gil`` can be optionally released, which is useful in parallel OpenMP environments.
 
 .. code-block:: python
 
@@ -166,8 +208,8 @@ This example uses ``besselk`` to compute the modified Bessel function of the sec
 
     >>> # Declare typed variables
     >>> cdef double nu = 2.5
-    >>> cdef double complex z = 1+2j
-    >>> cdef double complex d0k, d1k, d2k
+    >>> cdef double z = 2.0
+    >>> cdef double d0k, d1k, d2k
 
     >>> # Releasing gil to secure maximum cythonic speedup
     >>> with nogil:
@@ -175,9 +217,35 @@ This example uses ``besselk`` to compute the modified Bessel function of the sec
     ...     d1k = besselk(nu, z, 1)    # 1st derivative
     ...     d2k = besselk(nu, z, 2)    # 2nd derivative
 
+~~~~~~~~~~~~~~~~
+Complex Function
+~~~~~~~~~~~~~~~~
+
+The example below is similar to the above, except, the *complex* function ``cbesselk`` with complex argument is employed:
+
+.. code-block:: python
+
+    >>> # cimport module in a *.pyx file
+    >>> from special_functions cimport cbesselk
+
+    >>> # Declare typed variables
+    >>> cdef double nu = 2.5
+    >>> cdef double complex z = 1+2j
+    >>> cdef double complex d0k, d1k, d2k
+
+    >>> # Releasing gil to secure maximum cythonic speedup
+    >>> with nogil:
+    ...     d0k = cbesselk(nu, z, 0)    # no derivative
+    ...     d1k = cbesselk(nu, z, 1)    # 1st derivative
+    ...     d2k = cbesselk(nu, z, 2)    # 2nd derivative
+
 --------------------
 Use in a Python Code
 --------------------
+
+~~~~~~~~~~~~~
+Real Function
+~~~~~~~~~~~~~
 
 This example uses ``besselk`` to compute the modified Bessel function of the second kind and its first and second derivatives for a complex argument. Note, this function uses the global lock interpreter (``gil``).
 
@@ -186,7 +254,21 @@ This example uses ``besselk`` to compute the modified Bessel function of the sec
     >>> # import module in a *.py file
     >>> from special_functions import besselk
 
-    >>> # Declare typed variables
+    >>> nu = 2.5
+    >>> z = 2.0
+
+    >>> d0k = besselk(nu, z)       # no derivative
+    >>> d1k = besselk(nu, z, 1)    # 1st derivative
+    >>> d2k = besselk(nu, z, 2)    # 2nd derivative
+
+~~~~~~~~~~~~~~~~
+Complex Function
+~~~~~~~~~~~~~~~~
+
+To use the complex version of the function as given below, the same function syntax, ``besselk``, can be used (unlike the cython API that uses ``cbesselk`` for complex version).
+
+.. code-block:: python
+
     >>> nu = 2.5
     >>> z = 1+2j
 

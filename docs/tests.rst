@@ -2,31 +2,30 @@
 Running Tests
 *************
 
-The package can be tested by running the `test scripts <https://github.com/ameli/special_functions/tree/main/tests>`_, which tests all `sub-packages <https://github.com/ameli/special_functions/tree/main/special_functions>`_ and the `examples <https://github.com/ameli/special_functions/tree/main/examples>`_.
+The package can be tested by running the `test scripts <https://github.com/ameli/special_functions/tree/main/tests>`_, which tests all `modules <https://github.com/ameli/special_functions/tree/main/special_functions>`_.
 
 =====================
 Running Tests Locally
 =====================
 
-To run a test locally, clone the source code from the repository and install the required test packages by
+To run a test locally, clone the source code from the repository:
 
 ::
 
     git clone https://github.com/ameli/special_functions.git
+
+Install ``tox``:
+
+::
+
+    python -m pip install tox
+
+and run tests by
+
+::
+
     cd special_functions
-    python -m pip install -e .[test]
-
-Then, run a test with ``pytest``:
-
-::
-
-    pytest
-
-To run a test coverage:
-
-::
-
-    pytest --cov=tests/
+    tox
    
 =========================
 Automated Build and Tests
@@ -34,15 +33,15 @@ Automated Build and Tests
 
 |travis-devel| |codecov-devel|
 
-The latest status of *automated tests* can be checked on `travis <https://travis-ci.com/github/ameli/special_functions>`_ continuous integration tool, which tests the package in the following platforms:
+The latest status of *automated tests* can be checked on the continuous integration tool below for the list of supported platforms, Python, and PyPy versions:
 
-==============  =======================  ===============
-Platform        Python versions          Build status
-==============  =======================  ===============
-Linux (Ubuntu)  2.7, 3.5, 3.6, 3.7, 3.8  |build-linux|
-macOS           2.7, 3.5, 3.6, 3.7, 3.8  |build-macos|
-Windows         2.7, 3.5, 3.6, 3.7, 3.8  |build-windows|
-==============  =======================  ===============
+==============  =======================  =============  ===============
+Platform        Python versions          PyPy versions   Build status
+==============  =======================  =============  ===============
+Linux (Ubuntu)  2.7, 3.6, 3.7, 3.8, 3.9  2.7, 3.7       |build-linux|
+macOS           2.7, 3.6, 3.7, 3.8, 3.9  N/A            |build-macos|
+Windows         2.7, 3.6, 3.7, 3.8, 3.9  N/A            |build-windows|
+==============  =======================  =============  ===============
 
 Moreover, the latest *coverage* of tests can be checked on `codecov <https://codecov.io/gh/ameli/special_functions>`_ dashboard.
 

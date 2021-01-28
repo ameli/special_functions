@@ -12,18 +12,18 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 ============
 
 --------------------
-[0.0.8] - 2020-12-09
+[0.0.2] - 2021-01-22
 --------------------
 
 ~~~~~~~
-Removed
+Changed
 ~~~~~~~
 
-* Remove edit mode ``-e`` from ``pip install`` from all workfows and travis.
+* Fixed loading Fortran libraries.
 
 
 --------------------
-[0.0.1] - 2020-10-28
+[0.0.1] - 2021-01-11
 --------------------
 
 ~~~~~
@@ -31,4 +31,3 @@ Added
 ~~~~~
 
 * Initial working code.
-* README is added.
