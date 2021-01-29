@@ -91,7 +91,7 @@ double x;
 {
 double r, xx;
 
-#ifdef NPY_NANS
+#ifdef NANS
 if( isnan(x) )
 	return(x);
 #endif

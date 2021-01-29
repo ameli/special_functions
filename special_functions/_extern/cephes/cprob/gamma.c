@@ -291,8 +291,8 @@ double lgam();
 #ifdef INFINITIES
 extern double NPY_INFINITY;
 #endif
-#ifdef NPY_NANS
-extern double NPY_NAN;
+#ifdef NANS
+extern double NAN;
 #endif
 
 /* Gamma function computed by Stirling's formula.
@@ -328,16 +328,16 @@ double p, q, z;
 int i;
 
 sgngam = 1;
-#ifdef NPY_NANS
+#ifdef NANS
 if( isnan(x) )
 	return(x);
 #endif
 #ifdef INFINITIES
-#ifdef NPY_NANS
+#ifdef NANS
 if( x == NPY_INFINITY )
 	return(x);
 if( x == -NPY_INFINITY )
-	return(NPY_NAN);
+	return(NAN);
 #else
 if( !isfinite(x) )
 	return(x);
@@ -352,10 +352,10 @@ if( q > 33.0 )
 		p = floor(q);
 		if( p == q )
 			{
-#ifdef NPY_NANS
+#ifdef NANS
 gamnan:
 			mtherr( "gamma", DOMAIN );
-			return (NPY_NAN);
+			return (NAN);
 #else
 			goto goverf;
 #endif
@@ -425,7 +425,7 @@ small:
 if( x == 0.0 )
 	{
 #ifdef INFINITIES
-#ifdef NPY_NANS
+#ifdef NANS
 	  goto gamnan;
 #else
 	  return( NPY_INFINITY );
@@ -581,7 +581,7 @@ double p, q, u, w, z;
 int i;
 
 sgngam = 1;
-#ifdef NPY_NANS
+#ifdef NANS
 if( isnan(x) )
 	return(x);
 #endif
