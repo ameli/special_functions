@@ -56,7 +56,7 @@ double exp();
 #endif
 
 extern double MAXLOG;
-extern double NPY_INFINITY;
+extern double INFINITY;
 
 double expx2 (x, sign)
      double x;
@@ -85,7 +85,7 @@ double expx2 (x, sign)
     }
 
   if ((u+u1) > MAXLOG)
-    return (NPY_INFINITY);
+    return (INFINITY);
 
   /* u is exact, u1 is small.  */
   u = exp(u) * exp(u1);

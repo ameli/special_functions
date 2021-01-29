@@ -289,10 +289,10 @@ static double stirf();
 double lgam();
 #endif
 #ifdef INFINITIES
-extern double NPY_INFINITY;
+extern double INFINITY;
 #endif
-#ifdef NPY_NANS
-extern double NPY_NAN;
+#ifdef NANS
+extern double NAN;
 #endif
 
 /* Gamma function computed by Stirling's formula.
@@ -328,16 +328,16 @@ double p, q, z;
 int i;
 
 sgngam = 1;
-#ifdef NPY_NANS
+#ifdef NANS
 if( isnan(x) )
 	return(x);
 #endif
 #ifdef INFINITIES
-#ifdef NPY_NANS
-if( x == NPY_INFINITY )
+#ifdef NANS
+if( x == INFINITY )
 	return(x);
-if( x == -NPY_INFINITY )
-	return(NPY_NAN);
+if( x == -INFINITY )
+	return(NAN);
 #else
 if( !isfinite(x) )
 	return(x);
@@ -352,10 +352,10 @@ if( q > 33.0 )
 		p = floor(q);
 		if( p == q )
 			{
-#ifdef NPY_NANS
+#ifdef NANS
 gamnan:
 			mtherr( "gamma", DOMAIN );
-			return (NPY_NAN);
+			return (NAN);
 #else
 			goto goverf;
 #endif
@@ -373,7 +373,7 @@ gamnan:
 		if( z == 0.0 )
 			{
 #ifdef INFINITIES
-			return( sgngam * NPY_INFINITY);
+			return( sgngam * INFINITY);
 #else
 goverf:
 			mtherr( "gamma", OVERFLOW );
@@ -425,10 +425,10 @@ small:
 if( x == 0.0 )
 	{
 #ifdef INFINITIES
-#ifdef NPY_NANS
+#ifdef NANS
 	  goto gamnan;
 #else
-	  return( NPY_INFINITY );
+	  return( INFINITY );
 #endif
 #else
 	mtherr( "gamma", SING );
@@ -581,14 +581,14 @@ double p, q, u, w, z;
 int i;
 
 sgngam = 1;
-#ifdef NPY_NANS
+#ifdef NANS
 if( isnan(x) )
 	return(x);
 #endif
 
 #ifdef INFINITIES
 if( !isfinite(x) )
-	return(NPY_INFINITY);
+	return(INFINITY);
 #endif
 
 if( x < -34.0 )
@@ -601,7 +601,7 @@ if( x < -34.0 )
 lgsing:
 #ifdef INFINITIES
 		mtherr( "lgam", SING );
-		return (NPY_INFINITY);
+		return (INFINITY);
 #else
 		goto loverf;
 #endif
@@ -662,7 +662,7 @@ if( x < 13.0 )
 if( x > MAXLGM )
 	{
 #ifdef INFINITIES
-	return( sgngam * NPY_INFINITY );
+	return( sgngam * INFINITY );
 #else
 loverf:
 	mtherr( "lgam", OVERFLOW );
