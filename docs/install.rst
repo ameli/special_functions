@@ -57,31 +57,17 @@ Install from Source Code
 
 |release|
 
-1. Install the build dependencies ``cython``, and ``numpy``:
-
-   ::
-         
-       python -m pip install cython
-       python -m pip install numpy>1.11
-
-2. Clone the source code
+Clone the source code and install by
    
-   ::
+::
        
-       git clone https://github.com/ameli/special_functions.git
-       cd special_functions
-
-3. Build and install the package
-
-   ::
-       
-       python -m pip install .
-
-   The above command may need to be run with ``sudo``.
+    git clone https://github.com/ameli/special_functions.git
+    cd special_functions
+    python -m pip install .
 
 .. note::
 
-    To properly import the *installed* package, change the current working direcrtory to a directory *outside* of the source code. That is, importing the package fails if the current working directory is the source code directory.
+    To properly import the package, change the current working direcrtory to a directory *outside* of the source code.
 
 
 ==============================

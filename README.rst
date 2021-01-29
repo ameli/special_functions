@@ -64,26 +64,32 @@ Build Source Locally
 
 |release|
 
-1. Install the build dependencies ``cython``, and ``numpy``:
+1. Install C and Fortran compilers.
 
-   ::
-         
-       python -m pip install cython
-       python -m pip install numpy>1.11
+   * **Linux:** Install ``gcc`` (for instance, by ``apt``, or any other package manager on the Linux distro)
 
-2. Clone the source code
+     ::
+
+         sudo apt install gcc
+
+   * **macOS:** Install ``gcc`` via Homebrew:
+
+     ::
+
+         sudo brew install gcc
+
+     Note: If ``gcc`` is already installed but Fortran compiler is not available, you may reinstall with ``brew reinstall gcc``.
+
+   * **Windows:** Install both Microsoft Visual C++ compiler and Intel Fortran compiler.
+
+2. Clone the source code and install by
    
    ::
-       
        git clone https://github.com/ameli/special_functions.git
        cd special_functions
-
-3. Install the package (may need to be run with ``sudo``)
-
-   ::
-       
        python -m pip install .
 
+To properly import the package, change the current working directory to a directory *outside* of the source code.
 
 ****
 Test

@@ -111,7 +111,7 @@ def configuration(parent_package='', top_path=None):
             os.path.join('.', package_name, '*.pyx'),
             build_dir=cython_build_dir,
             include_path=[os.path.join('.', package_name)],
-            language_level="3",
+            language_level="2",
             compiler_directives={
                 'boundscheck': False,
                 'cdivision': True,
