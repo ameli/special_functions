@@ -93,7 +93,9 @@ double TWOOPI =  6.36619772367581343075535E-1; /* 2/pi */
 #define AAA 1.0/0.0
 /* 1e+300 */
 #define DEF_INFINITY   ((double)(AAA * AAA))
-double INFINITY = DEF_INFINITY;
+/* double INFINITY = DEF_INFINITY; */
+/* double INFINITY = 7FF0000000000000; */
+double INFINITY = 0x7fc00000;
 /* extern double NPY_INFINITY; */
 #else
 double INFINITY =  1.79769313486231570815E308;    /* 2**1024*(1-MACHEP) */
@@ -105,6 +107,7 @@ double INFINITY =  1.79769313486231570815E308;    /* 2**1024*(1-MACHEP) */
 /* double NAN = DEF_NAN; */
 /* int BBB = 0x7F800001; */
 double NAN = (double)0x7F800001;
+/* double NAN = 7FF8000000000001; */
 /* double NAN = *(float*)&BBB; */
 #else
 double NAN = 0.0;
