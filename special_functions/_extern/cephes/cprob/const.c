@@ -88,32 +88,32 @@ double LOGE2  =  6.93147180559945309417E-1;    /* log(2) */
 double LOGSQ2 =  3.46573590279972654709E-1;    /* log(2)/2 */
 double THPIO4 =  2.35619449019234492885;       /* 3*pi/4 */
 double TWOOPI =  6.36619772367581343075535E-1; /* 2/pi */
-#ifdef INFINITIES
-/* double INFINITY = 1.0/0.0;  #<{(| 99e999; |)}># */
+/* #ifdef INFINITIES */
+/* double NPY_INFINITY = 1.0/0.0;  #<{(| 99e999; |)}># */
 /* #define AAA 1.0/0.0 */
 /* 1e+300 */
-/* #define DEF_INFINITY   ((double)(AAA * AAA)) */
-/* double INFINITY = DEF_INFINITY; */
-/* double INFINITY = 7FF0000000000000; */
-/* double INFINITY = (double)0x7f800000; */
-double INFINITY = (double)1e500;
-/* extern double NPY_INFINITY; */
-#else
-double INFINITY =  1.79769313486231570815E308;    /* 2**1024*(1-MACHEP) */
-#endif
-#ifdef NANS
-/* double NAN = 1.0/0.0 - 1.0/0.0; */
+/* #define DEF_NPY_INFINITY   ((double)(AAA * AAA)) */
+/* double NPY_INFINITY = DEF_NPY_INFINITY; */
+/* double NPY_INFINITY = 7FF0000000000000; */
+/* double NPY_INFINITY = (double)0x7f800000; */
+/* double NPY_INFINITY = (double)1e500; */
+/* extern double NPY_NPY_INFINITY; */
+/* #else */
+/* double NPY_INFINITY =  1.79769313486231570815E308;    #<{(| 2**1024*(1-MACHEP) |)}># */
+/* #endif */
+/* #ifdef NPY_NANS */
+/* double NPY_NAN = 1.0/0.0 - 1.0/0.0; */
 /* #define BBB  0.0/0.0 */
-/* #define DEF_NAN   ((double)(BBB * BBB)) */
-/* double NAN = DEF_NAN; */
+/* #define DEF_NPY_NAN   ((double)(BBB * BBB)) */
+/* double NPY_NAN = DEF_NPY_NAN; */
 /* int BBB = 0x7F800001; */
-/* double NAN = (double)0x7Fc00000; */
-double NAN = 0.0;
-/* double NAN = 7FF8000000000001; */
-/* double NAN = *(float*)&BBB; */
-#else
-double NAN = 0.0;
-#endif
+/* double NPY_NAN = (double)0x7Fc00000; */
+/* double NPY_NAN = 0.0; */
+/* double NPY_NAN = 7FF8000000000001; */
+/* double NPY_NAN = *(float*)&BBB; */
+/* #else */
+/* double NPY_NAN = 0.0; */
+/* #endif */
 #ifdef MINUSZERO
 double NEGZERO = -0.0;
 #else
@@ -150,16 +150,16 @@ unsigned short LOGE2[4]  = {0x39ef,0xfefa,0x2e42,0x3fe6};
 unsigned short LOGSQ2[4] = {0x39ef,0xfefa,0x2e42,0x3fd6};
 unsigned short THPIO4[4] = {0x21d2,0x7f33,0xd97c,0x4002};
 unsigned short TWOOPI[4] = {0xc883,0x6dc9,0x5f30,0x3fe4};
-#ifdef INFINITIES
-unsigned short INFINITY[4] = {0x0000,0x0000,0x0000,0x7ff0};
-#else
-unsigned short INFINITY[4] = {0xffff,0xffff,0xffff,0x7fef};
-#endif
-#ifdef NANS
-unsigned short NAN[4] = {0x0000,0x0000,0x0000,0x7ffc};
-#else
-unsigned short NAN[4] = {0x0000,0x0000,0x0000,0x0000};
-#endif
+/* #ifdef INFINITIES */
+/* unsigned short NPY_INFINITY[4] = {0x0000,0x0000,0x0000,0x7ff0}; */
+/* #else */
+/* unsigned short NPY_INFINITY[4] = {0xffff,0xffff,0xffff,0x7fef}; */
+/* #endif */
+/* #ifdef NPY_NANS */
+/* unsigned short NPY_NAN[4] = {0x0000,0x0000,0x0000,0x7ffc}; */
+/* #else */
+/* unsigned short NPY_NAN[4] = {0x0000,0x0000,0x0000,0x0000}; */
+/* #endif */
 #ifdef MINUSZERO
 unsigned short NEGZERO[4] = {0x0000,0x0000,0x0000,0x8000};
 #else
@@ -196,16 +196,16 @@ unsigned short LOGE2[4]  = {0x3fe6,0x2e42,0xfefa,0x39ef};
 unsigned short LOGSQ2[4] = {0x3fd6,0x2e42,0xfefa,0x39ef};
 unsigned short THPIO4[4] = {0x4002,0xd97c,0x7f33,0x21d2};
 unsigned short TWOOPI[4] = {0x3fe4,0x5f30,0x6dc9,0xc883};
-#ifdef INFINITIES
-unsigned short INFINITY[4] = {0x7ff0,0x0000,0x0000,0x0000};
-#else
-unsigned short INFINITY[4] = {0x7fef,0xffff,0xffff,0xffff};
-#endif
-#ifdef NANS
-unsigned short NAN[4] = {0x7ff8,0x0000,0x0000,0x0000};
-#else
-unsigned short NAN[4] = {0x0000,0x0000,0x0000,0x0000};
-#endif
+/* #ifdef INFINITIES */
+/* unsigned short NPY_INFINITY[4] = {0x7ff0,0x0000,0x0000,0x0000}; */
+/* #else */
+/* unsigned short NPY_INFINITY[4] = {0x7fef,0xffff,0xffff,0xffff}; */
+/* #endif */
+/* #ifdef NPY_NANS */
+/* unsigned short NPY_NAN[4] = {0x7ff8,0x0000,0x0000,0x0000}; */
+/* #else */
+/* unsigned short NPY_NAN[4] = {0x0000,0x0000,0x0000,0x0000}; */
+/* #endif */
 #ifdef MINUSZERO
 unsigned short NEGZERO[4] = {0x8000,0x0000,0x0000,0x0000};
 #else
@@ -235,8 +235,8 @@ unsigned short LOGSQ2[4] = {037661,071027,0173721,0147572,};
 unsigned short THPIO4[4] = {040426,0145743,0174631,007222,};
 unsigned short TWOOPI[4] = {040042,0174603,067116,042025,};
 /* Approximate infinity by MAXNUM.  */
-unsigned short INFINITY[4] = {077777,0177777,0177777,0177777,};
-unsigned short NAN[4] = {0000000,0000000,0000000,0000000};
+/* unsigned short NPY_INFINITY[4] = {077777,0177777,0177777,0177777,}; */
+/* unsigned short NPY_NAN[4] = {0000000,0000000,0000000,0000000}; */
 #ifdef MINUSZERO
 unsigned short NEGZERO[4] = {0000000,0000000,0000000,0100000};
 #else
@@ -262,7 +262,7 @@ extern unsigned short LOGE2[];
 extern unsigned short LOGSQ2[];
 extern unsigned short THPIO4[];
 extern unsigned short TWOOPI[];
-extern unsigned short INFINITY[];
-extern unsigned short NAN[];
+extern unsigned short NPY_INFINITY[];
+/* extern unsigned short NPY_NAN[]; */
 extern unsigned short NEGZERO[];
 #endif
