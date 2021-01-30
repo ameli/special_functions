@@ -90,7 +90,8 @@ double THPIO4 =  2.35619449019234492885;       /* 3*pi/4 */
 double TWOOPI =  6.36619772367581343075535E-1; /* 2/pi */
 #ifdef INFINITIES
 /* double INFINITY = 1.0/0.0;  #<{(| 99e999; |)}># */
-#define AAA  1e+300
+#define AAA 1.0/0.0
+/* 1e+300 */
 #define DEF_INFINITY   ((double)(AAA * AAA))
 double INFINITY = DEF_INFINITY;
 #else
@@ -98,9 +99,12 @@ double INFINITY =  1.79769313486231570815E308;    /* 2**1024*(1-MACHEP) */
 #endif
 #ifdef NANS
 /* double NAN = 1.0/0.0 - 1.0/0.0; */
-#define BBB  1.0/0.0 - 1.0/0.0
-#define DEF_NAN   ((double)(BBB * BBB))
-double NAN = DEF_NAN;
+/* #define BBB  0.0/0.0 */
+/* #define DEF_NAN   ((double)(BBB * BBB)) */
+/* double NAN = DEF_NAN; */
+/* int BBB = 0x7F800001; */
+/* double NAN = *(float*)&BBB; */
+extern double NAN;
 #else
 double NAN = 0.0;
 #endif
