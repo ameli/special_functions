@@ -88,30 +88,30 @@ double LOGE2  =  6.93147180559945309417E-1;    /* log(2) */
 double LOGSQ2 =  3.46573590279972654709E-1;    /* log(2)/2 */
 double THPIO4 =  2.35619449019234492885;       /* 3*pi/4 */
 double TWOOPI =  6.36619772367581343075535E-1; /* 2/pi */
-#ifdef INFINITIES
+/* #ifdef INFINITIES */
 /* double INFINITY = 1.0/0.0;  #<{(| 99e999; |)}># */
-#define AAA 1.0/0.0
+/* #define AAA 1.0/0.0 */
 /* 1e+300 */
-#define DEF_INFINITY   ((double)(AAA * AAA))
+/* #define DEF_INFINITY   ((double)(AAA * AAA)) */
 /* double INFINITY = DEF_INFINITY; */
 /* double INFINITY = 7FF0000000000000; */
-double INFINITY = 0x7fc00000;
+/* double INFINITY = (double)0x7f800000; */
 /* extern double NPY_INFINITY; */
-#else
+/* #else */
 double INFINITY =  1.79769313486231570815E308;    /* 2**1024*(1-MACHEP) */
-#endif
-#ifdef NANS
+/* #endif */
+/* #ifdef NANS */
 /* double NAN = 1.0/0.0 - 1.0/0.0; */
 /* #define BBB  0.0/0.0 */
 /* #define DEF_NAN   ((double)(BBB * BBB)) */
 /* double NAN = DEF_NAN; */
 /* int BBB = 0x7F800001; */
-double NAN = (double)0x7F800001;
+/* double NAN = (double)0x7Fc00000; */
 /* double NAN = 7FF8000000000001; */
 /* double NAN = *(float*)&BBB; */
-#else
+/* #else */
 double NAN = 0.0;
-#endif
+/* #endif */
 #ifdef MINUSZERO
 double NEGZERO = -0.0;
 #else
