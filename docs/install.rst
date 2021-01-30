@@ -1,13 +1,40 @@
+.. _Install_Package:
+
 *******
 Install
 *******
+
+===================
+Supported Platforms
+===================
+
+Successful installation and tests have been :ref:`performed <automated_tests>` on the following platforms and Python/PyPy versions in the table below:
+
+
++----------+-----+-----+-----+-----+-----+-----+-----+-----+
+| Platform | Python version              | PyPy version    |
++          +-----+-----+-----+-----+-----+-----+-----+-----+
+|          | 2.7 | 3.6 | 3.7 | 3.8 | 3.9 | 2.7 | 3.6 | 3.7 |
++==========+=====+=====+=====+=====+=====+=====+=====+=====+
+| Linux    | yes | yes | yes | yes | yes | yes | yes | yes |
++----------+-----+-----+-----+-----+-----+-----+-----+-----+
+| macOS    | yes | yes | yes | yes | yes | no  | no  | no  |
++----------+-----+-----+-----+-----+-----+-----+-----+-----+
+| Windows  | no  | yes | yes | yes | yes | no  | no  | no  |
++----------+-----+-----+-----+-----+-----+-----+-----+-----+
+
+.. note::
+
+    To install this package on the older Python 3 versions (for example Python 3.5), you should *build* the package from the source code (see :ref:`build instructions <Build_Locally>`).
+    This package cannot be build (as far as we tried) on the Python/PyPy versions in the above table indicated by **no**.
+
 
 ============
 Dependencies
 ============
 
-* **At runtime:** This package does not need any python dependencies at runtime.
-* **For tests:** To run tests, ``scipy`` package is required, and can be installed by
+* **At runtime:** This package does *not* require any python dependencies at runtime.
+* **For tests:** To :ref:`run tests <Run_Tests>`, ``scipy`` package is required and can be installed by
 
   ::
 
@@ -19,7 +46,7 @@ Dependencies
 Install Package
 ===============
 
-The package can be installed on Linux, macOS, and Windows platforms and supports both python 2 and 3. Install by either of the following ways, namely, through :ref:`PyPi <Install_PyPi>`, :ref:`Conda <Install_Conda>`, or :ref:`build locally <Build_Locally>`.
+Install by either through :ref:`PyPi <Install_PyPi>`, :ref:`Conda <Install_Conda>`, or :ref:`build locally <Build_Locally>`.
 
 .. _Install_PyPi:
 
@@ -29,11 +56,33 @@ Install from PyPi
 
 |pypi| |format| |implementation| |pyversions|
 
-The recommended installation method is through the package available at `PyPi <https://pypi.org/project/special_functions>`_ by
+The recommended installation method is through the package available at `PyPi <https://pypi.org/project/special_functions>`_ using ``pip``.
 
-::
-      
-    python -m pip install special_functions
+1. Ensure ``pip`` is installed within the Python and upgrade existing ``pip`` by
+
+   ::
+
+       python -m ensurepip
+       python -m pip install --upgrade pip
+
+   If you are using PyPy instead of Python, ensure ``pip`` is installed and upgrade existing ``pip`` by
+
+   ::
+
+       pypy -m ensurepip
+       pypy -m pip install --upgrade pip
+
+2. Install this package in Python by
+   
+   ::
+       
+       python -m pip install special_functions
+
+   or, in PyPy by
+
+   ::
+       
+       pypy -m pip install special_functions
 
 .. _Install_Conda:
 
@@ -51,30 +100,70 @@ Install through the package available at `Conda <https://anaconda.org/s-ameli/sp
 
 .. _Build_Locally:
 
-------------------------
-Install from Source Code
-------------------------
+----------------------------------
+Build and Install from Source Code
+----------------------------------
 
 |release|
 
-Clone the source code and install by
+**Build dependencies:** To build the package from the source code, ``numpy`` and ``cython`` are required. These dependencies are installed automatically during the build process and no action is needed.
+
+1. Install both C and Fortran compilers as follows.
+
+   * **Linux:** Install ``gcc``, for instance, by ``apt`` (or any other package manager on your Linux distro)
+
+     ::
+
+         sudo apt install gcc
+
+   * **macOS:** Install ``gcc`` via Homebrew:
+
+     ::
+
+         sudo brew install gcc
+
+     .. note::
+         
+         If ``gcc`` is already installed, but Fortran compiler is yet not available on macOS, you may resolve this issue by reinstalling:
+         
+         ::
+
+             sudo brew reinstall gcc
+
+   * **Windows:** Install both `Microsoft Visual C++ compiler <https://visualstudio.microsoft.com/vs/features/cplusplus/>`_ and Intel Fortran compiler (`Intel oneAPI <https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/fortran-compiler.html>`_). Open the command prompt (where you will install this package in the next step) and load the Intel compiler variables by
+
+     ::
+
+         C:\Program Files (x86)\Intel\oneAPI\setvars.bat
+
+     Here, we assumed the Intel Fortran compiler is installed in ``C:\Program Files (x86)\Intel\oneAPI``. You may adjust this directory if the Intel compiler is installed elsewhere.
+
+
+2. Clone the source code and install this package by
    
-::
-       
-    git clone https://github.com/ameli/special_functions.git
-    cd special_functions
-    python -m pip install .
+   ::
 
-.. note::
+       git clone https://github.com/ameli/special_functions.git
+       cd special_functions
+       python -m pip install .
 
-    To properly import the package, change the current working direcrtory to a directory *outside* of the source code.
+.. warning::
+
+    After the package is build and installed from the source code, the package should not be imported in the same directory of the source code.
+    To properly import the package, change the current working direcrtory to a directory anywhere else **outside** of the source code directory. For instance:
+
+    .. code-block:: python
+
+        cd ..
+        python
+        >>> import special_functions
 
 
 ==============================
 Install in Virtual Environment
 ==============================
 
-If you do not want the installation to occupy your main python's site-packages, you may install the package in an isolated virtual environment. Below describes the installation procedure in two common virtual environments, namely, :ref:`virtualenv <virtualenv_env>` and :ref:`conda <conda_env>`.
+If you do not want the installation to occupy your main python's site-packages, you may install the package in an isolated virtual environment. Below we describe the installation procedure in two common virtual environments, namely, :ref:`virtualenv <virtualenv_env>` and :ref:`conda <conda_env>`.
 
 .. _virtualenv_env:
 

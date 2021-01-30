@@ -289,7 +289,7 @@ static double stirf();
 double lgam();
 #endif
 #ifdef INFINITIES
-extern double NPY_INFINITY;
+extern double INFINITY;
 #endif
 #ifdef NANS
 extern double NAN;
@@ -334,9 +334,9 @@ if( isnan(x) )
 #endif
 #ifdef INFINITIES
 #ifdef NANS
-if( x == NPY_INFINITY )
+if( x == INFINITY )
 	return(x);
-if( x == -NPY_INFINITY )
+if( x == -INFINITY )
 	return(NAN);
 #else
 if( !isfinite(x) )
@@ -373,7 +373,7 @@ gamnan:
 		if( z == 0.0 )
 			{
 #ifdef INFINITIES
-			return( sgngam * NPY_INFINITY);
+			return( sgngam * INFINITY);
 #else
 goverf:
 			mtherr( "gamma", OVERFLOW );
@@ -428,7 +428,7 @@ if( x == 0.0 )
 #ifdef NANS
 	  goto gamnan;
 #else
-	  return( NPY_INFINITY );
+	  return( INFINITY );
 #endif
 #else
 	mtherr( "gamma", SING );
@@ -588,7 +588,7 @@ if( isnan(x) )
 
 #ifdef INFINITIES
 if( !isfinite(x) )
-	return(NPY_INFINITY);
+	return(INFINITY);
 #endif
 
 if( x < -34.0 )
@@ -601,7 +601,7 @@ if( x < -34.0 )
 lgsing:
 #ifdef INFINITIES
 		mtherr( "lgam", SING );
-		return (NPY_INFINITY);
+		return (INFINITY);
 #else
 		goto loverf;
 #endif
@@ -662,7 +662,7 @@ if( x < 13.0 )
 if( x > MAXLGM )
 	{
 #ifdef INFINITIES
-	return( sgngam * NPY_INFINITY );
+	return( sgngam * INFINITY );
 #else
 loverf:
 	mtherr( "lgam", OVERFLOW );
