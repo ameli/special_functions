@@ -11,17 +11,24 @@ Supported Platforms
 Successful installation and tests have been :ref:`performed <automated_tests>` on the following platforms and Python/PyPy versions in the table below:
 
 
-+----------+-----+-----+-----+-----+-----+-----+-----+-----+
-| Platform | Python version              | PyPy version    |
-+          +-----+-----+-----+-----+-----+-----+-----+-----+
-|          | 2.7 | 3.6 | 3.7 | 3.8 | 3.9 | 2.7 | 3.6 | 3.7 |
-+==========+=====+=====+=====+=====+=====+=====+=====+=====+
-| Linux    | yes | yes | yes | yes | yes | yes | yes | yes |
-+----------+-----+-----+-----+-----+-----+-----+-----+-----+
-| macOS    | yes | yes | yes | yes | yes | no  | no  | no  |
-+----------+-----+-----+-----+-----+-----+-----+-----+-----+
-| Windows  | no  | yes | yes | yes | yes | no  | no  | no  |
-+----------+-----+-----+-----+-----+-----+-----+-----+-----+
++----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
+| Platform | Python version              | PyPy version    | Status          |
++          +-----+-----+-----+-----+-----+-----+-----+-----+                 +
+|          | 2.7 | 3.6 | 3.7 | 3.8 | 3.9 | 2.7 | 3.6 | 3.7 |                 |
++==========+=====+=====+=====+=====+=====+=====+=====+=====+=================+
+| Linux    | yes | yes | yes | yes | yes | yes | yes | yes | |build-linux|   |
++----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
+| macOS    | yes | yes | yes | yes | yes | no  | no  | no  | |build-macos|   |
++----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
+| Windows  | no  | yes | yes | yes | yes | no  | no  | no  | |build-windows| |
++----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
+
+.. |build-linux| image:: https://github.com/ameli/special_functions/workflows/build-linux/badge.svg
+   :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-linux 
+.. |build-macos| image:: https://github.com/ameli/special_functions/workflows/build-macos/badge.svg
+   :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-macos
+.. |build-windows| image:: https://github.com/ameli/special_functions/workflows/build-windows/badge.svg
+   :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-windows
 
 .. note::
 
