@@ -8,7 +8,7 @@ Install
 Supported Platforms
 ===================
 
-Successful installation and tests have been :ref:`performed <automated_tests>` on the following platforms and Python/PyPy versions in the table below:
+Successful installation and tests have been performed on the following platforms and Python/PyPy versions shown the table below.
 
 
 +----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
@@ -16,11 +16,11 @@ Successful installation and tests have been :ref:`performed <automated_tests>` o
 +          +-----+-----+-----+-----+-----+-----+-----+-----+                 +
 |          | 2.7 | 3.6 | 3.7 | 3.8 | 3.9 | 2.7 | 3.6 | 3.7 |                 |
 +==========+=====+=====+=====+=====+=====+=====+=====+=====+=================+
-| Linux    | yes | yes | yes | yes | yes | yes | yes | yes | |build-linux|   |
+| Linux    |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  | |build-linux|   |
 +----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
-| macOS    | yes | yes | yes | yes | yes | no  | no  | no  | |build-macos|   |
+| macOS    |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✖  |  ✖  |  ✖  | |build-macos|   |
 +----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
-| Windows  | no  | yes | yes | yes | yes | no  | no  | no  | |build-windows| |
+| Windows  |  ✖  |  ✔  |  ✔  |  ✔  |  ✔  |  ✖  |  ✖  |  ✖  | |build-windows| |
 +----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
 
 .. |build-linux| image:: https://github.com/ameli/special_functions/workflows/build-linux/badge.svg
@@ -32,15 +32,16 @@ Successful installation and tests have been :ref:`performed <automated_tests>` o
 
 .. note::
 
-    To install this package on the older Python 3 versions (for example Python 3.5), you should *build* the package from the source code (see :ref:`build instructions <Build_Locally>`).
-    This package cannot be build (as far as we tried) on the Python/PyPy versions in the above table indicated by **no**.
+    * For the Python/PyPy versions indicated by ✔ in the above, this package can be installed using either ``pip`` or ``conda`` (see :ref:`installation instructions <InstallationMethods>` below.)
+    * This package cannot be installed via ``pip`` or ``conda`` on the Python/PyPy versions indicated by ✖ in the above table.
+    * To install on the older Python 3 versions that are not listed in the above (for example Python 3.5), you should *build* this package from the source code (see :ref:`build instructions <Build_Locally>`).
 
 
 ============
 Dependencies
 ============
 
-* **At runtime:** This package does *not* require any python dependencies at runtime.
+* **At runtime:** This package does not have any dependencies at runtime.
 * **For tests:** To :ref:`run tests <Run_Tests>`, ``scipy`` package is required and can be installed by
 
   ::
@@ -65,14 +66,14 @@ Install from PyPi
 
 The recommended installation method is through the package available at `PyPi <https://pypi.org/project/special_functions>`_ using ``pip``.
 
-1. Ensure ``pip`` is installed within the Python and upgrade existing ``pip`` by
+1. Ensure ``pip`` is installed within Python and upgrade the existing ``pip`` by
 
    ::
 
        python -m ensurepip
        python -m pip install --upgrade pip
 
-   If you are using PyPy instead of Python, ensure ``pip`` is installed and upgrade existing ``pip`` by
+   If you are using PyPy instead of Python, ensure ``pip`` is installed and upgrade the existing ``pip`` by
 
    ::
 
@@ -137,13 +138,13 @@ Build and Install from Source Code
 
              sudo brew reinstall gcc
 
-   * **Windows:** Install both `Microsoft Visual C++ compiler <https://visualstudio.microsoft.com/vs/features/cplusplus/>`_ and Intel Fortran compiler (`Intel oneAPI <https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/fortran-compiler.html>`_). Open the command prompt (where you will install this package in the next step) and load the Intel compiler variables by
+   * **Windows:** Install both `Microsoft Visual C++ compiler <https://visualstudio.microsoft.com/vs/features/cplusplus/>`_ and Intel Fortran compiler (`Intel oneAPI <https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/fortran-compiler.html>`_). Open the command prompt (where you will enter the installation commands in the next step) and load the Intel compiler variables by
 
      ::
 
          C:\Program Files (x86)\Intel\oneAPI\setvars.bat
 
-     Here, we assumed the Intel Fortran compiler is installed in ``C:\Program Files (x86)\Intel\oneAPI``. You may adjust this directory if the Intel compiler is installed elsewhere.
+     Here, we assumed the Intel Fortran compiler is installed in ``C:\Program Files (x86)\Intel\oneAPI``. You may set this directory accordingly to the directory of your Intel compiler.
 
 
 2. Clone the source code and install this package by
@@ -156,8 +157,8 @@ Build and Install from Source Code
 
 .. warning::
 
-    After the package is build and installed from the source code, the package should not be imported in the same directory of the source code.
-    To properly import the package, change the current working direcrtory to a directory anywhere else **outside** of the source code directory. For instance:
+    After the package is built and installed from the source code, the package cannot be imported properly if the current working directory is the same as the source code directory.
+    To properly import the package, change the current working directory to a directory anywhere else **outside** of the source code directory. For instance:
 
     .. code-block:: python
 
@@ -216,15 +217,15 @@ Install in ``virtualenv`` Environment
 Install in ``conda`` Environment
 --------------------------------
 
-In the followings, it is assumed `anaconda <https://www.anaconda.com/products/individual#Downloads>`_ (or `miniconda <https://docs.conda.io/en/latest/miniconda.html>`_) is installed.
+In the following, it is assumed `anaconda <https://www.anaconda.com/products/individual#Downloads>`_ (or `miniconda <https://docs.conda.io/en/latest/miniconda.html>`_) is installed.
 
-1. Initialize conda
+1. Initialize conda (if it was not initialized before)
 
    ::
 
        conda init
 
-   You may need to close and reopen terminal after the above command. Alternatively, instead of the above, you can do
+   You may need to close and reopen the terminal after the above command. Alternatively, instead of the above, you can do
 
    ::
 

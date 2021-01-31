@@ -121,7 +121,7 @@ cdef double besselj(
     cdef double tolerance = 1e-16
     if n == 0:
 
-        if round(nu) == nu and (nu == 0 or nu == 1):
+        if (nu == 0) or (nu == 1):
             return _real_besselj_integer_order(int(nu), z)
         elif round(nu + 0.5) == nu + 0.5:
             return _real_besselj_half_integer_order(nu, z)

@@ -77,7 +77,7 @@ extensions = [
     'sphinx.ext.graphviz', 'sphinx.ext.inheritance_diagram',
     'sphinx.ext.viewcode',
     'sphinx_toggleprompt',
-    'sphinx.ext.autosectionlabel',
+    # 'sphinx.ext.autosectionlabel',
     'sphinx.ext.autosummary',
     'sphinx_automodapi.automodapi',
 ]

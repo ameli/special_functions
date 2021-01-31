@@ -23,7 +23,7 @@ extern double cos ( double );
 double log(), polevl(), p1evl(), exp(), cos();
 int isnan(), isfinite();
 #endif
-extern double NPY_INFINITY;
+extern double INFINITY;
 
 /* log1p(x) = log(1 + x)  */
 
@@ -91,14 +91,14 @@ double x;
 {
 double r, xx;
 
-#ifdef NPY_NANS
+#ifdef NANS
 if( isnan(x) )
 	return(x);
 #endif
 #ifdef INFINITIES
-if( x == NPY_INFINITY )
-	return(NPY_INFINITY);
-if( x == -NPY_INFINITY )
+if( x == INFINITY )
+	return(INFINITY);
+if( x == -INFINITY )
 	return(-1.0);
 #endif
 if( (x < -0.5) || (x > 0.5) )

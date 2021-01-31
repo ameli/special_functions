@@ -162,18 +162,9 @@ cdef double complex _complex_besselj_half_integer_order(
             return NAN  # Note: this is different than the real case
 
     if nu == 0.5:
-
-        if (z.imag == 0) and (z.real == 0):
-            j_nu = 0.0
-        else:
-            j_nu = (sqrt(M_2_PI) / complex_sqrt(z)) * complex_sin(z)
-
+        j_nu = (sqrt(M_2_PI) / complex_sqrt(z)) * complex_sin(z)
     elif nu == -0.5:
-
-        if (z.imag == 0) and (z.real == 0):
-            j_nu = INFINITY
-        else:
-            j_nu = (sqrt(M_2_PI) / complex_sqrt(z)) * complex_cos(z)
+        j_nu = (sqrt(M_2_PI) / complex_sqrt(z)) * complex_cos(z)
 
     else:
 

@@ -25,12 +25,15 @@ A common difficulty in such application is that the matrices are generally large
 
 .. toctree::
     :maxdepth: 1
-    :caption: Sub-packages User Guide
+    :caption: Functions User Guide
 
-    Compute Log Determinant <ComputeLogDeterminant>
-    Compute Trace of Inverse <ComputeTraceOfInverse>
-    Interpolate Trace of Inverse <InterpolateTraceOfInverse>
-    Generate Matrix <GenerateMatrix>
+    Bessel function, First Kind <besselj>
+    Bessel function, Second Kind <bessely>
+    Bessel function, Third Kind <besselh>
+    Modified Bessel function, First Kind <besseli>
+    Modified Bessel function, Second Kind <besselk>
+    Log Gamma function <loggamma>
+
 
 .. toctree::
     :maxdepth: 1
