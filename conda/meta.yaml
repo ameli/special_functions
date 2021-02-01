@@ -33,10 +33,10 @@ requirements:
     host:
         - python {{ python }}
         # - python
-        - numpy
+        - numpy>1.11
         - cython
         - pip
-        - setuptools
+        # - setuptools
     run:
         - python {{ python }}
         # - python
@@ -49,8 +49,9 @@ test:
         - pytest-cov
         # - pytest-runner
         - scipy
-    commands:
-        - pytest
+    # commands:
+    #     - cd tests
+    #     - pytest
 
 about:
     home: {{ data['url'] }}
