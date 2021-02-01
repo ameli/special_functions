@@ -65,11 +65,11 @@ jobs:
             - name: Build wheel
               run: |
                   # xcode-select --install
-                  export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
+                  # export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
                   python -m pip install --upgrade pip
                   python -m pip install --upgrade wheel
                   python -m pip install --upgrade numpy
-                  python -m pip install --upgrade .[full]
+                  python -m pip install .
                   python setup.py bdist_wheel
 
             - name: Install conda, conda-build, and conda-client
@@ -87,6 +87,7 @@ jobs:
             - name: Build conda package based on already compiled wheel and upload package
               run: |
                   # xcrun --show-sdk-path
+                  export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
                   export PATH="$HOME/miniconda/bin:$PATH"
                   conda config --set anaconda_upload yes
                   conda-build --output-folder . .
