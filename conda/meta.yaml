@@ -28,6 +28,7 @@ requirements:
     build:
         - {{ compiler('c') }}
         - {{ compiler('fortran') }}
+        - gfortran_win-64  # [win]
 
     host:
         - python {{ python }}
@@ -48,6 +49,8 @@ test:
         - pytest-cov
         # - pytest-runner
         - scipy
+    commands:
+        - pytest
 
 about:
     home: {{ data['url'] }}
