@@ -27,8 +27,7 @@ jobs:
                   python-version: ${{ matrix.python-version }}
 
             - name: Install Fortran compiler on mac
-              run: |
-                  brew reinstall gcc
+              run: brew reinstall gcc
 
             - name: Install package and dependencies
               run: |

@@ -26,6 +26,10 @@ jobs:
             - name: Install Visual C++ for Python 2.7
               if: runner.os == 'Windows'
               run: choco install vcpython27 -f -y
+              
+            # - name: Install fortran compiler on mac
+            #   if: runner.os == 'macos'
+            #   run: brew reinstall gcc
 
             - name: Checkout
               uses: actions/checkout@v2
@@ -55,11 +59,8 @@ jobs:
               with:
                   python-version: 3.8
 
-            - name: Install OpenMP for MacOS
-              run: |
-                  brew install libomp
-                  brew install suite-sparse
-                  # brew install llvm
+            - name: Install Fortran compiler
+              run: brew reinstall gcc
 
             - name: Build wheel
               run: |

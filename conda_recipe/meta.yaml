@@ -1,4 +1,4 @@
-{% set name = "TraceInv" %}
+{% set name = "special_functions" %}
 {% set data = load_setup_py_data() %}
 
 package:
@@ -11,8 +11,9 @@ source:
 build:
     number: 0
     script: 
-        - {{ PYTHON }} -m pip install dist/*.whl -vvv  # [osx]
-        - {{ PYTHON }} -m pip install . -vv  # [not osx]
+        - {{ PYTHON }} -m pip install . -vv
+        # - {{ PYTHON }} -m pip install dist/*.whl -vvv  # [osx]
+        # - {{ PYTHON }} -m pip install . -vv  # [not osx]
         # - {{ PYTHON }} -m pip install . --single-version-externally-managed --record=record.txt -vvv  # [not osx]
         # - {{ PYTHON }} -m pip install . --single-version-externally-managed --record=record.txt --ignore-installed --no-cache-dir -vvv  # [not osx]
     # script: sh ./build_macos.sh     # [mac]
@@ -26,7 +27,7 @@ build:
 requirements:
     build:
         - {{ compiler('c') }}
-        - llvm-openmp  # [osx]
+        - {{ compiler('fortran') }}
 
     host:
         # - python {{ python }}
@@ -34,29 +35,19 @@ requirements:
         - numpy>1.11
         - cython>=0.29
         - pip
-        - llvm-openmp  # [osx]
     run:
         # - python {{ python }}
         - python
-        - numpy>1.11
         # - {{ pin_compatible('numpy') }}
-        - scipy
-        - suitesparse
-        - matplotlib
-        - seaborn
-        - llvm-openmp  # [osx]
 
 test:
     imports:
-        - TraceInv
-        - TraceInv.ComputeLogDeterminant
-        - TraceInv.ComputeTraceOfInverse
-        - TraceInv.GenerateMatrix
-        - TraceInv.InterpolateTraceOfInverse
+        - special_functions
     requires:
         - pytest
         - pytest-cov
         - pytest-runner
+        - scipy
 
 about:
     home: {{ data['url'] }}
@@ -65,9 +56,9 @@ about:
     license_file: LICENSE.txt
     summary: {{ data['description'] }}
     description: {{ data['description'] }}
-    doc_url: https://ameli.github.io/TraceInv/index.html
-    doc_source_url: https://github.com/ameli/TraceInv/blob/main/README.rst
-    dev_url: https://github.com/ameli/TraceInv
+    doc_url: https://ameli.github.io/special_functions/index.html
+    doc_source_url: https://github.com/ameli/special_functions/blob/main/README.rst
+    dev_url: https://github.com/ameli/special_functions
 
 extra:
     recipe-maintainers:
