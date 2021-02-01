@@ -30,15 +30,14 @@ requirements:
         - {{ compiler('fortran') }}
 
     host:
-        # - python {{ python }}
-        - python
+        - python {{ python }}
+        # - python
         - numpy>1.11
         - cython>=0.29
         - pip
     run:
-        # - python {{ python }}
-        - python
-        # - {{ pin_compatible('numpy') }}
+        - python {{ python }}
+        # - python
 
 test:
     imports:
@@ -46,7 +45,7 @@ test:
     requires:
         - pytest
         - pytest-cov
-        - pytest-runner
+        # - pytest-runner
         - scipy
 
 about:

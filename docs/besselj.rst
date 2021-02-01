@@ -2,7 +2,7 @@
 Bessel Function of the First Kind
 *********************************
 
-This module computes the Bessel function of the first kind, or its :math:`n`:superscript:`th` derivative
+This module computes the Bessel function of the first kind or its :math:`n`:superscript:`th` derivative
 
 .. math::
 
@@ -10,25 +10,26 @@ This module computes the Bessel function of the first kind, or its :math:`n`:sup
 
 where
 
-* :math:`\nu \in \mathbb{R}` is other order of the Bessel function.
 * :math:`n \in \mathbb{N}` is the order of the derivative (:math:`n = 0` indicates no derivative).
-* :math:`z \in \mathbb{C}`, is the input argument and can be a real or complex number.
+* :math:`\nu \in \mathbb{R}` is the order of the Bessel function.
+* :math:`z \in \mathbb{C}` is the input argument.
   
 
-===================
-Function Signatures
-===================
+======
+Syntax
+======
 
-This module has the following interfaces depending whether it is used in Python or Cython environments, or the input argument ``z`` is complex or real.
+This module has the following interfaces depending on whether it is used in Python or Cython environments, or the input argument ``z`` is complex or real.
 
-+------------------+-------------------------+-----------------------------------------------------------------+
-| Input Type ``z`` | Python                  | Cython                                                          |
-+==================+=========================+=================================================================+
-| Real             | ``besselj(nu, z, n=0)`` | ``double besselj(double nu, double z, int n)``                  |
-+------------------+                         +-----------------------------------------------------------------+
-| Complex          |                         | ``double complex cbesselj(double nu, double complex z, int n)`` |
-+------------------+-------------------------+-----------------------------------------------------------------+
-
++------------+-----------------+-----------------------------------------------------------------+
+| Interface  | Input Type      | Function Signature                                              |
++============+=================+=================================================================+
+| **Python** | Real or Complex | ``besselj(nu, z, n=0)``                                         |
++------------+-----------------+-----------------------------------------------------------------+
+| **Cython** | Real            | ``double besselj(double nu, double z, int n)``                  |
++            +-----------------+-----------------------------------------------------------------+
+|            | Complex         | ``double complex cbesselj(double nu, double complex z, int n)`` |
++------------+-----------------+-----------------------------------------------------------------+
 
 **Input Arguments:**
 
@@ -69,7 +70,7 @@ Examples
 Using in Cython Code
 --------------------
 
-The codes below should be used in a ``*.pyx`` file and compiled with Cython. The python's global lock interpreter, or ``gil``, can be optionally released inside the scope of ``with nogil:`` statement. This is especially useful in parallel OpenMP environments.
+The codes below should be used in a ``.pyx`` file and compiled with Cython. The python's global lock interpreter, or ``gil``, can be optionally released inside the scope of ``with nogil:`` statement. This is especially useful in parallel OpenMP environments.
 
 ~~~~~~~~~~~~~
 Real Function
@@ -119,7 +120,7 @@ The example below is similar to the above, except, the *complex* function ``cbes
 Using in Python Code
 --------------------
 
-The codes below should be used usual python ``*.py`` file and no compilation is required. The python's global lock interpreter, or ``gil``, cannot be released.
+The codes below should be used in a ``.py`` file and no compilation is required. The python's global lock interpreter, or ``gil``, cannot be released.
 
 ~~~~~~~~~~~~~
 Real Function
@@ -143,7 +144,7 @@ The example below shows using ``besselj`` function with a real argument to compu
 Complex Function
 ~~~~~~~~~~~~~~~~
 
-To use a complex input argument, the same function ``besselj`` can be used (unlike in Cython, which ``cbesselj`` should be used.)
+To use a complex input argument, the same function ``besselj`` can be used (unlike in Cython, in which ``cbesselj`` should be used.)
 
 .. code-block:: python
 
@@ -184,14 +185,14 @@ Algorithm
 Depending on the values of the input parameters :math:`(\nu, z, n)`, different algorithms are employed in this module.
 
 * If :math:`z \in \mathbb{R}` and :math:`\nu = 0` or :math:`\nu = 1`, the computation is carried out by Cephes C library (see [Cephes-1989]_) using ``j0`` and ``j1`` functions, respectively.
-* If the parameter :math:`\nu + \frac{1}{2} \in \mathbb{Z}`, the :ref:`half-integer formulas <half_int_besselj>` using elementary functions are used.
+* If :math:`\nu + \frac{1}{2} \in \mathbb{Z}`, the :ref:`half-integer formulas <half_int_besselj>` using elementary functions are used.
 * For other cases, the computation is carried out by the Amos Fortran library (see [Amos-1986]_) using ``zbesj`` subroutine.
 
 -------------
 Special Cases
 -------------
 
-In the special cases below, the computation is performed using some of the known formulas for Bessel functions.
+In the special cases below, the computation is performed by taking advantage of some of the known formulas for the Bessel functions.
 
 ~~~~~~~~~~
 Branch-Cut
@@ -261,7 +262,7 @@ When :math:`\nu` is half-integer, the Bessel function is computed with the eleme
       J_{\frac{1}{2}}(z) = \sqrt{\frac{2}{\pi z}} \sin(z), \\
       J_{-\frac{1}{2}}(z) = \sqrt{\frac{2}{\pi z}} \cos(z).
 
-  Depending on :math:`z`, the above relations are computed using real or complex implementation of the elementary functions.
+  Depending on :math:`z`, the above relations are computed using the real or complex implementation of the elementary functions.
 
 * For other half-integer orders of :math:`\nu`, the following recursive formulas are used:
 

@@ -147,13 +147,13 @@ Syntax                    Return type  Symbol     Description
 
 **Typed Arguments:**
 
-========  ===================  =========  ================================================================================================================
-Argument   Type                           Symbol     Description
-========  ===================  =========  ================================================================================================================
-``nu``    ``double``, ``int``             |image01|  Parameter of functions (such as order of Bessel functions). Real number.
+========  ===================  =========  =====================================================================================================
+Argument   Type                Symbol     Description
+========  ===================  =========  =====================================================================================================
+``nu``    ``double``, ``int``  |image01|  Parameter of functions (such as order of Bessel functions). Real number.
 ``z``     ``double``           |image02|  Argument of the functions. Can be real or complex number.
-``n``     ``int``                         |image03|  Derivative of function with respect to |image02|. Non-negative integer. Zero indicates no derivative.
-========  ===================  =========  ================================================================================================================
+``n``     ``int``              |image03|  Derivative of function with respect to |image02|. Non-negative integer. Zero indicates no derivative.
+========  ===================  =========  =====================================================================================================
 
 ------------------------------
 Cython API (Complex Functions)

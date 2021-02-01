@@ -18,21 +18,19 @@ A common difficulty in such application is that the matrices are generally large
     :maxdepth: 1
     :caption: Documentation
 
-    Introduction <introduction>
     Install <install>
     Quick Start <quickstart>
-    Examples <examples>
 
 .. toctree::
     :maxdepth: 1
     :caption: Functions User Guide
 
-    Bessel function, First Kind <besselj>
-    Bessel function, Second Kind <bessely>
-    Bessel function, Third Kind <besselh>
-    Modified Bessel function, First Kind <besseli>
-    Modified Bessel function, Second Kind <besselk>
-    Log Gamma function <loggamma>
+    Bessel Function, First Kind <besselj>
+    Bessel Function, Second Kind <bessely>
+    Bessel Function, Third Kind <besselh>
+    Modified Bessel Function, First Kind <besseli>
+    Modified Bessel Function, Second Kind <besselk>
+    Log Gamma Function <loggamma>
 
 
 .. toctree::
@@ -97,29 +95,21 @@ Tutorials
 
 |binder|
 
-A tutorial and demonstration of examples can be found with `online interactive Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FInterpolateTraceOfInverse.ipynb>`_.
+A tutorial and demonstration of examples can be found with 
 
 ============
 Useful Links
 ============
 
-.. For users
-..     * `Documentation <https://ameli.github.io/special_functions/index.html>`_
-..     * `PyPi package <https://pypi.org/project/special_functions/>`_
-..     * `Source code <https://github.com/ameli/special_functions>`_
-..
-.. For developers
-..     * `API <https://ameli.github.io/special_functions/_modules/modules.html>`_
-..     * `Travis-CI <https://travis-ci.com/github/ameli/special_functions>`_
-..     * `Codecov <https://codecov.io/gh/ameli/special_functions>`_
+For users:
+    + `Package on Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_
+    + `Package on PyPi <https://pypi.org/project/special_functions/>`_
+    + `Source code on Github <https://github.com/ameli/special_functions>`_
+    + `online interactive Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FInterpolateTraceOfInverse.ipynb>`_.
 
-+------------------------------------------------------------------------+----------------------------------------------------------------------------+
-|    For users                                                           | For developers                                                             |
-+========================================================================+============================================================================+
-| * `Anaconda package <https://anaconda.org/s-ameli/special_functions>`_ | * `API <https://ameli.github.io/special_functions/_modules/modules.html>`_ |
-| * `PyPi package <https://pypi.org/project/special_functions/>`_        | * `Travis-CI <https://travis-ci.com/github/ameli/special_functions>`_      |
-| * `Source code <https://github.com/ameli/special_functions>`_          | * `Codecov <https://codecov.io/gh/ameli/special_functions>`_               |
-+------------------------------------------------------------------------+----------------------------------------------------------------------------+
+For developers:
+    + `Test Coverage on Codecov <https://codecov.io/gh/ameli/special_functions>`_
+    + `API <https://ameli.github.io/special_functions/_modules/modules.html>`_
 
 =================
 How to Contribute
@@ -131,30 +121,9 @@ We welcome contributions via `Github's pull request <https://github.com/ameli/sp
 Related Projects
 ================
 
-* `Orthogonal Functions <https://ameli.github.io/Orthogonal-Functions/>`_: A python package that generates set of orthogonal basis functions used for :ref:`interpolation schemes <InterpolateTraceOfInverse>` in special_functions.
-* `Gaussian Process Regression <https://github.com/ameli/gaussian-process-param-estimation>`_: A python package that makes use of special_functions expensively to efficiently compute the parameters of Gaussian process regression.
+* `scipy.special <https://docs.scipy.org/doc/scipy/reference/special.html>`_: Many special functions were implemented in Scipy's special sub-package. This package is reimplements Bessel functions similar to ``scipy.special``, but with simplified python and cython different interfaces.
+* `Gaussian Process <https://github.com/ameli/gaussian-process-param-estimation>`_: A python package that makes use of ``special_functions``.
 
-===========
-Attribution
-===========
-
-If you make use of this package, please consider citing the following manuscript.
-
-.. [Ameli-2020] Ameli, S., and Shadden. S. C. (2020). Interpolating the Trace of the Inverse of Matrix :math:`\mathbf{A} + t \mathbf{B}`. `arXiv:2009.07385 <https://arxiv.org/abs/2009.07385>`__ [math.NA]
-
-::
-
-    @misc{AMELI-2020,
-        title={Interpolating the Trace of the Inverse of Matrix $\mathbf{A} + t \mathbf{B}$},
-        author={Siavash Ameli and Shawn C. Shadden},
-        year={2020},
-        month = sep,
-        eid = {arXiv:2009.07385},
-        eprint={2009.07385},
-        archivePrefix={arXiv},
-        primaryClass={math.NA},
-        howpublished={\emph{arXiv}: 2009.07385 [math.NA]},
-    }
 
 ================
 Acknowledgements
@@ -167,7 +136,11 @@ Acknowledgements
 Credit
 ======
 
-* Some of the algorithms are build on python packages `numpy <https://numpy.org/>`_, `scipy <https://www.scipy.org/>`_, `ray <https://github.com/ray-project/ray>`_, and `scikit-sparse <https://github.com/scikit-sparse/scikit-sparse>`_.
+This package uses the following libraries:
+
+.. [Cephes-1989] Moshier, S. L. (1989). C language library with special functions for mathematical physics. Available at `http://www.netlib.org/cephes/index.html <http://www.netlib.org/cephes/index.html>`_.
+
+.. [Amos-1986] Amos, D. E. (1986). Algorithm 644: A portable package for Bessel functions of a complex argument and nonnegative order. ACM Trans. Math. Softw. 12, 3 (Sept. 1986), 265-273. DOI: `https://doi.org/10.1145/7921.214331 <https://doi.org/10.1145/7921.214331>`_. Available at `http://netlib.org/amos/ <http://netlib.org/amos/>`_.
 
 ==================
 Indices and tables
@@ -177,14 +150,7 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-.. .. autosummary::
-..
-..    special_functions.GenerateMatrix
-..    special_functions.ComputeTraceOfInverse
-..    special_functions.InterpolateTraceOfInverse
 
-.. |travis-devel| image:: https://img.shields.io/travis/com/ameli/special_functions
-   :target: https://travis-ci.com/github/ameli/special_functions
 .. |codecov-devel| image:: https://img.shields.io/codecov/c/github/ameli/special_functions
    :target: https://codecov.io/gh/ameli/special_functions
 .. |docs| image:: https://github.com/ameli/special_functions/workflows/deploy-docs/badge.svg
