@@ -26,11 +26,17 @@ build:
 
 requirements:
     build:
+        - python                            # [build_platform != target_platform]
+        - cython                            # [build_platform != target_platform]
+        - numpy                             # [build_platform != target_platform]
         - {{ compiler('c') }}
-        - {{ compiler('fortran') }}
-        - gfortran_win-64  # [win]
+        - {{ compiler('fortran') }}         # [unix]
+        - {{ compiler('m2w64_fortran') }}   # [win]
 
     host:
+        - libblas
+        - libcblas
+        - liblapack
         - python {{ python }}
         # - python
         - numpy>1.11
@@ -40,7 +46,7 @@ requirements:
         - pytest-cov
         - pytest-runner
         - scipy
-        # - setuptools
+        - setuptools
     run:
         - python {{ python }}
         - pytest-runner

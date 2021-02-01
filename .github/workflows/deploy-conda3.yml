@@ -64,6 +64,7 @@ jobs:
 
             - name: Build wheel
               run: |
+                  xcode-select --install
                   python -m pip install --upgrade pip
                   python -m pip install --upgrade wheel
                   python -m pip install --upgrade numpy
