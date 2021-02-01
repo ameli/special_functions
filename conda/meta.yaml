@@ -34,7 +34,8 @@ requirements:
         # - python
         - numpy>=1.19
         - cython>=0.29
-        - pip>=20
+        - pip
+        - setuptools
     run:
         - python {{ python }}
         # - python
@@ -46,7 +47,7 @@ test:
         - pytest>=6.2
         - pytest-cov>=2.10
         # - pytest-runner
-        - scipy>=1.5
+        - scipy
 
 about:
     home: {{ data['url'] }}
