@@ -34,9 +34,9 @@ requirements:
         - {{ compiler('m2w64_fortran') }}   # [win]
 
     host:
-        - libblas
-        - libcblas
-        - liblapack
+        # - libblas
+        # - libcblas
+        # - liblapack
         - python {{ python }}
         # - python
         - numpy>1.11
