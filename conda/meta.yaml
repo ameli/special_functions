@@ -36,9 +36,14 @@ requirements:
         - numpy>1.11
         - cython
         - pip
+        - pytest
+        - pytest-cov
+        - pytest-runner
+        - scipy
         # - setuptools
     run:
         - python {{ python }}
+        - pytest-runner
         # - python
 
 test:
@@ -47,7 +52,7 @@ test:
     requires:
         - pytest
         - pytest-cov
-        # - pytest-runner
+        - pytest-runner
         - scipy
     # commands:
     #     - cd tests
