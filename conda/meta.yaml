@@ -32,8 +32,8 @@ requirements:
     host:
         - python {{ python }}
         # - python
-        - numpy>=1.19
-        - cython>=0.29
+        - numpy
+        - cython
         - pip
         - setuptools
     run:
@@ -44,8 +44,8 @@ test:
     imports:
         - special_functions
     requires:
-        - pytest>=6.2
-        - pytest-cov>=2.10
+        - pytest
+        - pytest-cov
         # - pytest-runner
         - scipy
 
