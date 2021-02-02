@@ -33,7 +33,7 @@ requirements:
         # - numpy                             # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('fortran') }}         # [unix]
-        - {{ compiler('m2w64_fortran') }}   # [win]
+        # - {{ compiler('m2w64_fortran') }}   # [win]
 
     host:
         # - libblas
