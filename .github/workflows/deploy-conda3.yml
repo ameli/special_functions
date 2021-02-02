@@ -18,6 +18,11 @@ jobs:
             matrix:
                 os: [ubuntu-latest, windows-latest]
         steps:
+            - name: Setup tmate session
+              uses: mxschmitt/action-tmate@v3
+              with:
+                  sudo: false
+
             - name: Setup Miniconda
               uses: conda-incubator/setup-miniconda@v2
               with:
@@ -51,6 +56,9 @@ jobs:
             - name: Upload package
               shell: bash -l {0}
               run: |
+                  ls
+                  ls linux-64
+                  ls win-64
                   conda config --set anaconda_upload yes
                   export PATH=$(conda info --root):$PATH
                   export PATH=$(conda info --root)/bin:$PATH
