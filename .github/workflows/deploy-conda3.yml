@@ -18,12 +18,12 @@ jobs:
             matrix:
                 os: [ubuntu-latest, windows-latest]
         steps:
-            - name: Setup tmate session
-              uses: mxschmitt/action-tmate@v3
-              timeout-minutes: 15
+            # - name: Setup tmate session
+            #   uses: mxschmitt/action-tmate@v3
+            #   timeout-minutes: 15
 
-            - name: Continue
-              run: touch continue
+            # - name: Continue
+            #   run: touch continue
 
             - name: Setup Miniconda
               uses: conda-incubator/setup-miniconda@v2
@@ -54,6 +54,9 @@ jobs:
               env:
                   CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
                   ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+
+            - name: Setup tmate session
+              uses: mxschmitt/action-tmate@v3
 
             - name: Upload package
               shell: bash -l {0}
