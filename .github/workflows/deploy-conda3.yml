@@ -38,7 +38,7 @@ jobs:
               shell: bash -l {0}
               run: |
                   conda install -y conda-build anaconda-client
-                  # conda config --set anaconda_upload yes
+                  conda config --set anaconda_upload yes
                   export PATH=$(conda info --root):$PATH
                   export PATH=$(conda info --root)/bin:$PATH
                   conda-build --output-folder . .
