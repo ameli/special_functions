@@ -61,7 +61,8 @@ This function has the following syntaxes depending on whether it is used in Pyth
 
 .. seealso::
 
-   :ref:`Bessel function of the second kind <bessely>`.
+   * :ref:`Bessel function of the second kind <bessely>`.
+   * :ref:`Bessel function of the third kind <besselh>`.
 
 
 ========
@@ -72,7 +73,9 @@ Examples
 Using in Cython Code
 --------------------
 
-The codes below should be used in a ``.pyx`` file and compiled with Cython. The python's global lock interpreter, or ``gil``, can be optionally released inside the scope of ``with nogil:`` statement. This is especially useful in parallel OpenMP environments.
+The codes below should be used in a ``.pyx`` file and compiled with Cython.
+
+As shown in the codes below, the python's global lock interpreter, or ``gil``, can be optionally released inside the scope of ``with nogil:`` statement. This is especially useful in parallel OpenMP environments.
 
 ~~~~~~~~~~~~~
 Real Function
@@ -128,7 +131,7 @@ The codes below should be used in a ``.py`` file and no compilation is required.
 Real Function
 ~~~~~~~~~~~~~
 
-The example below shows using ``besselj`` function with a real argument to compute the Bessel function of the first kind and its first and second derivatives.
+The example below uses the function ``besselj`` with the real argument ``z`` to compute the Bessel function of the first kind and its first and second derivatives.
 
 .. code-block:: python
 
@@ -146,7 +149,7 @@ The example below shows using ``besselj`` function with a real argument to compu
 Complex Function
 ~~~~~~~~~~~~~~~~
 
-To use a complex input argument, the same function ``besselj`` can be used (unlike in Cython, in which ``cbesselj`` should be used.)
+To use a complex input argument ``z`` in the Python interface, the same function ``besselj`` can be used as the previous example. This is unlike in Cython interface in which ``cbesselj`` should be used.
 
 .. code-block:: python
 
