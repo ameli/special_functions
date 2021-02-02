@@ -20,6 +20,8 @@ jobs:
         steps:
             - name: Setup tmate session
               uses: mxschmitt/action-tmate@v3
+              run: touch continue
+              timeout-minutes: 15
 
             - name: Setup Miniconda
               uses: conda-incubator/setup-miniconda@v2
