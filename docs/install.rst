@@ -8,7 +8,7 @@ Install
 Supported Platforms
 ===================
 
-Successful installation and tests have been performed on the following platforms and Python/PyPy versions shown the table below.
+Successful installation and tests have been performed on the following platforms and Python/PyPy versions shown in the table below.
 
 
 +----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+

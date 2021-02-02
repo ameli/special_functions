@@ -1,3 +1,5 @@
+.. _besselj:
+
 *********************************
 Bessel Function of the First Kind
 *********************************
@@ -19,7 +21,7 @@ where
 Syntax
 ======
 
-This module has the following interfaces depending on whether it is used in Python or Cython environments, or the input argument ``z`` is complex or real.
+This function has the following syntaxes depending on whether it is used in Python or Cython interface, or the input argument ``z`` is complex or real.
 
 +------------+-----------------+-----------------------------------------------------------------+
 | Interface  | Input Type      | Function Signature                                              |
@@ -51,7 +53,7 @@ This module has the following interfaces depending on whether it is used in Pyth
    :type: int
    :value: 0
 
-   Order of derivative of Bessel function.
+   The order :math:`n` of the derivative of Bessel function. Zero indicates no derivative.
 
    * For the *Python* interface, the default value is ``0`` and this argument may not be provided.
    * For the *Cython* interfaces, no default value is defined and this argument should be provided.
