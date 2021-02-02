@@ -168,7 +168,7 @@ To use a complex input argument ``z`` in the Python interface, the same function
 Tests
 =====
 
-Test script of this module is located at |tests/test_besselj.py|_. The test compares the results of this module with |scipy.special|_ package (functions ``j0``, ``j1``, ``jn``, ``jv``, and ``jvp``) for several combinations of input parameters with multiple values. Run the test by
+The test script of this module is located at |tests/test_besselj.py|_. The test compares the results of this module with |scipy.special|_ package (functions ``j0``, ``j1``, ``jn``, ``jv``, and ``jvp``) for several combinations of input parameters with multiple values. Run the test by
 
 .. code::
 
@@ -269,7 +269,7 @@ When :math:`\nu` is half-integer, the Bessel function is computed in terms of el
 
   Depending on :math:`z`, the above relations are computed using the real or complex implementation of the elementary functions.
 
-* Higher order half-integer parameter :math:`\nu` is related to the above relation for :math:`\nu = \pm \frac{1}{2}` using recursive formulas (see [DLMF]_ Eq. `10.6.1 <https://dlmf.nist.gov/10.6#E1>`_):
+* Higher-order half-integer parameter :math:`\nu` is related to the above relation for :math:`\nu = \pm \frac{1}{2}` using recursive formulas (see [DLMF]_ Eq. `10.6.1 <https://dlmf.nist.gov/10.6#E1>`_):
 
 .. math::
 
