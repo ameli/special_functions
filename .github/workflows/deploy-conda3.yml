@@ -42,10 +42,21 @@ jobs:
                   export PATH=$(conda info --root):$PATH
                   export PATH=$(conda info --root)/bin:$PATH
                   conda-build --output-folder . .
+                  # anaconda upload --force --label main linux-64/*.tar.bz2
+                  # anaconda upload --force --label main win-64/*.tar.bz2
+              env:
+                  CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
+                  ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+
+            - name: Upload package
+              shell: bash -l {0}
+              run: |
+                  conda config --set anaconda_upload yes
+                  export PATH=$(conda info --root):$PATH
+                  export PATH=$(conda info --root)/bin:$PATH
                   anaconda upload --force --label main linux-64/*.tar.bz2
                   anaconda upload --force --label main win-64/*.tar.bz2
               env:
-                  CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
                   ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
 
     # On MacOS, package is built from wheels, not directly from the source code
