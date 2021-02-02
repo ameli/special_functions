@@ -93,11 +93,11 @@ jobs:
                   # xcrun --show-sdk-path
                   # export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
                   export PATH="$HOME/miniconda/bin:$PATH"
-                  python -m pip install --upgrade pip
-                  python -m pip install --upgrade wheel
-                  python -m pip install --upgrade numpy
+                  # python -m pip install --upgrade pip
+                  # python -m pip install --upgrade wheel
+                  # python -m pip install --upgrade numpy
                   python -m pip install .
-                  python setup.py bdist_wheel
+                  # python setup.py bdist_wheel
                   conda config --set anaconda_upload yes
                   conda-build -c conda-forge  --output-folder . .
               env:
