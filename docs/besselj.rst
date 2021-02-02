@@ -218,13 +218,13 @@ Negative :math:`\nu`
 
 When :math:`\nu < 0` and for the two cases below, the Bessel function is computed is related to the Bessel function of the positive parameter :math:`-\nu`.
 
-* If :math:`\nu \in \mathbb{Z}`:
+* If :math:`\nu \in \mathbb{Z}` (see [DLMF]_ Eq. `10.4.1 <https://dlmf.nist.gov/10.4#E1>`_):
 
   .. math::
 
       J_{\nu}(z) = (-1)^{\nu} J_{-\nu}(z)
 
-* If :math:`\nu + \frac{1}{2} \in \mathbb{Z}`:
+* If :math:`\nu + \frac{1}{2} \in \mathbb{Z}` (see [DLMF]_ Eq. `10.2.3 <https://dlmf.nist.gov/10.2#E3>`_):
 
   .. math::
 
@@ -236,7 +236,7 @@ When :math:`\nu < 0` and for the two cases below, the Bessel function is compute
 Derivatives
 ~~~~~~~~~~~
 
-If :math:`n > 0`, the following relation for the derivative is applied:
+If :math:`n > 0`, the following relation for the derivative is applied (see [DLMF]_ Eq. `10.6.7 <https://dlmf.nist.gov/10.6#E7>`_):
 
 .. math::
    
@@ -260,7 +260,7 @@ When :math:`\nu` is half-integer, the Bessel function is computed in terms of el
 
 * If :math:`z < 0` and :math:`z \in \mathbb{R}`, then ``NAN`` is returned.
 
-* If :math:`\nu = \pm \frac{1}{2}`:
+* If :math:`\nu = \pm \frac{1}{2}` (see [DLMF]_ Eq. `10.16.1 <https://dlmf.nist.gov/10.16#E1>`_)
 
   .. math::
 
@@ -269,7 +269,7 @@ When :math:`\nu` is half-integer, the Bessel function is computed in terms of el
 
   Depending on :math:`z`, the above relations are computed using the real or complex implementation of the elementary functions.
 
-* Higher order half-integer parameter :math:`\nu` is related to the above relation for :math:`\nu = \pm \frac{1}{2}` using recursive formulas:
+* Higher order half-integer parameter :math:`\nu` is related to the above relation for :math:`\nu = \pm \frac{1}{2}` using recursive formulas (see [DLMF]_ Eq. `10.6.1 <https://dlmf.nist.gov/10.6#E1>`_):
 
 .. math::
 
@@ -285,4 +285,5 @@ References
 
 .. [Amos-1986] Amos, D. E. (1986). Algorithm 644: A portable package for Bessel functions of a complex argument and nonnegative order. ACM Trans. Math. Softw. 12, 3 (Sept. 1986), 265-273. DOI: `https://doi.org/10.1145/7921.214331 <https://doi.org/10.1145/7921.214331>`_. Available at `http://netlib.org/amos/ <http://netlib.org/amos/>`_.
 
-.. |DLMF| 
+.. [DLMF]
+   Olver, F. W. J., Olde Daalhuis, A. B., Lozier, D. W., Schneider, B. I., Boisvert, R. F., Clark, C. W., Miller, B. R., Saunders, B. V., Cohl, H. S., and McClain, M. A., eds. NIST Digital Library of Mathematical Functions. `http://dlmf.nist.gov/ <http://dlmf.nist.gov/>`_, Release 1.1.0 of 2020-12-15.
