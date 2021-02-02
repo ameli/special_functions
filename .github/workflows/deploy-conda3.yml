@@ -55,23 +55,19 @@ jobs:
                   CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
                   ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
 
-            - name: Setup tmate session
-              uses: mxschmitt/action-tmate@v3
-              timeout-minutes: 15
-
-            - name: Upload package
-              shell: bash -l {0}
-              run: |
-                  ls
-                  ls linux-64
-                  ls win-64
-                  conda config --set anaconda_upload yes
-                  export PATH=$(conda info --root):$PATH
-                  export PATH=$(conda info --root)/bin:$PATH
-                  anaconda upload --force --label main linux-64/*.tar.bz2
-                  anaconda upload --force --label main win-64/*.tar.bz2
-              env:
-                  ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+            # - name: Upload package
+            #   shell: bash -l {0}
+            #   run: |
+            #       ls
+            #       ls linux-64
+            #       ls win-64
+            #       conda config --set anaconda_upload yes
+            #       export PATH=$(conda info --root):$PATH
+            #       export PATH=$(conda info --root)/bin:$PATH
+            #       anaconda upload --force --label main linux-64/*.tar.bz2
+            #       anaconda upload --force --label main win-64/*.tar.bz2
+            #   env:
+            #       ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
 
     # On MacOS, package is built from wheels, not directly from the source code
     build_upload_conda_for_mac:
@@ -127,7 +123,7 @@ jobs:
                   # python setup.py bdist_wheel
                   # conda config --set anaconda_upload yes
                   conda-build -c conda-forge  --output-folder . .
-                  anaconda upload --force --label main osx-64/*.tar.bz2
+                  # anaconda upload --force --label main osx-64/*.tar.bz2
               env:
                   CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
                   ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
