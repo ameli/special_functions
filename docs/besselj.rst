@@ -149,7 +149,7 @@ The example below uses the function ``besselj`` with the real argument ``z`` to 
 Complex Function
 ~~~~~~~~~~~~~~~~
 
-To use a complex input argument ``z`` in the Python interface, the same function ``besselj`` can be used as the previous example. This is unlike in Cython interface in which ``cbesselj`` should be used.
+To use a complex input argument ``z`` in the Python interface, the same function ``besselj`` as the previous example can be used. This is unlike the Cython interface in which ``cbesselj`` should be used.
 
 .. code-block:: python
 
@@ -168,7 +168,7 @@ To use a complex input argument ``z`` in the Python interface, the same function
 Tests
 =====
 
-Tests of this module can be found in |tests/test_besselj.py|_ script, where the results are compared with the |scipy.special|_ package (functions ``j0``, ``j1``, ``jn``, ``jv``, and ``jvp``) for various combinations of input parameters. To run the test:
+Test script of this module is located at |tests/test_besselj.py|_. The test compares the results of this module with |scipy.special|_ package (functions ``j0``, ``j1``, ``jn``, ``jv``, and ``jvp``) for several combinations of input parameters with multiple values. Run the test by
 
 .. code::
 
@@ -187,17 +187,17 @@ Tests of this module can be found in |tests/test_besselj.py|_ script, where the 
 Algorithm
 =========
 
-Depending on the values of the input parameters :math:`(\nu, z, n)`, different algorithms are employed in this module.
+Depending on the values of the input parameters :math:`(\nu, z, n)`, one of the following three algorithms is employed.
 
-* If :math:`z \in \mathbb{R}` and :math:`\nu = 0` or :math:`\nu = 1`, the computation is carried out by Cephes C library (see [Cephes-1989]_) using ``j0`` and ``j1`` functions, respectively.
-* If :math:`\nu + \frac{1}{2} \in \mathbb{Z}`, the :ref:`half-integer formulas <half_int_besselj>` using elementary functions are used.
-* For other cases, the computation is carried out by the Amos Fortran library (see [Amos-1986]_) using ``zbesj`` subroutine.
+* If :math:`z \in \mathbb{R}` (that is, ``z`` is of type ``double``) and :math:`\nu = 0` or :math:`\nu = 1`, the computation is carried out by Cephes C library (see [Cephes-1989]_), respectively using ``j0`` or ``j1`` functions in that library.
+* If :math:`\nu + \frac{1}{2} \in \mathbb{Z}`, the Bessel function is computed using :ref:`half-integer formulas <half_int_besselj>` in terms of elementary functions.
+* For other cases, the computation is carried out by Amos Fortran library (see [Amos-1986]_) using ``zbesj`` subroutine in that library.
 
 -------------
 Special Cases
 -------------
 
-In the special cases below, the computation is performed by taking advantage of some of the known formulas for the Bessel functions.
+In the special cases below, the computation is performed by taking advantage of some of the known formulas and properties of the Bessel functions.
 
 ~~~~~~~~~~
 Branch-Cut
@@ -216,9 +216,9 @@ Branch-Cut
 Negative :math:`\nu`
 ~~~~~~~~~~~~~~~~~~~~
 
-When :math:`\nu < 0` and for the following special cases, the Bessel function is computed using the positive parameter :math:`-\nu`.
+When :math:`\nu < 0` and for the two cases below, the Bessel function is computed is related to the Bessel function of the positive parameter :math:`-\nu`.
 
-* If :math:`\nu \in \mathbb{Z}`, then
+* If :math:`\nu \in \mathbb{Z}`:
 
   .. math::
 
@@ -248,7 +248,7 @@ If :math:`n > 0`, the following relation for the derivative is applied:
 Half-Integer :math:`\nu`
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-When :math:`\nu` is half-integer, the Bessel function is computed with the elementary functions as follows.
+When :math:`\nu` is half-integer, the Bessel function is computed in terms of elementary functions as follows.
 
 * If :math:`z = 0`:
 
@@ -269,7 +269,7 @@ When :math:`\nu` is half-integer, the Bessel function is computed with the eleme
 
   Depending on :math:`z`, the above relations are computed using the real or complex implementation of the elementary functions.
 
-* For other half-integer orders of :math:`\nu`, the following recursive formulas are used:
+* Higher order half-integer parameter :math:`\nu` is related to the above relation for :math:`\nu = \pm \frac{1}{2}` using recursive formulas:
 
 .. math::
 

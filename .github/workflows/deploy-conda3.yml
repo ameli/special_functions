@@ -121,7 +121,7 @@ jobs:
                   # python -m pip install --upgrade numpy
                   # python -m pip install .
                   # python setup.py bdist_wheel
-                  # conda config --set anaconda_upload yes
+                  conda config --set anaconda_upload yes
                   conda-build -c conda-forge  --output-folder . .
                   # anaconda upload --force --label main osx-64/*.tar.bz2
               env:
@@ -222,6 +222,7 @@ jobs:
                   mv special_functions special_functions-DoNotImport
                   rm setup.cfg
                   conda install -c s-ameli special_functions -y
+                  conda install -c conda-forge scipy -y
                   conda install pytest -y
                   pytest
 
