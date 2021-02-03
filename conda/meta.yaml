@@ -40,8 +40,8 @@ requirements:
         # - libcblas
         # - liblapack
         - libcxx      # [osx]
-        - python {{ python }}
-        # - python
+        # - python {{ python }}
+        - python
         - numpy>1.11
         - cython
         - pip
@@ -51,9 +51,9 @@ requirements:
         - scipy
         - setuptools
     run:
-        - python {{ python }}
+        # - python {{ python }}
         - pytest-runner
-        # - python
+        - python
 
 test:
     imports:
