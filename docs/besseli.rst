@@ -61,7 +61,7 @@ This function has the following syntaxes depending on whether it is used in Pyth
 
 .. seealso::
 
-   :ref:`Modified Bessel function of the second kind <bessely>`.
+   :ref:`Modified Bessel function of the second kind <besselk>`.
 
 
 ========
@@ -167,7 +167,7 @@ To use a complex input argument ``z`` in the Python interface, the same function
 Differences with Scipy
 ======================
 
-There are very few differences between this package and scipy. In the real domain :math:`z \in \mathbb{Z}`, it holds:
+There are very few differences between numerical results of this package compared to scipy. In the real domain :math:`z \in \mathbb{Z}`, it holds:
 
 .. math::
     
@@ -262,7 +262,7 @@ Branch-Cut
 Negative :math:`\nu`
 ~~~~~~~~~~~~~~~~~~~~
 
-When :math:`\nu < 0` and for the two cases below, the modified Bessel function is computed is related to the modified Bessel function of the positive parameter :math:`-\nu`.
+When :math:`\nu < 0` and for the two cases below, the modified Bessel function is related to the modified Bessel function of the positive parameter :math:`-\nu`.
 
 * If :math:`\nu \in \mathbb{Z}` (see [DLMF]_ Eq. `10.27.1 <https://dlmf.nist.gov/10.27#E1>`_):
 
@@ -276,7 +276,7 @@ When :math:`\nu < 0` and for the two cases below, the modified Bessel function i
 
       I_{\nu}(z) = I_{-\nu}(z) - \frac{2}{\pi} \sin(\pi \nu) K_{-\nu}(z),
 
-  where :math:`K_{\nu}(z)` is the :ref:`modified Bessel function of the second kind <bessely>`. In the above, the functions :math:`I_{-\nu}(z)` and :math:`K_{-\nu}(z)` are computed by :ref:`half-integer formulas <half_int_besseli>`.
+  where :math:`K_{\nu}(z)` is the :ref:`modified Bessel function of the second kind <bessely>`.
 
 ~~~~~~~~~~~
 Derivatives

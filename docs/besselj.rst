@@ -216,7 +216,7 @@ Branch-Cut
 Negative :math:`\nu`
 ~~~~~~~~~~~~~~~~~~~~
 
-When :math:`\nu < 0` and for the two cases below, the Bessel function is computed is related to the Bessel function of the positive parameter :math:`-\nu`.
+When :math:`\nu < 0` and for the two cases below, the Bessel function is related to the Bessel function of the positive parameter :math:`-\nu`.
 
 * If :math:`\nu \in \mathbb{Z}` (see [DLMF]_ Eq. `10.4.1 <https://dlmf.nist.gov/10.4#E1>`_):
 
@@ -230,7 +230,7 @@ When :math:`\nu < 0` and for the two cases below, the Bessel function is compute
 
       J_{\nu}(z) = \cos(\pi \nu) J_{-\nu}(z) + \sin(\pi \nu) Y_{-\nu}(z),
 
-  where :math:`Y_{\nu}(z)` is the :ref:`Bessel function of the second kind <bessely>`. In the above, the functions :math:`J_{-\nu}(z)` and :math:`Y_{-\nu}(z)` are computed by :ref:`half-integer formulas <half_int_besselj>`.
+  where :math:`Y_{\nu}(z)` is the :ref:`Bessel function of the second kind <bessely>`.
 
 ~~~~~~~~~~~
 Derivatives

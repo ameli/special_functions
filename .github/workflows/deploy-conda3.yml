@@ -102,10 +102,10 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Set up Python ${{ matrix.python-version }}
-              uses: actions/setup-python@v2
-              with:
-                  python-version: 3.8
+            # - name: Set up Python ${{ matrix.python-version }}
+            #   uses: actions/setup-python@v2
+            #   with:
+            #       python-version: 3.8
 
             - name: Install Fortran compiler
               run: brew reinstall gcc
@@ -119,16 +119,21 @@ jobs:
             #       python -m pip install --upgrade numpy
             #       python -m pip install .
             #       python setup.py bdist_wheel
+            #
+            - name: Setup Miniconda
+              uses: conda-incubator/setup-miniconda@v2
+              with:
+                  auto-update-conda: true
 
             - name: Install conda, conda-build, and conda-client
               run: |
-                  brew install wget
-                  wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh
-                  bash miniconda.sh -b -p $HOME/miniconda
-                  export PATH="$HOME/miniconda/bin:$PATH"
-                  hash -r
+                  # brew install wget
+                  # wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh
+                  # bash miniconda.sh -b -p $HOME/miniconda
+                  # export PATH="$HOME/miniconda/bin:$PATH"
+                  # hash -r
                   conda config --set always_yes yes --set changeps1 no
-                  conda update -q conda
+                  # conda update -q conda
                   conda install conda-build
                   conda install anaconda-client
 
