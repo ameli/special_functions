@@ -61,7 +61,7 @@ This function has the following syntaxes depending on whether it is used in Pyth
 
 .. seealso::
 
-   * :ref:`Bessel function of the second kind <bessely>`.
+   * :ref:`Bessel function of the first kind <besselj>`.
    * :ref:`Bessel function of the third kind <besselh>`.
 
 
@@ -189,7 +189,7 @@ Algorithm
 
 Depending on the values of the input parameters :math:`(\nu, z, n)`, one of the following three algorithms is employed.
 
-* If :math:`z \in \mathbb{R}` (that is, ``z`` is of type ``double``) and :math:`\nu = 0` or :math:`\nu = 1`, the computation is carried out by Cephes C library (see [Cephes-1989]_), respectively using ``yn`` functions in that library.
+* If :math:`z \in \mathbb{R}` (that is, ``z`` is of type ``double``) and :math:`\nu \in \matrhbb{Z}`, the computation is carried out by Cephes C library (see [Cephes-1989]_), respectively using ``yn`` functions in that library.
 * If :math:`\nu + \frac{1}{2} \in \mathbb{Z}`, the Bessel function is computed using :ref:`half-integer formulas <half_int_bessely>` in terms of elementary functions.
 * For other cases, the computation is carried out by Amos Fortran library (see [Amos-1986]_) using ``zbesy`` subroutine in that library.
 

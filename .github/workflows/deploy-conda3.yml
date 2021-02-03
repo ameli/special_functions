@@ -16,8 +16,8 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                os: [ubuntu-latest, windows-latest, macos-latest]
-                # os: [ubuntu-latest, windows-latest]
+                os: [ubuntu-latest, windows-latest]
+                # os: [ubuntu-latest, windows-latest, macos-latest]
         steps:
             - name: Setup Miniconda
               uses: conda-incubator/setup-miniconda@v2
@@ -28,9 +28,9 @@ jobs:
               if: runner.os == 'Windows'
               run: choco install vcpython27 -f -y
               
-            - name: Install fortran compiler on mac
-              if: runner.os == 'macos'
-              run: brew reinstall gcc
+            # - name: Install fortran compiler on mac
+            #   if: runner.os == 'macos'
+            #   run: brew reinstall gcc
 
             - name: Checkout
               uses: actions/checkout@v2
@@ -55,7 +55,7 @@ jobs:
                   conda config --set always_yes yes --set changeps1 no
 
             - name: Build for Linux and Windows
-              if: runner.os != 'macos'
+              # if: runner.os != 'macos'
               shell: bash -l {0}
               run: |
                   export PATH=$(conda info --root):$PATH
@@ -65,16 +65,16 @@ jobs:
                   CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
                   ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
 
-            - name: Build for macOS
-              if: runner.os == 'macos'
-              shell: bash -l {0}
-              run: |
-                  export PATH=$(conda info --root):$PATH
-                  export PATH=$(conda info --root)/bin:$PATH
-                  conda-build -c conda-forge --output-folder . .
-              env:
-                  CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
-                  ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+            # - name: Build for macOS
+            #   if: runner.os == 'macos'
+            #   shell: bash -l {0}
+            #   run: |
+            #       export PATH=$(conda info --root):$PATH
+            #       export PATH=$(conda info --root)/bin:$PATH
+            #       conda-build -c conda-forge --output-folder . .
+            #   env:
+            #       CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
+            #       ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
 
             # - name: Upload package
             #   shell: bash -l {0}
@@ -90,75 +90,75 @@ jobs:
             #   env:
             #       ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
 
-    # # On MacOS, package is built from wheels, not directly from the source code
-    # build_upload_conda_for_mac:
-    #     name: Build on macos-latest
-    #     runs-on: macos-latest
-    #     # strategy:
-    #     #     fail-fast: false
-    #     #     matrix:
-    #     #         python-version: [2.7, 3.6, 3.7, 3.8, 3.9]
-    #     steps:
-    #         - name: Checkout
-    #           uses: actions/checkout@v2
-    #
-    #         - name: Set up Python ${{ matrix.python-version }}
-    #           uses: actions/setup-python@v2
-    #           with:
-    #               python-version: 3.8
-    #
-    #         - name: Install Fortran compiler
-    #           run: brew reinstall gcc
-    #
-    #         # - name: Build wheel
-    #         #   run: |
-    #         #       # xcode-select --install
-    #         #       # export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
-    #         #       python -m pip install --upgrade pip
-    #         #       python -m pip install --upgrade wheel
-    #         #       python -m pip install --upgrade numpy
-    #         #       python -m pip install .
-    #         #       python setup.py bdist_wheel
-    #
-    #         - name: Install conda, conda-build, and conda-client
-    #           run: |
-    #               brew install wget
-    #               wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh
-    #               bash miniconda.sh -b -p $HOME/miniconda
-    #               export PATH="$HOME/miniconda/bin:$PATH"
-    #               hash -r
-    #               conda config --set always_yes yes --set changeps1 no
-    #               conda update -q conda
-    #               conda install conda-build
-    #               conda install anaconda-client
-    #
-    #         - name: Build conda package based on already compiled wheel and upload package
-    #           run: |
-    #               # xcrun --show-sdk-path
-    #               # export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
-    #               export PATH="$HOME/miniconda/bin:$PATH"
-    #               # python -m pip install --upgrade pip
-    #               # python -m pip install --upgrade wheel
-    #               # python -m pip install --upgrade numpy
-    #               # python -m pip install .
-    #               # python setup.py bdist_wheel
-    #               conda config --set anaconda_upload yes
-    #               conda-build -c conda-forge  --output-folder . .
-    #               # anaconda upload --force --label main osx-64/*.tar.bz2
-    #           env:
-    #               CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
-    #               ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-    #
-    #         # - name: Upload to Anaconda Cloud
-    #         #   run: |
-    #         #       export PATH="$HOME/miniconda/bin:$PATH"
-    #         #       anaconda upload --force --label main linux-64/*.tar.bz2
-    #         #       anaconda upload --force --label main linux-aarch64/*.tar.bz2
-    #         #       anaconda upload --force --label main osx-64/*.tar.bz2
-    #         #       anaconda upload --force --label main win-64/*.tar.bz2
-    #         #       anaconda upload --force --label main win-32/*.tar.bz2
-    #         #   env:
-    #         #       ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+    # On MacOS, package is built from wheels, not directly from the source code
+    build_upload_conda_for_mac:
+        name: Build on macos-latest
+        runs-on: macos-latest
+        # strategy:
+        #     fail-fast: false
+        #     matrix:
+        #         python-version: [2.7, 3.6, 3.7, 3.8, 3.9]
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Set up Python ${{ matrix.python-version }}
+              uses: actions/setup-python@v2
+              with:
+                  python-version: 3.8
+
+            - name: Install Fortran compiler
+              run: brew reinstall gcc
+
+            # - name: Build wheel
+            #   run: |
+            #       # xcode-select --install
+            #       # export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
+            #       python -m pip install --upgrade pip
+            #       python -m pip install --upgrade wheel
+            #       python -m pip install --upgrade numpy
+            #       python -m pip install .
+            #       python setup.py bdist_wheel
+
+            - name: Install conda, conda-build, and conda-client
+              run: |
+                  brew install wget
+                  wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh
+                  bash miniconda.sh -b -p $HOME/miniconda
+                  export PATH="$HOME/miniconda/bin:$PATH"
+                  hash -r
+                  conda config --set always_yes yes --set changeps1 no
+                  conda update -q conda
+                  conda install conda-build
+                  conda install anaconda-client
+
+            - name: Build conda package based on already compiled wheel and upload package
+              run: |
+                  # xcrun --show-sdk-path
+                  # export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
+                  export PATH="$HOME/miniconda/bin:$PATH"
+                  # python -m pip install --upgrade pip
+                  # python -m pip install --upgrade wheel
+                  # python -m pip install --upgrade numpy
+                  # python -m pip install .
+                  # python setup.py bdist_wheel
+                  conda config --set anaconda_upload yes
+                  conda-build -c conda-forge  --output-folder . .
+                  # anaconda upload --force --label main osx-64/*.tar.bz2
+              env:
+                  CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
+                  ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+
+            # - name: Upload to Anaconda Cloud
+            #   run: |
+            #       export PATH="$HOME/miniconda/bin:$PATH"
+            #       anaconda upload --force --label main linux-64/*.tar.bz2
+            #       anaconda upload --force --label main linux-aarch64/*.tar.bz2
+            #       anaconda upload --force --label main osx-64/*.tar.bz2
+            #       anaconda upload --force --label main win-64/*.tar.bz2
+            #       anaconda upload --force --label main win-32/*.tar.bz2
+            #   env:
+            #       ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
 
     test_conda:
         # needs: [build_upload_conda_for_linux_windows,build_upload_conda_for_mac]
@@ -171,7 +171,7 @@ jobs:
                 os: [ubuntu-latest, windows-latest, macos-latest]
                 python-version: [2.7, 3.6, 3.7, 3.8, 3.9]
                 exclude:
-                    - os: macos-latest
+                    - os: windows-latest
                       python-version: [2.7]
 
         steps:
@@ -222,11 +222,11 @@ jobs:
             #           conda remove --name env-${PythonVersion} --all -y
             #       done
 
-            - name: Install Visual C++ for Python 2.7
-              if: |
-                  runner.os == 'Windows' &&
-                  matrix.python-version == '2.7'
-              run: choco install vcpython27 -f -y
+            # - name: Install Visual C++ for Python 2.7
+            #   if: |
+            #       runner.os == 'Windows' &&
+            #       matrix.python-version == '2.7'
+            #   run: choco install vcpython27 -f -y
 
             # - name: Install package
               # run: |

@@ -209,8 +209,7 @@ def main(argv):
         author_email='sameli@berkeley.edu',
         description="Cython and Python API for special functions.",
         long_description=long_description,
-        keywords="""special-functions bessel-function airy-function
-            gamma-function""",
+        keywords="""special-functions bessel-function gamma-function""",
         url=url,
         download_url=download_url,
         platforms=['Linux', 'OSX', 'Windows'],
