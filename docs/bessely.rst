@@ -189,7 +189,7 @@ Algorithm
 
 Depending on the values of the input parameters :math:`(\nu, z, n)`, one of the following three algorithms is employed.
 
-* If :math:`z \in \mathbb{R}` (that is, ``z`` is of type ``double``) and :math:`\nu \in \matrhbb{Z}`, the computation is carried out by Cephes C library (see [Cephes-1989]_), respectively using ``yn`` functions in that library.
+* If :math:`z \in \mathbb{R}` (that is, ``z`` is of type ``double``) and :math:`\nu \in \mathbb{Z}`, the computation is carried out by Cephes C library (see [Cephes-1989]_), respectively using ``yn`` functions in that library.
 * If :math:`\nu + \frac{1}{2} \in \mathbb{Z}`, the Bessel function is computed using :ref:`half-integer formulas <half_int_bessely>` in terms of elementary functions.
 * For other cases, the computation is carried out by Amos Fortran library (see [Amos-1986]_) using ``zbesy`` subroutine in that library.
 
@@ -222,15 +222,15 @@ When :math:`\nu < 0` and for the two cases below, the Bessel function is compute
 
   .. math::
 
-      J_{\nu}(z) = (-1)^{\nu} J_{-\nu}(z)
+      Y_{\nu}(z) = (-1)^{\nu} Y_{-\nu}(z)
 
 * If :math:`\nu + \frac{1}{2} \in \mathbb{Z}` (see [DLMF]_ Eq. `10.2.3 <https://dlmf.nist.gov/10.2#E3>`_):
 
   .. math::
 
-      J_{\nu}(z) = \cos(\pi \nu) J_{-\nu}(z) + \sin(\pi \nu) Y_{-\nu}(z),
+      Y_{\nu}(z) = \cos(\pi \nu) Y_{-\nu}(z) - \sin(\pi \nu) J_{-\nu}(z),
 
-  where :math:`Y_{\nu}(z)` is the :ref:`Bessel function of the second kind <bessely>`. In the above, the functions :math:`J_{-\nu}(z)` and :math:`Y_{-\nu}(z)` are computed by :ref:`half-integer formulas <half_int_bessely>`.
+  where :math:`J_{\nu}(z)` is the :ref:`Bessel function of the first kind <besselj>`. In the above, the functions :math:`Y_{-\nu}(z)` and :math:`J_{-\nu}(z)` are computed by :ref:`half-integer formulas <half_int_bessely>`.
 
 ~~~~~~~~~~~
 Derivatives
@@ -240,7 +240,7 @@ If :math:`n > 0`, the following relation for the derivative is applied (see [DLM
 
 .. math::
    
-   \frac{\partial^n J_{\nu}(z)}{\partial z^n} = \frac{1}{2^n} \sum_{i = 0}^n (-1)^i \binom{n}{i} J_{\nu - n + 2i}(z).
+   \frac{\partial^n Y_{\nu}(z)}{\partial z^n} = \frac{1}{2^n} \sum_{i = 0}^n (-1)^i \binom{n}{i} Y_{\nu - n + 2i}(z).
 
 .. _half_int_bessely:
 
@@ -252,10 +252,10 @@ When :math:`\nu` is half-integer, the Bessel function is computed in terms of el
 
 * If :math:`z = 0`:
 
-  * If :math:`\nu > 0`, then :math:`J_{\nu}(0) = 0`.
+  * If :math:`\nu > 0`, then :math:`Y_{\nu}(0) = -\infty`.
   * If :math:`\nu \leq 0`:
     
-    * If :math:`z \in \mathbb{R}`, then :math:`J_{\nu}(0) = -\mathrm{sign}(\sin(\pi \nu)) \times \infty`.
+    * If :math:`z \in \mathbb{R}`, then :math:`Y_{\nu}(0) = \mathrm{sign}(\sin(\pi \nu)) \times \infty`.
     * If :math:`z \in \mathbb{C}`, then ``NAN`` is returned.
 
 * If :math:`z < 0` and :math:`z \in \mathbb{R}`, then ``NAN`` is returned.
@@ -264,8 +264,8 @@ When :math:`\nu` is half-integer, the Bessel function is computed in terms of el
 
   .. math::
 
-      J_{\frac{1}{2}}(z) = \sqrt{\frac{2}{\pi z}} \sin(z), \\
-      J_{-\frac{1}{2}}(z) = \sqrt{\frac{2}{\pi z}} \cos(z).
+      Y_{\frac{1}{2}}(z) = -\sqrt{\frac{2}{\pi z}} \cos(z), \\
+      Y_{-\frac{1}{2}}(z) = \sqrt{\frac{2}{\pi z}} \sin(z).
 
   Depending on :math:`z`, the above relations are computed using the real or complex implementation of the elementary functions.
 
@@ -273,8 +273,8 @@ When :math:`\nu` is half-integer, the Bessel function is computed in terms of el
 
 .. math::
 
-    J_{\nu}(z) = \frac{2 (\nu - 1)}{z} J_{\nu - 1}(z) - J_{\nu - 2}(z), \qquad \nu > 0, \\
-    J_{\nu}(z) = \frac{2 (\nu + 1)}{z} J_{\nu + 1}(z) - J_{\nu + 2}(z), \qquad \nu < 0.
+    Y_{\nu}(z) = \frac{2 (\nu - 1)}{z} Y_{\nu - 1}(z) - Y_{\nu - 2}(z), \qquad \nu > 0, \\
+    Y_{\nu}(z) = \frac{2 (\nu + 1)}{z} Y_{\nu + 1}(z) - Y_{\nu + 2}(z), \qquad \nu < 0.
 
 
 ==========
