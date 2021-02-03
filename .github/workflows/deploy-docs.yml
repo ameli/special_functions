@@ -15,6 +15,15 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
+            - name: Set up Python
+              uses: actions/setup-python@v2
+
+            - name: Install package and dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  python -m pip install --upgrade numpy
+                  python -m pip install .[doc]
+
             - name: Build and Deploy
               uses: JacksonMaxfield/github-pages-deploy-action-python@master
               env:
@@ -25,12 +34,14 @@ jobs:
                   BUILD_SCRIPT: |
                       # apt-get update
                       # apt-get install graphviz -y
-                      pip install --upgrade pip
-                      pip install .[docs]
+                      # pip install --upgrade pip
+                      # pip install .[docs]
                       export PATH=$HOME/.local/bin:$PATH
                       sphinx-apidoc -f -o docs/_modules/ ./special_functions
                       cd docs
+                      ls
                       make html
+                      cd ..
                       # python setup.py build_sphinx
                       touch docs/_build/html/.nojekyll
                       echo 'Visit [Documentation](https://ameli.github.io/special_functions/index.html).' > docs/_build/html/README.md
