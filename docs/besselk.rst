@@ -21,7 +21,7 @@ where
 Syntax
 ======
 
-This function has the following syntaxes depending on whether it is used in Python or Cython interface, or the input argument ``z`` is complex or real.
+This function has the following syntaxes depending on whether it is used in Python or Cython, or the input argument ``z`` is complex or real.
 
 +------------+-----------------+-----------------------------------------------------------------+
 | Interface  | Input Type      | Function Signature                                              |
@@ -238,6 +238,7 @@ Half-Integer :math:`\nu`
 When :math:`\nu` is half-integer, the modified Bessel function is computed in terms of elementary functions as follows.
 
 * If :math:`z = 0`:
+
   * If :math:`z \in \mathbb{R}`, then :math:`K_{\nu}(0) = +\infty`.
   * If :math:`z \in \mathbb{C}`, then ``NAN`` is returned.
 
@@ -245,7 +246,7 @@ When :math:`\nu` is half-integer, the modified Bessel function is computed in te
 
   .. math::
 
-      K_{\pm\frac{1}{2}}(z) = \sqrt{\frac{pi}{2 z}} \exp(-z).
+      K_{\pm\frac{1}{2}}(z) = \sqrt{\frac{\pi}{2 z}} \exp(-z).
 
   Depending on :math:`z`, the above relations are computed using the real or complex implementation of the elementary functions.
 
@@ -253,7 +254,7 @@ When :math:`\nu` is half-integer, the modified Bessel function is computed in te
 
 .. math::
 
-    K_{\nu}(z) = \frac{2 (\nu - 1)}{z} K_{|\nu| - 1}(z) + K_{|\nu| - 2}(z).
+    K_{\nu}(z) = \frac{2 (|\nu| - 1)}{z} K_{|\nu| - 1}(z) + K_{|\nu| - 2}(z).
 
 
 ==========

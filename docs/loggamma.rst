@@ -10,7 +10,7 @@ This module computes the natural logarithm of Gamma function, :math:`\log \Gamma
 Syntax
 ======
 
-This function has the following syntaxes depending on whether it is used in Python or Cython interface, or the input argument ``z`` is complex or real.
+This function has the following syntaxes depending on whether it is used in Python or Cython interface.
 
 +------------+-------------------------------+
 | Interface  | Function Signature            |

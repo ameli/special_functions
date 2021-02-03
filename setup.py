@@ -214,13 +214,18 @@ def main(argv):
         download_url=download_url,
         platforms=['Linux', 'OSX', 'Windows'],
         classifiers=[
+            'Programming Language :: Cython'
             'Programming Language :: Python :: 2.7',
             'Programming Language :: Python :: 3.6',
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
             'Programming Language :: Python :: 3.9',
+            'Programming Language :: Python :: Implementation :: CPython',
+            'Programming Language :: Python :: Implementation :: PyPy',
             'License :: OSI Approved :: MIT License',
-            'Operating System :: OS Independent',
+            'Operating System :: POSIX :: Linux',
+            'Operating System :: Microsoft :: Windows',
+            'Operating System :: MacOS',
             'Natural Language :: English',
             'Intended Audience :: Science/Research',
             'Intended Audience :: Developers',
@@ -244,8 +249,8 @@ def main(argv):
         python_requires='>=2.7',
         setup_requires=[
             'numpy>1.11',
-            'cython',
-            'pytest-runner'],
+            'cython'],
+            # 'pytest-runner'],
         tests_require=[
             'pytest',
             'pytest-cov'],

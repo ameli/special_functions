@@ -23,13 +23,15 @@ jobs:
                   BRANCH: gh-pages
                   FOLDER: docs/_build/html
                   BUILD_SCRIPT: |
-                      apt-get update
-                      apt-get install graphviz -y
+                      # apt-get update
+                      # apt-get install graphviz -y
                       pip install --upgrade pip
                       pip install .[docs]
                       export PATH=$HOME/.local/bin:$PATH
                       sphinx-apidoc -f -o docs/_modules/ ./special_functions
-                      python setup.py build_sphinx
+                      cd docs
+                      make html
+                      # python setup.py build_sphinx
                       touch docs/_build/html/.nojekyll
                       echo 'Visit [Documentation](https://ameli.github.io/special_functions/index.html).' > docs/_build/html/README.md
 

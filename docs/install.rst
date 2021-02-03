@@ -98,7 +98,7 @@ The recommended installation method is through the package available at `PyPi <h
 Install from Anaconda Cloud
 ---------------------------
 
-|conda| |conda-version| |conda-platform|
+|conda-version| |conda-platform|
 
 Install through the package available at `Conda <https://anaconda.org/s-ameli/special_functions>`_ by
 

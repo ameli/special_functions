@@ -2,17 +2,23 @@
 special_functions
 *****************
 
-|travis-devel| |codecov-devel| |docs| |licence| |platforms| |conda-version| |conda| |format| |pypi| |implementation| |pyversions|
+|licence| |platforms| |conda-version| |conda| |format| |pypi| |implementation| |pyversions|
 
-This python package can perform the following matrix operations:
+This package provides both Python and Cython interfaces for Bessel functions and a few other special functions. 
 
-#. Compute the *log-determinant* of dense or sparse matrices.
-#. Compute the *trace of the inverse* of dense or sparse matrices.
-#. Interpolate the trace of the inverse of *one-parameter affine matrix functions*.
+Advantages of this packages are due to the following features:
 
-These matrix operations frequently appear in many applications in computational physics, computational biology, data analysis, and machine learning. A few examples are regularization in inverse problems, model-selection in machine learning, and more broadly, in parameter optimization of statistical models.
+* **Lightweight:** This package requires *no python dependency* at runtime.
+* **Cythonic interface:** Both pythonic and cythonic interfaces are provided.
+* **Releasing GIL:** Most importantly feature of this package is that you can use the functions in ``with nogil:`` environment. This is particularly essential in parallel OpenMP programs using Cython.
 
-A common difficulty in such application is that the matrices are generally large and inverting them is impractical. Because of this, evaluation of their trace or log-determinant is a computational challenge. Many algorithms have been developed to address such computational challenge, such as efficient sparse matrix factorizations and randomized estimators. This package aims to implement some of these methods.
+=========================
+Interactive Live Tutorial
+=========================
+
+|binder|
+
+Launch a live tutorial on your browser with Jupyter notebook here and interact with the modules of the package.
 
 .. toctree::
     :maxdepth: 1
@@ -54,48 +60,6 @@ A common difficulty in such application is that the matrices are generally large
 ..    special_functions.InterpolateTraceOfInverse
 ..    special_functions.GenerateMatrix
 
-*****************
-List of Functions
-*****************
-
-**Bessel Functions** of order |image01|, real or complex argument |image02|, or their |image03| derivative.
-
-========================  ==============================  =========  =============================================================================
-Syntax                    Return type                     Symbol     Description
-========================  ==============================  =========  =============================================================================
-``besselj(nu, z, n)``     ``double``, ``double complex``  |image04|  :ref:`Bessel function of the first kind of order <besselj>`
-``bessely(nu, z, n)``     ``double``, ``double complex``  |image05|  :ref:`Bessel function of the second kind of order <bessely>` (Weber function)
-``besseli(nu, z, n)``     ``double``, ``double complex``  |image06|  :ref:`Modified Bessel function of the first kind <besseli>`
-``besselk(nu, z, n)``     ``double``, ``double complex``  |image07|  :ref:`Modified Bessel function of the second kind <besselk>`
-``besselh(nu, k, z, n)``  ``double``, ``double complex``  |image08|  :ref:`Bessel function of the third kind of order <besselh>` (Hankel function)
-========================  ==============================  =========  =============================================================================
-
-**Function Arguments:**
-
-========  ==============================  =========  =====================================================================================================
-Argument   Type                           Symbol     Description
-========  ==============================  =========  =====================================================================================================
-``nu``    ``double``, ``int``             |image01|  Parameter of functions (such as order of Bessel functions). Real number.
-``z``     ``double``, ``double complex``  |image02|  Argument of the functions. Can be real or complex number.
-``n``     ``int``                         |image03|  Derivative of function with respect to |image02|. Non-negative integer. Zero indicates no derivative.
-========  ==============================  =========  =====================================================================================================
-
-.. |image01| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image01.svg
-.. |image02| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image02.svg
-.. |image03| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image03.svg
-.. |image04| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image04.svg
-.. |image05| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image05.svg
-.. |image06| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image06.svg
-.. |image07| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image07.svg
-.. |image08| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image08.svg
-
-=========
-Tutorials
-=========
-
-|binder|
-
-A tutorial and demonstration of examples can be found with 
 
 ============
 Useful Links

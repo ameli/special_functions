@@ -47,12 +47,12 @@ requirements:
         - pip
         - pytest
         - pytest-cov
-        - pytest-runner
+        # - pytest-runner
         - scipy
         - setuptools
     run:
         # - python {{ python }}
-        - pytest-runner
+        # - pytest-runner
         - python
 
 test:
@@ -61,7 +61,7 @@ test:
     requires:
         - pytest
         - pytest-cov
-        - pytest-runner
+        # - pytest-runner
         - scipy
     # commands:
     #     - cd tests
