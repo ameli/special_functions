@@ -4,7 +4,7 @@
 Bessel Function of the Second Kind
 **********************************
 
-This module computes the Bessel function of the second kind or its :math:`n`:superscript:`th` derivative
+This module computes the Bessel function of the second kind (Weber function) or its :math:`n`:superscript:`th` derivative
 
 .. math::
 
