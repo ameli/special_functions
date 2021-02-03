@@ -141,12 +141,14 @@ jobs:
               run: |
                   # xcrun --show-sdk-path
                   # export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
-                  export PATH="$HOME/miniconda/bin:$PATH"
+                  # export PATH="$HOME/miniconda/bin:$PATH"
                   # python -m pip install --upgrade pip
                   # python -m pip install --upgrade wheel
                   # python -m pip install --upgrade numpy
                   # python -m pip install .
                   # python setup.py bdist_wheel
+                  export PATH=$(conda info --root):$PATH
+                  export PATH=$(conda info --root)/bin:$PATH
                   conda config --set anaconda_upload yes
                   conda-build -c conda-forge  --output-folder . .
                   # anaconda upload --force --label main osx-64/*.tar.bz2
