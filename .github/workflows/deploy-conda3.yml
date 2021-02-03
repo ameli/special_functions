@@ -172,7 +172,7 @@ jobs:
                 python-version: [3.6, 3.7, 3.8, 3.9]
                 include:
                     - os: ubuntu-latest
-                      python-version: [2.7]
+                      python-version: 2.7
                 # python-version: [2.7, 3.6, 3.7, 3.8, 3.9]
                 # exclude:
                 #     - os: windows-latest
@@ -247,6 +247,9 @@ jobs:
             - name: Test
               shell: bash -l {0}
               run: |
+                  sh $(conda info --root)/etc/profile.d/conda.sh
+                  conda create --name special_functions_env python=${{ matrix.python-version }} -y
+                  source activate special_functions_env
                   mv special_functions special_functions-DoNotImport
                   rm setup.cfg
                   conda install -c s-ameli special_functions -y
