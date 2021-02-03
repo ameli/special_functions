@@ -182,26 +182,6 @@ The test script of this module is located at |tests/test_bessely.py|_. The test 
 .. |scipy.special| replace:: ``scipy.special``
 .. _scipy.special: https://docs.scipy.org/doc/scipy/reference/special.html
 
-**Difference with Scipy:**
-
-There are very few differences between this package and scipy. The following case in the complex domain :m,ath:`z \in \mathbb{Z}`:
-
-.. math::
-    
-    \left. \frac{\partial Y_{0}(z)}{\partial z} \right|_{z = 1} = + \infty,
-    
-is computed correctly with this package, however, scipy returns ``nan`` incorrectly. That is:
-
-.. code-block:: python
-
-   >>> from special_functions import bessely
-   >>> bessely(0,0j,1)
-   inf
-
-   >>> from scipy.special import yvp
-   >>> yvp(0,0j,1)
-   (nan+nanj)
-
 =========
 Algorithm
 =========
@@ -222,7 +202,7 @@ In the special cases below, the computation is performed by taking advantage of 
 Branch-Cut
 ~~~~~~~~~~
 
-* In the real domain where :math:`z \in\mathbb{R}`, if :math:`z < 0` and :math:`\nu \notin \mathbb{Z}`, the value of ``NAN`` is returned.
+* In the real domain where :math:`z \in\mathbb{R}`, if :math:`z < 0`, the value of ``NAN`` is returned.
 * However, in the complex domain :math:`z \in\mathbb{C}` and on the branch-cut of the function, :math:`\Re(z) < 0` and :math:`\Im(z) = 0`, its *principal value* corresponding to the branch
   
   .. math::

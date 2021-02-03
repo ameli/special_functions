@@ -243,7 +243,7 @@ In the following, it is assumed `anaconda <https://www.anaconda.com/products/ind
 
    ::
 
-       source activate special_functions_env
+       conda activate special_functions_env
 
 4. Install ``special_functions`` with any of the :ref:`above methods <InstallationMethods>`. For instance:
 

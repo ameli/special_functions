@@ -247,11 +247,11 @@ jobs:
             - name: Test
               shell: bash -l {0}
               run: |
-                  sh $(conda info --root)/etc/profile.d/conda.sh
-                  conda create --name special_functions_env python=${{ matrix.python-version }} -y
-                  source activate special_functions_env
                   mv special_functions special_functions-DoNotImport
                   rm setup.cfg
+                  sh $(conda info --root)/etc/profile.d/conda.sh
+                  conda create --name special_functions_env python=${{ matrix.python-version }} -y
+                  conda activate special_functions_env
                   conda install -c s-ameli special_functions -y
                   conda install -c conda-forge scipy -y
                   conda install pytest -y

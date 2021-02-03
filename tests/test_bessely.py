@@ -26,13 +26,6 @@ def validate_bessely(nu, z, n):
     """
     Compares the results of bessely function with scipy.special. If the return
     is zero, the result matches with scipy.special.
-
-    .. note::
-
-        Scipy cannot compute this special case: ``scipy.special.yvp(0,0,1)``.
-        The correct answer is :math:`Y'_{0}(0) = + \\infty`. However, scipy
-        runs into the ``RuntimeWarning`` (which we ingored, see top of this
-        script). We ignore this special case.
     """
 
     # Compute using special_functions package
