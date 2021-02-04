@@ -56,10 +56,7 @@ Launch a live tutorial in browser with `Jupyter notebook <>`_ to interact with t
 ..    :recursive:
 ..    :nosignatures:
 ..
-..    special_functions.ComputeTraceOfInverse
-..    special_functions.InterpolateTraceOfInverse
-..    special_functions.GenerateMatrix
-
+..    special_functions
 
 ============
 Useful Links
