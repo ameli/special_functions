@@ -11,7 +11,7 @@ Python Interface
 ----------------
 
 ========================  ==============================  =========  ====================================================================
-Syntax                    Return type                     Symbol     Description
+Syntax                    Return type                     Symbol     User guide
 ========================  ==============================  =========  ====================================================================
 ``besselj(nu, z, n)``     ``double``, ``double complex``  |image06|  :ref:`Bessel function of the first kind<besselj>`
 ``bessely(nu, z, n)``     ``double``, ``double complex``  |image07|  :ref:`Bessel function of the second kind <bessely>` (Weber function)
@@ -50,7 +50,7 @@ Argument   Type                           Symbol     Description
 Cython Interface
 ----------------
 
-In Cython interface, the syntax of the **real** functions are similar to the Python interface. However, the syntax of **complex** functions start with the letter ``c`` in the beginign of each function as shown in the table below.
+In Cython interface, the syntax of the **real** functions are similar to the Python interface. However, the syntax of **complex** functions start with the letter ``c`` in the beginning of each function as shown in the table below.
 
 =========  ========================  =========================
 Symbol     Real Function             Complex Function          
@@ -65,5 +65,7 @@ Symbol     Real Function             Complex Function
 
 In the above table:
 
-* ``x`` is of type ``double``. Real functions return ``double``, with the exception of the function ``besselh`` that always returns ``double complex``.
-* ``z`` is of type ``double complex``. Complex functions return ``double complex``.
+* ``x`` is of type ``double``.
+* ``z`` is of type ``double complex``.
+* Real functions return ``double`` type, with the exception of ``besselh`` that always returns ``double complex`` type.
+* Complex functions return ``double complex`` type.

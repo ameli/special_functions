@@ -27,7 +27,7 @@ Launch an online interactive tutorial in `Jupyter notebook <https://mybinder.org
     :caption: Documentation
 
     Install <install>
-    Quick Start <quickstart>
+    List of Functions <list>
 
 .. toctree::
     :maxdepth: 1
@@ -60,19 +60,15 @@ Launch an online interactive tutorial in `Jupyter notebook <https://mybinder.org
 ..
 ..    special_functions
 
-============
-Useful Links
-============
+=====
+Links
+=====
 
-For users:
-    + `Package on Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_
-    + `Package on PyPi <https://pypi.org/project/special_functions/>`_
-    + `Source code on Github <https://github.com/ameli/special_functions>`_
-    + `Interactive Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb>`_.
-
-For developers:
-    + `Test Coverage on Codecov <https://codecov.io/gh/ameli/special_functions>`_
-    + `API <https://ameli.github.io/special_functions/_modules/modules.html>`_
+* `Package on Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_
+* `Package on PyPi <https://pypi.org/project/special_functions/>`_
+* `Source code on Github <https://github.com/ameli/special_functions>`_
+.. * `Interactive Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb>`_.
+.. * `API <https://ameli.github.io/special_functions/_modules/modules.html>`_
 
 =================
 How to Contribute
@@ -81,7 +77,7 @@ How to Contribute
 We welcome contributions via `Github's pull request <https://github.com/ameli/special_functions/pulls>`_. If you do not feel comfortable modifying the code, we also welcome feature request and bug report as `Github issues <https://github.com/ameli/special_functions/issues>`_.
 
 ================
-Related Projects
+Related Packages
 ================
 
 * `scipy.special <https://docs.scipy.org/doc/scipy/reference/special.html>`_: Many special functions were implemented in Scipy's special sub-package. This package is reimplements Bessel functions similar to ``scipy.special``, but with simplified python and cython different interfaces.

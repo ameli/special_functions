@@ -4,69 +4,158 @@ special functions
 
 |licence|
 
-A package to provide both cython and python API for special functions (currently Bessel functions).
+This package provides both Python and Cython interfaces for Bessel functions and a few other special functions. 
 
-.. For users
-..     * `Documentation <https://ameli.github.io/special_functions/index.html>`_
-..     * `PyPi package <https://pypi.org/project/special_functions/>`_
-..     * `Source code <https://github.com/ameli/special_functions>`_
-..
-.. For developers
-..     * `API <https://ameli.github.io/special_functions/_modules/modules.html>`_
-..     * `Travis-CI <https://travis-ci.com/github/ameli/special_functions>`_
-..     * `Codecov <https://codecov.io/gh/ameli/special_functions>`_
+========
+Features
+========
 
-+---------------------------------------------------------------------------+----------------------------------------------------------------------------+
-|    For users                                                              | For developers                                                             |
-+===========================================================================+============================================================================+
-| * `Documentation <https://ameli.github.io/special_functions/index.html>`_ | * `API <https://ameli.github.io/special_functions/_modules/modules.html>`_ |
-| * `PyPi package <https://pypi.org/project/special_functions/>`_           | * `Travis-CI <https://travis-ci.com/github/ameli/special_functions>`_      |
-| * `Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_      | * `Codecov <https://codecov.io/gh/ameli/special_functions>`_               |
-+---------------------------------------------------------------------------+----------------------------------------------------------------------------+
+* **Lightweight:** This package requires *no python dependency* at runtime.
+* **Cython interface:** Both Python and Cython interfaces are available.
+* **Releasing GIL:** Most importantly, the functions can be used in ``with nogil:`` environment, which is essential in parallel OpenMP applications with Cython.
 
-*******
+====================
+Interactive Tutorial
+====================
+
+|binder|
+
+Launch an online interactive tutorial in `Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb>`_.
+
+
+=====
+Links
+=====
+
+* `Documentation <https://ameli.github.io/special_functions/index.html>`_
+* `Package on Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_
+* `Package on PyPi <https://pypi.org/project/special_functions/>`_
+* `Source code on Github <https://github.com/ameli/special_functions>`_
+
+=======
 Install
-*******
+=======
 
-This package does not have any dependencies at runtime, and can be installed on Linux, macOS, and Windows platforms and supports both python 2 and 3.
+-------------------
+Supported Platforms
+-------------------
 
------------------
+Successful installation and tests have been performed on the following platforms and Python/PyPy versions shown in the table below.
+
+
++----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
+| Platform | Python version              | PyPy version    | Status          |
++          +-----+-----+-----+-----+-----+-----+-----+-----+                 +
+|          | 2.7 | 3.6 | 3.7 | 3.8 | 3.9 | 2.7 | 3.6 | 3.7 |                 |
++==========+=====+=====+=====+=====+=====+=====+=====+=====+=================+
+| Linux    |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  | |build-linux|   |
++----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
+| macOS    |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✖  |  ✖  |  ✖  | |build-macos|   |
++----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
+| Windows  |  ✖  |  ✔  |  ✔  |  ✔  |  ✔  |  ✖  |  ✖  |  ✖  | |build-windows| |
++----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
+
+.. |build-linux| image:: https://github.com/ameli/special_functions/workflows/build-linux/badge.svg
+   :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-linux 
+.. |build-macos| image:: https://github.com/ameli/special_functions/workflows/build-macos/badge.svg
+   :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-macos
+.. |build-windows| image:: https://github.com/ameli/special_functions/workflows/build-windows/badge.svg
+   :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-windows
+
+
+* For the Python/PyPy versions indicated by ✔ in the above, this package can be installed using either ``pip`` or ``conda`` (see `Install Package`_ below.)
+* This package cannot be installed via ``pip`` or ``conda`` on the Python/PyPy versions indicated by ✖ in the above table.
+* To install on the older Python 3 versions that are not listed in the above (for example Python 3.5), you should *build* this package from the source code (see `Build and Install from Source Code`_).
+
+
+------------
+Dependencies
+------------
+
+* **At runtime:** This package does not have any dependencies at runtime.
+* **For tests:** To run `Test`_, ``scipy`` package is required and can be installed by
+
+  ::
+
+      python -m pip install -r tests/requirements.txt
+
+---------------
+Install Package
+---------------
+
+Either `Install from PyPi`_, `Install from Anaconda Cloud`_, or `Build and Install from Source Code`_.
+
+.. _Install_PyPi:
+
+~~~~~~~~~~~~~~~~~
 Install from PyPi
------------------
+~~~~~~~~~~~~~~~~~
 
 |pypi| |format| |implementation| |pyversions|
 
-The recommended installation method is through the package available at `PyPi <https://pypi.org/project/special_functions>`_ by
+The recommended installation method is through the package available at `PyPi <https://pypi.org/project/special_functions>`_ using ``pip``.
 
-::
-      
-    python -m pip install special_functions
+1. Ensure ``pip`` is installed within Python and upgrade the existing ``pip`` by
+
+   ::
+
+       python -m ensurepip
+       python -m pip install --upgrade pip
+
+   If you are using PyPy instead of Python, ensure ``pip`` is installed and upgrade the existing ``pip`` by
+
+   ::
+
+       pypy -m ensurepip
+       pypy -m pip install --upgrade pip
+
+2. Install this package in Python by
+   
+   ::
+       
+       python -m pip install special_functions
+
+   or, in PyPy by
+
+   ::
+       
+       pypy -m pip install special_functions
 
 .. _Install_Conda:
 
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Install from Anaconda Cloud
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-|conda| |conda-version| |conda-platform|
+|conda-version| |conda-platform|
 
-Install through the package available at `Conda <https://anaconda.org/s-ameli/special_functions>`_ by
+Alternatively, the package can be installed through `Anaconda could <https://anaconda.org/s-ameli/special_functions>`_.
 
-::
+* In **Linux** and **Windows**:
+  
+  ::
+      
+      conda install -c s-ameli special_functions
 
-    conda install -c s-ameli special_functions
+* In **macOS**:
+  
+  ::
+      
+      conda install -c s-ameli -c conda-forge special_functions
 
 .. _Build_Locally:
 
---------------------
-Build Source Locally
---------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Build and Install from Source Code
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 |release|
 
-1. Install C and Fortran compilers.
+**Build dependencies:** To build the package from the source code, ``numpy`` and ``cython`` are required. These dependencies are installed automatically during the build process and no action is needed.
 
-   * **Linux:** Install ``gcc`` (for instance, by ``apt``, or any other package manager on the Linux distro)
+1. Install both C and Fortran compilers as follows.
+
+   * **Linux:** Install ``gcc``, for instance, by ``apt`` (or any other package manager on your Linux distro)
 
      ::
 
@@ -78,22 +167,45 @@ Build Source Locally
 
          sudo brew install gcc
 
-     Note: If ``gcc`` is already installed but Fortran compiler is not available, you may reinstall with ``brew reinstall gcc``.
+     .. note::
+         
+         If ``gcc`` is already installed, but Fortran compiler is yet not available on macOS, you may resolve this issue by reinstalling:
+         
+         ::
 
-   * **Windows:** Install both Microsoft Visual C++ compiler and Intel Fortran compiler.
+             sudo brew reinstall gcc
 
-2. Clone the source code and install by
+   * **Windows:** Install both `Microsoft Visual C++ compiler <https://visualstudio.microsoft.com/vs/features/cplusplus/>`_ and Intel Fortran compiler (`Intel oneAPI <https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/fortran-compiler.html>`_). Open the command prompt (where you will enter the installation commands in the next step) and load the Intel compiler variables by
+
+     ::
+
+         C:\Program Files (x86)\Intel\oneAPI\setvars.bat
+
+     Here, we assumed the Intel Fortran compiler is installed in ``C:\Program Files (x86)\Intel\oneAPI``. You may set this directory accordingly to the directory of your Intel compiler.
+
+
+2. Clone the source code and install this package by
    
    ::
+
        git clone https://github.com/ameli/special_functions.git
        cd special_functions
        python -m pip install .
 
-To properly import the package, change the current working directory to a directory *outside* of the source code.
+.. warning::
 
-****
+    After the package is built and installed from the source code, the package cannot be imported properly if the current working directory is the same as the source code directory.
+    To properly import the package, change the current working directory to a directory anywhere else **outside** of the source code directory. For instance:
+
+    .. code-block:: python
+
+        cd ..
+        python
+        >>> import special_functions
+
+====
 Test
-****
+====
 
 |codecov-devel|
 
@@ -109,77 +221,53 @@ and test the package with
 
     tox
 
-*****************
+=================
 List of Functions
-*****************
+=================
 
----------------------------------------
-Python API (Complex and Real Functions)
----------------------------------------
+----------
+Python API
+----------
 
-In the followings |image01| is the order of Bessel functions, |image02| is the argument of the functions which can be real or complex number, and |image03| is the derivative order of the functions. Also, |image00| is the real argument.
-
-========================  =========  =============================================================================
-Syntax                    Symbol     Description
-========================  =========  =============================================================================
-``besselj(nu, z, n)``     |image04|  `Bessel function of the first kind <besselj>`_
-``bessely(nu, z, n)``     |image05|  `Bessel function of the second kind <bessely>`_ (Weber function)
-``besseli(nu, z, n)``     |image06|  `Modified Bessel function of the first kind <besseli>`_
-``besselk(nu, z, n)``     |image07|  `Modified Bessel function of the second kind <besselk>`_
-``besselh(nu, k, z, n)``  |image08|  `Bessel function of the third kind <besselh>`_ (Hankel function)
-``lngamma(x)``            |image09|  `Natural logarithm of Gamma function <lngamma>`_
-========================  =========  =============================================================================
-
----------------------------
-Cython API (Real Functions)
----------------------------
-
-========================  ===========  =========  =============================================================================
-Syntax                    Return type  Symbol     Description
-========================  ===========  =========  =============================================================================
-``besselj(nu, z, n)``     ``double``   |image04|  `Bessel function of the first kind <besselj>`_
-``bessely(nu, z, n)``     ``double``   |image05|  `Bessel function of the second kind <bessely>`_ (Weber function)
-``besseli(nu, z, n)``     ``double``   |image06|  `Modified Bessel function of the first kind <besseli>`_
-``besselk(nu, z, n)``     ``double``   |image07|  `Modified Bessel function of the second kind <besselk>`_
-``besselh(nu, k, z, n)``  ``double``   |image08|  `Bessel function of the third kind <besselh>`_ (Hankel function)
-``lngamma(x)``            ``double``   |image09|  `Natural logarithm of Gamma function <lngamma>`_
-========================  ===========  =========  =============================================================================
+========================  =========  ===============================================================================================================
+Syntax                    Symbol     User guide
+========================  =========  ===============================================================================================================
+``besselj(nu, z, n)``     |image06|  `Bessel function of the first kind <https://ameli.github.io/special_functions/besselj.html>`_
+``bessely(nu, z, n)``     |image07|  `Bessel function of the second kind <https://ameli.github.io/special_functions/bessely.html>`_ (Weber function)
+``besseli(nu, z, n)``     |image08|  `Modified Bessel function of the first kind <https://ameli.github.io/special_functions/besseli.html>`_
+``besselk(nu, z, n)``     |image09|  `Modified Bessel function of the second kind <https://ameli.github.io/special_functions/besselk.html>`_
+``besselh(nu, k, z, n)``  |image10|  `Bessel function of the third kind <https://ameli.github.io/special_functions/besselh.html>`_ (Hankel function)
+``lngamma(x)``            |image11|  `Natural logarithm of Gamma function <https://ameli.github.io/special_functions/loggamma.html>`_
+========================  =========  ===============================================================================================================
 
 **Typed Arguments:**
 
-========  ===================  =========  =====================================================================================================
-Argument   Type                Symbol     Description
-========  ===================  =========  =====================================================================================================
-``nu``    ``double``, ``int``  |image01|  Parameter of functions (such as order of Bessel functions). Real number.
-``z``     ``double``           |image02|  Argument of the functions. Can be real or complex number.
-``n``     ``int``              |image03|  Derivative of function with respect to |image02|. Non-negative integer. Zero indicates no derivative.
-========  ===================  =========  =====================================================================================================
+========  ==============================  =========  ==============================================================
+Argument   Type                           Symbol     Description
+========  ==============================  =========  ==============================================================
+``nu``    ``double``                      |image01|  Parameter of Bessel functions.
+``k``     ``int``                         |image02|  Can be ``1`` or ``2`` and sets the type of Hankel function.
+``z``     ``double``, ``double complex``  |image03|  Real or complex argument of the Bessel functions.
+``x``     ``double``                      |image04|  Real argument of the functions.
+``n``     ``int``                         |image05|  Order of derivative of function. Zero indicates no derivative.
+========  ==============================  =========  ==============================================================
 
-------------------------------
-Cython API (Complex Functions)
-------------------------------
+----------
+Cython API
+----------
 
-========================  ==================  =========  =============================================================================
-Syntax                    Return type         Symbol     Description
-========================  ==================  =========  =============================================================================
-``besselj(nu, z, n)``     ``double complex``  |image04|  `Bessel function of the first kind <besselj>`_
-``bessely(nu, z, n)``     ``double complex``  |image05|  `Bessel function of the second kind <bessely>`_ (Weber function)
-``besseli(nu, z, n)``     ``double complex``  |image06|  `Modified Bessel function of the first kind <besseli>`_
-``besselk(nu, z, n)``     ``double complex``  |image07|  `Modified Bessel function of the second kind <besselk>`_
-``besselh(nu, k, z, n)``  ``double complex``  |image08|  `Bessel function of the third kind <besselh>`_ (Hankel function)
-``lngamma(x)``                                |image09|  `Natural logarithm of Gamma function <lngamma>`_
-========================  ==================  =========  =============================================================================
+In Cython interface, the syntax of the **real** functions are similar to the Python interface. However, the syntax of **complex** functions start with the letter ``c`` in the beginning of each function as shown in the table below.
 
-
-**Typed Arguments:**
-
-========  ==================  =========  =================================================================================================================
-Argument   Type               Symbol     Description
-========  ==================  =========  =================================================================================================================
-``nu``    ``double``, ``int``             |image01|  Parameter of functions (such as order of Bessel functions). Real number.
-``z``     ``double complex``  |image02|  Argument of the functions. Can be real or complex number.
-``n``     ``int``                         |image03|  Derivative of function with respect to |image02|. Non-negative integer. Zero indicates no derivative.
-========  ==================  =========  =================================================================================================================
+=========  ========================  =========================
+Symbol     Real Function             Complex Function          
+=========  ========================  =========================
+|image06|  ``besselj(nu, x, n)``     ``cbesselj(nu, z, n)``    
+|image07|  ``bessely(nu, x, n)``     ``cbessely(nu, z, n)``    
+|image08|  ``besseli(nu, x, n)``     ``cbesseli(nu, z, n)``    
+|image09|  ``besselk(nu, x, n)``     ``cbesselk(nu, z, n)``    
+|image10|  ``besselh(nu, k, x, n)``  ``cbesselh(nu, k, z, n)`` 
+|image11|  ``loggamma(x)``           N/A
+=========  ========================  =========================
 
 .. |image01| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image01.svg
 .. |image02| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image02.svg
@@ -190,22 +278,26 @@ Argument   Type               Symbol     Description
 .. |image07| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image07.svg
 .. |image08| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image08.svg
 .. |image09| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image09.svg
+.. |image10| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image10.svg
+.. |image11| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image11.svg
 
-*******
-Example
-*******
-
-To examples below show examples in *python* or *cython* environment.
-
+========
+Examples
+========
+ 
 --------------------
-Use in a Cython Code
+Using in Cython Code
 --------------------
+
+The codes below should be used in a ``.pyx`` file and compiled with Cython.
+
+As shown in the codes below, the python's global lock interpreter, or ``gil``, can be optionally released inside the scope of ``with nogil:`` statement. This is especially useful in parallel OpenMP environments.
 
 ~~~~~~~~~~~~~
 Real Function
 ~~~~~~~~~~~~~
 
-This example uses te real ``besselk`` to compute the modified Bessel function of the second kind and its first and second derivatives for a real argument. The python's ``gil`` can be optionally released, which is useful in parallel OpenMP environments.
+This example shows the real function ``besselk`` to compute the modified Bessel function of the second kind for a real argument ``z``. The output variables ``d0k``, ``d1k``, and ``d2k`` represent the values of modified Bessel function and its first and second derivatives, respectively.
 
 .. code-block:: python
 
@@ -227,7 +319,7 @@ This example uses te real ``besselk`` to compute the modified Bessel function of
 Complex Function
 ~~~~~~~~~~~~~~~~
 
-The example below is similar to the above, except, the *complex* function ``cbesselk`` with complex argument is employed:
+The example below is similar to the above, except, the *complex* function ``cbesselk`` with complex argument ``z`` is used. The output variables ``d0k``, ``d1k``, and ``d2k`` are also complex.
 
 .. code-block:: python
 
@@ -236,7 +328,7 @@ The example below is similar to the above, except, the *complex* function ``cbes
 
     >>> # Declare typed variables
     >>> cdef double nu = 2.5
-    >>> cdef double complex z = 1+2j
+    >>> cdef double complex z = 2.0 + 1.0j
     >>> cdef double complex d0k, d1k, d2k
 
     >>> # Releasing gil to secure maximum cythonic speedup
@@ -246,14 +338,16 @@ The example below is similar to the above, except, the *complex* function ``cbes
     ...     d2k = cbesselk(nu, z, 2)    # 2nd derivative
 
 --------------------
-Use in a Python Code
+Using in Python Code
 --------------------
+
+The codes below should be used in a ``.py`` file and no compilation is required. The python's global lock interpreter, or ``gil``, cannot be released.
 
 ~~~~~~~~~~~~~
 Real Function
 ~~~~~~~~~~~~~
 
-This example uses ``besselk`` to compute the modified Bessel function of the second kind and its first and second derivatives for a complex argument. Note, this function uses the global lock interpreter (``gil``).
+The example below uses the function ``besselk`` with the real argument ``z`` to compute the modified Bessel function of the second kind and its first and second derivatives.
 
 .. code-block:: python
 
@@ -271,51 +365,71 @@ This example uses ``besselk`` to compute the modified Bessel function of the sec
 Complex Function
 ~~~~~~~~~~~~~~~~
 
-To use the complex version of the function as given below, the same function syntax, ``besselk``, can be used (unlike the cython API that uses ``cbesselk`` for complex version).
+To use a complex input argument ``z`` in the Python interface, the same function ``besselk`` as the previous example can be used. This is unlike the Cython interface in which ``cbesselk`` should be used.
 
 .. code-block:: python
 
+    >>> # import module in a *.py file
+    >>> from special_functions import besselk
+
     >>> nu = 2.5
-    >>> z = 1+2j
+    >>> z = 2.0 + 1.0j
 
     >>> d0k = besselk(nu, z)       # no derivative
     >>> d1k = besselk(nu, z, 1)    # 1st derivative
     >>> d2k = besselk(nu, z, 2)    # 2nd derivative
 
-***************
-Technical Notes
-***************
+================
+Related Packages
+================
 
-The package is (an almost) replica of ``scipy.special`` implementation of special functions and wraps around the following libraries:
-
-* `Cephes Mathematical Library <https://www.netlib.org/cephes/>`_: A C library used for the Bessel functions of integer order |image01| and real argument |image02|.
-* `Amos <https://dl.acm.org/doi/10.1145/7921.214331>`_: A Fortran library (available on `Netlib <http://www.netlib.org/amos/>`_) used for the Bessel functions of real order |image01| and complex argument |image02|.
-
-The Bessel functions of half-integer order |image01| do not use the above-mentioned libraries, rather they are computed directly using their recursive formulas and basic functions representation.
+* `scipy.special <https://docs.scipy.org/doc/scipy/reference/special.html>`_: Many special functions were implemented in Scipy's special sub-package. This package is reimplements Bessel functions similar to ``scipy.special``, but with simplified python and cython different interfaces.
+* `Gaussian Process <https://github.com/ameli/gaussian-process-param-estimation>`_: A python package that makes use of ``special_functions``.
 
 
-****************
+================
 Acknowledgements
-****************
+================
 
 * National Science Foundation #1520825
 * American Heart Association #18EIA33900046
 
+======
+Credit
+======
+
+This package uses the following libraries:
+
+* Moshier, S. L. (1989). C language library with special functions for mathematical physics. Available at `http://www.netlib.org/cephes/index.html <http://www.netlib.org/cephes/index.html>`_.
+* Amos, D. E. (1986). Algorithm 644: A portable package for Bessel functions of a complex argument and nonnegative order. ACM Trans. Math. Softw. 12, 3 (Sept. 1986), 265-273. DOI: `https://doi.org/10.1145/7921.214331 <https://doi.org/10.1145/7921.214331>`_. Available at `http://netlib.org/amos/ <http://netlib.org/amos/>`_.
+
+
 .. |codecov-devel| image:: https://img.shields.io/codecov/c/github/ameli/special_functions
    :target: https://codecov.io/gh/ameli/special_functions
+.. |docs| image:: https://github.com/ameli/special_functions/workflows/deploy-docs/badge.svg
+   :target: https://github.com/ameli/special_functions/actions?query=workflow%3Adeploy-docs
 .. |licence| image:: https://img.shields.io/github/license/ameli/special_functions
    :target: https://opensource.org/licenses/MIT
+.. |travis-devel-linux| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=linux&label=build&branch=main
+   :target: https://travis-ci.com/github/ameli/special_functions
+.. |travis-devel-osx| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=osx&label=build&branch=main
+   :target: https://travis-ci.com/github/ameli/special_functions
+.. |travis-devel-windows| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=windows&label=build&branch=main
+   :target: https://travis-ci.com/github/ameli/special_functions
 .. |implementation| image:: https://img.shields.io/pypi/implementation/special_functions
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/special_functions
 .. |format| image:: https://img.shields.io/pypi/format/special_functions
 .. |pypi| image:: https://img.shields.io/pypi/v/special_functions
+   :target: https://pypi.org/project/special-functions/
 .. |conda| image:: https://anaconda.org/s-ameli/special_functions/badges/installer/conda.svg
    :target: https://anaconda.org/s-ameli/special_functions
 .. |platforms| image:: https://img.shields.io/conda/pn/s-ameli/special_functions?color=orange?label=platforms
    :target: https://anaconda.org/s-ameli/special_functions
 .. |conda-version| image:: https://img.shields.io/conda/v/s-ameli/special_functions
    :target: https://anaconda.org/s-ameli/special_functions
-.. |release| image:: https://img.shields.io/github/v/tag/ameli/special_functions
-   :target: https://github.com/ameli/special_functions/releases/
 .. |conda-platform| image:: https://anaconda.org/s-ameli/special_functions/badges/platforms.svg
    :target: https://anaconda.org/s-ameli/special_functions
+.. |release| image:: https://img.shields.io/github/v/tag/ameli/special_functions
+   :target: https://github.com/ameli/special_functions/releases/
+.. |binder| image:: https://mybinder.org/badge_logo.svg
+   :target: https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb

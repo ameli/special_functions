@@ -15,16 +15,16 @@ build:
 
 requirements:
     build:
-        - python                            # [build_platform != target_platform]
-        - cython                            # [build_platform != target_platform]
-        - numpy                             # [build_platform != target_platform]
+        - python                          # [build_platform != target_platform]
+        - cython                          # [build_platform != target_platform]
+        - numpy                           # [build_platform != target_platform]
         - {{ compiler('c') }}
-        - {{ compiler('fortran') }}         # [unix]
+        - {{ compiler('fortran') }}       # [unix]
 
     host:
-        - libcxx      # [osx]
-        # - python {{ python }}
-        - python
+        - libcxx                          # [osx]
+        - python {{ python }}
+        # - python
         - numpy>1.11
         - cython
         - pip
@@ -33,8 +33,8 @@ requirements:
         - scipy
         - setuptools
     run:
-        # - python {{ python }}
-        - python
+        - python {{ python }}
+        # - python
 
 test:
     imports:
