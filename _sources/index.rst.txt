@@ -1,8 +1,8 @@
 *****************
-special_functions
+special functions
 *****************
 
-|licence| |platforms| |conda-version| |conda| |format| |pypi| |implementation| |pyversions|
+|licence| |platforms| |pyversions| |conda-version| |pypi|
 
 This package provides both Python and Cython interfaces for Bessel functions and a few other special functions. 
 
@@ -14,13 +14,13 @@ Features
 * **Cythonic interface:** Both pythonic and cythonic interfaces are provided.
 * **Releasing GIL:** Most importantly, the functions can be used in ``with nogil:`` environment, which is essential in parallel OpenMP using Cython.
 
-=========================
-Interactive Live Tutorial
-=========================
+====================
+Interactive Tutorial
+====================
 
 |binder|
 
-Launch a live tutorial in browser with `Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb>`_ to interact with the modules of the package.
+Launch an interactive tutorial in browser with `Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb>`_.
 
 .. toctree::
     :maxdepth: 1
@@ -68,7 +68,7 @@ For users:
     + `Package on Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_
     + `Package on PyPi <https://pypi.org/project/special_functions/>`_
     + `Source code on Github <https://github.com/ameli/special_functions>`_
-    + `online interactive Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FInterpolateTraceOfInverse.ipynb>`_.
+    + `Interactive Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb>`_.
 
 For developers:
     + `Test Coverage on Codecov <https://codecov.io/gh/ameli/special_functions>`_
@@ -130,6 +130,7 @@ Indices and tables
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/special_functions
 .. |format| image:: https://img.shields.io/pypi/format/special_functions
 .. |pypi| image:: https://img.shields.io/pypi/v/special_functions
+   :target: https://pypi.org/project/special-functions/
 .. |conda| image:: https://anaconda.org/s-ameli/special_functions/badges/installer/conda.svg
    :target: https://anaconda.org/s-ameli/special_functions
 .. |platforms| image:: https://img.shields.io/conda/pn/s-ameli/special_functions?color=orange?label=platforms
