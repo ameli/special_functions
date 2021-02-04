@@ -6,7 +6,9 @@ special_functions
 
 This package provides both Python and Cython interfaces for Bessel functions and a few other special functions. 
 
-Advantages of this packages are due to the following features:
+========
+Features
+========
 
 * **Lightweight:** This package requires *no python dependency* at runtime.
 * **Cythonic interface:** Both pythonic and cythonic interfaces are provided.
@@ -18,7 +20,7 @@ Interactive Live Tutorial
 
 |binder|
 
-Launch a live tutorial in browser with `Jupyter notebook <>`_ to interact with the modules of the package.
+Launch a live tutorial in browser with `Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb>`_ to interact with the modules of the package.
 
 .. toctree::
     :maxdepth: 1
