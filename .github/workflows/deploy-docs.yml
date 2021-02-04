@@ -15,14 +15,14 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Set up Python
-              uses: actions/setup-python@v2
-
-            - name: Install package and dependencies
-              run: |
-                  python -m pip install --upgrade pip
-                  python -m pip install --upgrade numpy
-                  python -m pip install .[docs]
+            # - name: Set up Python
+            #   uses: actions/setup-python@v2
+            #
+            # - name: Install package and dependencies
+            #   run: |
+            #       python -m pip install --upgrade pip
+            #       python -m pip install --upgrade numpy
+            #       python -m pip install .[docs]
 
             - name: Build and Deploy
               uses: JacksonMaxfield/github-pages-deploy-action-python@master
@@ -32,14 +32,15 @@ jobs:
                   BRANCH: gh-pages
                   FOLDER: docs/_build/html
                   BUILD_SCRIPT: |
-                      # apt-get update
+                      apt-get update
+                      apt-get install gcc
+                      apt-get install gfortran
                       # apt-get install graphviz -y
-                      # pip install --upgrade pip
-                      # pip install .[docs]
+                      pip install --upgrade pip
+                      pip install .[docs]
                       export PATH=$HOME/.local/bin:$PATH
                       sphinx-apidoc -f -o docs/_modules/ ./special_functions
                       cd docs
-                      ls
                       make html
                       cd ..
                       # python setup.py build_sphinx
