@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>special_functions &mdash; special functions  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/toggleprompt.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]]}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Install" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> special functions
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Functions User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="besselj.html">Bessel Function, First Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bessely.html">Bessel Function, Second Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="besselh.html">Bessel Function, Third Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="besseli.html">Modified Bessel Function, First Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="besselk.html">Modified Bessel Function, Second Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loggamma.html">Log Gamma Function</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_modules/modules.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">special functions</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>special_functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="special-functions">
+<h1>special_functions<a class="headerlink" href="#special-functions" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://opensource.org/licenses/MIT"><img alt="licence" src="https://img.shields.io/github/license/ameli/special_functions" /></a> <a class="reference external" href="https://anaconda.org/s-ameli/special_functions"><img alt="platforms" src="https://img.shields.io/conda/pn/s-ameli/special_functions?color=orange?label=platforms" /></a> <a class="reference external" href="https://anaconda.org/s-ameli/special_functions"><img alt="conda-version" src="https://img.shields.io/conda/v/s-ameli/special_functions" /></a> <a class="reference external" href="https://anaconda.org/s-ameli/special_functions"><img alt="conda" src="https://anaconda.org/s-ameli/special_functions/badges/installer/conda.svg" /></a> <img alt="format" src="https://img.shields.io/pypi/format/special_functions" /> <img alt="pypi" src="https://img.shields.io/pypi/v/special_functions" /> <img alt="implementation" src="https://img.shields.io/pypi/implementation/special_functions" /> <img alt="pyversions" src="https://img.shields.io/pypi/pyversions/special_functions" /></p>
+<p>This package provides both Python and Cython interfaces for Bessel functions and a few other special functions.</p>
+<p>Advantages of this packages are due to the following features:</p>
+<ul class="simple">
+<li><p><strong>Lightweight:</strong> This package requires <em>no python dependency</em> at runtime.</p></li>
+<li><p><strong>Cythonic interface:</strong> Both pythonic and cythonic interfaces are provided.</p></li>
+<li><p><strong>Releasing GIL:</strong> Most importantly, the functions can be used in <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">nogil:</span></code> environment, which is essential in parallel OpenMP using Cython.</p></li>
+</ul>
+<div class="section" id="interactive-live-tutorial">
+<h2>Interactive Live Tutorial<a class="headerlink" href="#interactive-live-tutorial" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb"><img alt="binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>Launch a live tutorial in browser with <a href="#id1"><span class="problematic" id="id2">`Jupyter notebook &lt;&gt;`_</span></a> to interact with the modules of the package.</p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Functions User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="besselj.html">Bessel Function, First Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bessely.html">Bessel Function, Second Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="besselh.html">Bessel Function, Third Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="besseli.html">Modified Bessel Function, First Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="besselk.html">Modified Bessel Function, Second Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loggamma.html">Log Gamma Function</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_modules/modules.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="useful-links">
+<h2>Useful Links<a class="headerlink" href="#useful-links" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>For users:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://anaconda.org/s-ameli/special_functions">Package on Anaconda Cloud</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/special_functions/">Package on PyPi</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ameli/special_functions">Source code on Github</a></p></li>
+<li><p><a class="reference external" href="https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FInterpolateTraceOfInverse.ipynb">online interactive Jupyter notebook</a>.</p></li>
+</ul>
+</dd>
+<dt>For developers:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://codecov.io/gh/ameli/special_functions">Test Coverage on Codecov</a></p></li>
+<li><p><a class="reference external" href="https://ameli.github.io/special_functions/_modules/modules.html">API</a></p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="how-to-contribute">
+<h2>How to Contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h2>
+<p>We welcome contributions via <a class="reference external" href="https://github.com/ameli/special_functions/pulls">Github’s pull request</a>. If you do not feel comfortable modifying the code, we also welcome feature request and bug report as <a class="reference external" href="https://github.com/ameli/special_functions/issues">Github issues</a>.</p>
+</div>
+<div class="section" id="related-projects">
+<h2>Related Projects<a class="headerlink" href="#related-projects" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/special.html">scipy.special</a>: Many special functions were implemented in Scipy’s special sub-package. This package is reimplements Bessel functions similar to <code class="docutils literal notranslate"><span class="pre">scipy.special</span></code>, but with simplified python and cython different interfaces.</p></li>
+<li><p><a class="reference external" href="https://github.com/ameli/gaussian-process-param-estimation">Gaussian Process</a>: A python package that makes use of <code class="docutils literal notranslate"><span class="pre">special_functions</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>National Science Foundation #1520825</p></li>
+<li><p>American Heart Association #18EIA33900046</p></li>
+</ul>
+</div>
+<div class="section" id="credit">
+<h2>Credit<a class="headerlink" href="#credit" title="Permalink to this headline">¶</a></h2>
+<p>This package uses the following libraries:</p>
+<dl class="citation">
+<dt class="label" id="cephes-1989"><span class="brackets">Cephes-1989</span></dt>
+<dd><p>Moshier, S. L. (1989). C language library with special functions for mathematical physics. Available at <a class="reference external" href="http://www.netlib.org/cephes/index.html">http://www.netlib.org/cephes/index.html</a>.</p>
+</dd>
+<dt class="label" id="amos-1986"><span class="brackets">Amos-1986</span></dt>
+<dd><p>Amos, D. E. (1986). Algorithm 644: A portable package for Bessel functions of a complex argument and nonnegative order. ACM Trans. Math. Softw. 12, 3 (Sept. 1986), 265-273. DOI: <a class="reference external" href="https://doi.org/10.1145/7921.214331">https://doi.org/10.1145/7921.214331</a>. Available at <a class="reference external" href="http://netlib.org/amos/">http://netlib.org/amos/</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="install.html" class="btn btn-neutral float-right" title="Install" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Siavash Ameli.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

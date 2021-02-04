@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Running Tests &mdash; special functions  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/toggleprompt.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]]}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="special_functions package" href="_modules/special_functions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> special functions
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Functions User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="besselj.html">Bessel Function, First Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bessely.html">Bessel Function, Second Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="besselh.html">Bessel Function, Third Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="besseli.html">Modified Bessel Function, First Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="besselk.html">Modified Bessel Function, Second Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loggamma.html">Log Gamma Function</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="_modules/modules.html">Package API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-tests-with-pytest">Running Tests with <code class="docutils literal notranslate"><span class="pre">pytest</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-tests-with-tox">Running Tests with <code class="docutils literal notranslate"><span class="pre">tox</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automated-build-and-tests">Automated Build and Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">special functions</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Running Tests</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/tests.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="running-tests">
+<span id="run-tests"></span><h1>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h1>
+<p>The package can be tested by running the <a class="reference external" href="https://github.com/ameli/special_functions/tree/main/tests">test scripts</a>, which tests all <a class="reference external" href="https://github.com/ameli/special_functions/tree/main/special_functions">modules</a>.</p>
+<div class="section" id="running-tests-with-pytest">
+<h2>Running Tests with <code class="docutils literal notranslate"><span class="pre">pytest</span></code><a class="headerlink" href="#running-tests-with-pytest" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">pytest-cov</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pytest</span><span class="o">-</span><span class="n">cov</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install this package by either of the methods described in the <a class="reference internal" href="install.html#install-package"><span class="std std-ref">installation instructions</span></a>.</p></li>
+</ol>
+<ol class="arabic" start="2">
+<li><p>Clone the package source code and install the test dependencies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ameli</span><span class="o">/</span><span class="n">special_functions</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">special_functions</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">tests</span><span class="o">/</span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+<li><p>Test the package by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tests</span>
+<span class="n">pytest</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not run tests in the root directory of the package <code class="docutils literal notranslate"><span class="pre">/special_functions</span></code>. To properly run tests, change current working directory to <code class="docutils literal notranslate"><span class="pre">/special_functions/tests</span></code> sub-directory.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="running-tests-with-tox">
+<h2>Running Tests with <code class="docutils literal notranslate"><span class="pre">tox</span></code><a class="headerlink" href="#running-tests-with-tox" title="Permalink to this headline">¶</a></h2>
+<p>To run a test in a virtual environment, use <code class="docutils literal notranslate"><span class="pre">tox</span></code> as follows:</p>
+<ol class="arabic">
+<li><p>Clone the source code from the repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ameli</span><span class="o">/</span><span class="n">special_functions</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">tox</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">tox</span>
+</pre></div>
+</div>
+</li>
+<li><p>run tests by</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">special_functions</span>
+<span class="n">tox</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="automated-build-and-tests">
+<span id="automated-tests"></span><h2>Automated Build and Tests<a class="headerlink" href="#automated-build-and-tests" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://codecov.io/gh/ameli/special_functions"><img alt="codecov-devel" src="https://img.shields.io/codecov/c/github/ameli/special_functions" /></a></p>
+<p>The latest <em>coverage</em> of tests can be checked on <a class="reference external" href="https://codecov.io/gh/ameli/special_functions">codecov</a> dashboard. The status of <em>automated tests</em> can be checked on the continuous integration tools below for the list of supported platforms, Python, and PyPy versions:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" rowspan="2"><p>Platform</p></th>
+<th class="head" colspan="5"><p>Python version</p></th>
+<th class="head" colspan="3"><p>PyPy version</p></th>
+<th class="head" rowspan="2"><p>Status</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>2.7</p></th>
+<th class="head"><p>3.6</p></th>
+<th class="head"><p>3.7</p></th>
+<th class="head"><p>3.8</p></th>
+<th class="head"><p>3.9</p></th>
+<th class="head"><p>2.7</p></th>
+<th class="head"><p>3.6</p></th>
+<th class="head"><p>3.7</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>Linux</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-linux"><img alt="build-linux" src="https://github.com/ameli/special_functions/workflows/build-linux/badge.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p>macOS</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+<td><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-macos"><img alt="build-macos" src="https://github.com/ameli/special_functions/workflows/build-macos/badge.svg" /></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Windows</p></td>
+<td><p>✖</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+<td><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-windows"><img alt="build-windows" src="https://github.com/ameli/special_functions/workflows/build-windows/badge.svg" /></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="_modules/special_functions.html" class="btn btn-neutral float-left" title="special_functions package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Siavash Ameli.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
