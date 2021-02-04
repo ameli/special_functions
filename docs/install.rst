@@ -100,11 +100,19 @@ Install from Anaconda Cloud
 
 |conda-version| |conda-platform|
 
-Install through the package available at `Conda <https://anaconda.org/s-ameli/special_functions>`_ by
+Alternatively, the package can be installed through `Anaconda could <https://anaconda.org/s-ameli/special_functions>`_.
+
+In Linux and Windows:
 
 ::
 
     conda install -c s-ameli special_functions
+
+In macOS:
+
+::
+
+    conda install -c s-ameli -c conda-forge special_functions
 
 .. _Build_Locally:
 
