@@ -253,15 +253,34 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
+            # - name: 
+            #   shell: bash -l {0}
+            #   run: |
+            #       mv special_functions special_functions-DoNotImport
+            #       rm setup.cfg
+            #       sh $(conda info --root)/etc/profile.d/conda.sh
+            #       conda create --name special_functions_env python=${{ matrix.python-version }} -y
+            #       conda activate special_functions_env
+            #       conda install -c s-ameli special_functions -y
+            #       conda install -c conda-forge scipy -y
+            #       conda install pytest -y
+            #       pytest
+
+            - name: Install package (not macos)
+              shell: bash -l {0}
+              if: runner.os != 'macos'
+              run: conda install -c s-ameli special_functions -y
+
+            - name: Install package (macos)
+              shell: bash -l {0}
+              if: runner.os == 'macos'
+              run: conda install -c s-ameli -c conda-forge special_functions -y
+
             - name: Test
               shell: bash -l {0}
               run: |
                   mv special_functions special_functions-DoNotImport
                   rm setup.cfg
-                  sh $(conda info --root)/etc/profile.d/conda.sh
-                  conda create --name special_functions_env python=${{ matrix.python-version }} -y
-                  conda activate special_functions_env
-                  conda install -c s-ameli -c conda-forge special_functions -y
                   conda install -c conda-forge scipy -y
                   conda install pytest -y
                   pytest

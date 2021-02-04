@@ -6,5 +6,4 @@ dependencies:
     - python
     - pip
     - pip:
-        - cython
         - special_functions

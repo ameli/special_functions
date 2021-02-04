@@ -10,7 +10,7 @@ Advantages of this packages are due to the following features:
 
 * **Lightweight:** This package requires *no python dependency* at runtime.
 * **Cythonic interface:** Both pythonic and cythonic interfaces are provided.
-* **Releasing GIL:** Most importantly feature of this package is that you can use the functions in ``with nogil:`` environment. This is particularly essential in parallel OpenMP programs using Cython.
+* **Releasing GIL:** Most importantly, the functions can be used in ``with nogil:`` environment, which is essential in parallel OpenMP using Cython.
 
 =========================
 Interactive Live Tutorial
@@ -18,7 +18,7 @@ Interactive Live Tutorial
 
 |binder|
 
-Launch a live tutorial on your browser with Jupyter notebook here and interact with the modules of the package.
+Launch a live tutorial in browser with `Jupyter notebook <>`_ to interact with the modules of the package.
 
 .. toctree::
     :maxdepth: 1
@@ -138,4 +138,4 @@ Indices and tables
 .. |conda-version| image:: https://img.shields.io/conda/v/s-ameli/special_functions
    :target: https://anaconda.org/s-ameli/special_functions
 .. |binder| image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FInterpolateTraceOfInverse.ipynb
+   :target: https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb
