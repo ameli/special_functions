@@ -250,7 +250,6 @@ def main(argv):
         setup_requires=[
             'numpy>1.11',
             'cython'],
-            # 'pytest-runner'],
         tests_require=[
             'pytest',
             'pytest-cov'],
@@ -268,7 +267,6 @@ def main(argv):
                 'sphinx-math-dollar',
                 'sphinx-toggleprompt',
                 'sphinx_rtd_theme',
-                'graphviz',
                 'sphinx-automodapi',
             ]
         },
