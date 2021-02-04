@@ -32,11 +32,12 @@ jobs:
                   BRANCH: gh-pages
                   FOLDER: docs/_build/html
                   BUILD_SCRIPT: |
-                      apt-get update
-                      apt-get install gcc
-                      apt-get install gfortran
+                      # apt-get update
+                      # apt-get install gcc
+                      # apt-get install gfortran
                       pip install --upgrade pip
-					  pip install sphinx sphinx-math-dollar sphinx-toggleprompt sphinx_rtd_theme sphinx-automodapi
+                      # pip install .[docs]
+                      pip install sphinx sphinx-math-dollar sphinx-toggleprompt sphinx_rtd_theme sphinx-automodapi
                       export PATH=$HOME/.local/bin:$PATH
                       sphinx-apidoc -f -o docs/_modules/ ./special_functions
                       cd docs
