@@ -9,13 +9,12 @@ on:
             - published
 
 jobs:
-    build_upload_conda_for_linux_windows:
+    build_upload:
         name: Build on ${{ matrix.os }}
         runs-on: ${{ matrix.os }}
         strategy:
             fail-fast: false
             matrix:
-                # os: [ubuntu-latest, windows-latest]
                 os: [ubuntu-latest, windows-latest, macos-latest]
         steps:
             - name: Setup Miniconda
@@ -26,10 +25,6 @@ jobs:
             - name: Install Visual C++ for Python 2.7
               if: runner.os == 'Windows'
               run: choco install vcpython27 -f -y
-              
-            # - name: Install fortran compiler on mac
-            #   if: runner.os == 'macos'
-            #   run: brew reinstall gcc
 
             - name: Checkout
               uses: actions/checkout@v2
@@ -58,48 +53,14 @@ jobs:
               run: |
                   export PATH=$(conda info --root):$PATH
                   export PATH=$(conda info --root)/bin:$PATH
-                  # conda-build --output-folder . .
-                  conda-build -c conda-forge  --output-folder bld-conda-mac .
+                  conda-build --output-folder . .
+                  # conda-build -c conda-forge  --output-folder bld-conda-mac .
               env:
                   CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
                   ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
 
-    # build_upload_conda_for_mac:
-    #     name: Build on macos-latest
-    #     runs-on: macos-latest
-    #     steps:
-    #         - name: Checkout
-    #           uses: actions/checkout@v2
-    #
-    #         - name: Install Fortran compiler
-    #           run: brew reinstall gcc
-    #
-    #         - name: Setup Miniconda
-    #           uses: conda-incubator/setup-miniconda@v2
-    #           with:
-    #               auto-update-conda: true
-    #
-    #         - name: Install conda-build, and conda-client
-    #           run: |
-    #               conda config --set always_yes yes --set changeps1 no
-    #               conda install conda-build
-    #               conda install anaconda-client
-    #
-    #         - name: Build conda
-    #           run: |
-    #               export PATH=$(conda info --root):$PATH
-    #               export PATH=$(conda info --root)/bin:$PATH
-    #               conda config --set anaconda_upload yes
-    #               mkdir bld-conda-mac
-    #               # conda-build -c conda-forge  --output-folder . .
-    #               conda-build -c conda-forge  --output-folder bld-conda-mac .
-    #           env:
-    #               CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
-    #               ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-
     test_conda:
-        # needs: [build_upload_conda_for_linux_windows,build_upload_conda_for_mac]
-        needs: [build_upload_conda_for_linux_windows]
+        needs: [build_upload_conda]
         name: Test on ${{ matrix.os }} and Python ${{ matrix.python-version }}
         runs-on: ${{ matrix.os }}
         strategy:
