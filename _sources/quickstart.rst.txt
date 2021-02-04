@@ -10,16 +10,16 @@ List of Functions
 Python Interface
 ----------------
 
-========================  ==============================  =========  =============================================================================
+========================  ==============================  =========  ====================================================================
 Syntax                    Return type                     Symbol     Description
-========================  ==============================  =========  =============================================================================
+========================  ==============================  =========  ====================================================================
 ``besselj(nu, z, n)``     ``double``, ``double complex``  |image06|  :ref:`Bessel function of the first kind<besselj>`
-``bessely(nu, z, n)``     ``double``, ``double complex``  |image07|  :ref:`Bessel function of the second kind of order <bessely>` (Weber function)
+``bessely(nu, z, n)``     ``double``, ``double complex``  |image07|  :ref:`Bessel function of the second kind <bessely>` (Weber function)
 ``besseli(nu, z, n)``     ``double``, ``double complex``  |image08|  :ref:`Modified Bessel function of the first kind <besseli>`
 ``besselk(nu, z, n)``     ``double``, ``double complex``  |image09|  :ref:`Modified Bessel function of the second kind <besselk>`
-``besselh(nu, k, z, n)``  ``double complex``              |image10|  :ref:`Bessel function of the third kind<besselh>` (Hankel function)
+``besselh(nu, k, z, n)``  ``double complex``              |image10|  :ref:`Bessel function of the third kind <besselh>` (Hankel function)
 ``loggamma(x)``           ``double``                      |image11|  :ref:`Natural logarithm of Gamma function <loggamma>`
-========================  ==============================  =========  =============================================================================
+========================  ==============================  =========  ====================================================================
 
 **Function Arguments:**
 
