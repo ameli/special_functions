@@ -2,7 +2,7 @@
 special functions
 *****************
 
-|licence|
+|licence| |docs|
 
 This package provides both Python and Cython interfaces for Bessel functions and a few other special functions. 
 
@@ -112,8 +112,8 @@ Indices and tables
 
 .. |codecov-devel| image:: https://img.shields.io/codecov/c/github/ameli/special_functions
    :target: https://codecov.io/gh/ameli/special_functions
-.. |docs| image:: https://github.com/ameli/special_functions/workflows/deploy-docs/badge.svg
-   :target: https://github.com/ameli/special_functions/actions?query=workflow%3Adeploy-docs
+.. |docs| image:: https://github.com/ameli/special_functions/workflows/docs/badge.svg
+   :target: https://ameli.github.io/special_functions/index.html
 .. |licence| image:: https://img.shields.io/github/license/ameli/special_functions
    :target: https://opensource.org/licenses/MIT
 .. |travis-devel-linux| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=linux&label=build&branch=main
