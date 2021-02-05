@@ -26,6 +26,7 @@ jobs:
                   BUILD_SCRIPT: |
                       pip install --upgrade pip
                       install --upgrade numpy
+                      export CYTHON_BUILD_IN_SOURCE=1
                       python setup.py build_ext --force --inplace
                       pip install sphinx sphinx-math-dollar sphinx-toggleprompt sphinx_rtd_theme sphinx-automodapi
                       export PATH=$HOME/.local/bin:$PATH

@@ -38,4 +38,4 @@ jobs:
                   python -m pip install --upgrade pytest-cov
                   python -m pip install -r tests/requirements.txt
                   mv special_functions special_functions_do_not_import
-                  python -m pytest --cov-report=xml --cov=special_functions/ tests/
+                  pytest

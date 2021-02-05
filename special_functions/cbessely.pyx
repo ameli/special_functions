@@ -41,7 +41,7 @@ cdef extern from "amos_wrapper.h":
 def py_cbessely(nu, z, n=0):
     """
     Wrapper for :func:`cbessely`.
-    
+
     :param nu: Parameter :math:`\\nu` of Bessel function.
     :type nu: double
 
