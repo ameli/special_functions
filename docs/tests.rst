@@ -4,6 +4,8 @@
 Running Tests
 *************
 
+|codecov-devel|
+
 The package can be tested by running the `test scripts <https://github.com/ameli/special_functions/tree/main/tests>`_, which tests all `modules <https://github.com/ameli/special_functions/tree/main/special_functions>`_. 
 
 =============================
@@ -62,29 +64,6 @@ To run a test in a virtual environment, use ``tox`` as follows:
        cd special_functions
        tox
   
-.. _automated_tests:
-
-=========================
-Automated Build and Tests
-=========================
-
-|codecov-devel|
-
-The latest *coverage* of tests can be checked on `codecov <https://codecov.io/gh/ameli/special_functions>`_ dashboard. The status of *automated tests* can be checked on the continuous integration tools below for the list of supported platforms, Python, and PyPy versions:
-
-+----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
-| Platform | Python version              | PyPy version    | Status          |
-+          +-----+-----+-----+-----+-----+-----+-----+-----+                 +
-|          | 2.7 | 3.6 | 3.7 | 3.8 | 3.9 | 2.7 | 3.6 | 3.7 |                 |
-+==========+=====+=====+=====+=====+=====+=====+=====+=====+=================+
-| Linux    |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  | |build-linux|   |
-+----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
-| macOS    |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✖  |  ✖  |  ✖  | |build-macos|   |
-+----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
-| Windows  |  ✖  |  ✔  |  ✔  |  ✔  |  ✔  |  ✖  |  ✖  |  ✖  | |build-windows| |
-+----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
-
-
 .. |codecov-devel| image:: https://img.shields.io/codecov/c/github/ameli/special_functions
    :target: https://codecov.io/gh/ameli/special_functions
 .. |build-linux| image:: https://github.com/ameli/special_functions/workflows/build-linux/badge.svg

@@ -38,7 +38,22 @@ cdef extern from "amos_wrapper.h":
 
 def py_cbesselh(nu, k, z, n=0):
     """
-    Wrapper for :funct:`cbesselh`.
+    Wrapper for :func:`cbesselh`.
+
+    :param nu: Parameter :math:`\\nu` of Bessel function.
+    :type nu: double
+
+    :param k: Can be ``1`` or ``2`` and sets the type of Hankel function.
+    :type k: int
+
+    :param z: Input argument of function.
+    :type z: double or double complex
+
+    :param n: Order of the derivative of function. Zero means no derivative.
+    :type n: int
+
+    :return: Value of Bessel function.
+    :rtype: double or double complex
     """
 
     # Check nu is real

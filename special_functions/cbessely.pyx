@@ -40,7 +40,19 @@ cdef extern from "amos_wrapper.h":
 
 def py_cbessely(nu, z, n=0):
     """
-    Wrapper for :funct:`cbessely`.
+    Wrapper for :func:`cbessely`.
+    
+    :param nu: Parameter :math:`\\nu` of Bessel function.
+    :type nu: double
+
+    :param z: Input argument of function.
+    :type z: double or double complex
+
+    :param n: Order of the derivative of function. Zero means no derivative.
+    :type n: int
+
+    :return: Value of Bessel function.
+    :rtype: double or double complex
     """
 
     # Check nu is real

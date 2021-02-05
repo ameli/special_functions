@@ -26,6 +26,18 @@ def besselj(nu, z, n=0):
     Computes Bessel function or its derivative,
     :math:`\\partial J_{\\nu}(z) / \\partial z`.
 
+    :param nu: Parameter :math:`\\nu` of Bessel function.
+    :type nu: double
+
+    :param z: Input argument of function.
+    :type z: double or double complex
+
+    :param n: Order of the derivative of function. Zero means no derivative.
+    :type n: int
+
+    :return: Value of Bessel function.
+    :rtype: double or double complex
+
     **Example:**
 
     The two example computes Bessel function :math:`J_{\\nu}(z)` and its first
@@ -73,6 +85,18 @@ def bessely(nu, z, n=0):
     """
     Computes Bessel function or its derivative,
     :math:`\\partial Y_{\\nu}(z) / \\partial z`.
+
+    :param nu: Parameter :math:`\\nu` of Bessel function.
+    :type nu: double
+
+    :param z: Input argument of function.
+    :type z: double or double complex
+
+    :param n: Order of the derivative of function. Zero means no derivative.
+    :type n: int
+
+    :return: Value of Bessel function.
+    :rtype: double or double complex
 
     **Example:**
 
@@ -122,6 +146,18 @@ def besseli(nu, z, n=0):
     Computes Bessel function or its derivative,
     :math:`\\partial I_{\\nu}(z) / \\partial z`.
 
+    :param nu: Parameter :math:`\\nu` of Bessel function.
+    :type nu: double
+
+    :param z: Input argument of function.
+    :type z: double or double complex
+
+    :param n: Order of the derivative of function. Zero means no derivative.
+    :type n: int
+
+    :return: Value of Bessel function.
+    :rtype: double or double complex
+
     **Example:**
 
     The two example computes Bessel function :math:`I_{\\nu}(z)` and its first
@@ -169,6 +205,18 @@ def besselk(nu, z, n=0):
     """
     Computes Bessel function or its derivative,
     :math:`\\partial K_{\\nu}(z) / \\partial z`.
+
+    :param nu: Parameter :math:`\\nu` of Bessel function.
+    :type nu: double
+
+    :param z: Input argument of function.
+    :type z: double or double complex
+
+    :param n: Order of the derivative of function. Zero means no derivative.
+    :type n: int
+
+    :return: Value of Bessel function.
+    :rtype: double or double complex
 
     **Example:**
 
@@ -218,6 +266,21 @@ def besselh(nu, k, z, n=0):
     Computes Bessel function or its derivative,
     :math:`\\partial H^{(1)}_{\\nu}(z) / \\partial z` and
     :math:`\\partial H^{(2)}_{\\nu}(z) / \\partial z`.
+
+    :param nu: Parameter :math:`\\nu` of Bessel function.
+    :type nu: double
+
+    :param k: Can be ``1`` or ``2`` and sets the type of Hankel function.
+    :type k: int
+
+    :param z: Input argument of function.
+    :type z: double or double complex
+
+    :param n: Order of the derivative of function. Zero means no derivative.
+    :type n: int
+
+    :return: Value of Bessel function.
+    :rtype: double or double complex
 
     **Example:**
 
@@ -269,6 +332,12 @@ def lngamma(x):
     """
     Computes the natural logarithm of Gamma function. THis function is a
     wrapper for ``gamma`` function in cephes library.
+
+    :param x: Input argument of function.
+    :type x: double
+
+    :return: Value of the function.
+    :rtype: double
 
     **Example:**
 

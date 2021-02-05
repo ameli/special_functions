@@ -24,7 +24,6 @@ requirements:
     host:
         - libcxx                          # [osx]
         - python {{ python }}
-        # - python
         - numpy>1.11
         - cython
         - pip
@@ -34,7 +33,6 @@ requirements:
         - setuptools
     run:
         - python {{ python }}
-        # - python
 
 test:
     imports:

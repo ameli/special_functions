@@ -117,7 +117,8 @@ def configuration(parent_package='', top_path=None):
                 'cdivision': True,
                 'wraparound': False,
                 'nonecheck': False,
-                "embedsignature": True
+                'embedsignature': True,
+                'linetrace': True
             })
 
     # Add extensions to config per each *.c file

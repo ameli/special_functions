@@ -24,16 +24,16 @@ jobs:
               run: |
                   python -m pip install --upgrade pip
                   python -m pip install --upgrade numpy
-                  python setup.py build
+                  python setup.py build_ext --force --inplace --define CYTHON_TRACE_NOGIL
               env:
-                  CYTHON_BUILD_IN_SOURCE: 'true'
+                  CYTHON_BUILD_IN_SOURCE: 1
 
             - name: Test
               run: |
                   python -m pip install --upgrade pytest
                   python -m pip install --upgrade pytest-cov
                   python -m pip install -r tests/requirements.txt
-                  python -m pytest --cov-report=xml --cov=special_functions tests/
+                  python -m pytest --cov-report=xml --cov
 
             - name: Coverage
               run: |

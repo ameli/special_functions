@@ -1,10 +1,10 @@
-.. _loggamma:
+.. _lngamma:
 
 **************************
 Logrithm of Gamma Function
 **************************
 
-This module computes the natural logarithm of Gamma function, :math:`\log \Gamma(x)`, where :math:`x \in \mathbb{R}`.
+This module computes the natural logarithm of Gamma function, :math:`\ln \Gamma(x)`, where :math:`x \in \mathbb{R}`.
 
 ======
 Syntax
@@ -12,13 +12,13 @@ Syntax
 
 This function has the following syntaxes depending on whether it is used in Python or Cython interface.
 
-+------------+-------------------------------+
-| Interface  | Function Signature            |
-+============+===============================+
-| **Python** | ``loggamma(x)``               |
-+------------+-------------------------------+
-| **Cython** | ``double loggamma(double x)`` |
-+------------+-------------------------------+
++------------+------------------------------+
+| Interface  | Function Signature           |
++============+==============================+
+| **Python** | ``lngamma(x)``               |
++------------+------------------------------+
+| **Cython** | ``double lngamma(double x)`` |
++------------+------------------------------+
 
 **Input Arguments:**
 
@@ -42,7 +42,7 @@ As shown in the codes below, the python's global lock interpreter, or ``gil``, c
 .. code-block:: python
 
     >>> # cimport module in a *.pyx file
-    >>> from special_functions cimport loggamma
+    >>> from special_functions cimport lngamma
 
     >>> # Declare typed variables
     >>> cdef double x = 2.0
@@ -50,7 +50,7 @@ As shown in the codes below, the python's global lock interpreter, or ``gil``, c
 
     >>> # Releasing gil to secure maximum cythonic speedup
     >>> with nogil:
-    ...     lg = loggamma(x)
+    ...     lg = lngamma(x)
 
 --------------------
 Using in Python Code
@@ -61,25 +61,25 @@ The codes below should be used in a ``.py`` file and no compilation is required.
 .. code-block:: python
 
     >>> # import module in a *.py file
-    >>> from special_functions import loggamma
+    >>> from special_functions import lngamma
 
     >>> x = 2.0
-    >>> lg = loggamma(x)
+    >>> lg = lngamma(x)
 
 =====
 Tests
 =====
 
-The test script of this module is located at |tests/test_loggamma.py|_. The test compares the results of this module with |scipy.special|_ package (function ``gamma``) for several combinations of input parameters with multiple values. Run the test by
+The test script of this module is located at |tests/test_lngamma.py|_. The test compares the results of this module with |scipy.special|_ package (function ``gamma``) for several combinations of input parameters with multiple values. Run the test by
 
 .. code::
 
     git clone https://github.com/ameli/special_functions.git
     cd special_functions/tests
-    python test_loggamma.py
+    python test_lngamma.py
 
-.. |tests/test_loggamma.py| replace:: ``tests/test_loggamma.py``
-.. _tests/test_loggamma.py: https://github.com/ameli/special_functions/blob/main/tests/test_loggamma.py
+.. |tests/test_lngamma.py| replace:: ``tests/test_lngamma.py``
+.. _tests/test_lngamma.py: https://github.com/ameli/special_functions/blob/main/tests/test_lngamma.py
 
 .. |scipy.special| replace:: ``scipy.special``
 .. _scipy.special: https://docs.scipy.org/doc/scipy/reference/special.html

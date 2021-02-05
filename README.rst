@@ -30,7 +30,6 @@ Links
 * `Documentation <https://ameli.github.io/special_functions/index.html>`_
 * `Package on Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_
 * `Package on PyPi <https://pypi.org/project/special_functions/>`_
-* `Source code on Github <https://github.com/ameli/special_functions>`_
 
 =======
 Install
@@ -167,13 +166,11 @@ Build and Install from Source Code
 
          sudo brew install gcc
 
-     .. note::
+     **Note:** If ``gcc`` is already installed, but Fortran compiler is yet not available on macOS, you may resolve this issue by reinstalling:
+     
+     ::
          
-         If ``gcc`` is already installed, but Fortran compiler is yet not available on macOS, you may resolve this issue by reinstalling:
-         
-         ::
-
-             sudo brew reinstall gcc
+         sudo brew reinstall gcc
 
    * **Windows:** Install both `Microsoft Visual C++ compiler <https://visualstudio.microsoft.com/vs/features/cplusplus/>`_ and Intel Fortran compiler (`Intel oneAPI <https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/fortran-compiler.html>`_). Open the command prompt (where you will enter the installation commands in the next step) and load the Intel compiler variables by
 
@@ -192,16 +189,13 @@ Build and Install from Source Code
        cd special_functions
        python -m pip install .
 
-.. warning::
-
-    After the package is built and installed from the source code, the package cannot be imported properly if the current working directory is the same as the source code directory.
-    To properly import the package, change the current working directory to a directory anywhere else **outside** of the source code directory. For instance:
-
-    .. code-block:: python
-
-        cd ..
-        python
-        >>> import special_functions
+**Warning:** After the package is built and installed from the source code, the package cannot be imported properly if the current working directory is the same as the source code directory. To properly import the package, change the current working directory to a directory anywhere else **outside** of the source code directory. For instance:
+    
+.. code-block:: python
+   
+   cd ..
+   python
+   >>> import special_functions
 
 ====
 Test
@@ -237,7 +231,7 @@ Syntax                    Symbol     User guide
 ``besseli(nu, z, n)``     |image08|  `Modified Bessel function of the first kind <https://ameli.github.io/special_functions/besseli.html>`_
 ``besselk(nu, z, n)``     |image09|  `Modified Bessel function of the second kind <https://ameli.github.io/special_functions/besselk.html>`_
 ``besselh(nu, k, z, n)``  |image10|  `Bessel function of the third kind <https://ameli.github.io/special_functions/besselh.html>`_ (Hankel function)
-``lngamma(x)``            |image11|  `Natural logarithm of Gamma function <https://ameli.github.io/special_functions/loggamma.html>`_
+``lngamma(x)``            |image11|  `Natural logarithm of Gamma function <https://ameli.github.io/special_functions/lngamma.html>`_
 ========================  =========  ===============================================================================================================
 
 **Typed Arguments:**
@@ -266,7 +260,7 @@ Symbol     Real Function             Complex Function
 |image08|  ``besseli(nu, x, n)``     ``cbesseli(nu, z, n)``    
 |image09|  ``besselk(nu, x, n)``     ``cbesselk(nu, z, n)``    
 |image10|  ``besselh(nu, k, x, n)``  ``cbesselh(nu, k, z, n)`` 
-|image11|  ``loggamma(x)``           N/A
+|image11|  ``lngamma(x)``            N/A
 =========  ========================  =========================
 
 .. |image01| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image01.svg

@@ -1,12 +1,20 @@
 # .coveragerc to control coverage
 [run]
+plugins = Cython.Coverage
 source = special_functions
-omit = setup.py, special_functions/__version__.py
+omit = 
+    tests
+    setup.py
+    special_functions/__version__.py
+    special_functions/__config__.py
+    *__init__.py
+    *__init__.pxd
 
 [report]
 # Regexes for lines to exclude from consideration
 exclude_lines =
     # Don't complain if tests don't hit defensive assertion code:
+    pragma: no cover
     raise
     except
     pass
