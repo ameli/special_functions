@@ -2,7 +2,7 @@
 special functions
 *****************
 
-|licence| |platforms| |pyversions| |conda-version| |pypi|
+|licence|
 
 This package provides both Python and Cython interfaces for Bessel functions and a few other special functions. 
 
@@ -38,7 +38,7 @@ Launch an online interactive tutorial in `Jupyter notebook <https://mybinder.org
     Bessel Function, Third Kind <besselh>
     Modified Bessel Function, First Kind <besseli>
     Modified Bessel Function, Second Kind <besselk>
-    Log Gamma Function <loggamma>
+    Log Gamma Function <lngamma>
 
 
 .. toctree::

@@ -18,7 +18,7 @@ Syntax                    Return type                     Symbol     User guide
 ``besseli(nu, z, n)``     ``double``, ``double complex``  |image08|  :ref:`Modified Bessel function of the first kind <besseli>`
 ``besselk(nu, z, n)``     ``double``, ``double complex``  |image09|  :ref:`Modified Bessel function of the second kind <besselk>`
 ``besselh(nu, k, z, n)``  ``double complex``              |image10|  :ref:`Bessel function of the third kind <besselh>` (Hankel function)
-``loggamma(x)``           ``double``                      |image11|  :ref:`Natural logarithm of Gamma function <loggamma>`
+``lngamma(x)``            ``double``                      |image11|  :ref:`Natural logarithm of Gamma function <lngamma>`
 ========================  ==============================  =========  ====================================================================
 
 **Function Arguments:**
@@ -43,7 +43,7 @@ Argument   Type                           Symbol     Description
 .. |image08| replace:: :math:`\partial^n I_{\nu}(z) / \partial z^n`
 .. |image09| replace:: :math:`\partial^n K_{\nu}(z) / \partial z^n`
 .. |image10| replace:: :math:`\partial^n H^{(k)}_{\nu}(z) / \partial z^n`
-.. |image11| replace:: :math:`\log \Gamma(x)`
+.. |image11| replace:: :math:`\l \Gamma(x)`
 
 
 ----------------
@@ -60,7 +60,7 @@ Symbol     Real Function             Complex Function
 |image08|  ``besseli(nu, x, n)``     ``cbesseli(nu, z, n)``    
 |image09|  ``besselk(nu, x, n)``     ``cbesselk(nu, z, n)``    
 |image10|  ``besselh(nu, k, x, n)``  ``cbesselh(nu, k, z, n)`` 
-|image11|  ``loggamma(x)``           N/A
+|image11|  ``lngamma(x)``            N/A
 =========  ========================  =========================
 
 In the above table:

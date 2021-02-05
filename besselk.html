@@ -43,7 +43,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Logrithm of Gamma Function" href="loggamma.html" />
+    <link rel="next" title="Logrithm of Gamma Function" href="lngamma.html" />
     <link rel="prev" title="Modified Bessel Function of the First Kind" href="besseli.html" /> 
 </head>
 
@@ -129,7 +129,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="loggamma.html">Log Gamma Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lngamma.html">Log Gamma Function</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development</span></p>
 <ul>
@@ -369,7 +369,7 @@
 <h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h2>
 <p>Depending on the values of the input parameters <span class="math notranslate nohighlight">\((\nu, z, n)\)</span>, one of the following three algorithms is employed.</p>
 <ul class="simple">
-<li><p>If <span class="math notranslate nohighlight">\(z \in \mathbb{R}\)</span> (that is, <code class="docutils literal notranslate"><span class="pre">z</span></code> is of type <code class="docutils literal notranslate"><span class="pre">double</span></code>) and <span class="math notranslate nohighlight">\(\nu = 0\)</span> or <span class="math notranslate nohighlight">\(\nu = 1\)</span>, the computation is carried out by Cephes C library (see <a class="reference internal" href="loggamma.html#cephes-1989" id="id3"><span>[Cephes-1989]</span></a>), respectively using <code class="docutils literal notranslate"><span class="pre">k0</span></code>, <code class="docutils literal notranslate"><span class="pre">k1</span></code>, or <code class="docutils literal notranslate"><span class="pre">kn</span></code> functions in that library.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(z \in \mathbb{R}\)</span> (that is, <code class="docutils literal notranslate"><span class="pre">z</span></code> is of type <code class="docutils literal notranslate"><span class="pre">double</span></code>) and <span class="math notranslate nohighlight">\(\nu = 0\)</span> or <span class="math notranslate nohighlight">\(\nu = 1\)</span>, the computation is carried out by Cephes C library (see <a class="reference internal" href="lngamma.html#cephes-1989" id="id3"><span>[Cephes-1989]</span></a>), respectively using <code class="docutils literal notranslate"><span class="pre">k0</span></code>, <code class="docutils literal notranslate"><span class="pre">k1</span></code>, or <code class="docutils literal notranslate"><span class="pre">kn</span></code> functions in that library.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(\nu + \frac{1}{2} \in \mathbb{Z}\)</span>, the modified Bessel function is computed using <a class="reference internal" href="#half-int-besselk"><span class="std std-ref">half-integer formulas</span></a> in terms of elementary functions.</p></li>
 <li><p>For other cases, the computation is carried out by Amos Fortran library (see <a class="reference internal" href="index.html#amos-1986" id="id4"><span>[Amos-1986]</span></a>) using <code class="docutils literal notranslate"><span class="pre">zbesk</span></code> subroutine in that library.</p></li>
 </ul>
@@ -443,7 +443,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="loggamma.html" class="btn btn-neutral float-right" title="Logrithm of Gamma Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="lngamma.html" class="btn btn-neutral float-right" title="Logrithm of Gamma Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="besseli.html" class="btn btn-neutral float-left" title="Modified Bessel Function of the First Kind" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

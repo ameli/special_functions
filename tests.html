@@ -101,7 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="besselh.html">Bessel Function, Third Kind</a></li>
 <li class="toctree-l1"><a class="reference internal" href="besseli.html">Modified Bessel Function, First Kind</a></li>
 <li class="toctree-l1"><a class="reference internal" href="besselk.html">Modified Bessel Function, Second Kind</a></li>
-<li class="toctree-l1"><a class="reference internal" href="loggamma.html">Log Gamma Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lngamma.html">Log Gamma Function</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development</span></p>
 <ul class="current">
@@ -109,7 +109,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Running Tests</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#running-tests-with-pytest">Running Tests with <code class="docutils literal notranslate"><span class="pre">pytest</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-tests-with-tox">Running Tests with <code class="docutils literal notranslate"><span class="pre">tox</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#automated-build-and-tests">Automated Build and Tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
@@ -182,6 +181,7 @@
             
   <div class="section" id="running-tests">
 <span id="run-tests"></span><h1>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://codecov.io/gh/ameli/special_functions"><img alt="codecov-devel" src="https://img.shields.io/codecov/c/github/ameli/special_functions" /></a></p>
 <p>The package can be tested by running the <a class="reference external" href="https://github.com/ameli/special_functions/tree/main/tests">test scripts</a>, which tests all <a class="reference external" href="https://github.com/ameli/special_functions/tree/main/special_functions">modules</a>.</p>
 <div class="section" id="running-tests-with-pytest">
 <h2>Running Tests with <code class="docutils literal notranslate"><span class="pre">pytest</span></code><a class="headerlink" href="#running-tests-with-pytest" title="Permalink to this headline">¶</a></h2>
@@ -234,76 +234,6 @@
 </div>
 </li>
 </ol>
-</div>
-<div class="section" id="automated-build-and-tests">
-<span id="automated-tests"></span><h2>Automated Build and Tests<a class="headerlink" href="#automated-build-and-tests" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://codecov.io/gh/ameli/special_functions"><img alt="codecov-devel" src="https://img.shields.io/codecov/c/github/ameli/special_functions" /></a></p>
-<p>The latest <em>coverage</em> of tests can be checked on <a class="reference external" href="https://codecov.io/gh/ameli/special_functions">codecov</a> dashboard. The status of <em>automated tests</em> can be checked on the continuous integration tools below for the list of supported platforms, Python, and PyPy versions:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head" rowspan="2"><p>Platform</p></th>
-<th class="head" colspan="5"><p>Python version</p></th>
-<th class="head" colspan="3"><p>PyPy version</p></th>
-<th class="head" rowspan="2"><p>Status</p></th>
-</tr>
-<tr class="row-even"><th class="head"><p>2.7</p></th>
-<th class="head"><p>3.6</p></th>
-<th class="head"><p>3.7</p></th>
-<th class="head"><p>3.8</p></th>
-<th class="head"><p>3.9</p></th>
-<th class="head"><p>2.7</p></th>
-<th class="head"><p>3.6</p></th>
-<th class="head"><p>3.7</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-odd"><td><p>Linux</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-linux"><img alt="build-linux" src="https://github.com/ameli/special_functions/workflows/build-linux/badge.svg" /></a></p></td>
-</tr>
-<tr class="row-even"><td><p>macOS</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
-<td><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-macos"><img alt="build-macos" src="https://github.com/ameli/special_functions/workflows/build-macos/badge.svg" /></a></p></td>
-</tr>
-<tr class="row-odd"><td><p>Windows</p></td>
-<td><p>✖</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✔</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
-<td><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-windows"><img alt="build-windows" src="https://github.com/ameli/special_functions/workflows/build-windows/badge.svg" /></a></p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 
