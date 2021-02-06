@@ -215,7 +215,7 @@ def main(argv):
         download_url=download_url,
         platforms=['Linux', 'OSX', 'Windows'],
         classifiers=[
-            'Programming Language :: Cython'
+            'Programming Language :: Cython',
             'Programming Language :: Python :: 2.7',
             'Programming Language :: Python :: 3.6',
             'Programming Language :: Python :: 3.7',

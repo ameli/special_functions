@@ -24,6 +24,7 @@ jobs:
                   FOLDER: docs/_build/html
                   CYTHON_BUILD_IN_SOURCE: 1
                   BUILD_SCRIPT: |
+                      sudo apt-get install gfortran
                       pip install --upgrade pip
                       install --upgrade numpy
                       export CYTHON_BUILD_IN_SOURCE=1

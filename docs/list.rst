@@ -1,7 +1,3 @@
-***********
-Quick Start
-***********
-
 =================
 List of Functions
 =================
@@ -33,19 +29,6 @@ Argument   Type                           Symbol     Description
 ``n``     ``int``                         |image05|  Order of derivative of function. Zero indicates no derivative.
 ========  ==============================  =========  ==============================================================
 
-.. |image01| replace:: :math:`\nu`
-.. |image02| replace:: :math:`k`
-.. |image03| replace:: :math:`z`
-.. |image04| replace:: :math:`x`
-.. |image05| replace:: :math:`n`
-.. |image06| replace:: :math:`\partial^n J_{\nu}(z) / \partial z^n`
-.. |image07| replace:: :math:`\partial^n Y_{\nu}(z) / \partial z^n`
-.. |image08| replace:: :math:`\partial^n I_{\nu}(z) / \partial z^n`
-.. |image09| replace:: :math:`\partial^n K_{\nu}(z) / \partial z^n`
-.. |image10| replace:: :math:`\partial^n H^{(k)}_{\nu}(z) / \partial z^n`
-.. |image11| replace:: :math:`\l \Gamma(x)`
-
-
 ----------------
 Cython Interface
 ----------------
@@ -69,3 +52,15 @@ In the above table:
 * ``z`` is of type ``double complex``.
 * Real functions return ``double`` type, with the exception of ``besselh`` that always returns ``double complex`` type.
 * Complex functions return ``double complex`` type.
+
+.. |image01| replace:: :math:`\nu`
+.. |image02| replace:: :math:`k`
+.. |image03| replace:: :math:`z`
+.. |image04| replace:: :math:`x`
+.. |image05| replace:: :math:`n`
+.. |image06| replace:: :math:`\partial^n J_{\nu}(z) / \partial z^n`
+.. |image07| replace:: :math:`\partial^n Y_{\nu}(z) / \partial z^n`
+.. |image08| replace:: :math:`\partial^n I_{\nu}(z) / \partial z^n`
+.. |image09| replace:: :math:`\partial^n K_{\nu}(z) / \partial z^n`
+.. |image10| replace:: :math:`\partial^n H^{(k)}_{\nu}(z) / \partial z^n`
+.. |image11| replace:: :math:`\ln \Gamma(x)`
