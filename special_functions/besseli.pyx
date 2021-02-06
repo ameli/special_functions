@@ -111,7 +111,7 @@ cdef double besseli(
 
     # Check positive derivative order
     if n < 0:
-        printf('Derivative order should be non-negative integer.\n')
+        printf('ERROR: Derivative order should be non-negative integer.\n')
         exit(1)
 
     # Handling negative nu
@@ -138,6 +138,7 @@ cdef double besseli(
 
             # Check if the complex functions returned zero imaginary part
             if fabs(output.imag) > tolerance:
+                printf('ERROR: ')
                 printf('Mismatch of real input and complex output detected. ')
                 printf('input: %f, output: %e + %ej.\n',
                        z, output.real, output.imag)
@@ -224,7 +225,7 @@ cdef double _real_besseli(
     elif nu == 1:
         return i1(z)
     else:
-        printf('The parameter nu should be 0 or 1 in this function.\n')
+        printf('ERROR: The parameter nu should be 0 or 1 in this function.\n')
         exit(1)
 
 

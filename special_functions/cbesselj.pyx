@@ -115,7 +115,7 @@ cdef double complex cbesselj(
 
     # Check positive derivative order
     if n < 0:
-        printf('Derivative order should be non-negative integer.\n')
+        printf('ERROR: Derivative order should be non-negative integer.\n')
         exit(1)
 
     # Handling negative nu

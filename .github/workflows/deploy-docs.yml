@@ -15,6 +15,11 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
+            - name: Set up Python
+              uses: actions/setup-python@v2
+              with:
+                  python-version: 3.9
+
             - name: Build and Deploy
               uses: JacksonMaxfield/github-pages-deploy-action-python@master
               env:
@@ -25,11 +30,11 @@ jobs:
                   CYTHON_BUILD_IN_SOURCE: 1
                   BUILD_SCRIPT: |
                       sudo apt-get install gfortran
-                      pip install --upgrade pip
-                      install --upgrade numpy
+                      sudo -H python -m pip install --upgrade pip
+                      sudo -H python -m pip install --upgrade numpy
                       export CYTHON_BUILD_IN_SOURCE=1
                       python setup.py build_ext --force --inplace
-                      pip install sphinx sphinx-math-dollar sphinx-toggleprompt sphinx_rtd_theme sphinx-automodapi
+                      sudo -H python -m pip install sphinx sphinx-math-dollar sphinx-toggleprompt sphinx_rtd_theme sphinx-automodapi
                       export PATH=$HOME/.local/bin:$PATH
                       sphinx-apidoc -f -o docs/_modules/ ./special_functions
                       cd docs

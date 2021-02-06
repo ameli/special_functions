@@ -8,6 +8,7 @@ from __future__ import print_function
 import os
 import sys
 import subprocess
+import codecs
 
 
 # ===============
@@ -194,7 +195,10 @@ def main(argv):
 
     # ReadMe
     readme_file = os.path.join(directory, 'README.rst')
-    long_description = open(readme_file, 'r').read()
+    long_description = codecs.open(readme_file, 'r', encoding="utf-8").read()
+
+    # Test
+    print(long_description)
 
     # URLs
     url = 'https://github.com/ameli/special_functions'
@@ -210,6 +214,7 @@ def main(argv):
         author_email='sameli@berkeley.edu',
         description="Cython and Python API for special functions.",
         long_description=long_description,
+        long_description_content_type='text/x-rst',
         keywords="""special-functions bessel-function gamma-function""",
         url=url,
         download_url=download_url,

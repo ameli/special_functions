@@ -107,7 +107,7 @@ cdef double bessely(
 
     # Check positive derivative order
     if n < 0:
-        printf('Derivative order should be non-negative integer.\n')
+        printf('ERROR: Derivative order should be non-negative integer.\n')
         exit(1)
 
     # Check domain of function
@@ -140,6 +140,7 @@ cdef double bessely(
 
             # Check if the complex functions returned zero imaginary part
             if fabs(output.imag) > tolerance:
+                printf('ERROR: ')
                 printf('Mismatch of real input and complex output detected. ')
                 printf('input: %f, output: %e + %ej.\n',
                        z, output.real, output.imag)

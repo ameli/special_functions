@@ -108,7 +108,7 @@ cdef double besselj(
 
     # Check positive derivative order
     if n < 0:
-        printf('Derivative order should be non-negative integer.\n')
+        printf('ERROR: Derivative order should be non-negative integer.\n')
         exit(1)
 
     # Check domain of real function
@@ -142,6 +142,7 @@ cdef double besselj(
 
             # Check if the complex functions returned zero imaginary part
             if fabs(output.imag) > tolerance:
+                printf('ERROR: ')
                 printf('Mismatch of real input and complex output detected. ')
                 printf('input: %f, output: %e + %ej.\n',
                        z, output.real, output.imag)
@@ -223,7 +224,7 @@ cdef double _real_besselj_integer_order(
     elif nu == 1:
         return j1(z)
     else:
-        printf('nu should be 0 or 1.\n')
+        printf('ERROR: nu should be 0 or 1.\n')
         exit(1)
 
 

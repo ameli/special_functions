@@ -124,12 +124,12 @@ cdef double complex cbesselh(
 
     # Check k is 1 or 2
     if (k != 1) and (k != 2):
-        printf('Index k should be 1 or 2.\n')
+        printf('ERROR: Index k should be 1 or 2.\n')
         exit(1)
 
     # Check positive derivative order
     if n < 0:
-        printf('Derivative order should be non-negative integer.\n')
+        printf('ERROR: Derivative order should be non-negative integer.\n')
         exit(1)
 
     # H function is undefined at zero
@@ -152,7 +152,7 @@ cdef double complex cbesselh(
             elif k == 2:
                 sign = -1.0
             else:
-                printf('Index k = %d is invalid\n.', k)
+                printf('ERROR: Index k = %d is invalid\n.', k)
                 exit(1)
             return cbesselh(-nu, k, z, n) * (c - sign * 1j * s)
 
@@ -197,7 +197,7 @@ cdef double complex _complex_besselh_half_integer_order(
     elif k == 2:
         sign = -1.0
     else:
-        printf('Index k = %d is invalid.\n', k)
+        printf('ERROR: Index k = %d is invalid.\n', k)
         exit(1)
 
     if (z.imag == 0) and (z.real == 0):
