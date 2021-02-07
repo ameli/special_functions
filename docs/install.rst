@@ -117,6 +117,10 @@ Alternatively, the package can be installed through `Anaconda could <https://ana
       
       conda install -c s-ameli -c conda-forge special_functions
 
+.. note::
+
+    On macOS and Python 2.7, install this package with ``pip`` instead.
+
 .. _Build_Locally:
 
 ----------------------------------

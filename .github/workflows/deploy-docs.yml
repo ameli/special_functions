@@ -22,16 +22,12 @@ jobs:
 
             - name: Install package and dependencies
               run: |
+                  which python
+                  python --version
                   python -m pip install --upgrade pip
                   python -m pip install --upgrade numpy
                   export CYTHON_BUILD_IN_SOURCE=1
                   python setup.py build_ext --inplace
-                  python -m pip install sphinx sphinx-math-dollar sphinx-toggleprompt sphinx_rtd_theme sphinx-automodapi
-                  cd docs
-                  sphinx-apidoc -f -o _modules/ ../special_functions
-                  make html
-                  touch _build/html/.nojekyll
-                  echo 'Visit [Documentation](https://ameli.github.io/special_functions/index.html).' > _build/html/README.md
               env:
                   CYTHON_BUILD_IN_SOURCE: 1
 
@@ -42,3 +38,14 @@ jobs:
                   BASE_BRANCH: main
                   BRANCH: gh-pages
                   FOLDER: docs/_build/html
+                  BUILD_SCRIPT: |
+                      ls special_functions
+                      which python
+                      python --version
+                      python -m pip install sphinx sphinx-math-dollar sphinx-toggleprompt sphinx_rtd_theme sphinx-automodapi
+                      export PATH=$HOME/.local/bin:$PATH
+                      cd docs
+                      sphinx-apidoc -f -o _modules/ ../special_functions
+                      make html
+                      touch _build/html/.nojekyll
+                      echo 'Visit [Documentation](https://ameli.github.io/special_functions/index.html).' > _build/html/README.md
