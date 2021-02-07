@@ -8,7 +8,6 @@ from __future__ import print_function
 import os
 import sys
 import subprocess
-import codecs
 
 
 # ===============
@@ -195,10 +194,7 @@ def main(argv):
 
     # ReadMe
     readme_file = os.path.join(directory, 'README.rst')
-    long_description = codecs.open(readme_file, 'r', encoding="utf-8").read()
-
-    # Test
-    print(long_description)
+    long_description = open(readme_file, 'r', encoding="utf-8").read()
 
     # URLs
     url = 'https://github.com/ameli/special_functions'
