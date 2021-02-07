@@ -12,15 +12,14 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 ============
 
 --------------------
-[0.0.2] - 2021-01-22
+[0.0.8] - 2021-02-06
 --------------------
 
 ~~~~~~~
 Changed
 ~~~~~~~
 
-* Fixed loading Fortran libraries.
-
+* Working version published to pypi and conda.
 
 --------------------
 [0.0.1] - 2021-01-11

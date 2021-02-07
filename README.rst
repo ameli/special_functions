@@ -168,7 +168,7 @@ Build and Install from Source Code
 
          sudo brew install gcc
 
-     **Note:** If ``gcc`` is already installed, but Fortran compiler is yet not available on macOS, you may resolve this issue by reinstalling:
+     *Note:* If ``gcc`` is already installed, but Fortran compiler is yet not available on macOS, you may resolve this issue by reinstalling:
      
      ::
          
