@@ -42,8 +42,10 @@ jobs:
                   FOLDER: docs/_build/html
                   CYTHON_BUILD_IN_SOURCE: 1
                   BUILD_SCRIPT: |
-                      sudo -H apt-get install gfortran
-                      sudo -H apt-get install gcc
+                      set -e
+                      set -x
+                      apt-get install gfortran
+                      apt-get install gcc
                       which gfortran
                       export PATH=$HOME/.local/bin:$PATH
                       which python3
