@@ -194,7 +194,7 @@ def main(argv):
 
     # ReadMe
     readme_file = os.path.join(directory, 'README.rst')
-    long_description = open(readme_file, 'r', encoding="utf-8").read()
+    long_description = open(readme_file, 'r').read()
 
     # URLs
     url = 'https://github.com/ameli/special_functions'

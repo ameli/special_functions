@@ -34,8 +34,18 @@ jobs:
                   cd ..
                   touch docs/_build/html/.nojekyll
                   echo 'Visit [Documentation](https://ameli.github.io/special_functions/index.html).' > docs/_build/html/README.md
+                  ls
+                  ls special_functions
               env:
                   CYTHON_BUILD_IN_SOURCE: 1
+
+            - name: Test
+              run: |
+                  python -m pip install --upgrade pytest
+                  python -m pip install --upgrade pytest-cov
+                  python -m pip install -r tests/requirements.txt
+                  cd special_functions
+                  pytest
 
             - name: Build and Deploy
               uses: JacksonMaxfield/github-pages-deploy-action-python@master
