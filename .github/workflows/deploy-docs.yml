@@ -44,6 +44,7 @@ jobs:
                   BUILD_SCRIPT: |
                       set -e
                       set -x
+                      apt-get update
                       apt-get install gfortran -y
                       apt-get install gcc -y
                       which gfortran
