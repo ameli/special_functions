@@ -61,7 +61,7 @@ This function has the following syntaxes depending on whether it is used in Pyth
 
 .. seealso::
 
-   :ref:`Modified Bessel function of the first kind <besselyi>`.
+   :ref:`Modified Bessel function of the first kind <besseli>`.
 
 ========
 Examples

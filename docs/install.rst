@@ -119,7 +119,7 @@ Alternatively, the package can be installed through `Anaconda could <https://ana
 
 .. note::
 
-    On macOS and Python 2.7, install this package with ``pip`` instead.
+    On macOS and Python 2.7, install this package with ``pip`` instead of ``conda``.
 
 .. _Build_Locally:
 
