@@ -26,6 +26,7 @@ jobs:
                   which python3
                   python3 --version
                   python3 -m pip install --upgrade pip
+                  python3 -m pip install --upgrade setuptools
                   python3 -m pip install --upgrade numpy
                   export CYTHON_BUILD_IN_SOURCE=1
                   python3 setup.py build_ext --inplace
