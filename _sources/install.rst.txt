@@ -11,16 +11,19 @@ Supported Platforms
 Successful installation and tests have been performed on the following platforms and Python/PyPy versions shown in the table below.
 
 
+.. |y| unicode:: U+2714
+.. |n| unicode:: U+2716
+
 +----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
 | Platform | Python version              | PyPy version    | Status          |
 +          +-----+-----+-----+-----+-----+-----+-----+-----+                 +
 |          | 2.7 | 3.6 | 3.7 | 3.8 | 3.9 | 2.7 | 3.6 | 3.7 |                 |
 +==========+=====+=====+=====+=====+=====+=====+=====+=====+=================+
-| Linux    |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  | |build-linux|   |
+| Linux    | |y| | |y| | |y| | |y| | |y| | |y| | |y| | |y| | |build-linux|   |
 +----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
-| macOS    |  ✔  |  ✔  |  ✔  |  ✔  |  ✔  |  ✖  |  ✖  |  ✖  | |build-macos|   |
+| macOS    | |y| | |y| | |y| | |y| | |y| | |n| | |n| | |n| | |build-macos|   |
 +----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
-| Windows  |  ✖  |  ✔  |  ✔  |  ✔  |  ✔  |  ✖  |  ✖  |  ✖  | |build-windows| |
+| Windows  | |n| | |y| | |y| | |y| | |y| | |n| | |n| | |n| | |build-windows| |
 +----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
 
 .. |build-linux| image:: https://github.com/ameli/special_functions/workflows/build-linux/badge.svg
@@ -32,8 +35,8 @@ Successful installation and tests have been performed on the following platforms
 
 .. note::
 
-    * For the Python/PyPy versions indicated by ✔ in the above, this package can be installed using either ``pip`` or ``conda`` (see :ref:`installation instructions <InstallationMethods>` below.)
-    * This package cannot be installed via ``pip`` or ``conda`` on the Python/PyPy versions indicated by ✖ in the above table.
+    * For the Python/PyPy versions indicated by |y| in the above, this package can be installed using either ``pip`` or ``conda`` (see :ref:`installation instructions <InstallationMethods>` below.)
+    * This package cannot be installed via ``pip`` or ``conda`` on the Python/PyPy versions indicated by |n| in the above table.
     * To install on the older Python 3 versions that are not listed in the above (for example Python 3.5), you should *build* this package from the source code (see :ref:`build instructions <Build_Locally>`).
 
 
@@ -113,6 +116,10 @@ Alternatively, the package can be installed through `Anaconda could <https://ana
   ::
       
       conda install -c s-ameli -c conda-forge special_functions
+
+.. note::
+
+    On macOS and Python 2.7, install this package with ``pip`` instead of ``conda``.
 
 .. _Build_Locally:
 
