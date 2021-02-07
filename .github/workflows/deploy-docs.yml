@@ -44,8 +44,8 @@ jobs:
                   BUILD_SCRIPT: |
                       set -e
                       set -x
-                      apt-get install gfortran
-                      apt-get install gcc
+                      apt-get install gfortran -y
+                      apt-get install gcc -y
                       which gfortran
                       export PATH=$HOME/.local/bin:$PATH
                       which python3
