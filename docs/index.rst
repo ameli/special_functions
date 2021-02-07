@@ -80,7 +80,7 @@ We welcome contributions via `Github's pull request <https://github.com/ameli/sp
 Related Packages
 ================
 
-* `scipy.special <https://docs.scipy.org/doc/scipy/reference/special.html>`_: Many special functions were implemented in Scipy's special sub-package. This package is reimplements Bessel functions similar to ``scipy.special``, but with simplified python and cython different interfaces.
+* `scipy.special <https://docs.scipy.org/doc/scipy/reference/special.html>`_: Many special functions are available in *scipy.special* package.
 * `Gaussian Process <https://github.com/ameli/gaussian-process-param-estimation>`_: A python package that makes use of ``special_functions``.
 
 
