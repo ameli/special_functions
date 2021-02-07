@@ -20,18 +20,18 @@ jobs:
             #   with:
             #       python-version: 3.8
 
-            - name: Install package and dependencies
-              run: |
-                  export PATH=$HOME/.local/bin:$PATH
-                  which python3
-                  python3 --version
-                  python3 -m pip install --upgrade pip
-                  python3 -m pip install --upgrade setuptools
-                  python3 -m pip install --upgrade numpy
-                  export CYTHON_BUILD_IN_SOURCE=1
-                  python3 setup.py build_ext --inplace
-              env:
-                  CYTHON_BUILD_IN_SOURCE: 1
+            # - name: Install package and dependencies
+            #   run: |
+            #       export PATH=$HOME/.local/bin:$PATH
+            #       which python3
+            #       python3 --version
+            #       python3 -m pip install --upgrade pip
+            #       python3 -m pip install --upgrade setuptools
+            #       python3 -m pip install --upgrade numpy
+            #       export CYTHON_BUILD_IN_SOURCE=1
+            #       python3 setup.py build_ext --inplace
+            #   env:
+            #       CYTHON_BUILD_IN_SOURCE: 1
 
             - name: Build and Deploy
               uses: JacksonMaxfield/github-pages-deploy-action-python@master
@@ -40,10 +40,19 @@ jobs:
                   BASE_BRANCH: main
                   BRANCH: gh-pages
                   FOLDER: docs/_build/html
+                  CYTHON_BUILD_IN_SOURCE: 1
                   BUILD_SCRIPT: |
+                      sudo -H apt-get install gfortran
+                      sudo -H apt-get install gcc
+                      which gfortran
                       export PATH=$HOME/.local/bin:$PATH
                       which python3
                       python3 --version
+                      python3 -m pip install --upgrade pip
+                      python3 -m pip install --upgrade setuptools
+                      python3 -m pip install --upgrade numpy
+                      export CYTHON_BUILD_IN_SOURCE=1
+                      python3 setup.py build_ext --inplace
                       python3 -m pip install sphinx sphinx-math-dollar sphinx-toggleprompt sphinx_rtd_theme sphinx-automodapi
                       sphinx-apidoc -f -o docs/_modules/ ./special_functions
                       make html --directory=docs
