@@ -25,17 +25,14 @@ jobs:
                   python -m pip install --upgrade pip
                   python -m pip install --upgrade numpy
                   export CYTHON_BUILD_IN_SOURCE=1
-                  python setup.py build_ext --force --inplace
+                  python setup.py build_ext --force --inplace --define CYTHON_TRACE_NOGIL
                   python -m pip install sphinx sphinx-math-dollar sphinx-toggleprompt sphinx_rtd_theme sphinx-automodapi
-                  # export PATH=$HOME/.local/bin:$PATH
                   sphinx-apidoc -f -o docs/_modules/ ./special_functions
                   cd docs
                   make html
                   cd ..
                   touch docs/_build/html/.nojekyll
                   echo 'Visit [Documentation](https://ameli.github.io/special_functions/index.html).' > docs/_build/html/README.md
-                  ls
-                  ls special_functions
               env:
                   CYTHON_BUILD_IN_SOURCE: 1
 
