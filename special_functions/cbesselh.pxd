@@ -1,3 +1,7 @@
+# ============
+# Declarations
+# ============
+
 cdef double complex cbesselh(
         const double nu,
         const int k,

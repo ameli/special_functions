@@ -429,3 +429,5 @@ This package uses the following libraries:
    :target: https://github.com/ameli/special_functions/releases/
 .. |binder| image:: https://mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb
+.. |downloads| image:: https://pepy.tech/badge/special-functions
+   :target: https://pepy.tech/project/special_functions

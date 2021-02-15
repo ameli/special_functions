@@ -178,6 +178,8 @@ cdef double _real_bessely_half_integer_order(
 
         if nu > 0:
             return -INFINITY
+        elif nu == -0.5:
+                return 0
         else:
             return INFINITY * copysign(1, sin(M_PI * nu))
 
@@ -219,7 +221,10 @@ cdef double _real_bessely_integer_order(
     """
 
     if z == 0:
-        return -INFINITY
+        if nu >= 0:
+            return -INFINITY
+        else:
+            return (-1)**nu * INFINITY
     else:
         return yn(nu, z)
 

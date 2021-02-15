@@ -15,9 +15,9 @@ from special_functions.cbesselh cimport cbesselh
 from special_functions.lngamma cimport lngamma
 
 __all__ = [
-        besselj, cbesselj,
-        bessely, cbessely,
-        besseli, cbesseli,
-        besselk, cbesselk,
-        besselh, cbesselh,
-        lngamma]
+        'besselj', 'cbesselj',
+        'bessely', 'cbessely',
+        'besseli', 'cbesseli',
+        'besselk', 'cbesselk',
+        'besselh', 'cbesselh',
+        'lngamma']

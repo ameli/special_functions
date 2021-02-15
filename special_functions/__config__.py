@@ -19,7 +19,7 @@
 import os
 import sys
 
-__all__ = ["get_info", "show"]
+__all__ = ['get_info', 'show']
 
 # =================
 # Add .libs to PATH

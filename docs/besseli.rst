@@ -171,21 +171,23 @@ There are very few differences between numerical results of this package compare
 
 .. math::
     
-    I_{\nu}(0) = - \infty, \qquad \nu < 0 \quad \text{and} \quad \nu \notin \mathbb{Z}.
+    I_{\nu}(0) = (-1)^{\lceil \nu \rceil} \infty, \qquad \nu < 0 \quad \text{and} \quad \nu \notin \mathbb{Z},
+
+where :math:`\lceil \nu \rceil` is the ceil function.
  
-The above value is returned correctly with this package. However, scipy returns :math:`-\infty` incorrectly. That is:
+The sign of infinity in the above is returned correctly with this package. However, scipy always returns :math:`+\infty` incorrectly regardless of :math:`\nu`. That is:
 
 .. code-block:: python
 
    >>> # This returns correct value
    >>> from special_functions import besseli
-   >>> bessely(-1.2, 0)
-   inf
+   >>> besseli(-1.2, 0)
+   -inf
 
    >>> # This returns incorrect value
    >>> from scipy.special import iv
    >>> iv(-1.2 ,0)
-   -inf
+   inf
 
 However, in the complex domain :math:`z \in \mathbb{C}` at :math:`z = 0`, the answer to the above function value is ``nan`` and both this package and scipy return similar answers.
 
@@ -201,7 +203,7 @@ we have:
 
    >>> # This returns correct value
    >>> from special_functions import besseli
-   >>> bessely(-1.2, 0, 2)
+   >>> besseli(-1.2, 0, 2)
    nan
 
    >>> # This returns incorrect value

@@ -11,10 +11,10 @@ import subprocess
 
 
 # ===============
-# Install Package
+# install package
 # ===============
 
-def InstallPackage(Package):
+def install_package(package):
     """
     Installs packages using pip.
 
@@ -22,13 +22,13 @@ def InstallPackage(Package):
 
     .. code-block:: python
 
-        >>> InstallPackage('numpy>1.11')
+        >>> install_package('numpy>1.11')
 
-    :param Package: Name of pakcage with or without its version pin.
-    :type Package: string
+    :param package: Name of pakcage with or without its version pin.
+    :type package: string
     """
 
-    subprocess.check_call([sys.executable, "-m", "pip", "install", Package])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
 
 # =====================
@@ -40,16 +40,15 @@ try:
     from numpy.distutils.misc_util import Configuration
 except ImportError:
     # Install numpy
-    InstallPackage('numpy>1.11')
+    install_package('numpy>1.11')
     from numpy.distutils.misc_util import Configuration
 
 # Import Cython (to convert pyx to C code)
 try:
     from Cython.Build import cythonize
-    UseCython = True
 except ImportError:
     # Install Cython
-    InstallPackage('cython')
+    install_package('cython')
     from Cython.Build import cythonize
 
 
@@ -98,7 +97,7 @@ def configuration(parent_package='', top_path=None):
             ],
             macros=macros)
 
-    # If envirinment var "CYTHON_BUILD_IN_SOURCE" exists, cython builds *.c
+    # If envirinment var "CYTHON_BUILD_IN_SOURCE" exists, cython creates *.c
     # files in the source code, otherwise in /build.
     cython_build_in_source = os.environ.get('CYTHON_BUILD_IN_SOURCE', None)
     if bool(cython_build_in_source):

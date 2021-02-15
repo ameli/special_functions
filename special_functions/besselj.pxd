@@ -1,3 +1,7 @@
+# ============
+# Declarations
+# ============
+
 cdef double besselj(
         const double nu,
         const double z,

@@ -44,6 +44,9 @@ def validate_bessely(nu, z, n):
     ignore_scipy = False
     if (nu == 0) and (z.real == 0) and (z.imag == 0) and (n == 1):
         ignore_scipy = True
+    elif (nu + 0.5 == round(nu + 0.5)) and (nu < 0) and isinstance(z, float) \
+            and (z == 0):
+        ignore_scipy = True
 
     # Compare
     error = y_specf - y_scipy
@@ -111,7 +114,7 @@ def test_bessely():
     Test for :mod:`special_functions.bessely` module.
     """
 
-    nu_list = [1.4, 1.6, -1.4, -1.6, 1.5, -1.5, 2.5, -2.5, 1, -1, 0, 2, -3]
+    nu_list = [1.4, -1.6, -1.4, -2.6, 1.5, -1.5, 2.5, -2.5, 1, -1, 0, 2, -3]
     z_list = [0.0, 0.0 + 0.0j, 2.0, -2.0, 2.0j, -2.0j, -2.0 + 0.0j, 2.0 + 0.0j,
               -2.0 - 1.0j, -2.0 + 1.0j, 2.0 + 1.0j, 2.0 - 1.0j]
     max_derivative = 4

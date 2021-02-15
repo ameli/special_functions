@@ -36,28 +36,28 @@ sys.path.insert(0, os.path.abspath('../'))
 
 # The RecursiveGolb.py should be located in '/docs'.
 sys.path.insert(0, os.path.abspath('./'))
-import RecursiveGlob  # this must be after including ./ path
+import recursive_glob  # this must be after including ./ path      # noqa: E402
 
 # Build (assuming we build cython WITHOUT '--inplace', that is:
 # 'python setup.py build_ext' only.
-BuildDirectory = os.path.join('..', 'build')
+build_directory = os.path.join('..', 'build')
 
 # Regex for pattern of lib files. Note: this is OS dependant. macos: *.dylib.
 # Windows: *.dll
-LibFilePatterns = ['*.so', '*.dylib', '*.dll']
+lib_file_patterns = ['*.so', '*.dylib', '*.dll']
 
 # Find list of subdirectories of build directory that have files with pattern
-BuildSubDirectories = RecursiveGlob.RecursiveGlob(
-        BuildDirectory,
-        LibFilePatterns)
+build_subdirectories = recursive_glob.recursive_glob(
+        build_directory,
+        lib_file_patterns)
 
 # Append the subdirectories to the path
-for BuildSubDirectory in BuildSubDirectories:
+for build_subdirectory in build_subdirectories:
 
     # Note: the subdirectory is *relative* to the BuildDirectory.
-    Path = os.path.join(BuildDirectory, BuildSubDirectory)
-    sys.path.insert(0, os.path.abspath(Path))
-    print(os.path.abspath(Path))
+    path = os.path.join(build_directory, build_subdirectory)
+    sys.path.insert(0, os.path.abspath(path))
+    print(os.path.abspath(path))
 
 # -- Project information -----------------------------------------------------
 

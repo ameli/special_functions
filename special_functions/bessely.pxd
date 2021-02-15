@@ -1,3 +1,7 @@
+# ============
+# Declarations
+# ============
+
 cdef double bessely(
         const double nu,
         const double z,

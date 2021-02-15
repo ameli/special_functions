@@ -5,14 +5,14 @@
 import os
 import fnmatch
 
-__all__ = ['RecursiveGlob']
+__all__ = ['recursive_glob']
 
 
 # =======================
-# Split All Parts Of Path
+# split all parts of path
 # =======================
 
-def SplitAllPartsOfPath(Path):
+def _split_all_parts_of_path(path):
     """
     Splits all parts of a path. For example, the path
 
@@ -22,64 +22,64 @@ def SplitAllPartsOfPath(Path):
 
         ['..','build','lib.linux-x86_64','Module','Submodule','lib.so']
 
-    :param Path: A file or directory path
-    :type Path: string
+    :param path: A file or directory path
+    :type path: string
 
     :return: The list of strings of split path.
     :rtype: list(string)
     """
 
-    AllParts = []
+    all_parts = []
 
     # Recursion
     while True:
 
         # Split last part
-        Parts = os.path.split(Path)
+        parts = os.path.split(path)
 
-        if Parts[0] == Path:
-            AllParts.insert(0, Parts[0])
+        if parts[0] == path:
+            all_parts.insert(0, parts[0])
             break
 
-        elif Parts[1] == Path:
-            AllParts.insert(0, Parts[1])
+        elif parts[1] == path:
+            all_parts.insert(0, parts[1])
             break
 
         else:
-            Path = Parts[0]
-            AllParts.insert(0, Parts[1])
+            path = parts[0]
+            all_parts.insert(0, parts[1])
 
-    return AllParts
+    return all_parts
 
 
 # =========================
-# Remove Duplicates In List
+# remove duplicates in list
 # =========================
 
-def RemoveDuplicatesInList(List):
+def _remove_duplicates_in_list(list):
     """
     Removes duplicate elements in a list.
 
-    :param List: A list with possibly duplicate elements.
-    :type List: list
+    :param list: A list with possibly duplicate elements.
+    :type list: list
 
     :return: A list which elements are not duplicate.
     :rtype: list
     """
 
-    ShrinkedList = []
-    for Element in List:
-        if Element not in ShrinkedList:
-            ShrinkedList.append(Element)
+    shrinked_list = []
+    for element in list:
+        if element not in shrinked_list:
+            shrinked_list.append(element)
 
-    return ShrinkedList
+    return shrinked_list
 
 
 # ==============
-# Recursive Glob
+# recursive glob
 # ==============
 
-def RecursiveGlob(Directory, Patterns):
+def recursive_glob(directory, patterns):
     """
     Recursively searches all subdirectories of a given directory and looks for
     a list of patterns. If in a subdirectory, one of the patterns is found, the
@@ -115,12 +115,12 @@ def RecursiveGlob(Directory, Patterns):
         used. However, the recursive glob is not supproted in python 2 version
         of ``glob``, hence this function is written.
 
-    :param Directory: The path of a directory.
-    :type Directory: string
+    :param directory: The path of a directory.
+    :type directory: string
 
-    :param Patterns: A list of string as regex pattern, such as
+    :param patterns: A list of string as regex pattern, such as
         ['*.so','*.dylib','*.dll']
-    :type Patterns: list(string)
+    :type patterns: list(string)
 
     :return: List of first-depth subdirectories that within them a match of
         pattern is found.
@@ -128,14 +128,14 @@ def RecursiveGlob(Directory, Patterns):
     """
 
     # Find how many directory levels are in the input Directory path
-    DirectoryDepth = len(SplitAllPartsOfPath(Directory))
+    directory_depth = len(_split_all_parts_of_path(directory))
 
-    SubDirectories = []
+    subdirectories = []
 
-    for Root, DirName, Filenames in os.walk(Directory):
-        for Pattern in Patterns:
-            for Filename in fnmatch.filter(Filenames, Pattern):
-                SubDirectories.append(
-                        SplitAllPartsOfPath(Root)[DirectoryDepth])
+    for root, dirname, filenames in os.walk(directory):
+        for pattern in patterns:
+            for filename in fnmatch.filter(filenames, pattern):
+                subdirectories.append(
+                        _split_all_parts_of_path(root)[directory_depth])
 
-    return RemoveDuplicatesInList(SubDirectories)
+    return _remove_duplicates_in_list(subdirectories)
