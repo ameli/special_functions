@@ -25,8 +25,9 @@ jobs:
               uses: actions/setup-python@v2
 
             - name: Install cibuildwheel
-              run: python -m pip install cibuildwheel==1.11.0
-            
+              run: |
+                  python -m pip install cibuildwheel==1.11.0
+
             - name: Install OpenMP and numpy for mac
               if: runner.os == 'macos'
               run: |
@@ -38,19 +39,37 @@ jobs:
             - name: Install fortran compiler on mac
               if: runner.os == 'macos'
               run: brew reinstall gcc
-            
+
+            - name: Install numpy
+              run: |
+                  python -m pip install --upgrade pip
+                  python -m pip install --upgrade numpy
+
+            - name: Install OpenMP and numpy for mac
+              if: runner.os == 'macos'
+              run: |
+                  brew install libomp
+
+                  # This is needed to import numpy in pypy3 (but not needed for
+                  # pypy2 and CPython)
+                  # brew install openblas
+                  # OPENBLAS="$(brew --prefix openblas)"
+                  # brew install lapack
+                  # pip3 install numpy
+
             - name: Build wheels
               run: python -m cibuildwheel --output-dir wheelhouse
               env:
+                  CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
                   CIBW_BUILD: "*-manylinux_x86_64 *-macosx_x86_64 *-win_amd64"
-                  CIBW_SKIP: "pp3*-macosx* pp27* cp27* cp35*"
+                  CIBW_SKIP: "pp* cp27-* cp35-*"
                   CIBW_BUILD_VERBOSITY: 1
-                  CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
             
             - name: Upload artifacts
               uses: actions/upload-artifact@v2
               with:
                   path: ./wheelhouse/*.whl
+                  retention-days: 1
                   
     build_sdist:
         name: Build source distribution
@@ -69,15 +88,16 @@ jobs:
               uses: actions/upload-artifact@v2
               with:
                   path: dist/*.tar.gz
+                  retention-days: 1
 
     upload_pypi:
         needs: [build_wheels, build_sdist]
         runs-on: ubuntu-latest
         name: Publish to PyPi
         
-        # upload to PyPI on every tag starting with 'v'
+        # To upload to PyPI on every tag starting with 'v', use the following:
         # if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
-        # alternatively, to publish when a GitHub Release is created, use the following rule:
+        # To publish to pypi on each GitHub Release, use the following:
         # if: github.event_name == 'release' && github.event.action == 'published'
         steps:
             - name: Download artifacts
@@ -101,12 +121,12 @@ jobs:
             fail-fast: false
             matrix:
                 os: [ubuntu-latest, windows-latest, macos-latest]
+                # Despite the package is built on both cpython and pypy in
+                # linux, we only test it on cpython, not on pypy, since many
+                # other required dependencies (like matplotlib, etc) need to be
+                # compiled on pypy.
+                # python-version: ['3.6', '3.7', '3.8', '3.9', 'pypy-3.6', 'pypy-3.7']
                 python-version: ['3.6', '3.7', '3.8', '3.9']
-                include:
-                    - os: ubuntu-latest
-                      python-version: 'pypy-3.6'
-                    - os: ubuntu-latest
-                      python-version: 'pypy-3.7'
 
         steps:
             - name: Setup Python ${{ matrix.python-version }}
@@ -115,6 +135,7 @@ jobs:
                   python-version: ${{ matrix.python-version }}
 
             - name: Install packages
+              # if: matrix.python-version != 'pypy-3.6' && matrix.python-version != 'pypy-3.7'
               run: |
                   python -m pip install --upgrade pip
                   python -m pip install pytest-cov
