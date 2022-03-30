@@ -6,6 +6,7 @@
 
 from __future__ import print_function
 import os
+from os.path import join
 import sys
 import subprocess
 import multiprocessing
@@ -173,6 +174,23 @@ def parse_setup_arguments():
     return run_build
 
 
+# ================
+# get requirements
+# ================
+
+def get_requirements(directory, subdirectory=""):
+    """
+    Returns a list containing the package requirements given in a file named
+    "requirements.txt" in a subdirectory.
+    """
+
+    requirements_filename = join(directory, subdirectory, "requirements.txt")
+    requirements_file = open(requirements_filename, 'r')
+    requirements = [i.strip() for i in requirements_file.readlines()]
+
+    return requirements
+
+
 # ====
 # main
 # ====
@@ -192,6 +210,10 @@ def main(argv):
     # Author
     author_file = os.path.join(directory, 'AUTHORS.txt')
     author = open(author_file, 'r').read().rstrip()
+
+    # Requirements
+    test_requirements = get_requirements(directory, subdirectory="tests")
+    docs_requirements = get_requirements(directory, subdirectory="docs")
 
     # ReadMe
     readme_file = os.path.join(directory, 'README.rst')
@@ -260,18 +282,8 @@ def main(argv):
         # cmdclass={'build_ext': custom_build_extension},
         zip_safe=False,    # the package can run out of an .egg file
         extras_require={
-            'test': [
-                'scipy',
-                'pytest-cov',
-                'codecov'
-            ],
-            'docs': [
-                'sphinx',
-                'sphinx-math-dollar',
-                'sphinx-toggleprompt',
-                'sphinx_rtd_theme',
-                'sphinx-automodapi',
-            ]
+            'test': test_requirements,
+            'docs': docs_requirements,
         },
     )
 

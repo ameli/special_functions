@@ -1,0 +1,5 @@
+sphinx
+sphinx-math-dollar
+sphinx-toggleprompt
+sphinx_rtd_theme
+sphinx-automodapi
