@@ -8,6 +8,7 @@ from __future__ import print_function
 import os
 import sys
 import subprocess
+import multiprocessing
 
 
 # ===============
@@ -97,7 +98,7 @@ def configuration(parent_package='', top_path=None):
             ],
             macros=macros)
 
-    # If envirinment var "CYTHON_BUILD_IN_SOURCE" exists, cython creates *.c
+    # If environment var "CYTHON_BUILD_IN_SOURCE" exists, cython creates *.c
     # files in the source code, otherwise in /build.
     cython_build_in_source = os.environ.get('CYTHON_BUILD_IN_SOURCE', None)
     if bool(cython_build_in_source):
@@ -111,6 +112,7 @@ def configuration(parent_package='', top_path=None):
             build_dir=cython_build_dir,
             include_path=[os.path.join('.', package_name)],
             language_level="3",
+            nthreads=multiprocessing.cpu_count(),
             compiler_directives={
                 'boundscheck': False,
                 'cdivision': True,
@@ -151,7 +153,7 @@ def parse_setup_arguments():
     command was found in the arguments, this function returns True, otherwise
     it returns False.
 
-    This function is used to determine wether to use the setup() function from
+    This function is used to determine whether to use the setup() function from
         1. numpy.distutil.core.setup()    # used if this function returns True
         2. setuptools.setup()             # used if this function returns False
     """

@@ -179,7 +179,7 @@ cdef double _real_bessely_half_integer_order(
         if nu > 0:
             return -INFINITY
         elif nu == -0.5:
-                return 0
+            return 0
         else:
             return INFINITY * copysign(1, sin(M_PI * nu))
 
