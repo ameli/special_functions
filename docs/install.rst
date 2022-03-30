@@ -14,17 +14,17 @@ Successful installation and tests have been performed on the following platforms
 .. |y| unicode:: U+2714
 .. |n| unicode:: U+2716
 
-+----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
-| Platform | Python version              | PyPy version    | Status          |
-+          +-----+-----+-----+-----+-----+-----+-----+-----+                 +
-|          | 2.7 | 3.6 | 3.7 | 3.8 | 3.9 | 2.7 | 3.6 | 3.7 |                 |
-+==========+=====+=====+=====+=====+=====+=====+=====+=====+=================+
-| Linux    | |y| | |y| | |y| | |y| | |y| | |y| | |y| | |y| | |build-linux|   |
-+----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
-| macOS    | |y| | |y| | |y| | |y| | |y| | |n| | |n| | |n| | |build-macos|   |
-+----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
-| Windows  | |n| | |y| | |y| | |y| | |y| | |n| | |n| | |n| | |build-windows| |
-+----------+-----+-----+-----+-----+-----+-----+-----+-----+-----------------+
++----------+-----+-----+-----+-----+------+-------+-----------------+
+| Platform | Python version        | PyPy version | Status          |
++          +-----+-----+-----+-----+------+-------+                 +
+|          | 3.6 | 3.7 | 3.8 | 3.9 | 3.6  | 3.7   |                 |
++==========+=====+=====+=====+=====+======+=======+=================+
+| Linux    | |y| | |y| | |y| | |y| | |y|  | |y|   | |build-linux|   |
++----------+-----+-----+-----+-----+------+-------+-----------------+
+| macOS    | |y| | |y| | |y| | |y| | |n|  | |n|   | |build-macos|   |
++----------+-----+-----+-----+-----+------+-------+-----------------+
+| Windows  | |y| | |y| | |y| | |y| | |n|  | |n|   | |build-windows| |
++----------+-----+-----+-----+-----+------+-------+-----------------+
 
 .. |build-linux| image:: https://github.com/ameli/special_functions/workflows/build-linux/badge.svg
    :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-linux 
@@ -116,10 +116,6 @@ Alternatively, the package can be installed through `Anaconda could <https://ana
   ::
       
       conda install -c s-ameli -c conda-forge special_functions
-
-.. note::
-
-    On macOS and Python 2.7, install this package with ``pip`` instead of ``conda``.
 
 .. _Build_Locally:
 

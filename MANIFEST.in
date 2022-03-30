@@ -14,6 +14,7 @@ recursive-include special_functions *.f
 recursive-include special_functions *.mak
 recursive-include special_functions *.rsp
 
+recursive-include docs *.txt
 recursive-include docs *.bat
 recursive-include docs *.css
 recursive-include docs *.py

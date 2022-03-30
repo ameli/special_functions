@@ -240,7 +240,6 @@ def main(argv):
         platforms=['Linux', 'OSX', 'Windows'],
         classifiers=[
             'Programming Language :: Cython',
-            'Programming Language :: Python :: 2.7',
             'Programming Language :: Python :: 3.6',
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
@@ -271,7 +270,7 @@ def main(argv):
         # ext_modules=ExternalModules,
         # include_dirs=[numpy.get_include()],
         # install_requires=requirements,
-        python_requires='>=2.7',
+        python_requires='>=3.6',
         setup_requires=[
             'numpy>1.11',
             'cython'],
