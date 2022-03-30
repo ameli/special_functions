@@ -285,7 +285,7 @@ def main(argv):
     from setuptools import setup
 
     if run_build:
-        from numpy.distutils.core import setup   # noqa: F811
+        from numpy.distutils.core import setup                     # noqa: F811
         metadata['configuration'] = configuration
     else:
         metadata.update(additional_metadata)

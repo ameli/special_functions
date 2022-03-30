@@ -142,3 +142,4 @@ Indices and tables
 .. |downloads| image:: https://pepy.tech/badge/special-functions
    :target: https://pepy.tech/project/special_functions
 .. |code-doi| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6395374.svg
+   :target: https://doi.org/10.5281/zenodo.6395374

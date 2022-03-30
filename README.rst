@@ -390,6 +390,12 @@ Acknowledgements
 * National Science Foundation #1520825
 * American Heart Association #18EIA33900046
 
+========
+Citation
+========
+
+* Ameli, S. (2022). ameli/special_functions: (v0.1.0). Zenodo. |code-doi|
+
 ======
 Credit
 ======
@@ -431,3 +437,5 @@ This package uses the following libraries:
    :target: https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb
 .. |downloads| image:: https://pepy.tech/badge/special-functions
    :target: https://pepy.tech/project/special_functions
+.. |code-doi| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6395374.svg
+   :target: https://doi.org/10.5281/zenodo.6395374
