@@ -119,7 +119,7 @@ Indices and tables
 .. |docs| image:: https://github.com/ameli/special_functions/workflows/docs/badge.svg
    :target: https://ameli.github.io/special_functions/index.html
 .. |licence| image:: https://img.shields.io/github/license/ameli/special_functions
-   :target: https://opensource.org/licenses/MIT
+   :target: https://opensource.org/licenses/BSD-3-Clause
 .. |travis-devel-linux| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=linux&label=build&branch=main
    :target: https://travis-ci.com/github/ameli/special_functions
 .. |travis-devel-osx| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=osx&label=build&branch=main

@@ -265,17 +265,17 @@ Symbol     Real Function             Complex Function
 |image11|  ``lngamma(x)``            N/A
 =========  ========================  =========================
 
-.. |image01| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image01.svg
-.. |image02| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image02.svg
-.. |image03| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image03.svg
-.. |image04| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image04.svg
-.. |image05| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image05.svg
-.. |image06| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image06.svg
-.. |image07| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image07.svg
-.. |image08| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image08.svg
-.. |image09| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image09.svg
-.. |image10| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image10.svg
-.. |image11| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/images/image11.svg
+.. |image01| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image01.svg
+.. |image02| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image02.svg
+.. |image03| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image03.svg
+.. |image04| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image04.svg
+.. |image05| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image05.svg
+.. |image06| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image06.svg
+.. |image07| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image07.svg
+.. |image08| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image08.svg
+.. |image09| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image09.svg
+.. |image10| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image10.svg
+.. |image11| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image11.svg
 
 ========
 Examples
@@ -411,7 +411,7 @@ This package uses the following libraries:
 .. |docs| image:: https://github.com/ameli/special_functions/workflows/docs/badge.svg
    :target: https://ameli.github.io/special_functions/index.html
 .. |licence| image:: https://img.shields.io/github/license/ameli/special_functions
-   :target: https://opensource.org/licenses/MIT
+   :target: https://opensource.org/licenses/BSD-3-Clause
 .. |travis-devel-linux| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=linux&label=build&branch=main
    :target: https://travis-ci.com/github/ameli/special_functions
 .. |travis-devel-osx| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=osx&label=build&branch=main

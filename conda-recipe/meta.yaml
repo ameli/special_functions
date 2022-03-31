@@ -18,18 +18,16 @@ requirements:
     build:
         - python                          # [build_platform != target_platform]
         - cython                          # [build_platform != target_platform]
-        - numpy>1.11,<=1.19                           # [build_platform != target_platform]
+        - numpy                           # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('fortran') }}       # [unix]
 
     host:
         - libcxx                          # [osx]
         - python {{ python }}
-        - numpy>1.11,<=1.19
+        - numpy>1.11
         - cython
         - pip
-        - pytest
-        - pytest-cov
         - scipy
         - setuptools
     run:
