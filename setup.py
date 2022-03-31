@@ -228,6 +228,7 @@ def main(argv):
     # inputs to numpy.distutils.core.setup
     metadata = dict(
         name=package_name,
+        packages=['special_functions'],  # needed after setuptools for py>=3.7
         version=version,
         author=author,
         author_email='sameli@berkeley.edu',
