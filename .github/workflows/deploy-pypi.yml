@@ -43,7 +43,8 @@ jobs:
               run: python -m cibuildwheel --output-dir wheelhouse
               env:
                   CIBW_BUILD: "*-manylinux_x86_64 *-macosx_x86_64 *-win_amd64"
-                  CIBW_SKIP: "pp3*-macosx* pp27* cp27* cp35*"
+                  # CIBW_SKIP: "pp3*-macosx* pp27* cp27* cp35*"
+                  CIBW_SKIP: "pp* cp27* cp35*"
                   CIBW_BUILD_VERBOSITY: 1
                   CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
                   # CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
