@@ -34,7 +34,7 @@ jobs:
                       python3 setup.py build_ext --inplace
                       python3 -m pip install sphinx sphinx-math-dollar sphinx-toggleprompt sphinx_rtd_theme sphinx-automodapi
                       export PATH=$HOME/.local/bin:$PATH
-                      sphinx-apidoc -f -o docs/_modules/ ./special_functions
+                      sphinx-apidoc -f -o docs/source/_modules/ ./special_functions
                       make html --directory=docs
-                      touch docs/_build/html/.nojekyll
-                      echo 'Visit [Documentation](https://ameli.github.io/special_functions/index.html).' > docs/_build/html/README.md
+                      touch docs/build/html/.nojekyll
+                      echo 'Visit [Documentation](https://ameli.github.io/special_functions/index.html).' > docs/build/html/README.md

@@ -17,21 +17,21 @@ build:
 requirements:
     build:
         - python                          # [build_platform != target_platform]
-        - cython 0.29.21                  # [build_platform != target_platform]
-        - numpy 1.19.2                    # [build_platform != target_platform]
+        - cython                          # [build_platform != target_platform]
+        - numpy>1.11,<=1.19                           # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('fortran') }}       # [unix]
 
     host:
         - libcxx                          # [osx]
         - python {{ python }}
-        - numpy 1.19.2
-        - cython 0.29.21
-        - pip 20.3.3
-        - pytest 6.2.2
-        - pytest-cov 2.11.1
-        - scipy 1.6.0
-        - setuptools 52.0.0
+        - numpy>1.11,<=1.19
+        - cython
+        - pip
+        - pytest
+        - pytest-cov
+        - scipy
+        - setuptools
     run:
         - python {{ python }}
 
