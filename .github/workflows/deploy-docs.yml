@@ -21,7 +21,7 @@ jobs:
                   ACCESS_TOKEN: ${{ secrets.SPECIAL_FUNCTIONS_DOCS }}
                   BASE_BRANCH: main
                   BRANCH: gh-pages
-                  FOLDER: docs/_build/html
+                  FOLDER: docs/build/html
                   CYTHON_BUILD_IN_SOURCE: 1
                   BUILD_SCRIPT: |
                       apt-get update
@@ -32,7 +32,7 @@ jobs:
                       python3 -m pip install --upgrade numpy
                       export CYTHON_BUILD_IN_SOURCE=1
                       python3 setup.py build_ext --inplace
-                      python3 -m pip install sphinx sphinx-math-dollar sphinx-toggleprompt sphinx_rtd_theme sphinx-automodapi
+                      python3 -m pip install -r docs/requirements.txt
                       export PATH=$HOME/.local/bin:$PATH
                       sphinx-apidoc -f -o docs/source/_modules/ ./special_functions
                       make html --directory=docs
