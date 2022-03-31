@@ -270,6 +270,7 @@ def main(argv):
         # ext_modules=ExternalModules,
         # include_dirs=[numpy.get_include()],
         # install_requires=requirements,
+        packages=['special_functions'],
         python_requires='>=3.6',
         setup_requires=[
             'numpy>1.11',
