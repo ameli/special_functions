@@ -20,6 +20,7 @@ recursive-include docs *.css
 recursive-include docs *.py
 recursive-include docs *.rst
 recursive-include docs *.svg
+recursive-include docs *.png
 recursive-include docs Makefile
 recursive-include _modules *.rst
 recursive-exclude docs/source/images *.pdf
