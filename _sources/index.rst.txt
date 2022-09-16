@@ -91,6 +91,12 @@ Acknowledgements
 * National Science Foundation #1520825
 * American Heart Association #18EIA33900046
 
+========
+Citation
+========
+
+* Ameli, S. (2022). ameli/special_functions: (v0.1.0). Zenodo. |code-doi|
+
 ======
 Credit
 ======
@@ -108,13 +114,12 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-
 .. |codecov-devel| image:: https://img.shields.io/codecov/c/github/ameli/special_functions
    :target: https://codecov.io/gh/ameli/special_functions
 .. |docs| image:: https://github.com/ameli/special_functions/workflows/docs/badge.svg
    :target: https://ameli.github.io/special_functions/index.html
 .. |licence| image:: https://img.shields.io/github/license/ameli/special_functions
-   :target: https://opensource.org/licenses/MIT
+   :target: https://opensource.org/licenses/BSD-3-Clause
 .. |travis-devel-linux| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=linux&label=build&branch=main
    :target: https://travis-ci.com/github/ameli/special_functions
 .. |travis-devel-osx| image:: https://img.shields.io/travis/com/ameli/special_functions?env=BADGE=osx&label=build&branch=main
@@ -134,3 +139,7 @@ Indices and tables
    :target: https://anaconda.org/s-ameli/special_functions
 .. |binder| image:: https://mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb
+.. |downloads| image:: https://pepy.tech/badge/special-functions
+   :target: https://pepy.tech/project/special_functions
+.. |code-doi| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6395374.svg
+   :target: https://doi.org/10.5281/zenodo.6395374

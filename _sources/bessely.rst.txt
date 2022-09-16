@@ -164,6 +164,34 @@ To use a complex input argument ``z`` in the Python interface, the same function
     >>> d2y = bessely(nu, z, 2)    # 2nd derivative
 
 
+======================
+Differences with Scipy
+======================
+
+There are very few differences between numerical results of this package compared to scipy. In the real domain :math:`z \in \mathbb{Z}`, it holds:
+
+.. math::
+    
+    \lim_{z \to 0^+} Y_{\nu}(z) = 0, \qquad \nu < 0 \quad \text{and} \quad \nu + \frac{1}{2} \in \mathbb{Z},
+
+ 
+The above value is returned correctly with this package. However, scipy always returns :math:`(-1)^{\lceil \nu \rceil}\infty` where :math:`\lceil \nu \rceil` is the ceil function. That is:
+
+.. code-block:: python
+
+   >>> # This returns correct value
+   >>> from special_functions import bessely
+   >>> bessely(-1.5, 0)
+   0.0
+
+   >>> # This returns incorrect value
+   >>> from scipy.special import yv
+   >>> yv(-1.5 ,0)
+   inf
+
+However, in the complex domain :math:`z \in \mathbb{C}` at :math:`z = 0`, the answer to the above function value is ``nan`` and both this package and scipy return similar answers.
+
+
 =====
 Tests
 =====
@@ -252,7 +280,8 @@ When :math:`\nu` is half-integer, the Bessel function is computed in terms of el
 * If :math:`z = 0`:
 
   * If :math:`\nu > 0`, then :math:`Y_{\nu}(0) = -\infty`.
-  * If :math:`\nu \leq 0`:
+  * If :math:`\nu = -\frac{1}{2}`, then :math:`\lim_{z \to 0^+} Y_{\nu}(z) = 0`.
+  * If :math:`-\frac{1}{2} \neq \nu \leq 0`:
     
     * If :math:`z \in \mathbb{R}`, then :math:`Y_{\nu}(0) = \mathrm{sign}(\sin(\pi \nu)) \times \infty`.
     * If :math:`z \in \mathbb{C}`, then ``NAN`` is returned.
