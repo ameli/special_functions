@@ -95,16 +95,7 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx_automodapi.automodapi',
     # 'sphinxcontrib.napoleon',               # either use napoleon or numpydoc
-    'sphinx_design',
-    'sphinx_multitoc_numbering',
-    'sphinx-prompt',
-    'sphinx_copybutton',
-    'nbsphinx',
 ]
-
-# Copy button settings
-copybutton_prompt_is_regexp = True
-copybutton_prompt_text = r'>>> |\.\.\. '
 
 # Automatically generate autosummary after each build
 autosummary_generate = True
