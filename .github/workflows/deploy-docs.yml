@@ -23,9 +23,9 @@ jobs:
             # Compile package with in-source build
             - name: Install
               run: |
-                  apt-get update
-                  apt-get install gfortran -y
-                  apt-get install gcc -y
+                  sudo apt-get update
+                  sudo apt-get install gfortran -y
+                  sudo apt-get install gcc -y
                   python3 -m pip install --upgrade pip
                   python3 -m pip install --upgrade setuptools
                   python3 -m pip install --upgrade numpy
