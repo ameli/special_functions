@@ -1,3 +1,19 @@
+# SPDX-FileCopyrightText: Copyright 2022, Siavash Ameli <sameli@berkeley.edu>
+# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-FileType: SOURCE
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the license found in the LICENSE.txt file in the root directory
+# of this source tree.
+
+# =======
+# Imports
+# =======
+
+import os
+import sys
+from datetime import date
+
 # Configuration file for the Sphinx documentation builder.
 #
 # This file only contains a selection of the most common options. For a full
@@ -9,11 +25,6 @@
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-import os
-import sys
-sys.path.insert(0, os.path.abspath('../../'))
-sys.path.insert(0, os.path.abspath('../'))
 
 # The following is treatment exclusively for CYTHON. Since I build cython
 # into '/build' directory, the lib files (*.so) are generated in the subfolder
@@ -36,6 +47,7 @@ sys.path.insert(0, os.path.abspath('../'))
 # to include the subdirectories of '/build' on the path.
 
 # The RecursiveGolb.py should be located in '/docs'.
+sys.path.insert(0, os.path.abspath('../'))
 sys.path.insert(0, os.path.abspath('./'))
 import recursive_glob  # this must be after including ./ path      # noqa: E402
 
@@ -63,8 +75,8 @@ for build_subdirectory in build_subdirectories:
 # -- Project information -----------------------------------------------------
 
 project = 'special functions'
-copyright = '2020, Siavash Ameli'
 author = 'Siavash Ameli'
+copyright = f'{date.today().year}, ' + author
 
 
 # -- General configuration ---------------------------------------------------
@@ -74,17 +86,32 @@ author = 'Siavash Ameli'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx_math_dollar', 'sphinx.ext.mathjax',
+    'sphinx_math_dollar',
+    'sphinx.ext.mathjax',
     'sphinx.ext.graphviz', 'sphinx.ext.inheritance_diagram',
-    'sphinx.ext.viewcode',
+    # 'sphinx.ext.viewcode',
     'sphinx_toggleprompt',
     # 'sphinx.ext.autosectionlabel',
     'sphinx.ext.autosummary',
     'sphinx_automodapi.automodapi',
+    # 'sphinxcontrib.napoleon',               # either use napoleon or numpydoc
+    'sphinx_design',
+    'sphinx_multitoc_numbering',
+    'sphinx-prompt',
+    'sphinx_copybutton',
+    'nbsphinx',
 ]
 
-# autosummary
+# Copy button settings
+copybutton_prompt_is_regexp = True
+copybutton_prompt_text = r'>>> |\.\.\. '
+
+# Automatically generate autosummary after each build
 autosummary_generate = True
+autosummary_imported_members = True
+
+# Remove the module names from the signature
+# add_module_names = False
 
 # automodapi
 numpydoc_show_class_members = False
@@ -117,6 +144,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # Good themes
 html_theme = 'sphinx_rtd_theme'
 # html_theme = 'pydata_sphinx_theme'
+# html_theme = 'sphinx_book_theme'
 # html_theme = 'nature'
 # html_theme = 'bizstyle'
 # html_theme = 'haiku'

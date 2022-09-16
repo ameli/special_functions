@@ -26,7 +26,7 @@ def install_package(package):
 
         >>> install_package('numpy>1.11')
 
-    :param package: Name of pakcage with or without its version pin.
+    :param package: Name of package with or without its version pin.
     :type package: string
     """
 

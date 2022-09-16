@@ -1,0 +1,5 @@
+*.ipynb linguist-vendored
+*.h linguist-language=C++
+*.pyx linguist-language=Cython
+*.pxd linguist-language=Cython
+*.pxi linguist-language=Cython

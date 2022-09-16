@@ -133,7 +133,7 @@ Build and Install from Source Code
 
      ::
 
-         sudo apt install gcc
+         sudo apt install gcc gfortran
 
    * **macOS:** Install ``gcc`` via Homebrew:
 

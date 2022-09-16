@@ -265,17 +265,17 @@ Symbol     Real Function             Complex Function
 |image11|  ``lngamma(x)``            N/A
 =========  ========================  =========================
 
-.. |image01| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image01.svg
-.. |image02| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image02.svg
-.. |image03| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image03.svg
-.. |image04| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image04.svg
-.. |image05| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image05.svg
-.. |image06| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image06.svg
-.. |image07| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image07.svg
-.. |image08| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image08.svg
-.. |image09| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image09.svg
-.. |image10| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image10.svg
-.. |image11| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/images/image11.svg
+.. |image01| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/_static/images/formulas/image01.svg
+.. |image02| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/_static/images/formulas/image02.svg
+.. |image03| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/_static/images/formulas/image03.svg
+.. |image04| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/_static/images/formulas/image04.svg
+.. |image05| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/_static/images/formulas/image05.svg
+.. |image06| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/_static/images/formulas/image06.svg
+.. |image07| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/_static/images/formulas/image07.svg
+.. |image08| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/_static/images/formulas/image08.svg
+.. |image09| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/_static/images/formulas/image09.svg
+.. |image10| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/_static/images/formulas/image10.svg
+.. |image11| image:: https://raw.githubusercontent.com/ameli/special_functions/main/docs/source/_static/images/formulas/image11.svg
 
 ========
 Examples
