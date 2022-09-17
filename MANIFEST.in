@@ -46,6 +46,7 @@ exclude TODO.rst
 exclude .travis.yml
 exclude .coverage
 exclude .gitattributes
+exclude .tokeignore
 
 prune .git
 prune tmp
