@@ -49,8 +49,8 @@ jobs:
               run: |
                   export PATH=$(conda info --root):$PATH
                   export PATH=$(conda info --root)/bin:$PATH
-                  # conda-build --output-folder . .
                   conda-build -c conda-forge  --output-folder . .
+                  # conda-build --output-folder . .
                   # conda-build -c conda-forge  --output-folder bld-conda-mac .
               env:
                   CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
