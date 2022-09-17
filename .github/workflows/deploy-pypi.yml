@@ -62,6 +62,8 @@ jobs:
                   CIBW_SKIP: "pp3*-macosx* pp27* cp27* cp35* cp311-*"
                   CIBW_BUILD_VERBOSITY: 1
                   CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
+                  CIBW_BEFORE_BUILD_LINUX: python -m pip install --upgrade numpy
+                  CIBW_BEFORE_BUILD_WINDOWS: python -m pip install --upgrade numpy
             
             - name: Upload artifacts
               uses: actions/upload-artifact@v3
