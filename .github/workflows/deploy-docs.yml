@@ -40,7 +40,11 @@ jobs:
                 SITE_PACKAGES=`python3 -m site --user-site`
                 echo '================================================================================================='
                 echo ${SITE_PACKAGES}
-                ls ${SITE_PACKAGES}
+                # ls ${SITE_PACKAGES}
+                ls $HOME/.local/bin
+                echo '================================================================================================='
+                which python3
+                which sphinx-apidoc
                 echo '================================================================================================='
                 export PATH=${SITE_PACKAGES}:$PATH
                 export PATH=$HOME/.local/bin:$PATH
