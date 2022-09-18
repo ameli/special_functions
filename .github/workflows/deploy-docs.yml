@@ -36,7 +36,8 @@ jobs:
             - name: Build Sphinx
               run: |
                 python3 -m pip install -r docs/requirements.txt
-                export PATH=$HOME/.local/bin:$PATH
+                SITE_PACKAGES=`python3 -m site --user-site`
+                export PATH=${SITE_PACKAGES}:$PATH
                 sphinx-apidoc -f -o docs/source/_modules/ ./special_functions
                 make html --directory=docs
                 touch docs/build/html/.nojekyll

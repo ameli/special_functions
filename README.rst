@@ -160,7 +160,7 @@ Build and Install from Source Code
 
      ::
 
-         sudo apt install gcc
+         sudo apt install gcc gfortran
 
    * **macOS:** Install ``gcc`` via Homebrew:
 
@@ -225,16 +225,16 @@ List of Functions
 Python API
 ----------
 
-========================  =========  ===============================================================================================================
+========================  =========  ===================================================================================================================
 Syntax                    Symbol     User guide
-========================  =========  ===============================================================================================================
-``besselj(nu, z, n)``     |image06|  `Bessel function of the first kind <https://ameli.github.io/special_functions/besselj.html>`_
-``bessely(nu, z, n)``     |image07|  `Bessel function of the second kind <https://ameli.github.io/special_functions/bessely.html>`_ (Weber function)
-``besseli(nu, z, n)``     |image08|  `Modified Bessel function of the first kind <https://ameli.github.io/special_functions/besseli.html>`_
-``besselk(nu, z, n)``     |image09|  `Modified Bessel function of the second kind <https://ameli.github.io/special_functions/besselk.html>`_
-``besselh(nu, k, z, n)``  |image10|  `Bessel function of the third kind <https://ameli.github.io/special_functions/besselh.html>`_ (Hankel function)
-``lngamma(x)``            |image11|  `Natural logarithm of Gamma function <https://ameli.github.io/special_functions/lngamma.html>`_
-========================  =========  ===============================================================================================================
+========================  =========  ===================================================================================================================
+``besselj(nu, z, n)``     |image06|  `Bessel function of the first kind <https://ameli.github.io/special_functions/api/besselj.html>`_
+``bessely(nu, z, n)``     |image07|  `Bessel function of the second kind <https://ameli.github.io/special_functions/api/bessely.html>`_ (Weber function)
+``besseli(nu, z, n)``     |image08|  `Modified Bessel function of the first kind <https://ameli.github.io/special_functions/api/besseli.html>`_
+``besselk(nu, z, n)``     |image09|  `Modified Bessel function of the second kind <https://ameli.github.io/special_functions/api/besselk.html>`_
+``besselh(nu, k, z, n)``  |image10|  `Bessel function of the third kind <https://ameli.github.io/special_functions/api/besselh.html>`_ (Hankel function)
+``lngamma(x)``            |image11|  `Natural logarithm of Gamma function <https://ameli.github.io/special_functions/api/lngamma.html>`_
+========================  =========  ===================================================================================================================
 
 **Typed Arguments:**
 
@@ -433,7 +433,7 @@ This package uses the following libraries:
 .. |release| image:: https://img.shields.io/github/v/tag/ameli/special_functions
    :target: https://github.com/ameli/special_functions/releases/
 .. |binder| image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb
+   :target: https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2Fspecial_functions.ipynb
 .. |downloads| image:: https://pepy.tech/badge/special-functions
    :target: https://pepy.tech/project/special_functions
 .. |code-doi| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6395374.svg

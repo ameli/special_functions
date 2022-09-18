@@ -143,7 +143,7 @@ Indices and tables
 .. |conda-version| image:: https://img.shields.io/conda/v/s-ameli/special_functions
    :target: https://anaconda.org/s-ameli/special_functions
 .. |binder| image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb
+   :target: https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2Fspecial_functions.ipynb
 .. |downloads| image:: https://pepy.tech/badge/special-functions
    :target: https://pepy.tech/project/special_functions
 .. |code-doi| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6395374.svg
