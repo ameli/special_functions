@@ -6,3 +6,4 @@ sphinx-automodapi
 sphinx-prompt
 sphinx-copybutton
 nbsphinx
+pandoc

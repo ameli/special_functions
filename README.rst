@@ -14,13 +14,13 @@ Features
 * **Cython interface:** Both Python and Cython interfaces are available.
 * **Releasing GIL:** Most importantly, the functions can be used in ``with nogil:`` environment, which is essential in parallel OpenMP applications with Cython.
 
-====================
-Interactive Tutorial
-====================
+========
+Tutorial
+========
 
 |binder|
 
-Launch an online interactive tutorial in `Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb>`_.
+Launch `online interactive notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2Fspecial_functions.ipynb>`_ with Binder.
 
 
 =====
