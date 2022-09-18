@@ -30,7 +30,7 @@ jobs:
                   python3 -m pip install --upgrade setuptools
                   python3 -m pip install --upgrade numpy
                   export CYTHON_BUILD_IN_SOURCE=1
-                  python3 setup.py build_ext --inplace
+                  python3 setup.py install
 
             # Build sphinx in /docs/build
             - name: Build Sphinx
@@ -38,6 +38,7 @@ jobs:
                 python3 -m pip install -r docs/requirements.txt
                 SITE_PACKAGES=`python3 -m site --user-site`
                 export PATH=${SITE_PACKAGES}:$PATH
+                export PATH=$HOME/.local/bin:$PATH
                 sphinx-apidoc -f -o docs/source/_modules/ ./special_functions
                 make html --directory=docs
                 touch docs/build/html/.nojekyll
