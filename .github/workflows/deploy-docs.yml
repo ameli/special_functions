@@ -35,6 +35,7 @@ jobs:
             # Build sphinx in /docs/build
             - name: Build Sphinx
               run: |
+                sudo apt-get install pandoc
                 python3 -m pip install -r docs/requirements.txt
                 SITE_PACKAGES=`python3 -m site --user-site`
                 export PATH=${SITE_PACKAGES}:$PATH
