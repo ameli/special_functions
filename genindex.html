@@ -7,6 +7,7 @@
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -18,6 +19,10 @@
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/toggleprompt.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script src="_static/js/custom.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -38,24 +43,28 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/special_functions.html">Jupyter Notebook</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
-<li class="toctree-l1"><a class="reference internal" href="list.html">List of Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/list.html">List of Functions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions User Guide</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="besselj.html">Bessel Function, First Kind</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bessely.html">Bessel Function, Second Kind</a></li>
-<li class="toctree-l1"><a class="reference internal" href="besselh.html">Bessel Function, Third Kind</a></li>
-<li class="toctree-l1"><a class="reference internal" href="besseli.html">Modified Bessel Function, First Kind</a></li>
-<li class="toctree-l1"><a class="reference internal" href="besselk.html">Modified Bessel Function, Second Kind</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lngamma.html">Log Gamma Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/besselj.html">Bessel Function, First Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/bessely.html">Bessel Function, Second Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/besselh.html">Bessel Function, Third Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/besseli.html">Modified Bessel Function, First Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/besselk.html">Modified Bessel Function, Second Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/lngamma.html">Log Gamma Function</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="_modules/modules.html">Package API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
 </ul>
 
         </div>
@@ -85,36 +94,257 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#K"><strong>K</strong></a>
+ <a href="#B"><strong>B</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#S"><strong>S</strong></a>
  | <a href="#X"><strong>X</strong></a>
  | <a href="#Z"><strong>Z</strong></a>
  
 </div>
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_modules/special_functions.html#special_functions.besselh">besselh() (in module special_functions)</a>
+
+      <ul>
+        <li><a href="_modules/special_functions.html#special_functions.cython_wrappers.besselh">(in module special_functions.cython_wrappers)</a>
+</li>
+      </ul></li>
+      <li><a href="_modules/special_functions.html#special_functions.besseli">besseli() (in module special_functions)</a>
+
+      <ul>
+        <li><a href="_modules/special_functions.html#special_functions.cython_wrappers.besseli">(in module special_functions.cython_wrappers)</a>
+</li>
+      </ul></li>
+      <li><a href="_modules/special_functions.html#special_functions.besselj">besselj() (in module special_functions)</a>
+
+      <ul>
+        <li><a href="_modules/special_functions.html#special_functions.cython_wrappers.besselj">(in module special_functions.cython_wrappers)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_modules/special_functions.html#special_functions.besselk">besselk() (in module special_functions)</a>
+
+      <ul>
+        <li><a href="_modules/special_functions.html#special_functions.cython_wrappers.besselk">(in module special_functions.cython_wrappers)</a>
+</li>
+      </ul></li>
+      <li><a href="_modules/special_functions.html#special_functions.bessely">bessely() (in module special_functions)</a>
+
+      <ul>
+        <li><a href="_modules/special_functions.html#special_functions.cython_wrappers.bessely">(in module special_functions.cython_wrappers)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
 <h2 id="K">K</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="besselh.html#k">k</a>
+      <li><a href="api/besselh.html#k">k</a>
 </li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_modules/special_functions.html#special_functions.lngamma">lngamma() (in module special_functions)</a>
+
+      <ul>
+        <li><a href="_modules/special_functions.html#special_functions.cython_wrappers.lngamma">(in module special_functions.cython_wrappers)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions">special_functions</a>
+</li>
+        <li><a href="_modules/special_functions.html#module-special_functions.besselh">special_functions.besselh</a>
+</li>
+        <li><a href="_modules/special_functions.html#module-special_functions.besseli">special_functions.besseli</a>
+</li>
+        <li><a href="_modules/special_functions.html#module-special_functions.besselj">special_functions.besselj</a>
+</li>
+        <li><a href="_modules/special_functions.html#module-special_functions.besselk">special_functions.besselk</a>
+</li>
+        <li><a href="_modules/special_functions.html#module-special_functions.bessely">special_functions.bessely</a>
+</li>
+        <li><a href="_modules/special_functions.html#module-special_functions.cbesselh">special_functions.cbesselh</a>
+</li>
+        <li><a href="_modules/special_functions.html#module-special_functions.cbesseli">special_functions.cbesseli</a>
+</li>
+        <li><a href="_modules/special_functions.html#module-special_functions.cbesselj">special_functions.cbesselj</a>
+</li>
+        <li><a href="_modules/special_functions.html#module-special_functions.cbesselk">special_functions.cbesselk</a>
+</li>
+        <li><a href="_modules/special_functions.html#module-special_functions.cbessely">special_functions.cbessely</a>
+</li>
+        <li><a href="_modules/special_functions.html#module-special_functions.cython_wrappers">special_functions.cython_wrappers</a>
+</li>
+        <li><a href="_modules/special_functions.html#module-special_functions.lngamma">special_functions.lngamma</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="besselh.html#n">n</a>, <a href="besseli.html#n">[1]</a>, <a href="besselj.html#n">[2]</a>, <a href="besselk.html#n">[3]</a>, <a href="bessely.html#n">[4]</a>
+      <li><a href="api/besselh.html#n">n</a>, <a href="api/besseli.html#n">[1]</a>, <a href="api/besselj.html#n">[2]</a>, <a href="api/besselk.html#n">[3]</a>, <a href="api/bessely.html#n">[4]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="besselh.html#nu">nu</a>, <a href="besseli.html#nu">[1]</a>, <a href="besselj.html#nu">[2]</a>, <a href="besselk.html#nu">[3]</a>, <a href="bessely.html#nu">[4]</a>
+      <li><a href="api/besselh.html#nu">nu</a>, <a href="api/besseli.html#nu">[1]</a>, <a href="api/besselj.html#nu">[2]</a>, <a href="api/besselk.html#nu">[3]</a>, <a href="api/bessely.html#nu">[4]</a>
 </li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_modules/special_functions.html#special_functions.besselh.py_besselh">py_besselh() (in module special_functions.besselh)</a>
+</li>
+      <li><a href="_modules/special_functions.html#special_functions.besseli.py_besseli">py_besseli() (in module special_functions.besseli)</a>
+</li>
+      <li><a href="_modules/special_functions.html#special_functions.besselj.py_besselj">py_besselj() (in module special_functions.besselj)</a>
+</li>
+      <li><a href="_modules/special_functions.html#special_functions.besselk.py_besselk">py_besselk() (in module special_functions.besselk)</a>
+</li>
+      <li><a href="_modules/special_functions.html#special_functions.bessely.py_bessely">py_bessely() (in module special_functions.bessely)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_modules/special_functions.html#special_functions.cbesselh.py_cbesselh">py_cbesselh() (in module special_functions.cbesselh)</a>
+</li>
+      <li><a href="_modules/special_functions.html#special_functions.cbesseli.py_cbesseli">py_cbesseli() (in module special_functions.cbesseli)</a>
+</li>
+      <li><a href="_modules/special_functions.html#special_functions.cbesselj.py_cbesselj">py_cbesselj() (in module special_functions.cbesselj)</a>
+</li>
+      <li><a href="_modules/special_functions.html#special_functions.cbesselk.py_cbesselk">py_cbesselk() (in module special_functions.cbesselk)</a>
+</li>
+      <li><a href="_modules/special_functions.html#special_functions.cbessely.py_cbessely">py_cbessely() (in module special_functions.cbessely)</a>
+</li>
+      <li><a href="_modules/special_functions.html#special_functions.lngamma.py_lngamma">py_lngamma() (in module special_functions.lngamma)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    special_functions
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions">module</a>
+</li>
+      </ul></li>
+      <li>
+    special_functions.besselh
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions.besselh">module</a>
+</li>
+      </ul></li>
+      <li>
+    special_functions.besseli
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions.besseli">module</a>
+</li>
+      </ul></li>
+      <li>
+    special_functions.besselj
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions.besselj">module</a>
+</li>
+      </ul></li>
+      <li>
+    special_functions.besselk
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions.besselk">module</a>
+</li>
+      </ul></li>
+      <li>
+    special_functions.bessely
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions.bessely">module</a>
+</li>
+      </ul></li>
+      <li>
+    special_functions.cbesselh
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions.cbesselh">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    special_functions.cbesseli
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions.cbesseli">module</a>
+</li>
+      </ul></li>
+      <li>
+    special_functions.cbesselj
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions.cbesselj">module</a>
+</li>
+      </ul></li>
+      <li>
+    special_functions.cbesselk
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions.cbesselk">module</a>
+</li>
+      </ul></li>
+      <li>
+    special_functions.cbessely
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions.cbessely">module</a>
+</li>
+      </ul></li>
+      <li>
+    special_functions.cython_wrappers
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions.cython_wrappers">module</a>
+</li>
+      </ul></li>
+      <li>
+    special_functions.lngamma
+
+      <ul>
+        <li><a href="_modules/special_functions.html#module-special_functions.lngamma">module</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="X">X</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="lngamma.html#x">x</a>
+      <li><a href="api/lngamma.html#x">x</a>
 </li>
   </ul></td>
 </tr></table>
@@ -122,7 +352,7 @@
 <h2 id="Z">Z</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="besselh.html#z">z</a>, <a href="besseli.html#z">[1]</a>, <a href="besselj.html#z">[2]</a>, <a href="besselk.html#z">[3]</a>, <a href="bessely.html#z">[4]</a>
+      <li><a href="api/besselh.html#z">z</a>, <a href="api/besseli.html#z">[1]</a>, <a href="api/besselj.html#z">[2]</a>, <a href="api/besselk.html#z">[3]</a>, <a href="api/bessely.html#z">[4]</a>
 </li>
   </ul></td>
 </tr></table>

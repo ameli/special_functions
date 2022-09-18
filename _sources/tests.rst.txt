@@ -14,7 +14,7 @@ Running Tests with ``pytest``
 
 1. Install ``pytest-cov``:
 
-   ::
+   .. prompt:: bash
 
        python -m pip install pytest-cov
 
@@ -22,7 +22,7 @@ Running Tests with ``pytest``
 
 2. Clone the package source code and install the test dependencies:
 
-   ::
+   .. prompt:: bash
 
        git clone https://github.com/ameli/special_functions.git
        cd special_functions
@@ -30,7 +30,7 @@ Running Tests with ``pytest``
 
 3. Test the package by:
 
-   ::
+   .. prompt:: bash
 
        cd tests
        pytest
@@ -47,19 +47,19 @@ To run a test in a virtual environment, use ``tox`` as follows:
 
 1. Clone the source code from the repository:
    
-   ::
+   .. prompt:: bash
        
        git clone https://github.com/ameli/special_functions.git
 
 2. Install ``tox``:
    
-   ::
+   .. prompt:: bash
        
        python -m pip install tox
 
-3. run tests by
+3. Run tests by
    
-   ::
+   .. prompt:: bash
        
        cd special_functions
        tox

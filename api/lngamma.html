@@ -5,26 +5,31 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Logrithm of Gamma Function &mdash; special functions  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
   <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
+    <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/toggleprompt.js"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]]}})</script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/toggleprompt.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/js/custom.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area", "displayMath": [["\\[", "\\]"]]}})</script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="special_functions" href="_modules/modules.html" />
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="special_functions" href="../_modules/modules.html" />
     <link rel="prev" title="Modified Bessel Function of the Second Kind" href="besselk.html" /> 
 </head>
 
@@ -33,19 +38,22 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> special functions
+            <a href="../index.html" class="icon icon-home"> special functions
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/special_functions.html">Jupyter Notebook</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="list.html">List of Functions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions User Guide</span></p>
@@ -70,8 +78,9 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="_modules/modules.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_modules/modules.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests.html">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
 </ul>
 
         </div>
@@ -80,17 +89,17 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">special functions</a>
+          <a href="../index.html">special functions</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
       <li>Logrithm of Gamma Function</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/lngamma.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/lngamma.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -98,7 +107,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="logrithm-of-gamma-function">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="logrithm-of-gamma-function">
 <span id="lngamma"></span><h1>Logrithm of Gamma Function<a class="headerlink" href="#logrithm-of-gamma-function" title="Permalink to this heading"></a></h1>
 <p>This module computes the natural logarithm of Gamma function, <span class="math notranslate nohighlight">\(\ln \Gamma(x)\)</span>, where <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span>.</p>
 <section id="syntax">
@@ -165,15 +198,17 @@
 <section id="tests">
 <h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading"></a></h2>
 <p>The test script of this module is located at <a class="reference external" href="https://github.com/ameli/special_functions/blob/main/tests/test_lngamma.py"><code class="docutils literal notranslate"><span class="pre">tests/test_lngamma.py</span></code></a>. The test compares the results of this module with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/special.html"><code class="docutils literal notranslate"><span class="pre">scipy.special</span></code></a> package (function <code class="docutils literal notranslate"><span class="pre">gamma</span></code>) for several combinations of input parameters with multiple values. Run the test by</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ameli</span><span class="o">/</span><span class="n">special_functions</span><span class="o">.</span><span class="n">git</span>
-<span class="n">cd</span> <span class="n">special_functions</span><span class="o">/</span><span class="n">tests</span>
-<span class="n">python</span> <span class="n">test_lngamma</span><span class="o">.</span><span class="n">py</span>
-</pre></div>
-</div>
-</section>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">git clone https://github.com/ameli/special_functions.git</span>
+<span class="prompt1"><span class="nb">cd</span> special_functions/tests</span>
+<span class="prompt1">python test_lngamma.py</span>
+</pre></div></div></section>
 <section id="algorithm">
 <h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this heading"></a></h2>
-<p>This module is a wrapper around <code class="docutils literal notranslate"><span class="pre">gamma</span></code> function in the Cephes C library (see <a class="reference internal" href="#cephes-1989" id="id1"><span>[Cephes-1989]</span></a>).</p>
+<p>This module is a wrapper around <code class="docutils literal notranslate"><span class="pre">gamma</span></code> function in the Cephes C library (see <a class="reference internal" href="../index.html#cephes-1989" id="id1"><span>[Cephes-1989]</span></a>).</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
@@ -190,7 +225,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="besselk.html" class="btn btn-neutral float-left" title="Modified Bessel Function of the Second Kind" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="_modules/modules.html" class="btn btn-neutral float-right" title="special_functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../_modules/modules.html" class="btn btn-neutral float-right" title="special_functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

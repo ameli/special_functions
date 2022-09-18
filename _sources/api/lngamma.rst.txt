@@ -72,7 +72,7 @@ Tests
 
 The test script of this module is located at |tests/test_lngamma.py|_. The test compares the results of this module with |scipy.special|_ package (function ``gamma``) for several combinations of input parameters with multiple values. Run the test by
 
-.. code::
+.. prompt:: bash
 
     git clone https://github.com/ameli/special_functions.git
     cd special_functions/tests

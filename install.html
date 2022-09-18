@@ -8,6 +8,7 @@
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -19,11 +20,15 @@
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/toggleprompt.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script src="_static/js/custom.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="List of Functions" href="list.html" />
-    <link rel="prev" title="special functions" href="index.html" /> 
+    <link rel="next" title="List of Functions" href="api/list.html" />
+    <link rel="prev" title="Special Functions" href="notebooks/special_functions.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,7 +46,10 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/special_functions.html">Jupyter Notebook</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Install</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#supported-platforms">Supported Platforms</a></li>
@@ -59,21 +67,22 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="list.html">List of Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/list.html">List of Functions</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions User Guide</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="besselj.html">Bessel Function, First Kind</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bessely.html">Bessel Function, Second Kind</a></li>
-<li class="toctree-l1"><a class="reference internal" href="besselh.html">Bessel Function, Third Kind</a></li>
-<li class="toctree-l1"><a class="reference internal" href="besseli.html">Modified Bessel Function, First Kind</a></li>
-<li class="toctree-l1"><a class="reference internal" href="besselk.html">Modified Bessel Function, Second Kind</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lngamma.html">Log Gamma Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/besselj.html">Bessel Function, First Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/bessely.html">Bessel Function, Second Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/besselh.html">Bessel Function, Third Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/besseli.html">Modified Bessel Function, First Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/besselk.html">Modified Bessel Function, Second Kind</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/lngamma.html">Log Gamma Function</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="_modules/modules.html">Package API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
 </ul>
 
         </div>
@@ -100,25 +109,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="install">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="install">
 <span id="install-package"></span><h1>Install<a class="headerlink" href="#install" title="Permalink to this heading"></a></h1>
 <section id="supported-platforms">
 <h2>Supported Platforms<a class="headerlink" href="#supported-platforms" title="Permalink to this heading"></a></h2>
 <p>Successful installation and tests have been performed on the following platforms and Python/PyPy versions shown in the table below.</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 17%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
 <col style="width: 10%" />
-<col style="width: 12%" />
-<col style="width: 28%" />
+<col style="width: 24%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head" rowspan="2"><p>Platform</p></th>
-<th class="head" colspan="4"><p>Python version</p></th>
+<th class="head" colspan="5"><p>Python version</p></th>
 <th class="head" colspan="2"><p>PyPy version</p></th>
 <th class="head" rowspan="2"><p>Status</p></th>
 </tr>
@@ -126,12 +160,14 @@
 <th class="head"><p>3.7</p></th>
 <th class="head"><p>3.8</p></th>
 <th class="head"><p>3.9</p></th>
+<th class="head"><p>3.10</p></th>
 <th class="head"><p>3.6</p></th>
 <th class="head"><p>3.7</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-odd"><td><p>Linux</p></td>
+<td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
@@ -145,11 +181,13 @@
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
+<td><p>✔</p></td>
 <td><p>✖</p></td>
 <td><p>✖</p></td>
 <td><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-macos"><img alt="build-macos" src="https://github.com/ameli/special_functions/workflows/build-macos/badge.svg" /></a></p></td>
 </tr>
 <tr class="row-odd"><td><p>Windows</p></td>
+<td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
@@ -174,10 +212,12 @@
 <ul>
 <li><p><strong>At runtime:</strong> This package does not have any dependencies at runtime.</p></li>
 <li><p><strong>For tests:</strong> To <a class="reference internal" href="tests.html#run-tests"><span class="std std-ref">run tests</span></a>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code> package is required and can be installed by</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">tests</span><span class="o">/</span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">python -m pip install -r tests/requirements.txt</span>
+</pre></div></div></li>
 </ul>
 </section>
 <section id="installationmethods">
@@ -189,25 +229,17 @@
 <p>The recommended installation method is through the package available at <a class="reference external" href="https://pypi.org/project/special_functions">PyPi</a> using <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
 <ol class="arabic">
 <li><p>Ensure <code class="docutils literal notranslate"><span class="pre">pip</span></code> is installed within Python and upgrade the existing <code class="docutils literal notranslate"><span class="pre">pip</span></code> by</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">ensurepip</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
-</pre></div>
-</div>
-<p>If you are using PyPy instead of Python, ensure <code class="docutils literal notranslate"><span class="pre">pip</span></code> is installed and upgrade the existing <code class="docutils literal notranslate"><span class="pre">pip</span></code> by</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pypy</span> <span class="o">-</span><span class="n">m</span> <span class="n">ensurepip</span>
-<span class="n">pypy</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">python -m ensurepip</span>
+<span class="prompt1">python -m pip install --upgrade pip</span>
+</pre></div></div><p>If you are using PyPy instead of Python, ensure <code class="docutils literal notranslate"><span class="pre">pip</span></code> is installed and upgrade the existing <code class="docutils literal notranslate"><span class="pre">pip</span></code> by</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pypy -m ensurepip</span>
+<span class="prompt1">pypy -m pip install --upgrade pip</span>
+</pre></div></div></li>
 <li><p>Install this package in Python by</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">special_functions</span>
-</pre></div>
-</div>
-<p>or, in PyPy by</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pypy</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">special_functions</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">python -m pip install special_functions</span>
+</pre></div></div><p>or, in PyPy by</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pypy -m pip install special_functions</span>
+</pre></div></div></li>
 </ol>
 </section>
 <section id="install-from-anaconda-cloud">
@@ -216,15 +248,11 @@
 <p>Alternatively, the package can be installed through <a class="reference external" href="https://anaconda.org/s-ameli/special_functions">Anaconda could</a>.</p>
 <ul>
 <li><p>In <strong>Linux</strong> and <strong>Windows</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">s</span><span class="o">-</span><span class="n">ameli</span> <span class="n">special_functions</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">conda install -c s-ameli special_functions</span>
+</pre></div></div></li>
 <li><p>In <strong>macOS</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">s</span><span class="o">-</span><span class="n">ameli</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">special_functions</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">conda install -c s-ameli -c conda-forge special_functions</span>
+</pre></div></div></li>
 </ul>
 </section>
 <section id="build-and-install-from-source-code">
@@ -235,48 +263,39 @@
 <li><p>Install both C and Fortran compilers as follows.</p>
 <ul>
 <li><p><strong>Linux:</strong> Install <code class="docutils literal notranslate"><span class="pre">gcc</span></code>, for instance, by <code class="docutils literal notranslate"><span class="pre">apt</span></code> (or any other package manager on your Linux distro)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">gcc</span> <span class="n">gfortran</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">sudo apt install gcc gfortran</span>
+</pre></div></div></li>
 <li><p><strong>macOS:</strong> Install <code class="docutils literal notranslate"><span class="pre">gcc</span></code> via Homebrew:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">brew</span> <span class="n">install</span> <span class="n">gcc</span>
-</pre></div>
-</div>
-<div class="admonition note">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">sudo brew install gcc</span>
+</pre></div></div><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">gcc</span></code> is already installed, but Fortran compiler is yet not available on macOS, you may resolve this issue by reinstalling:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">brew</span> <span class="n">reinstall</span> <span class="n">gcc</span>
-</pre></div>
-</div>
-</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">sudo brew reinstall gcc</span>
+</pre></div></div></div>
 </li>
 <li><p><strong>Windows:</strong> Install both <a class="reference external" href="https://visualstudio.microsoft.com/vs/features/cplusplus/">Microsoft Visual C++ compiler</a> and Intel Fortran compiler (<a class="reference external" href="https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/fortran-compiler.html">Intel oneAPI</a>). Open the command prompt (where you will enter the installation commands in the next step) and load the Intel compiler variables by</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Program</span> <span class="n">Files</span> <span class="p">(</span><span class="n">x86</span><span class="p">)</span>\<span class="n">Intel</span>\<span class="n">oneAPI</span>\<span class="n">setvars</span><span class="o">.</span><span class="n">bat</span>
-</pre></div>
-</div>
-<p>Here, we assumed the Intel Fortran compiler is installed in <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\Intel\oneAPI</span></code>. You may set this directory accordingly to the directory of your Intel compiler.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt2:before {
+  content: "PS C:\\> ";
+}
+</style><span class="prompt2"><span class="n">C</span><span class="p">:\</span><span class="n">Program</span> <span class="n">Files</span> <span class="p">(</span><span class="n">x86</span><span class="p">)\</span><span class="n">Intel</span><span class="p">\</span><span class="n">oneAPI</span><span class="p">\</span><span class="n">setvars</span><span class="p">.</span><span class="n">bat</span></span>
+</pre></div></div><p>Here, we assumed the Intel Fortran compiler is installed in <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\Intel\oneAPI</span></code>. You may set this directory accordingly to the directory of your Intel compiler.</p>
 </li>
 </ul>
 </li>
 <li><p>Clone the source code and install this package by</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ameli</span><span class="o">/</span><span class="n">special_functions</span><span class="o">.</span><span class="n">git</span>
-<span class="n">cd</span> <span class="n">special_functions</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone https://github.com/ameli/special_functions.git</span>
+<span class="prompt1"><span class="nb">cd</span> special_functions</span>
+<span class="prompt1">python -m pip install .</span>
+</pre></div></div></li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>After the package is built and installed from the source code, the package cannot be imported properly if the current working directory is the same as the source code directory.
 To properly import the package, change the current working directory to a directory anywhere else <strong>outside</strong> of the source code directory. For instance:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">..</span>
-<span class="n">python</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">special_functions</span>
-</pre></div>
-</div>
-</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> ..</span>
+<span class="prompt1">python -c <span class="s2">&quot;import special_functions&quot;</span></span>
+</pre></div></div></div>
 </section>
 </section>
 <section id="install-in-virtual-environment">
@@ -286,31 +305,21 @@ To properly import the package, change the current working directory to a direct
 <span id="virtualenv-env"></span><h3>Install in <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> Environment<a class="headerlink" href="#install-in-virtualenv-environment" title="Permalink to this heading"></a></h3>
 <ol class="arabic">
 <li><p>Install <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">python -m pip install virtualenv</span>
+</pre></div></div></li>
 <li><p>Create a virtual environment and give it a name, such as <code class="docutils literal notranslate"><span class="pre">special_functions_env</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">virtualenv</span> <span class="n">special_functions_env</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">python -m virtualenv special_functions_env</span>
+</pre></div></div></li>
 <li><p>Activate python in the new environment</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">special_functions_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">source</span> special_functions_env/bin/activate</span>
+</pre></div></div></li>
 <li><p>Install <code class="docutils literal notranslate"><span class="pre">special_functions</span></code> package with any of the <a class="reference internal" href="#installationmethods"><span class="std std-ref">above methods</span></a>. For instance:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">special_functions</span>
-</pre></div>
-</div>
-<p>Then, use the package in this environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">python -m pip install special_functions</span>
+</pre></div></div><p>Then, use the package in this environment.</p>
 </li>
 <li><p>To exit from the environment</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">deactivate</span>
+</pre></div></div></li>
 </ol>
 </section>
 <section id="install-in-conda-environment">
@@ -318,36 +327,24 @@ To properly import the package, change the current working directory to a direct
 <p>In the following, it is assumed <a class="reference external" href="https://www.anaconda.com/products/individual#Downloads">anaconda</a> (or <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a>) is installed.</p>
 <ol class="arabic">
 <li><p>Initialize conda (if it was not initialized before)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">init</span>
-</pre></div>
-</div>
-<p>You may need to close and reopen the terminal after the above command. Alternatively, instead of the above, you can do</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo sh $(conda info --root)/etc/profile.d/conda.sh
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">conda init</span>
+</pre></div></div><p>You may need to close and reopen the terminal after the above command. Alternatively, instead of the above, you can do</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">sudo sh <span class="k">$(</span>conda info --root<span class="k">)</span>/etc/profile.d/conda.sh</span>
+</pre></div></div></li>
 <li><p>Create a virtual environment and give it a name, such as <code class="docutils literal notranslate"><span class="pre">special_functions_env</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">special_functions_env</span> <span class="o">-</span><span class="n">y</span>
-</pre></div>
-</div>
-<p>The command <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">info</span> <span class="pre">--envs</span></code> shows the list of all environments. The current environment is marked by an asterisk in the list, which should be the default environment at this stage. In the next step, we will change the current environment to the one we created.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">conda create --name special_functions_env -y</span>
+</pre></div></div><p>The command <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">info</span> <span class="pre">--envs</span></code> shows the list of all environments. The current environment is marked by an asterisk in the list, which should be the default environment at this stage. In the next step, we will change the current environment to the one we created.</p>
 </li>
 <li><p>Activate the new environment</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">special_functions_env</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">conda activate special_functions_env</span>
+</pre></div></div></li>
 <li><p>Install <code class="docutils literal notranslate"><span class="pre">special_functions</span></code> with any of the <a class="reference internal" href="#installationmethods"><span class="std std-ref">above methods</span></a>. For instance:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">s</span><span class="o">-</span><span class="n">ameli</span> <span class="n">special_functions</span>
-</pre></div>
-</div>
-<p>Then, use the package in this environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">conda install -c s-ameli special_functions</span>
+</pre></div></div><p>Then, use the package in this environment.</p>
 </li>
 <li><p>To exit from the environment</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">deactivate</span>
-</pre></div>
-</div>
-</li>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">conda deactivate</span>
+</pre></div></div></li>
 </ol>
 </section>
 </section>
@@ -357,8 +354,8 @@ To properly import the package, change the current working directory to a direct
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="special functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="list.html" class="btn btn-neutral float-right" title="List of Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="notebooks/special_functions.html" class="btn btn-neutral float-left" title="Special Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api/list.html" class="btn btn-neutral float-right" title="List of Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
