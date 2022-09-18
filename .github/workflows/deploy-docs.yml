@@ -39,12 +39,12 @@ jobs:
                 python3 -m pip install -r docs/requirements.txt
                 SITE_PACKAGES=`python3 -m site --user-site`
                 echo '================================================================================================='
+                which python3
+                which sphinx-apidoc
+                echo '================================================================================================='
                 echo ${SITE_PACKAGES}
                 # ls ${SITE_PACKAGES}
                 ls $HOME/.local/bin
-                echo '================================================================================================='
-                which python3
-                which sphinx-apidoc
                 echo '================================================================================================='
                 export PATH=${SITE_PACKAGES}:$PATH
                 export PATH=$HOME/.local/bin:$PATH
