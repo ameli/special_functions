@@ -14,31 +14,36 @@ Features
 * **Cython interface:** Both Python and Cython interfaces are available.
 * **Releasing GIL:** Most importantly, the functions can be used in ``with nogil:`` environment, which is essential in parallel OpenMP applications with Cython.
 
-====================
-Interactive Tutorial
-====================
+========
+Tutorial
+========
 
 |binder|
 
-Launch an online interactive tutorial in `Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb>`_.
+.. toctree::
+    :maxdepth: 1
+
+    Jupyter Notebook <notebooks/special_functions.ipynb>
+
+Launch `online interactive notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2Fspecial_functions.ipynb>`_ with Binder.
 
 .. toctree::
     :maxdepth: 1
     :caption: Documentation
 
     Install <install>
-    List of Functions <list>
+    List of Functions <api/list>
 
 .. toctree::
     :maxdepth: 1
     :caption: Functions User Guide
 
-    Bessel Function, First Kind <besselj>
-    Bessel Function, Second Kind <bessely>
-    Bessel Function, Third Kind <besselh>
-    Modified Bessel Function, First Kind <besseli>
-    Modified Bessel Function, Second Kind <besselk>
-    Log Gamma Function <lngamma>
+    Bessel Function, First Kind <api/besselj>
+    Bessel Function, Second Kind <api/bessely>
+    Bessel Function, Third Kind <api/besselh>
+    Modified Bessel Function, First Kind <api/besseli>
+    Modified Bessel Function, Second Kind <api/besselk>
+    Log Gamma Function <api/lngamma>
 
 
 .. toctree::
@@ -65,7 +70,7 @@ Links
 =====
 
 * `Package on Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_
-* `Package on PyPi <https://pypi.org/project/special_functions/>`_
+* `Package on PyPI <https://pypi.org/project/special_functions/>`_
 * `Source code on Github <https://github.com/ameli/special_functions>`_
 .. * `Interactive Jupyter notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2FSpecial%20Functions.ipynb>`_.
 .. * `API <https://ameli.github.io/special_functions/_modules/modules.html>`_
@@ -81,7 +86,7 @@ Related Packages
 ================
 
 * `scipy.special <https://docs.scipy.org/doc/scipy/reference/special.html>`_: Many special functions are available in *scipy.special* package.
-* `Gaussian Process <https://github.com/ameli/gaussian-process-param-estimation>`_: A python package that makes use of ``special_functions``.
+* `G-Learn <https://github.com/ameli/glearn>`_: A python package for machine learning using Gaussian process regression. This package makes use of ``special_functions``.
 
 
 ================

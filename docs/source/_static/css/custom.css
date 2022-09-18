@@ -35,7 +35,22 @@
     /* background-color: #ffffff; */
 /* } */
 
+/* background color of wrap around main content */
 /* .wy-nav-content-wrap { */
-/*     /* background color of wrap around main content*/ */
 /*     background-color: white; */
 /* } */
+
+/* copybutton overlaps with toggle-prompt in code-blocks for python.
+ * For those code-block that is only for python, change the location of
+ * copy-button slightly to the left so it does not overlap with
+ * toggle-button. */
+/* .highlight-python .copybtn { */
+
+/* .copybtn { */
+/*     top: 0.2em !important; */
+/*     right: 2.5em !important; */
+/* } */
+.highlight-python .copybtn {
+    top: 0.2em !important;
+    right: 2.5em !important;
+}

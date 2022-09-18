@@ -95,7 +95,14 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx_automodapi.automodapi',
     # 'sphinxcontrib.napoleon',               # either use napoleon or numpydoc
+    'sphinx-prompt',
+    'sphinx_copybutton',
+    'nbsphinx',
 ]
+
+# Copy button settings
+copybutton_prompt_is_regexp = True
+copybutton_prompt_text = r'>>> |\.\.\. '
 
 # Automatically generate autosummary after each build
 autosummary_generate = True
@@ -177,16 +184,16 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 # # Add css
-# html_css_files = [
-#     'custom.css',
-# ]
+# html_css_files = ["css/custom.css"]
+html_is_files = ["js/custom.css"]
 
 
 def setup(app):
     """
     This function is used to employ a css file to the themes.
-    Note: paths are relative to /docs/_static
+    Note: paths are relative to /docs/source/_static
     """
 
     app.add_css_file('css/custom.css')
+    app.add_js_file('js/custom.js')
     # app.add_css_file('css/custom-anaconda-doc.css')

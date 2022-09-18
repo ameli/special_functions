@@ -29,7 +29,7 @@ Links
 
 * `Documentation <https://ameli.github.io/special_functions/index.html>`_
 * `Package on Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_
-* `Package on PyPi <https://pypi.org/project/special_functions/>`_
+* `Package on PyPI <https://pypi.org/project/special_functions/>`_
 
 =======
 Install
@@ -44,17 +44,17 @@ Successful installation and tests have been performed on the following platforms
 .. |y| unicode:: U+2714
 .. |n| unicode:: U+2716
 
-+----------+-----+-----+-----+-----+------+-------+-----------------+
-| Platform | Python version        | PyPy version | Status          |
-+          +-----+-----+-----+-----+------+-------+                 +
-|          | 3.6 | 3.7 | 3.8 | 3.9 | 3.6  | 3.7   |                 |
-+==========+=====+=====+=====+=====+======+=======+=================+
-| Linux    | |y| | |y| | |y| | |y| | |y|  | |y|   | |build-linux|   |
-+----------+-----+-----+-----+-----+------+-------+-----------------+
-| macOS    | |y| | |y| | |y| | |y| | |n|  | |n|   | |build-macos|   |
-+----------+-----+-----+-----+-----+------+-------+-----------------+
-| Windows  | |y| | |y| | |y| | |y| | |n|  | |n|   | |build-windows| |
-+----------+-----+-----+-----+-----+------+-------+-----------------+
++----------+------+------+------+------+------+------+-------+-----------------+
+| Platform | Python version                   | PyPy version | Status          |
++          +------+------+------+------+------+------+-------+                 +
+|          | 3.6  | 3.7  | 3.8  | 3.9  | 3.10 | 3.6  | 3.7   |                 |
++==========+======+======+======+======+======+======+=======+=================+
+| Linux    | |y|  | |y|  | |y|  | |y|  | |y|  | |y|  | |y|   | |build-linux|   |
++----------+------+------+------+------+------+------+-------+-----------------+
+| macOS    | |y|  | |y|  | |y|  | |y|  | |y|  | |n|  | |n|   | |build-macos|   |
++----------+------+------+------+------+------+------+-------+-----------------+
+| Windows  | |y|  | |y|  | |y|  | |y|  | |y|  | |n|  | |n|   | |build-windows| |
++----------+------+------+------+------+------+------+-------+-----------------+
 
 .. |build-linux| image:: https://github.com/ameli/special_functions/workflows/build-linux/badge.svg
    :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-linux 
@@ -380,8 +380,7 @@ Related Packages
 ================
 
 * `scipy.special <https://docs.scipy.org/doc/scipy/reference/special.html>`_: Many special functions were implemented in Scipy's special sub-package. This package is reimplements Bessel functions similar to ``scipy.special``, but with simplified python and cython different interfaces.
-* `Gaussian Process <https://github.com/ameli/gaussian-process-param-estimation>`_: A python package that makes use of ``special_functions``.
-
+* `G-Learn <https://github.com/ameli/glearn>`_: A python package for machine learning using Gaussian process regression. This package makes use of ``special_functions``.
 
 ================
 Acknowledgements

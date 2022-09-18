@@ -14,17 +14,17 @@ Successful installation and tests have been performed on the following platforms
 .. |y| unicode:: U+2714
 .. |n| unicode:: U+2716
 
-+----------+-----+-----+-----+-----+------+-------+-----------------+
-| Platform | Python version        | PyPy version | Status          |
-+          +-----+-----+-----+-----+------+-------+                 +
-|          | 3.6 | 3.7 | 3.8 | 3.9 | 3.6  | 3.7   |                 |
-+==========+=====+=====+=====+=====+======+=======+=================+
-| Linux    | |y| | |y| | |y| | |y| | |y|  | |y|   | |build-linux|   |
-+----------+-----+-----+-----+-----+------+-------+-----------------+
-| macOS    | |y| | |y| | |y| | |y| | |n|  | |n|   | |build-macos|   |
-+----------+-----+-----+-----+-----+------+-------+-----------------+
-| Windows  | |y| | |y| | |y| | |y| | |n|  | |n|   | |build-windows| |
-+----------+-----+-----+-----+-----+------+-------+-----------------+
++----------+------+------+------+------+------+------+-------+-----------------+
+| Platform | Python version                   | PyPy version | Status          |
++          +------+------+------+------+------+------+-------+                 +
+|          | 3.6  | 3.7  | 3.8  | 3.9  | 3.10 | 3.6  | 3.7   |                 |
++==========+======+======+======+======+======+======+=======+=================+
+| Linux    | |y|  | |y|  | |y|  | |y|  | |y|  | |y|  | |y|   | |build-linux|   |
++----------+------+------+------+------+------+------+-------+-----------------+
+| macOS    | |y|  | |y|  | |y|  | |y|  | |y|  | |n|  | |n|   | |build-macos|   |
++----------+------+------+------+------+------+------+-------+-----------------+
+| Windows  | |y|  | |y|  | |y|  | |y|  | |y|  | |n|  | |n|   | |build-windows| |
++----------+------+------+------+------+------+------+-------+-----------------+
 
 .. |build-linux| image:: https://github.com/ameli/special_functions/workflows/build-linux/badge.svg
    :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-linux 
@@ -47,7 +47,7 @@ Dependencies
 * **At runtime:** This package does not have any dependencies at runtime.
 * **For tests:** To :ref:`run tests <Run_Tests>`, ``scipy`` package is required and can be installed by
 
-  ::
+  .. prompt:: bash
 
       python -m pip install -r tests/requirements.txt
 
@@ -71,27 +71,27 @@ The recommended installation method is through the package available at `PyPi <h
 
 1. Ensure ``pip`` is installed within Python and upgrade the existing ``pip`` by
 
-   ::
+   .. prompt:: bash
 
        python -m ensurepip
        python -m pip install --upgrade pip
 
    If you are using PyPy instead of Python, ensure ``pip`` is installed and upgrade the existing ``pip`` by
 
-   ::
+   .. prompt:: bash
 
        pypy -m ensurepip
        pypy -m pip install --upgrade pip
 
 2. Install this package in Python by
    
-   ::
+   .. prompt:: bash
        
        python -m pip install special_functions
 
    or, in PyPy by
 
-   ::
+   .. prompt:: bash
        
        pypy -m pip install special_functions
 
@@ -107,13 +107,13 @@ Alternatively, the package can be installed through `Anaconda could <https://ana
 
 * In **Linux** and **Windows**:
   
-  ::
+  .. prompt:: bash
       
       conda install -c s-ameli special_functions
 
 * In **macOS**:
   
-  ::
+  .. prompt:: bash
       
       conda install -c s-ameli -c conda-forge special_functions
 
@@ -131,13 +131,13 @@ Build and Install from Source Code
 
    * **Linux:** Install ``gcc``, for instance, by ``apt`` (or any other package manager on your Linux distro)
 
-     ::
+     .. prompt:: bash
 
          sudo apt install gcc gfortran
 
    * **macOS:** Install ``gcc`` via Homebrew:
 
-     ::
+     .. prompt:: bash
 
          sudo brew install gcc
 
@@ -145,13 +145,13 @@ Build and Install from Source Code
          
          If ``gcc`` is already installed, but Fortran compiler is yet not available on macOS, you may resolve this issue by reinstalling:
          
-         ::
+         .. prompt:: bash
 
              sudo brew reinstall gcc
 
    * **Windows:** Install both `Microsoft Visual C++ compiler <https://visualstudio.microsoft.com/vs/features/cplusplus/>`_ and Intel Fortran compiler (`Intel oneAPI <https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/fortran-compiler.html>`_). Open the command prompt (where you will enter the installation commands in the next step) and load the Intel compiler variables by
 
-     ::
+     .. prompt:: powershell
 
          C:\Program Files (x86)\Intel\oneAPI\setvars.bat
 
@@ -160,7 +160,7 @@ Build and Install from Source Code
 
 2. Clone the source code and install this package by
    
-   ::
+   .. prompt:: bash
 
        git clone https://github.com/ameli/special_functions.git
        cd special_functions
@@ -171,11 +171,10 @@ Build and Install from Source Code
     After the package is built and installed from the source code, the package cannot be imported properly if the current working directory is the same as the source code directory.
     To properly import the package, change the current working directory to a directory anywhere else **outside** of the source code directory. For instance:
 
-    .. code-block:: python
+    .. prompt:: bash
 
         cd ..
-        python
-        >>> import special_functions
+        python -c "import special_functions"
 
 
 ==============================
@@ -192,25 +191,25 @@ Install in ``virtualenv`` Environment
 
 1. Install ``virtualenv``:
 
-   ::
+   .. prompt:: bash
 
        python -m pip install virtualenv
 
 2. Create a virtual environment and give it a name, such as ``special_functions_env``
 
-   ::
+   .. prompt:: bash
 
        python -m virtualenv special_functions_env
 
 3. Activate python in the new environment
 
-   ::
+   .. prompt:: bash
 
        source special_functions_env/bin/activate
 
 4. Install ``special_functions`` package with any of the :ref:`above methods <InstallationMethods>`. For instance:
 
-   ::
+   .. prompt:: bash
 
        python -m pip install special_functions
    
@@ -218,7 +217,7 @@ Install in ``virtualenv`` Environment
 
 5. To exit from the environment
 
-   ::
+   .. prompt:: bash
 
        deactivate
 
@@ -232,19 +231,19 @@ In the following, it is assumed `anaconda <https://www.anaconda.com/products/ind
 
 1. Initialize conda (if it was not initialized before)
 
-   ::
+   .. prompt:: bash
 
        conda init
 
    You may need to close and reopen the terminal after the above command. Alternatively, instead of the above, you can do
 
-   ::
+   .. prompt:: bash
 
        sudo sh $(conda info --root)/etc/profile.d/conda.sh
 
 2. Create a virtual environment and give it a name, such as ``special_functions_env``
 
-   ::
+   .. prompt:: bash
 
        conda create --name special_functions_env -y
 
@@ -252,13 +251,13 @@ In the following, it is assumed `anaconda <https://www.anaconda.com/products/ind
 
 3. Activate the new environment
 
-   ::
+   .. prompt:: bash
 
        conda activate special_functions_env
 
 4. Install ``special_functions`` with any of the :ref:`above methods <InstallationMethods>`. For instance:
 
-   ::
+   .. prompt:: bash
 
        conda install -c s-ameli special_functions
    
@@ -266,7 +265,7 @@ In the following, it is assumed `anaconda <https://www.anaconda.com/products/ind
 
 5. To exit from the environment
 
-   ::
+   .. prompt:: bash
 
        conda deactivate
 

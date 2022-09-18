@@ -330,7 +330,7 @@ def besselh(nu, k, z, n=0):
 
 def lngamma(x):
     """
-    Computes the natural logarithm of Gamma function. THis function is a
+    Computes the natural logarithm of Gamma function. This function is a
     wrapper for ``gamma`` function in cephes library.
 
     :param x: Input argument of function.
@@ -354,7 +354,7 @@ def lngamma(x):
 
     .. seealso::
 
-        * :funct:`lngamma`: cython wrapper to this function.
+        * :func:`lngamma`: cython wrapper to this function.
     """
 
     # Call pure cythonic function
