@@ -22,6 +22,7 @@ Tutorial
 
 .. toctree::
     :maxdepth: 1
+    :caption: Tutorials
 
     Jupyter Notebook <notebooks/special_functions.ipynb>
 

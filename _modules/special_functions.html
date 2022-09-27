@@ -19,13 +19,14 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/toggleprompt.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script src="../_static/js/custom.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area", "displayMath": [["\\[", "\\]"]]}})</script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -48,7 +49,8 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/special_functions.html">Jupyter Notebook</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
@@ -70,19 +72,68 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Package API</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">special_functions package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.besselh">special_functions.besselh module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.besseli">special_functions.besseli module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.besselj">special_functions.besselj module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.besselk">special_functions.besselk module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.bessely">special_functions.bessely module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.cbesselh">special_functions.cbesselh module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.cbesseli">special_functions.cbesseli module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.cbesselj">special_functions.cbesselj module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.cbesselk">special_functions.cbesselk module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.cbessely">special_functions.cbessely module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.cython_wrappers">special_functions.cython_wrappers module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.lngamma">special_functions.lngamma module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-special_functions">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.besselh">special_functions.besselh module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.besselh.py_besselh"><code class="docutils literal notranslate"><span class="pre">py_besselh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.besseli">special_functions.besseli module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.besseli.py_besseli"><code class="docutils literal notranslate"><span class="pre">py_besseli()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.besselj">special_functions.besselj module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.besselj.py_besselj"><code class="docutils literal notranslate"><span class="pre">py_besselj()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.besselk">special_functions.besselk module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.besselk.py_besselk"><code class="docutils literal notranslate"><span class="pre">py_besselk()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.bessely">special_functions.bessely module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.bessely.py_bessely"><code class="docutils literal notranslate"><span class="pre">py_bessely()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.cbesselh">special_functions.cbesselh module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.cbesselh.py_cbesselh"><code class="docutils literal notranslate"><span class="pre">py_cbesselh()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.cbesseli">special_functions.cbesseli module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.cbesseli.py_cbesseli"><code class="docutils literal notranslate"><span class="pre">py_cbesseli()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.cbesselj">special_functions.cbesselj module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.cbesselj.py_cbesselj"><code class="docutils literal notranslate"><span class="pre">py_cbesselj()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.cbesselk">special_functions.cbesselk module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.cbesselk.py_cbesselk"><code class="docutils literal notranslate"><span class="pre">py_cbesselk()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.cbessely">special_functions.cbessely module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.cbessely.py_cbessely"><code class="docutils literal notranslate"><span class="pre">py_cbessely()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.cython_wrappers">special_functions.cython_wrappers module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.cython_wrappers.besselh"><code class="docutils literal notranslate"><span class="pre">besselh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.cython_wrappers.besseli"><code class="docutils literal notranslate"><span class="pre">besseli()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.cython_wrappers.besselj"><code class="docutils literal notranslate"><span class="pre">besselj()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.cython_wrappers.besselk"><code class="docutils literal notranslate"><span class="pre">besselk()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.cython_wrappers.bessely"><code class="docutils literal notranslate"><span class="pre">bessely()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.cython_wrappers.lngamma"><code class="docutils literal notranslate"><span class="pre">lngamma()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions.lngamma">special_functions.lngamma module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.lngamma.py_lngamma"><code class="docutils literal notranslate"><span class="pre">py_lngamma()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-special_functions">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.besselh"><code class="docutils literal notranslate"><span class="pre">besselh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.besseli"><code class="docutils literal notranslate"><span class="pre">besseli()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.besselj"><code class="docutils literal notranslate"><span class="pre">besselj()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.besselk"><code class="docutils literal notranslate"><span class="pre">besselk()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.bessely"><code class="docutils literal notranslate"><span class="pre">bessely()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#special_functions.lngamma"><code class="docutils literal notranslate"><span class="pre">lngamma()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -669,7 +720,7 @@ function uses python’s  global lock interpreter (<code class="docutils literal
 <dl class="py function">
 <dt class="sig sig-object py" id="special_functions.lngamma.py_lngamma">
 <span class="sig-prename descclassname"><span class="pre">special_functions.lngamma.</span></span><span class="sig-name descname"><span class="pre">py_lngamma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#special_functions.lngamma.py_lngamma" title="Permalink to this definition"></a></dt>
-<dd><p>Python wrapper for <a href="#id1"><span class="problematic" id="id2">:funct:`lngamma`</span></a> function.</p>
+<dd><p>Python wrapper for <code class="xref py py-func docutils literal notranslate"><span class="pre">lngamma()</span></code> function.</p>
 </dd></dl>
 
 </section>
