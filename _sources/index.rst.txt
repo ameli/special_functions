@@ -20,12 +20,6 @@ Tutorial
 
 |binder|
 
-.. toctree::
-    :maxdepth: 1
-    :caption: Tutorials
-
-    Jupyter Notebook <notebooks/special_functions.ipynb>
-
 Launch `online interactive notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2Fspecial_functions.ipynb>`_ with Binder.
 
 .. toctree::
@@ -34,6 +28,7 @@ Launch `online interactive notebook <https://mybinder.org/v2/gh/ameli/special_fu
 
     Install <install>
     List of Functions <api/list>
+    Jupyter Notebook <notebooks/special_functions.ipynb>
 
 .. toctree::
     :maxdepth: 1
