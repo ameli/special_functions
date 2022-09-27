@@ -114,7 +114,9 @@ autosummary_imported_members = True
 # automodapi
 numpydoc_show_class_members = False
 
-mathjax_config = {
+# Added after including sphinx_math_dollar. The following prevents msthjax to
+# parse $ and $$.
+mathjax3_config = {
     'tex2jax': {
         'inlineMath': [["\\(", "\\)"]],
         'displayMath': [["\\[", "\\]"]],

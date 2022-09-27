@@ -98,8 +98,8 @@ cdef double besselj(
 
     .. seealso::
 
-        * :funct:`py_besselj`: python wrapper.
-        * :funct:`cbesselj`: cython interface for complex numbers.
+        * :func:`py_besselj`: python wrapper.
+        * :func:`cbesselj`: cython interface for complex numbers.
     """
 
     # Check nan

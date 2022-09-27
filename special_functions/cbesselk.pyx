@@ -104,8 +104,8 @@ cdef double complex cbesselk(
 
     .. seealso::
 
-        * :funct:`py_cbesselk`: python wrapper to this function.
-        * :funct:`besselk`: cython interface for real numbers.
+        * :func:`py_cbesselk`: python wrapper to this function.
+        * :func:`besselk`: cython interface for real numbers.
     """
 
     # Check nan

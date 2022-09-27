@@ -107,8 +107,8 @@ cdef double complex cbessely(
 
     .. seealso::
 
-        * :funct:`py_cbessely`: python wrapper to this function.
-        * :funct:`bessely`: cython interface for real numbers.
+        * :func:`py_cbessely`: python wrapper to this function.
+        * :func:`bessely`: cython interface for real numbers.
     """
 
     # Check nan

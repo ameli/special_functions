@@ -96,8 +96,8 @@ cdef double besselk(
 
     .. seealso::
 
-        * :funct:`py_besselk`: python wrapper to this function.
-        * :funct:`cbesselk`: cython interface for real numbers.
+        * :func:`py_besselk`: python wrapper to this function.
+        * :func:`cbesselk`: cython interface for real numbers.
     """
 
     # Check nan

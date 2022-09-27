@@ -105,8 +105,8 @@ cdef double complex cbesselj(
 
     .. seealso::
 
-        * :funct:`py_besselj`: python wrapper.
-        * :funct:`besselj`: cyython interface for real numbers.
+        * :func:`py_besselj`: python wrapper.
+        * :func:`besselj`: cyython interface for real numbers.
     """
 
     # Check nan

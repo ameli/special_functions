@@ -114,8 +114,8 @@ cdef double complex cbesselh(
 
     .. seealso::
 
-        * :funct:`py_cbesselh`: python wrapper to this function.
-        * :funct:`besselh`: cython interface for real numbers.
+        * :func:`py_cbesselh`: python wrapper to this function.
+        * :func:`besselh`: cython interface for real numbers.
     """
 
     # Check nan

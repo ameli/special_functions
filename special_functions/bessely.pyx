@@ -97,8 +97,8 @@ cdef double bessely(
 
     .. seealso::
 
-        * :funct:`py_bessely`: python wrapper to this function.
-        * :funct:`cbessely`: cython interface for complex numbers.
+        * :func:`py_bessely`: python wrapper to this function.
+        * :func:`cbessely`: cython interface for complex numbers.
     """
 
     # Check nan

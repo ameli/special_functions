@@ -21,7 +21,7 @@ cdef extern from "cephes_wrapper.h":
 
 def py_lngamma(x):
     """
-    Python wrapper for :funct:`lngamma` function.
+    Python wrapper for :func:`lngamma` function.
     """
 
     # Call pure cythonic function without gil
@@ -60,7 +60,7 @@ cdef double lngamma(double x) nogil:
 
     .. seealso::
 
-        * :funct:`py_lngamma`: python wrapper to this function.
+        * :func:`py_lngamma`: python wrapper to this function.
     """
 
     # Check nan
