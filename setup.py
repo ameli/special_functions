@@ -272,7 +272,7 @@ def main(argv):
         # include_dirs=[numpy.get_include()],
         # install_requires=requirements,
         packages=['special_functions'],
-        python_requires='>=3.6',
+        python_requires='>=3.7',
         setup_requires=[
             'numpy>1.11',
             'cython'],
