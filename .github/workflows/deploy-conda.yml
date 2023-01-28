@@ -1,9 +1,9 @@
 name: deploy-conda
 
 on:
-    # push:
-    #     branches:
-    #         - main
+    push:
+        branches:
+            - main
     release:
         types: 
             - published
@@ -34,7 +34,7 @@ jobs:
 
             - name: Build for Linux and Windows
               if: runner.os != 'macos'
-              shell: bash -l {0}
+              shell: bash -el {0}
               run: |
                   export PATH=$(conda info --root):$PATH
                   export PATH=$(conda info --root)/bin:$PATH
@@ -45,7 +45,7 @@ jobs:
 
             - name: Build for macOS
               if: runner.os == 'macos'
-              shell: bash -l {0}
+              shell: bash -el {0}
               run: |
                   export PATH=$(conda info --root):$PATH
                   export PATH=$(conda info --root)/bin:$PATH
@@ -64,7 +64,8 @@ jobs:
             fail-fast: false
             matrix:
                 os: [ubuntu-latest, windows-latest, macos-latest]
-                python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
+                # python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
+                python-version: ['3.7', '3.8', '3.9', '3.10']
 
         steps:
             - name: Setup Miniconda
