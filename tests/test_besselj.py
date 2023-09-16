@@ -16,6 +16,8 @@ warnings.filterwarnings(
 warnings.filterwarnings(
         "ignore",
         message="invalid value encountered in cdouble_scalars")
+import numpy
+numpy.seterr(divide='ignore', invalid='ignore')
 
 
 # ================
