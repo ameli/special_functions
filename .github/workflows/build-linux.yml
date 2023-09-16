@@ -1,9 +1,9 @@
 name: build-linux
 
 on:
-    push:
-        branches:
-            - main
+    # push:
+    #     branches:
+    #         - main
     release:
         types: 
             - published
@@ -28,7 +28,6 @@ jobs:
 
             - name: Install prerequisites
               run: |
-                  # sudo apt install libblas3 liblapack3 liblapack-dev libblas-dev gfortran libatlas-base-dev
                   sudo apt-get install gfortran libopenblas-dev liblapack-dev
 
             - name: Install package and dependencies
@@ -38,11 +37,7 @@ jobs:
                   # python -m pip install .
                   python setup.py install
 
-            # Do not test on pypy since the test scripts require scipy to be able to compare the results
-            # of this package with those of scipy. However, pypy tries to compile scipy from source and
-            # raises error of BLAS not found.
             - name: Test
-              # if: (!contains(matrix.python-version, 'pypy'))
               run: |
                   python -m pip install --upgrade pytest
                   python -m pip install --upgrade pytest-cov
