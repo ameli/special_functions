@@ -37,10 +37,14 @@ jobs:
                   # python -m pip install .
                   python setup.py install
 
+            # Do not test on pypy since the test scripts require scipy to be able to compare the results
+            # of this package with those of scipy. However, pypy tries to compile scipy from source and
+            # raises error of BLAS not found.
             - name: Test
+              if: (!contains(matrix.python-version, 'pypy'))
               run: |
                   python -m pip install --upgrade pytest
                   python -m pip install --upgrade pytest-cov
-                  python -m pip install -r tests/requirements.txt
+                  python -m pip install --prefer-binary -r tests/requirements.txt
                   mv special_functions special_functions_do_not_import
                   pytest

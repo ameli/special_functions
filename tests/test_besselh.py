@@ -10,10 +10,10 @@ from special_functions import besselh
 from scipy.special import hankel1, hankel2, jvp, yvp
 from math import isnan
 import warnings
+import numpy
 warnings.filterwarnings(
         "ignore",
         message="invalid value encountered in cdouble_scalars")
-import numpy
 numpy.seterr(divide='ignore', invalid='ignore')
 
 

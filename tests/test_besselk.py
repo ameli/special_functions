@@ -9,6 +9,7 @@ import sys
 from special_functions import besselk
 from scipy.special import k0, k1, kn, kv, kvp
 from math import isnan, isinf, copysign
+import numpy
 import warnings
 warnings.filterwarnings(
         "ignore",
@@ -16,7 +17,6 @@ warnings.filterwarnings(
 warnings.filterwarnings(
         "ignore",
         message="invalid value encountered in cdouble_scalars")
-import numpy
 numpy.seterr(divide='ignore', invalid='ignore')
 
 

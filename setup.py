@@ -121,6 +121,7 @@ def configuration(parent_package='', top_path=None):
                 'wraparound': False,
                 'nonecheck': False,
                 'embedsignature': True,
+                'cpow': True,
                 'linetrace': True
             })
 
