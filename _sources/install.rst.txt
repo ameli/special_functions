@@ -21,9 +21,9 @@ Successful installation and tests have been performed on the following platforms
 +==========+======+======+======+======+======+=======+=================+
 | Linux    | |y|  | |y|  | |y|  | |y|  | |y|  | |y|   | |build-linux|   |
 +----------+------+------+------+------+------+-------+-----------------+
-| macOS    | |y|  | |y|  | |y|  | |y|  | |n|  | |n|   | |build-macos|   |
+| macOS    | |y|  | |y|  | |y|  | |n|  | |n|  | |n|   | |build-macos|   |
 +----------+------+------+------+------+------+-------+-----------------+
-| Windows  | |y|  | |y|  | |y|  | |y|  | |n|  | |n|   | |build-windows| |
+| Windows  | |y|  | |y|  | |y|  | |n|  | |n|  | |n|   | |build-windows| |
 +----------+------+------+------+------+------+-------+-----------------+
 
 .. |build-linux| image:: https://github.com/ameli/special_functions/workflows/build-linux/badge.svg
