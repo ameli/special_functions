@@ -19,22 +19,12 @@ jobs:
                 
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
             
             - name: Setup Python 
               uses: actions/setup-python@v4
               with:
                 python-version: '3.11'
-
-            - name: Install cibuildwheel (not macos)
-              if: matrix.os != 'macos-latest'
-              run: |
-                  python -m pip install cibuildwheel==2.9.0
-
-            - name: Install cibuildwheel (macos)
-              if: matrix.os == 'macos-latest'
-              run: |
-                  python -m pip install cibuildwheel
 
             - name: Install OpenMP and numpy for mac
               if: runner.os == 'macos'
@@ -56,14 +46,16 @@ jobs:
               run: brew reinstall gcc
             
             - name: Build wheels
-              run: python -m cibuildwheel --output-dir wheelhouse
+              uses: pypa/cibuildwheel@v2.15.0
               env:
                   CIBW_BUILD: "*-manylinux_x86_64 *-macosx_x86_64 *-win_amd64"
-                  CIBW_SKIP: "pp3*-macosx* pp3*-win* pp27* cp27* cp35* cp36-*"
+                  CIBW_SKIP: "pp3*-macosx* pp3*-win* pp37* cp36-* cp37-* cp38-* cp312-*"
                   CIBW_BUILD_VERBOSITY: 1
                   CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
                   CIBW_BEFORE_BUILD_LINUX: python -m pip install --upgrade pip; python -m pip install --upgrade numpy
                   # CIBW_BEFORE_BUILD_WINDOWS:  pip install --upgrade pip; pip install --upgrade numpy
+              with:
+                output-dir: wheelhouse
             
             - name: Upload artifacts
               uses: actions/upload-artifact@v3
@@ -123,12 +115,14 @@ jobs:
             fail-fast: false
             matrix:
                 os: [ubuntu-latest, windows-latest, macos-latest]
-                python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
+                python-version: ['3.9', '3.10', '3.11']
                 include:
                     - os: ubuntu-latest
-                      python-version: 'pypy-3.6'
+                      python-version: 'pypy-3.8'
                     - os: ubuntu-latest
-                      python-version: 'pypy-3.7'
+                      python-version: 'pypy-3.9'
+                    - os: ubuntu-latest
+                      python-version: 'pypy-3.10'
 
         steps:
             - name: Setup Python ${{ matrix.python-version }}

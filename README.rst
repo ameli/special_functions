@@ -30,6 +30,7 @@ Links
 * `Documentation <https://ameli.github.io/special_functions/index.html>`_
 * `Package on Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_
 * `Package on PyPI <https://pypi.org/project/special_functions/>`_
+* `Github <https://ameli.github.io/special_functions>`_
 
 =======
 Install
@@ -44,17 +45,17 @@ Successful installation and tests have been performed on the following platforms
 .. |y| unicode:: U+2714
 .. |n| unicode:: U+2716
 
-+----------+------+------+------+------+------+------+-------+-----------------+
-| Platform | Python version                   | PyPy version | Status          |
-+          +------+------+------+------+------+------+-------+                 +
-|          | 3.7  | 3.8  | 3.9  | 3.10 | 3.11 | 3.6  | 3.7   |                 |
-+==========+======+======+======+======+======+======+=======+=================+
-| Linux    | |y|  | |y|  | |y|  | |y|  | |y|  | |y|  | |y|   | |build-linux|   |
-+----------+------+------+------+------+------+------+-------+-----------------+
-| macOS    | |y|  | |y|  | |y|  | |y|  | |y|  | |n|  | |n|   | |build-macos|   |
-+----------+------+------+------+------+------+------+-------+-----------------+
-| Windows  | |y|  | |y|  | |y|  | |y|  | |y|  | |n|  | |n|   | |build-windows| |
-+----------+------+------+------+------+------+------+-------+-----------------+
++----------+------+------+------+------+-------+-----------------+
+| Platform | Python version     | PyPy version | Status          |
++          +------+------+------+------+-------+                 +
+|          | 3.9  | 3.10 | 3.11 | 3.6  | 3.7   |                 |
++==========+======+======+======+======+=======+=================+
+| Linux    | |y|  | |y|  | |y|  | |y|  | |y|   | |build-linux|   |
++----------+------+------+------+------+-------+-----------------+
+| macOS    | |y|  | |y|  | |y|  | |n|  | |n|   | |build-macos|   |
++----------+------+------+------+------+-------+-----------------+
+| Windows  | |y|  | |y|  | |y|  | |n|  | |n|   | |build-windows| |
++----------+------+------+------+------+-------+-----------------+
 
 .. |build-linux| image:: https://github.com/ameli/special_functions/workflows/build-linux/badge.svg
    :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-linux 

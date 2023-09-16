@@ -22,6 +22,8 @@ tmp/
 *.py[cod]
 *.sw[op]
 *.ipynb
+*.ttf
+*.ico
 *.svg
 *.png
 *.pdf
@@ -35,6 +37,7 @@ tmp/
 *.in
 *.cfg
 *.egg
+*.pickle
 
 # Exclude files
 *.gitignore
