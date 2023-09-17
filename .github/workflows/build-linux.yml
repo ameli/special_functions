@@ -26,9 +26,9 @@ jobs:
               with:
                   python-version: ${{ matrix.python-version }}
 
+            # Install BLAS, since pypy compiles numpy and scipy from source and requires BLAS.
             - name: Install prerequisites
-              run: |
-                  sudo apt-get install gfortran libopenblas-dev liblapack-dev
+              run: sudo apt-get install gfortran libopenblas-dev liblapack-dev
 
             - name: Install package and dependencies
               run: |
