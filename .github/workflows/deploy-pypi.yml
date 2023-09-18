@@ -130,6 +130,14 @@ jobs:
               with:
                   python-version: ${{ matrix.python-version }}
 
+            # MacOS needs openblas to run the tests on pypy
+            - name: Install OpenMP and numpy for mac
+              if: runner.os == 'macos'
+              run: |
+                  # This is needed to import numpy in pypy3 (but not needed for pypy2 and CPython)
+                  brew install openblas
+                  OPENBLAS="$(brew --prefix openblas)"
+
             - name: Install packages
               run: |
                   python -m pip install --upgrade pip
