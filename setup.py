@@ -203,11 +203,12 @@ def main(argv):
     package_name = "special_functions"
 
     # Version
-    version_dummy = {}
-    version_file = os.path.join(directory, package_name, '__version__.py')
-    exec(open(version_file, 'r').read(), version_dummy)
-    version = version_dummy['__version__']
-    del version_dummy
+    # version_dummy = {}
+    # version_file = os.path.join(directory, package_name, '__version__.py')
+    # exec(open(version_file, 'r').read(), version_dummy)
+    # version = version_dummy['__version__']
+    # del version_dummy
+    version = '0.0.1'
 
     # Author
     author_file = os.path.join(directory, 'AUTHORS.txt')
@@ -260,8 +261,6 @@ def main(argv):
             'Topic :: Software Development :: Libraries :: Python Modules',
         ],
     )
-
-    # metadata = dict()
 
     # additional inputs that can only be used for setuptools.setup.
     # These inputs cannot be used for numpy.distutil.core.setup

@@ -5,7 +5,6 @@ source = special_functions
 omit = 
     tests
     setup.py
-    special_functions/__version__.py
     special_functions/__config__.py
     *__init__.py
     *__init__.pxd
