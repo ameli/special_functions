@@ -1,3 +1,45 @@
 [build-system]
-build-backend = "setuptools.build_meta"
-requires = ["setuptools", "wheel", "numpy>1.11", "Cython>=0.29"]
+build-backend = "mesonpy"
+requires = ["meson-python", "numpy>1.11", "scipy>=1.5", "cython>=0.29,<3.0"]
+
+[project]
+name = "special_functions"
+license = {file = "LICENSE.txt"}
+readme = "README.rst"
+version = "0.2.6"
+authors = [
+    {name = "Siavash Ameli", email = "sameli@berkeley.edu" }
+]
+description = "Cython and Python API for special functions."
+keywords = ['special-functions', 'bessel-function', 'gamma-function']
+requires-python = ">=3.9"
+platforms = ['Linux', 'OSX', 'Windows']
+classifiers = [
+    'Programming Language :: Cython',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: Implementation :: CPython',
+    'Programming Language :: Python :: Implementation :: PyPy',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: POSIX :: Linux',
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: MacOS',
+    'Natural Language :: English',
+    'Intended Audience :: Science/Research',
+    'Intended Audience :: Developers',
+    'Topic :: Software Development',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+]
+
+[project.optional-dependencies]
+test = = { file = ["test/requirements.txt"] }
+docs = = { file = ["docs/requirements.txt"] }
+
+[project.urls]
+homepage = "https://ameli.github.io/special_functions/"
+documentation = "https://ameli.github.io/special_functions/"
+source = 'https://github.com/ameli/special_functions/'
+download = 'https://github.com/ameli/special_functions/archive/main.zip'
+tracker = "https://github.com/ameli/special_functions/issues"

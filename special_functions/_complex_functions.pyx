@@ -46,7 +46,7 @@ cdef double complex complex_sqrt(const double complex z) nogil:
 @wraparound(False)
 cdef double complex complex_exp(double complex z) nogil:
     """
-    Returns the exponental of a complex function.
+    Returns the exponential of a complex function.
 
     :param z: Complex number
     :type z: double complex

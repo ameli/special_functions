@@ -261,8 +261,6 @@ def main(argv):
         ],
     )
 
-    # metadata = dict()
-
     # additional inputs that can only be used for setuptools.setup.
     # These inputs cannot be used for numpy.distutil.core.setup
     additional_metadata = dict(
