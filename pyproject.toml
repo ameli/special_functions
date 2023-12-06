@@ -33,9 +33,9 @@ classifiers = [
     'Topic :: Software Development :: Libraries :: Python Modules',
 ]
 
-[project.optional-dependencies]
-test = = { file = ["test/requirements.txt"] }
-docs = = { file = ["docs/requirements.txt"] }
+# [project.optional-dependencies]
+# test = { file = ["./test/requirements.txt"] }
+# docs = { file = ["./docs/requirements.txt"] }
 
 [project.urls]
 homepage = "https://ameli.github.io/special_functions/"
