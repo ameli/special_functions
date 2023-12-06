@@ -9,56 +9,223 @@ on:
             - published
 
 jobs:
-    build_upload:
-        name: Build on ${{ matrix.os }}
+    build_wheels:
+        name: Build wheels on ${{ matrix.os }}
         runs-on: ${{ matrix.os }}
         strategy:
             fail-fast: false
             matrix:
                 os: [ubuntu-latest, windows-latest, macos-latest]
+                
         steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            
+            - name: Setup Python 
+              uses: actions/setup-python@v4
+              with:
+                python-version: '3.12'
+
+              # Without this, installing cuda give error: no much space left on device
+            - name: Clear Cache
+              if: matrix.os != 'windows-latest'
+              run: rm -rf /opt/hostedtoolcache 
+                
+            - name: Install OpenMP and numpy for mac
+              if: runner.os == 'macos'
+              run: |
+                  # This is needed to import numpy in pypy3 (but not needed for pypy2 and CPython)
+                  brew install openblas
+                  OPENBLAS="$(brew --prefix openblas)"
+                  pip3 install numpy
+
+            # Test
+            - name: Install package and dependencies
+              if: runner.os != 'macos'
+              run: |
+                  python -m pip install --upgrade pip
+                  python -m pip install --upgrade numpy
+
+            # Test
+            - name: Install package and dependencies
+              if: runner.os != 'macos'
+              run: |
+                  python -m pip install --upgrade pip
+                  python -m pip install --upgrade numpy
+
+            # Build wheel for windows with CUDA enabled. Note that cibuildwheel
+            # does not need manylinux docker, thuns, CUDA can be installed in
+            # the github action's virtual machine using the Jimver's action
+            # in the previous action (see above).
+            - name: Build wheels in windows with CUDA support (X86_64)
+              if: matrix.os == 'windows-latest'
+              uses: pypa/cibuildwheel@v2.15.0
+              env:
+                  CIBW_ARCHS_WINDOWS: "AMD64 x86"
+                  CIBW_BUILD: "*-win_amd64"
+                  CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
+                  CIBW_BUILD_VERBOSITY: 1
+              with:
+                output-dir: wheelhouse
+
+            # Build wheel for windows with CUDA enabled. Note that cibuildwheel
+            # does not need manylinux docker, thuns, CUDA can be installed in
+            # the github action's virtual machine using the Jimver's action
+            # in the previous action (see above).
+            - name: Build wheels in windows without CUDA support (ARM64)
+              if: matrix.os == 'windows-latest'
+              uses: pypa/cibuildwheel@v2.15.0
+              env:
+                  CIBW_ARCHS_WINDOWS: "ARM64"
+                  CIBW_BUILD: "*-win_arm64"
+                  CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
+                  CIBW_BUILD_VERBOSITY: 1
+              with:
+                output-dir: wheelhouse
+           
+            # Do not enable compiling with CUDA for macos since NIVDIA no
+            # longer supports CUDA in the macos.
+            - name: Build wheels in mac without CUDA support (X86_64 and arm64)
+              if: matrix.os == 'macos-latest'
+              uses: pypa/cibuildwheel@v2.15.0
+              env:
+                  CIBW_ARCHS_MACOS: "x86_64 arm64"
+                  CIBW_BUILD: "*-macosx_arm64 *-macosx_x86_64"
+                  CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
+                  CIBW_BUILD_VERBOSITY: 1
+              with:
+                output-dir: wheelhouse
+
+            # Enable compiling with CUDA, only for linux. Note that cuda must
+            # be installed "inside" the manylinux docker image, not in the main
+            # github virtual machine. Also, we should use manylinux2014, but
+            # not manylinux1. Because of this, we will not install CUDA with
+            # the Jimver's action (unlike we did so for the windows wheel in
+            # the above). The ``CUDA_DYNAMIC_LOADING=0`` disables dynamic
+            # loading of CUDA library. Base of this, when the wheels are
+            # created in manylinux platform, the cuda's libraries
+            # (libcudart.so, libcublas.so, libcusparse.so) will bundle to
+            # the wheel. This is increases the wheel size, bit since the
+            # anaconda cloud upload size is 1GB, the large wheel size will not
+            # be a problem. The advantage of bundling cuda libraries to the
+            # wheel is that the end-user does not have to install cuda toolkit.
+            - name: Build wheels in linux with CUDA support (X86_64)
+              if: matrix.os == 'ubuntu-latest'
+              uses: pypa/cibuildwheel@v2.15.0
+              env:
+                  CIBW_MANYLINUX_X86_64_IMAGE: sameli/manylinux2014_x86_64_cuda_12.2
+                  # CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
+                  # CIBW_BEFORE_ALL_LINUX: chmod +x .github/scripts/install_cuda.sh && .github/scripts/install_cuda.sh
+                  CIBW_ARCHS_LINUX: "x86_64"
+                  CIBW_BUILD: "*-manylinux_x86_64"
+                  CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
+                  CIBW_BUILD_VERBOSITY: 1
+                  CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y; python -m pip install --upgrade pip; python -m pip install --upgrade numpy
+              with:
+                output-dir: wheelhouse
+
+            # This does not work, the compilation takes several hours, then fails, even without enabling cuda.
+            # - name: Build wheels in linux without CUDA support (AARCH64)
+            #   if: matrix.os == 'ubuntu-latest'
+            #   uses: pypa/cibuildwheel@v2.15.0
+            #   env:
+            #       # CIBW_MANYLINUX_X86_64_IMAGE: sameli/manylinux2014_x86_64_cuda_12.2
+            #       CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
+            #       # CIBW_BEFORE_ALL_LINUX: chmod +x .github/scripts/install_cuda.sh && .github/scripts/install_cuda.sh
+            #       CIBW_ARCHS_LINUX: "aarch64"
+            #       CIBW_BUILD: "*-manylinux_aarch64"
+            #       CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
+            #       CIBW_BUILD_VERBOSITY: 1
+            #       CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y; python -m pip install --upgrade pip; python -m pip install --upgrade numpy
+            #   with:
+            #     output-dir: wheelhouse
+            
+            - name: Upload artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: wheel-artifacts
+                  path: ./wheelhouse/*.whl
+                  retention-days: 1
+
+    build_conda:
+        needs: [build_wheels]
+        name: Build conda on ${{ matrix.os }}
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+                os: [ubuntu-latest, windows-latest, macos-latest]
+        
+        # To upload to PyPI on every tag starting with 'v', use the following:
+        # if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
+        # To publish to pypi on each GitHub Release, use the following:
+        # if: github.event_name == 'release' && github.event.action == 'published'
+        steps:
+
+            - name: Clean runner space
+              if: matrix.os == 'ubuntu-latest'
+              run: |
+                  sudo rm -rf /usr/share/dotnet
+                  sudo rm -rf /opt/ghc
+                  sudo rm -rf "/usr/local/share/boost"
+                  sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+                  docker system prune -af
+
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Download artifacts
+              uses: actions/download-artifact@v3
+              with:
+                  name: wheel-artifacts
+                  path: dist
+
             - name: Setup Miniconda
               uses: conda-incubator/setup-miniconda@v2
               with:
                   miniconda-version: "latest"
                   auto-update-conda: true
 
-            - name: Checkout
-              uses: actions/checkout@v3
+            # - name: Install OpenMP and numpy for mac
+            #   if: matrix.os == 'macos-latest'
+            #   run: |
+            #       brew install libomp
+            #
+            #       # Starting from libomp>=15.0, the libomp installation in homebrew is "keg-only",
+            #       # meaning that libomp is only installed in homebrew's directory, but not moved
+            #       # to /usr/local to avoid other OpenMP installations (such as with gcc's version
+            #       # of OpenMP). To use the homebrew's version of OpenMP,the following symbolic
+            #       # links are created. Without these, the installation will fail with the error
+            #       # of "fatal error: omp.h file found"
+            #       ln -s /usr/local/opt/libomp/include/omp-tools.h /usr/local/include/omp-tools.h
+            #       ln -s /usr/local/opt/libomp/include/omp.h /usr/local/include/omp.h
+            #       ln -s /usr/local/opt/libomp/include/ompt.h /usr/local/include/ompt.h
+            #       ln -s /usr/local/opt/libomp/lib/libomp.a /usr/local/lib/libomp.a
+            #       ln -s /usr/local/opt/libomp/lib/libomp.dylib /usr/local/lib/libomp.dylib
 
-            - name: Install conda
-              shell: bash -l {0}
+            - name: Build and upload package
+              shell: bash -el {0}
               run: |
                   conda install -y conda-build anaconda-client
                   conda config --set anaconda_upload yes
-                  conda config --set always_yes yes --set changeps1 no
-
-            - name: Build for Linux and Windows
-              if: runner.os != 'macos'
-              shell: bash -el {0}
-              run: |
                   export PATH=$(conda info --root):$PATH
                   export PATH=$(conda info --root)/bin:$PATH
                   conda-build --output-folder . .
               env:
-                  CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
+                  CYTHON_BUILD_IN_SOURCE: '1'  # see setup.py. Avoids a bug when building with multiple python variants
                   ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-
-            - name: Build for macOS
-              if: runner.os == 'macos'
-              shell: bash -el {0}
-              run: |
-                  export PATH=$(conda info --root):$PATH
-                  export PATH=$(conda info --root)/bin:$PATH
-                  conda-build -c conda-forge  --output-folder . .
-                  # conda-build --output-folder . .
-                  # conda-build -c conda-forge  --output-folder bld-conda-mac .
-              env:
-                  CYTHON_BUILD_IN_SOURCE: 'true'  # see setup.py. Avoids a bug when building with multiple python variants
-                  ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+                 
+            # The manylinux wheels (after repaired with auditwheel) are very
+            # large in size. It is better to delete them. If we do not delete
+            # them, however, they will be deleted after the retention days,
+            # which I set to one day.
+            - name: Delete artifacts
+              uses: geekyeggo/delete-artifact@v1
+              with:
+                  name: wheel-artifacts
 
     test_conda:
-        needs: [build_upload]
+        needs: [build_conda]
         name: Test on ${{ matrix.os }} and Python ${{ matrix.python-version }}
         runs-on: ${{ matrix.os }}
         strategy:
@@ -73,25 +240,25 @@ jobs:
               with:
                   auto-update-conda: true
                   python-version: ${{ matrix.python-version }}
+                  activate-environment: myenv
 
             - name: Checkout
               uses: actions/checkout@v3
 
-            - name: Install package (not macos)
+            # Remove MKL as it causes error in initializing libomp. This only happens in MacOS and
+            # the conda (but not pip) installation of this package.
+            - name: Remove MKL in MacOS
+              if: matrix.os == 'macos-latest'
               shell: bash -l {0}
-              if: runner.os != 'macos'
-              run: conda install -c s-ameli special_functions -y
-
-            - name: Install package (macos)
-              shell: bash -l {0}
-              if: runner.os == 'macos'
-              run: conda install -c s-ameli -c conda-forge special_functions -y
+              run: |
+                  conda install nomkl
+                  conda remove mkl mkl-service || true  # use true since if mkl or mkl-service does not exist, conda throw error and fails the whole runner action to continue
 
             - name: Test
               shell: bash -l {0}
               run: |
                   mv special_functions special_functions-DoNotImport
                   rm setup.cfg
-                  conda install -c conda-forge scipy -y
+                  conda install -c s-ameli special_functions -y
                   conda install pytest -y
                   pytest
