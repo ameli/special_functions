@@ -29,7 +29,6 @@ authors = [
 description = "Cython and Python API for special functions."
 keywords = ['special-functions', 'bessel-function', 'gamma-function']
 requires-python = ">=3.8"
-platforms = ['Linux', 'OSX', 'Windows']
 classifiers = [
     'Programming Language :: Cython',
     'Programming Language :: Python :: 3.9',
