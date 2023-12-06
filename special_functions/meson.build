@@ -33,169 +33,36 @@ cephes_lib = static_library(
   dependencies: [py3_dep],
 )
 
-# sources = files('besselk.pyx')
-
-py3.extension_module(
-  'lngamma',
-  'lngamma.pyx',
-  dependencies: py3_dep,
-  link_with: [
-    amos_lib,
-    cephes_lib
-  ],
-  install: true,
-  link_language: 'fortran',
-  subdir: 'special_functions'
-)
-
-py3.extension_module(
-  'cbessely',
-  'cbessely.pyx',
-  include_directories: ['.'],
-  dependencies: py3_dep,
-  link_with: [
-    amos_lib,
-    cephes_lib
-  ],
-  install: true,
-  link_language: 'fortran',
-  subdir: 'special_functions'
-)
-
-py3.extension_module(
-  'cbesselh',
-  'cbesselh.pyx',
-  include_directories: ['.'],
-  dependencies: py3_dep,
-  link_with: [
-    amos_lib,
-    cephes_lib
-  ],
-  install: true,
-  link_language: 'fortran',
-  subdir: 'special_functions'
-)
-
-py3.extension_module(
-  'cbesselj',
-  'cbesselj.pyx',
-  include_directories: ['.'],
-  dependencies: py3_dep,
-  link_with: [
-    amos_lib,
-    cephes_lib
-  ],
-  install: true,
-  link_language: 'fortran',
-  subdir: 'special_functions'
-)
-
-py3.extension_module(
-  'cbesseli',
-  'cbesseli.pyx',
-  include_directories: ['.'],
-  dependencies: py3_dep,
-  link_with: [
-    amos_lib,
-    cephes_lib
-  ],
-  install: true,
-  link_language: 'fortran',
-  subdir: 'special_functions'
-)
-
-py3.extension_module(
-  'cbesselk',
-  'cbesselk.pyx',
-  include_directories: ['.'],
-  dependencies: py3_dep,
-  link_with: [
-    amos_lib,
-    cephes_lib
-  ],
-  install: true,
-  link_language: 'fortran',
-  subdir: 'special_functions'
-)
-
-
-py3.extension_module(
-  '_complex_functions',
-  '_complex_functions.pyx',
-  dependencies: py3_dep,
-  link_with: [
-    amos_lib,
-    cephes_lib
-  ],
-  install: true,
-  link_language: 'fortran',
-  subdir: 'special_functions'
-)
-
-py3.extension_module(
-  'besselh',
-  'besselh.pyx',
-  dependencies: py3_dep,
-  link_with: [
-    amos_lib,
-    cephes_lib
-  ],
-  install: true,
-  link_language: 'fortran',
-  subdir: 'special_functions'
-)
-
-py3.extension_module(
-  'bessely',
-  'bessely.pyx',
-  dependencies: py3_dep,
-  link_with: [
-    amos_lib,
-    cephes_lib
-  ],
-  install: true,
-  link_language: 'fortran',
-  subdir: 'special_functions'
-)
-
-py3.extension_module(
+extensions = [
   'besseli',
-  'besseli.pyx',
-  dependencies: py3_dep,
-  link_with: [
-    amos_lib,
-    cephes_lib
-  ],
-  install: true,
-  link_language: 'fortran',
-  subdir: 'special_functions'
-)
-
-py3.extension_module(
   'besselj',
-  'besselj.pyx',
-  dependencies: py3_dep,
-  link_with: [
-    amos_lib,
-    cephes_lib
-  ],
-  install: true,
-  link_language: 'fortran',
-  subdir: 'special_functions'
-)
-
-py3.extension_module(
   'besselk',
-  'besselk.pyx',
-  dependencies: py3_dep,
-  link_with: [
-    amos_lib,
-    cephes_lib
-  ],
-  install: true,
-  link_language: 'fortran',
-  subdir: 'special_functions'
-)
+  'besselh',
+  'bessely',
+  'cbesseli',
+  'cbesselj',
+  'cbesselk',
+  'cbesselh',
+  'cbessely',
+  'lngamma',
+  '_complex_functions',
+  ]
+
+foreach ext: extensions
+  py3.extension_module(
+    ext,
+    ext + '.pyx',
+    dependencies: py3_dep,
+    include_directories: ['.'],
+    link_with: [
+      amos_lib,
+      cephes_lib
+    ],
+    install: true,
+    link_language: 'fortran',
+    subdir: 'special_functions'
+  )
+endforeach
 
 python_sources = [
   '__init__.py',
@@ -218,5 +85,6 @@ python_sources = [
 
 py3.install_sources(
   python_sources,
-  subdir: 'special_functions'
+  pure: false,                  # Will be installed next to binaries
+  subdir: 'special_functions'   # Folder relative to site-package to install to
 )
