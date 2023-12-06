@@ -33,7 +33,7 @@ do
 
         # Matched. Install with pip
         echo "Try installing wheel file '${wheel_filename}'.";
-        python -m pip install --no-deps --force-reinstall $wheel_filename --verbose;
+        python -m pip install --no-deps --force-reinstall $wheel_filename -vvv;
 
         # Check last error code
         error_code=$?;
