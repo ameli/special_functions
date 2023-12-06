@@ -1,6 +1,22 @@
 [build-system]
 build-backend = "mesonpy"
-requires = ["meson-python", "numpy>1.11", "scipy>=1.5", "cython>=0.29,<3.0"]
+requires = ["meson-python", "numpy>1.11", "scipy>=1.5", "cython>=0.29.35"]
+# requires = [
+#     "meson-python>=0.15.0",
+#     "Cython>=0.29.35,!=3.0.3",  # when updating version, also update check in meson.build
+#
+#     # default numpy requirements
+#     "numpy==1.22.4; python_version<='3.10' and platform_python_implementation != 'PyPy'",
+#     "numpy==1.23.2; python_version=='3.11' and platform_python_implementation != 'PyPy'",
+#     "numpy>=1.26.0,<1.27; python_version=='3.12'",
+#
+#     # PyPy requirements; 1.25.0 was the first version to have pypy-3.9 wheels,
+#     # and 1.25.0 also changed the C API target to 1.19.x, so no longer a need
+#     # for an exact pin.
+#     "numpy>=1.25.0; python_version>='3.9' and platform_python_implementation=='PyPy'",
+#
+#     "scipy>=1.5",
+# ]
 
 [project]
 name = "special_functions"
@@ -12,7 +28,7 @@ authors = [
 ]
 description = "Cython and Python API for special functions."
 keywords = ['special-functions', 'bessel-function', 'gamma-function']
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 platforms = ['Linux', 'OSX', 'Windows']
 classifiers = [
     'Programming Language :: Cython',
