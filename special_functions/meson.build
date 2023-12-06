@@ -1,4 +1,3 @@
-
 cython_c_args = ['-DCYTHON_CCOMPLEX=0'] # see gh-18975 for why we need this
 
 numpy_nodepr_api = '-DNPY_NO_DEPRECATED_API=NPY_1_9_API_VERSION'
@@ -8,6 +7,7 @@ amos_sources = []
 cephes_sources = []
 subdir('_extern')
 
+# Create amos library (Fortran cod)
 amos_lib = static_library(
   'amos',
   amos_sources,
@@ -20,6 +20,7 @@ amos_lib = static_library(
   dependencies: [py3_dep],
 )
 
+# Create cephes library (C code)
 cephes_lib = static_library(
   'cephes',
   cephes_sources,
@@ -33,6 +34,27 @@ cephes_lib = static_library(
   dependencies: [py3_dep],
 )
 
+# Cythonize compiler arguments. -X stands for cython compiler derivatives
+cython_args = [
+    '-3',
+    '-X', 'boundscheck=False',
+    '-X', 'cdivision=True',
+    '-X', 'wraparound=False',
+    '-X', 'nonecheck=False',
+    '-X', 'embedsignature=True',
+    '-X', 'cpow=True',
+    '-X' 'linetrace=True,
+    '--output-file', '@OUTPUT@',
+    '--include-dir', '@BUILD_ROOT@',
+    '@INPUT@'
+]
+
+# Cythonize object
+cython_gen = generator(cython,
+  arguments : cython_args,
+  output : '@BASENAME@.c')
+
+# List of pyx files (without their extension) to be cythonized
 extensions = [
   'besseli',
   'besselj',
@@ -48,10 +70,11 @@ extensions = [
   '_complex_functions',
   ]
 
+# Create extensions from each cythonized file
 foreach ext: extensions
   py3.extension_module(
     ext,
-    ext + '.pyx',
+    cython_gen.process(ext + '.pyx'),
     dependencies: py3_dep,
     include_directories: ['.'],
     link_with: [
@@ -64,6 +87,7 @@ foreach ext: extensions
   )
 endforeach
 
+# List of files to be directly copied to the installation package directory
 python_sources = [
   '__init__.py',
   '__init__.pxd',
@@ -83,6 +107,7 @@ python_sources = [
   'cython_wrappers.py',
 ]
 
+# Install the above list of files
 py3.install_sources(
   python_sources,
   pure: false,                  # Will be installed next to binaries
