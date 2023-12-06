@@ -43,7 +43,7 @@ cython_args = [
     '-X', 'nonecheck=False',
     '-X', 'embedsignature=True',
     '-X', 'cpow=True',
-    '-X', 'linetrace=True,
+    '-X', 'linetrace=True',
     '--output-file', '@OUTPUT@',
     '--include-dir', '@BUILD_ROOT@',
     '@INPUT@'
