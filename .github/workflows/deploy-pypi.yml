@@ -133,6 +133,7 @@ jobs:
                   CIBW_BUILD: "*-manylinux_x86_64"
                   CIBW_SKIP: "pp37-* cp36-* cp37-* cp38-*"
                   CIBW_BUILD_VERBOSITY: 1
+                  CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y
                   # CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y; python -m pip install --upgrade pip; python -m pip install --upgrade numpy
               with:
                 output-dir: wheelhouse
