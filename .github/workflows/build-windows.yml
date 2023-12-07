@@ -29,8 +29,10 @@ jobs:
             - name: Install package and dependencies
               run: |
                   python -m pip install --upgrade pip
-                  # python -m pip install --upgrade numpy
                   python -m pip install . -vvv
+                  cd ../..
+                  ls
+                  python -c "import special_functions; print(special_functions.besselk(1,1,1))"
 
             - name: Test Before
               if: (matrix.python-version == '3.11')

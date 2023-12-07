@@ -17,7 +17,10 @@ jobs:
             - name: Setup Python
               uses: actions/setup-python@v4
               with:
-                  python-version: '3.11'
+                  python-version: '3.11' # do not upgrade to python 3.12, as 3.12 uses meson.build and cannot build sdist do to some bugs. (sdist needed for check-manifest)
+                                         # however, 3.11 can be used with setup.py (instead of meson.build), with the advantage of generating sdist
+                                         # internally through check-manifest using python setup.py sdist.
+                                         # Why 3.12 cannot use setup.py? Because setup.py uses ditutils, which is deprecated since 3.12.
 
             - name: Install package
               run: |

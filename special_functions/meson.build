@@ -1,7 +1,5 @@
 cython_c_args = ['-DCYTHON_CCOMPLEX=0'] # see gh-18975 for why we need this
 
-# numpy_nodepr_api = '-DNPY_NO_DEPRECATED_API=NPY_1_9_API_VERSION'
-
 # The list of sources for amos and cephes are processed in "_extern" subdir
 amos_sources = []
 cephes_sources = []

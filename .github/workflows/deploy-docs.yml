@@ -18,7 +18,10 @@ jobs:
             - name: Set up Python
               uses: actions/setup-python@v4
               with:
-                  python-version: '3.11'
+                  python-version: '3.11' # do not upgrade to python 3.12, as 3.12 uses meson.build and cannot compile --inplace (needed for doc)
+                                         # however, 3.11 can be used with setup.py (instead of meson.build), with the advantage of using
+                                         # --inplace option, such as python setup.py build_ext --inplace.
+                                         # Why 3.12 cannot use setup.py? Because setup.py uses ditutils, which is deprecated since 3.12.
 
             # Compile package with in-source build
             - name: Install

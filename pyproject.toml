@@ -1,13 +1,12 @@
 [build-system]
 build-backend = "mesonpy"
-# requires = ["meson-python", "numpy>1.11", "scipy>=1.5", "cython>=0.29.35"]
 requires = ["meson-python", "cython>=0.29.35"]
 
 [project]
 name = "special_functions"
 license = {file = "LICENSE.txt"}
 readme = "README.rst"
-version = "0.2.10"
+version = "0.2.11"
 authors = [
     {name = "Siavash Ameli", email = "sameli@berkeley.edu" }
 ]

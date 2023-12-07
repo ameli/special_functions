@@ -1,9 +1,9 @@
 name: deploy-pypi
 
 on:
-    push:
-        branches:
-            - main
+    # push:
+    #     branches:
+    #         - main
     release:
         types:
             - published
@@ -31,21 +31,6 @@ jobs:
               if: matrix.os != 'windows-latest'
               run: rm -rf /opt/hostedtoolcache 
                 
-            # - name: Install OpenMP and numpy for mac
-            #   if: runner.os == 'macos'
-            #   run: |
-            #       # This is needed to import numpy in pypy3 (but not needed for pypy2 and CPython)
-            #       brew install openblas
-            #       OPENBLAS="$(brew --prefix openblas)"
-            #       pip3 install numpy
-            #
-            # # Test
-            # - name: Install package and dependencies
-            #   if: runner.os != 'macos'
-            #   run: |
-            #       python -m pip install --upgrade pip
-            #       python -m pip install --upgrade numpy
-
             # Build wheel for windows with CUDA enabled. Note that cibuildwheel
             # does not need manylinux docker, thuns, CUDA can be installed in
             # the github action's virtual machine using the Jimver's action
@@ -127,7 +112,6 @@ jobs:
                   CIBW_SKIP: "pp37-* cp36-* cp37-* cp38-*"
                   CIBW_BUILD_VERBOSITY: 1
                   # CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y
-                  # CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y; python -m pip install --upgrade pip; python -m pip install --upgrade numpy
               with:
                 output-dir: wheelhouse
 
@@ -141,7 +125,7 @@ jobs:
             #       CIBW_BUILD: "*-manylinux_aarch64"
             #       CIBW_SKIP: "pp37* cp36-* cp37-* cp38-*"
             #       CIBW_BUILD_VERBOSITY: 1
-            #       # CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y; python -m pip install --upgrade pip; python -m pip install --upgrade numpy
+            #       # CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y
             #   with:
             #     output-dir: wheelhouse
             
@@ -237,7 +221,15 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
 
+            # Despite the package is built on both cpython and pypy, here we
+            # only test it on cpython, not on pypy, since tests require numpy and scipy
+            # (although, this package itself does not have numpy and scipy dependency,
+            # but the test scripts do depend on numpy and scipy).
+            # Often in pypy these packages do not have wheels, then have to be
+            # built from source. As such, it takes forever to build these in pypy!
+            # Thus, it is just simpler to not test this package with pypy.
             - name: Test
+              if: (!contains(matrix.python-version, 'pypy'))
               run: |
                   python -m pip install numpy
                   python -m pip install -r tests/requirements.txt
