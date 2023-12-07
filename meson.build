@@ -58,7 +58,7 @@ endif
 # use a linker script to avoid exporting those symbols (this is in addition to
 # Meson using `-fvisibility=hidden` for C and `-fvisibility-inlines-hidden` for
 # C++ code. See gh-15996 for details.
-_linker_script = meson.project_source_root() / 'scipy/_build_utils/link-version-pyinit.map'
+_linker_script = meson.project_source_root() / 'special_functions/_build_utils/link-version-pyinit.map'
 version_link_args = ['-Wl,--version-script=' + _linker_script]
 # Note that FreeBSD only accepts version scripts when -shared is passed,
 # hence we need to pass that to `cc.links` explicitly (flag is already

@@ -37,7 +37,7 @@ jobs:
                 cd /
                 python -m pip show special_functions
                 ls C:\hostedtoolcache\windows\Python\3.11.6\x64\Lib\site-packages\special_functions
-                python -c "import os; os.os.add_dll_directory('C:\hostedtoolcache\windows\Python\3.11.6\x64\Lib\site-packages\special_functions'); import special_functions; print(special_functions.besselk(1,1,1))"
+                python -c "import os; os.add_dll_directory('C:\hostedtoolcache\windows\Python\3.11.6\x64\Lib\site-packages\special_functions'); import special_functions; print(special_functions.besselk(1,1,1))"
 
             - name: Test
               run: |
