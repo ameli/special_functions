@@ -7,8 +7,6 @@
 # directory of this source tree.
 
 
-cython_c_args = ['-DCYTHON_CCOMPLEX=0'] # see gh-18975 for why we need this
-
 # The list of sources for amos and cephes are processed in "_extern" subdir
 amos_sources = []
 cephes_sources = []
@@ -82,6 +80,7 @@ foreach ext: extensions
     py3.extension_module(
         ext,
         cython_gen.process(ext + '.pyx'),
+        c_args: cython_c_args,
         dependencies: py3_dep,
         include_directories: ['.'],
         link_args: version_link_args,

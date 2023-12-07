@@ -178,4 +178,9 @@ else
     use_math_defines = []
 endif
 
+# Suppress warning for deprecated Numpy API.
+# (Suppress warning messages emitted by #warning directives).
+# Replace with numpy_nodepr_api after Cython 3.0 is out
+cython_c_args += [use_math_defines]
+
 subdir('special_functions')
