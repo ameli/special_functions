@@ -1,3 +1,12 @@
+# SPDX-FileCopyrightText: Copyright 2021, Siavash Ameli <sameli@berkeley.edu>
+# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-FileType: SOURCE
+#
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the license found in the LICENSE.txt file in the root
+# directory of this source tree.
+
+
 # =======
 # Imports
 # =======
@@ -66,7 +75,7 @@ def py_bessely(nu, z, n=0):
 cdef double bessely(
         const double nu,
         const double z,
-        const int n) nogil:
+        const int n) noexcept nogil:
     """
     Computes real Bessel function or its derivative,
     :math:`\\partial Y_{\\nu}(z) / \\partial z`. This function is the cythonic
@@ -160,7 +169,7 @@ cdef double bessely(
 @wraparound(False)
 cdef double _real_bessely_half_integer_order(
         const double nu,
-        const double z) nogil:
+        const double z) noexcept nogil:
     """
     Real Bessel functon of half integer order
     :math:`\\nu = m + \\frac{1}{2}`.
@@ -213,7 +222,7 @@ cdef double _real_bessely_half_integer_order(
 @wraparound(False)
 cdef double _real_bessely_integer_order(
         const int nu,
-        const double z) nogil:
+        const double z) noexcept nogil:
     """
     Wrapper using `cephes <https://www.netlib.org/cephes/>`_ library which
     implements Bessel functions with integer orders of :math:`\\nu` and for
@@ -238,7 +247,7 @@ cdef double _real_bessely_integer_order(
 cdef double _real_bessely_derivative(
         const double nu,
         const double z,
-        const int n) nogil:
+        const int n) noexcept nogil:
     """
     Derivative of real Bessel function: :math:`\\partial I_v(z) / \\partial z`.
 

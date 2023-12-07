@@ -1,3 +1,12 @@
+# SPDX-FileCopyrightText: Copyright 2021, Siavash Ameli <sameli@berkeley.edu>
+# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-FileType: SOURCE
+#
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the license found in the LICENSE.txt file in the root
+# directory of this source tree.
+
+
 # =======
 # Imports
 # =======
@@ -34,7 +43,7 @@ def py_lngamma(x):
 
 @boundscheck(False)
 @wraparound(False)
-cdef double lngamma(double x) nogil:
+cdef double lngamma(double x) noexcept nogil:
     """
     Computes the natural logarithm of Gamma function. THis function is a
     wrapper for ``gamma`` function in cephes library.

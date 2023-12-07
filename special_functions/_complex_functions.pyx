@@ -12,7 +12,7 @@ from libc.math cimport NAN, isnan, copysign, sqrt, exp, cos, sin, cosh, sinh
 
 @boundscheck(False)
 @wraparound(False)
-cdef double complex complex_sqrt(const double complex z) nogil:
+cdef double complex complex_sqrt(const double complex z) noexcept nogil:
     """
     Returns the square root of a complex function. The branch-cut corresponding
     to :math:`|\\mathrm{arg}(z)| < \\pi` is considered.
@@ -44,7 +44,7 @@ cdef double complex complex_sqrt(const double complex z) nogil:
 
 @boundscheck(False)
 @wraparound(False)
-cdef double complex complex_exp(double complex z) nogil:
+cdef double complex complex_exp(double complex z) noexcept nogil:
     """
     Returns the exponential of a complex function.
 
@@ -66,7 +66,7 @@ cdef double complex complex_exp(double complex z) nogil:
 
 @boundscheck(False)
 @wraparound(False)
-cdef double complex complex_cos(double complex z) nogil:
+cdef double complex complex_cos(double complex z) noexcept nogil:
     """
     Returns the cosine of a complex function.
 
@@ -91,7 +91,7 @@ cdef double complex complex_cos(double complex z) nogil:
 
 @boundscheck(False)
 @wraparound(False)
-cdef double complex complex_sin(double complex z) nogil:
+cdef double complex complex_sin(double complex z) noexcept nogil:
     """
     Returns the sine of a complex function.
 
@@ -116,7 +116,7 @@ cdef double complex complex_sin(double complex z) nogil:
 
 @boundscheck(False)
 @wraparound(False)
-cdef double complex complex_cosh(double complex z) nogil:
+cdef double complex complex_cosh(double complex z) noexcept nogil:
     """
     Returns the cosine hyperbolic of a complex function.
 
@@ -141,7 +141,7 @@ cdef double complex complex_cosh(double complex z) nogil:
 
 @boundscheck(False)
 @wraparound(False)
-cdef double complex complex_sinh(double complex z) nogil:
+cdef double complex complex_sinh(double complex z) noexcept nogil:
     """
     Returns the sine hyperbolic of a complex function.
 

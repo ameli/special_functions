@@ -175,23 +175,6 @@ jobs:
                   miniconda-version: "latest"
                   auto-update-conda: true
 
-            # - name: Install OpenMP and numpy for mac
-            #   if: matrix.os == 'macos-latest'
-            #   run: |
-            #       brew install libomp
-            #
-            #       # Starting from libomp>=15.0, the libomp installation in homebrew is "keg-only",
-            #       # meaning that libomp is only installed in homebrew's directory, but not moved
-            #       # to /usr/local to avoid other OpenMP installations (such as with gcc's version
-            #       # of OpenMP). To use the homebrew's version of OpenMP,the following symbolic
-            #       # links are created. Without these, the installation will fail with the error
-            #       # of "fatal error: omp.h file found"
-            #       ln -s /usr/local/opt/libomp/include/omp-tools.h /usr/local/include/omp-tools.h
-            #       ln -s /usr/local/opt/libomp/include/omp.h /usr/local/include/omp.h
-            #       ln -s /usr/local/opt/libomp/include/ompt.h /usr/local/include/ompt.h
-            #       ln -s /usr/local/opt/libomp/lib/libomp.a /usr/local/lib/libomp.a
-            #       ln -s /usr/local/opt/libomp/lib/libomp.dylib /usr/local/lib/libomp.dylib
-
             - name: Build and upload package
               shell: bash -el {0}
               run: |

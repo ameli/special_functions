@@ -1,3 +1,12 @@
+# SPDX-FileCopyrightText: Copyright 2021, Siavash Ameli <sameli@berkeley.edu>
+# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-FileType: SOURCE
+#
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the license found in the LICENSE.txt file in the root
+# directory of this source tree.
+
+
 # The purpose of this file is to load the compiled Fortran libraries, only
 # on windows. When the amos library is compiled with Fortran, in  windows
 # platform, a DLL file for the file _extern/amos/mach/d1mach.f is generated.

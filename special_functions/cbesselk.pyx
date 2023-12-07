@@ -1,3 +1,12 @@
+# SPDX-FileCopyrightText: Copyright 2021, Siavash Ameli <sameli@berkeley.edu>
+# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-FileType: SOURCE
+#
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the license found in the LICENSE.txt file in the root
+# directory of this source tree.
+
+
 # =======
 # Imports
 # =======
@@ -73,7 +82,7 @@ def py_cbesselk(nu, z, n=0):
 cdef double complex cbesselk(
         const double nu,
         const double complex z,
-        const int n) nogil:
+        const int n) noexcept nogil:
     """
     Computes complex Bessel function or its derivative,
     :math:`\\partial K_{\\nu}(z) / \\partial z`. This function is the cythonic
@@ -145,7 +154,7 @@ cdef double complex cbesselk(
 @wraparound(False)
 cdef double complex _complex_besselk_half_integer_order(
         const double nu,
-        const double complex z) nogil:
+        const double complex z) noexcept nogil:
     """
     Complex Bessel functon of half integer order
     :math:`\\nu = m + \\frac{1}{2}`.
@@ -182,7 +191,7 @@ cdef double complex _complex_besselk_half_integer_order(
 @wraparound(False)
 cdef double complex _complex_besselk_real_order(
         const double nu,
-        const double complex z) nogil:
+        const double complex z) noexcept nogil:
     """
     Wrapper using `amos <https://dl.acm.org/doi/10.1145/7921.214331>`_ library
     which implements Bessel functions with real orders of :math:`\\nu` and for
@@ -228,7 +237,7 @@ cdef double complex _complex_besselk_real_order(
 cdef double complex _complex_besselk_derivative(
         const double nu,
         const double complex z,
-        const int n) nogil:
+        const int n) noexcept nogil:
     """
     Derivative of Bessel function: :math:`\\partial K_v(z) / \\partial z`.
 
