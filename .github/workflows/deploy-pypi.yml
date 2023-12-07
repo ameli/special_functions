@@ -1,9 +1,9 @@
 name: deploy-pypi
 
 on:
-    # push:
-    #     branches:
-    #         - main
+    push:
+        branches:
+            - main
     release:
         types:
             - published
@@ -77,17 +77,17 @@ jobs:
 
             # Do not enable compiling with CUDA for macos since NIVDIA no
             # longer supports CUDA in the macos.
-            # - name: Build wheels in mac (arm64)
-            #   if: matrix.os == 'macos-latest'
-            #   uses: pypa/cibuildwheel@v2.15.0
-            #   env:
-            #       CIBW_ARCHS_MACOS: "arm64"
-            #       CIBW_BUILD: "*-macosx_arm64"
-            #       CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
-            #       CIBW_BUILD_VERBOSITY: 1
-            #       CIBW_BEFORE_BUILD: brew reinstall gcc
-            #   with:
-            #     output-dir: wheelhouse
+            - name: Build wheels in mac (arm64)
+              if: matrix.os == 'macos-latest'
+              uses: pypa/cibuildwheel@v2.15.0
+              env:
+                  CIBW_ARCHS_MACOS: "arm64"
+                  CIBW_BUILD: "*-macosx_arm64"
+                  CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
+                  CIBW_BUILD_VERBOSITY: 1
+                  CIBW_BEFORE_BUILD: brew reinstall gcc
+              with:
+                output-dir: wheelhouse
 
             # Enable compiling with CUDA, only for linux. Note that cuda must
             # be installed "inside" the manylinux docker image, not in the main
@@ -116,18 +116,18 @@ jobs:
                 output-dir: wheelhouse
 
             # This does not work, the compilation takes several hours, then fails, even without enabling cuda.
-            # - name: Build wheels in linux (AARCH64)
-            #   if: matrix.os == 'ubuntu-latest'
-            #   uses: pypa/cibuildwheel@v2.15.0
-            #   env:
-            #       CIBW_MANYLINUX_AARCH64_IMAGE: manylinux2014
-            #       CIBW_ARCHS_LINUX: "aarch64"
-            #       CIBW_BUILD: "*-manylinux_aarch64"
-            #       CIBW_SKIP: "pp37* cp36-* cp37-* cp38-*"
-            #       CIBW_BUILD_VERBOSITY: 1
-            #       # CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y
-            #   with:
-            #     output-dir: wheelhouse
+            - name: Build wheels in linux (AARCH64)
+              if: matrix.os == 'ubuntu-latest'
+              uses: pypa/cibuildwheel@v2.15.0
+              env:
+                  CIBW_MANYLINUX_AARCH64_IMAGE: manylinux2014
+                  CIBW_ARCHS_LINUX: "aarch64"
+                  CIBW_BUILD: "*-manylinux_aarch64"
+                  CIBW_SKIP: "pp37* cp36-* cp37-* cp38-*"
+                  CIBW_BUILD_VERBOSITY: 1
+                  # CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y
+              with:
+                output-dir: wheelhouse
             
             - name: Upload artifacts
               uses: actions/upload-artifact@v3
