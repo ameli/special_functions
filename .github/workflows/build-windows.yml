@@ -33,7 +33,6 @@ jobs:
                   python -m pip install . -vvv
 
             - name: Test Before
-              if: runner.os == 'macos'
               if: (matrix.python-version == '3.11')
               run: |
                 cd /
