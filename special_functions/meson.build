@@ -14,7 +14,7 @@ amos_sources = []
 cephes_sources = []
 subdir('_extern')
 
-# Create amos library (Fortran cod)
+# Create amos library (Fortran code)
 amos_lib = static_library(
     'amos',
     amos_sources,

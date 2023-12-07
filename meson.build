@@ -56,10 +56,10 @@ cython = find_program(cy.cmd_array()[0])
 # endif
 
 _global_c_args = cc.get_supported_arguments(
-  '-Wno-unused-but-set-variable',
-  '-Wno-unused-function',
-  '-Wno-conversion',
-  '-Wno-misleading-indentation',
+    '-Wno-unused-but-set-variable',
+    '-Wno-unused-function',
+    '-Wno-conversion',
+    '-Wno-misleading-indentation',
 )
 add_project_arguments(_global_c_args, language : 'c')
 
@@ -68,7 +68,13 @@ add_project_arguments(_global_c_args, language : 'c')
 # guaranteed to depend on it. For Fortran code, Meson already adds `-lm`.
 m_dep = cc.find_library('m', required : false)
 if m_dep.found()
-  add_project_link_arguments('-lm', language : 'c')
+    add_project_link_arguments('-lm', language : 'c')
+endif
+
+if host_machine.system() == 'os400'
+    # IBM i system, needed to avoid build errors - see gh-17193
+    add_project_arguments('-D__STDC_FORMAT_MACROS', language : 'cpp')
+    add_project_link_arguments('-Wl,-bnotextro', language : ['c', 'cpp', 'fortran'])
 endif
 
 # Adding at project level causes many spurious -lgfortran flags.
@@ -128,6 +134,33 @@ if not cc.links('', name: '-Wl,--version-script', args: ['-shared', version_link
 endif
 
 # -------------
+
+# Platform detection
+is_mingw = is_windows and cc.get_id() == 'gcc'
+if is_mingw and ff.get_id() != 'gcc'
+    error('If you are using GCC on Windows, you must also use GFortran! Detected ' + ff.get_id())
+endif
+
+cython_c_args = ['-DCYTHON_CCOMPLEX=0'] # see gh-18975 for why we need this
+if is_mingw
+    # For mingw-w64, link statically against the UCRT.
+    gcc_link_args = ['-lucrt', '-static']
+    add_project_link_arguments(gcc_link_args, language: ['c', 'cpp', 'fortran'])
+    # Force gcc to float64 long doubles for compatibility with MSVC
+    # builds, for C only.
+    add_project_arguments('-mlong-double-64', language: 'c')
+    # Make fprintf("%zd") work (see https://github.com/rgommers/scipy/issues/118)
+    add_project_arguments('-D__USE_MINGW_ANSI_STDIO=1', language: ['c', 'cpp'])
+    # Silence warnings emitted by PyOS_snprintf for (%zd), see
+    # https://github.com/rgommers/scipy/issues/118.
+    # Use as c_args for extensions containing Cython code
+    cython_c_args += ['-Wno-format-extra-args', '-Wno-format']
+    # Flag needed to work around BLAS and LAPACK Gfortran dependence on
+    # undocumented C feature when passing single character string arguments. See:
+    #   https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90329
+    #   https://github.com/wch/r-source/blob/838f9d5a7be08f2a8c08e47bcd28756f5d0aac90/src/gnuwin32/MkRules.rules#L121
+    add_project_arguments('-fno-optimize-sibling-calls', language: ['fortran'])
+endif
 
 # Fortran warning flags
 _fflag_Wno_maybe_uninitialized = ff.get_supported_arguments(
