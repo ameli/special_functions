@@ -77,6 +77,7 @@ foreach ext: extensions
     cython_gen.process(ext + '.pyx'),
     dependencies: py3_dep,
     include_directories: ['.'],
+    link_args: version_link_args,
     link_with: [
       amos_lib,
       cephes_lib
