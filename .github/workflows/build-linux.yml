@@ -1,9 +1,9 @@
 name: build-linux
 
 on:
-    # push:
-    #     branches:
-    #         - main
+    push:
+        branches:
+            - main
     release:
         types: 
             - published
@@ -27,13 +27,13 @@ jobs:
                   python-version: ${{ matrix.python-version }}
 
             # Install BLAS, since pypy compiles numpy and scipy from source and requires BLAS.
-            - name: Install prerequisites
-              run: sudo apt-get install gfortran libopenblas-dev liblapack-dev
+            # - name: Install prerequisites
+            #   run: sudo apt-get install gfortran libopenblas-dev liblapack-dev
 
             - name: Install package and dependencies
               run: |
                   python -m pip install --upgrade pip
-                  python -m pip install --upgrade numpy
+                  # python -m pip install --upgrade numpy
                   python -m pip install . -vvv
 
             - name: Test
