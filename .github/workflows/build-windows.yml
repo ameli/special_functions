@@ -32,12 +32,14 @@ jobs:
                   python -m pip install --upgrade numpy
                   python -m pip install . -vvv
 
-            # - name: Test Before
-            #   run: |
-            #     cd /
-            #     python -m pip show special_functions
-            #     ls C:\hostedtoolcache\windows\Python\3.11.6\x64\Lib\site-packages\special_functions
-            #     python -c "import os; os.add_dll_directory(r'C:\hostedtoolcache\windows\Python\3.11.6\x64\Lib\site-packages\special_functions'); import special_functions; print(special_functions.besselk(1,1,1))"
+            - name: Test Before
+              if: runner.os == 'macos'
+              if: (matrix.python-version == '3.11')
+              run: |
+                cd /
+                python -m pip show special_functions
+                ls C:\hostedtoolcache\windows\Python\3.11.6\x64\Lib\site-packages\special_functions
+                python -c "import os; os.add_dll_directory(r'C:\hostedtoolcache\windows\Python\3.11.6\x64\Lib\site-packages\special_functions'); import special_functions; print(special_functions.besselk(1,1,1))"
 
             - name: Test
               run: |

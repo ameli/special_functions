@@ -20,18 +20,18 @@ requirements:
         - python                          # [build_platform != target_platform]
         - meson-python                    # [build_platform != target_platform]
         - cython                          # [build_platform != target_platform]
-        - numpy                           # [build_platform != target_platform]
+        # - numpy                           # [build_platform != target_platform]
         - {{ compiler('c') }}
         - {{ compiler('fortran') }}       # [unix]
 
     host:
         - libcxx                          # [osx]
         - python {{ python }}
-        - numpy>1.11
+        # - numpy>1.11
         - cython
         - pip
-        - scipy
-        - setuptools
+        # - scipy
+        # - setuptools
     run:
         - python {{ python }}
 
