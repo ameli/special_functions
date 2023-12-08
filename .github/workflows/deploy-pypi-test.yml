@@ -102,7 +102,7 @@ jobs:
                     RUNNER_OS=macOS
                     SDKROOT=/Applications/Xcode_14.0.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
                     LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-                    PIP_NO_BUILD_ISOLATION=false
+                    # PIP_NO_BUILD_ISOLATION=false
 
                   # CIBW_ENVIRONMENT: >
                   #   MACOSX_DEPLOYMENT_TARGET=12.0
