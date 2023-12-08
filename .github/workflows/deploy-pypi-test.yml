@@ -85,7 +85,7 @@ jobs:
             # Do not enable compiling with CUDA for macos since NIVDIA no
             # longer supports CUDA in the macos.
             - name: Build wheels in mac (arm64)
-              if: matrix.os == 'macos-latest'
+              # if: matrix.os == 'macos-latest'
               uses: pypa/cibuildwheel@v2.15.0
               env:
                   CIBW_ARCHS_MACOS: "arm64"
