@@ -14,6 +14,9 @@ curl -L https://github.com/fxcoudert/gfortran-for-macOS/releases/download/12.1-m
 # fi
 
 hdiutil attach -mountpoint /Volumes/gfortran gfortran.dmg
+
+ls /Volumes/gfortran
+
 sudo installer -pkg /Volumes/gfortran/gfortran.pkg -target /
 # sudo installer -pkg gfortran.pkg -target /
 type -p gfortran

@@ -82,10 +82,10 @@ jobs:
             #   with:
             #     output-dir: wheelhouse
 
-            # - name: Setup tmate session
-            #   uses: mxschmitt/action-tmate@v3
-            #   with:
-            #     limit-access-to-actor: true
+            - name: Setup tmate session
+              uses: mxschmitt/action-tmate@v3
+              with:
+                limit-access-to-actor: true
 
             # Do not enable compiling with CUDA for macos since NIVDIA no
             # longer supports CUDA in the macos.
