@@ -232,5 +232,6 @@ jobs:
                   mv special_functions special_functions-DoNotImport
                   rm setup.cfg
                   conda install -c s-ameli special_functions -y
+                  conda install scipy -y
                   conda install pytest -y
                   pytest

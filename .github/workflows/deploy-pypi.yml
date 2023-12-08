@@ -1,9 +1,9 @@
 name: deploy-pypi
 
 on:
-    push:
-        branches:
-            - main
+    # push:
+    #     branches:
+    #         - main
     release:
         types:
             - published
@@ -30,6 +30,13 @@ jobs:
             - name: Clear Cache
               if: matrix.os != 'windows-latest'
               run: rm -rf /opt/hostedtoolcache 
+
+            # Docker to emulate various architectures om linux for cross compilation
+            - name: Set up QEMU
+              if: runner.os == 'Linux'
+              uses: docker/setup-qemu-action@v1
+              with:
+                platforms: all
                 
             # Build wheel for windows with CUDA enabled. Note that cibuildwheel
             # does not need manylinux docker, thuns, CUDA can be installed in
