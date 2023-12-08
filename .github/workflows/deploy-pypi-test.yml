@@ -82,12 +82,6 @@ jobs:
             #   with:
             #     output-dir: wheelhouse
 
-            - name: Setup tmate session
-              if: ${{ failure() }}
-              uses: mxschmitt/action-tmate@v3
-              with:
-                limit-access-to-actor: true
-
             # Do not enable compiling with CUDA for macos since NIVDIA no
             # longer supports CUDA in the macos.
             - name: Build wheels in mac (arm64)
@@ -116,6 +110,12 @@ jobs:
                   # PATH: /opt/homebrew/opt/python@3.11/bin:$PATH
               with:
                 output-dir: wheelhouse
+
+            - name: Setup tmate session
+              if: ${{ failure() }}
+              uses: mxschmitt/action-tmate@v3
+              with:
+                limit-access-to-actor: true
 
             # Enable compiling with CUDA, only for linux. Note that cuda must
             # be installed "inside" the manylinux docker image, not in the main
