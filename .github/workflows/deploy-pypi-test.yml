@@ -92,7 +92,7 @@ jobs:
                   CIBW_BUILD: "cp311-macosx_arm64"
                   CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
                   CIBW_BUILD_VERBOSITY: 3
-                  CIBW_BEFORE_BUILD: bash {package}/tools/cibw_before_build_macos.sh {package}
+                  CIBW_BEFORE_BUILD: bash {package}/tools/cibw_before_build_macos.sh "macosx-arm64"
               with:
                 output-dir: wheelhouse
 
