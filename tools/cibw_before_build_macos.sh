@@ -77,4 +77,6 @@ if [[ $PLATFORM == "macosx-arm64" ]]; then
   hdiutil attach -mountpoint /Volumes/gfortran gfortran.dmg
   sudo installer -pkg /Volumes/gfortran/gfortran.pkg -target /
   type -p gfortran
+  which gfortran
+  echo $MACOSX_DEPLOYMENT_TARGET
 fi
