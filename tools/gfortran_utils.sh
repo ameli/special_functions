@@ -26,6 +26,8 @@
 
 # Bash utilities for use with gfortran
 
+set -xe
+
 ARCHIVE_SDIR="${ARCHIVE_SDIR:-archives}"
 
 GF_UTIL_DIR=$(dirname "${BASH_SOURCE[0]}")
