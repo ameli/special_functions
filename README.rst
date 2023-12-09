@@ -20,17 +20,17 @@ Tutorial
 
 |binder|
 
-Launch `online interactive notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2Fspecial_functions.ipynb>`_ with Binder.
+Launch `online interactive notebook <https://mybinder.org/v2/gh/ameli/special_functions/HEAD?filepath=notebooks%2Fspecial_functions.ipynb>`__ with Binder.
 
 
 =====
 Links
 =====
 
-* `Documentation <https://ameli.github.io/special_functions/index.html>`_
-* `Package on Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_
-* `Package on PyPI <https://pypi.org/project/special_functions/>`_
-* `Github <https://ameli.github.io/special_functions>`_
+* `Documentation <https://ameli.github.io/special_functions/index.html>`__
+* `Package on Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`__
+* `Package on PyPI <https://pypi.org/project/special_functions/>`__
+* `Github <https://ameli.github.io/special_functions>`__
 
 =======
 Install
@@ -70,7 +70,7 @@ Successful installation and tests have been performed on the following platforms
 .. |build-windows| image:: https://github.com/ameli/special_functions/workflows/build-windows/badge.svg
    :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-windows
 
-Python wheels for ``special_functions`` for all supported platforms and versions in the above are available through `PyPI <https://pypi.org/project/special_functions/>`_ and `Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_. If you need ``special_functions`` on other platforms, architectures, and Python or PyPy versions, `raise an issue <https://github.com/ameli/special_functions/issues>`_ on GitHub and we build its Python Wheel for you.
+Python wheels for ``special_functions`` for all supported platforms and versions in the above are available through `PyPI <https://pypi.org/project/special_functions/>`__ and `Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`__. If you need ``special_functions`` on other platforms, architectures, and Python or PyPy versions, `raise an issue <https://github.com/ameli/special_functions/issues>`__ on GitHub and we build its Python Wheel for you.
 
 :sup:`* Wheels compatible with the ARM-64 (also known as AARCH-64) architecture, including those for Apple Silicon M1 machines, are exclusively available for installation through pip and cannot be installed using conda.`
 
@@ -100,7 +100,7 @@ Install from PyPi
 
 |pypi| |format| |implementation| |pyversions|
 
-The recommended installation method is through the package available at `PyPi <https://pypi.org/project/special_functions>`_ using ``pip``.
+The recommended installation method is through the package available at `PyPi <https://pypi.org/project/special_functions>`__ using ``pip``.
 
 1. Ensure ``pip`` is installed within Python and upgrade the existing ``pip`` by
 
@@ -136,7 +136,7 @@ Install from Anaconda Cloud
 
 |conda-version| |conda-platform|
 
-Alternatively, the package can be installed through `Anaconda could <https://anaconda.org/s-ameli/special_functions>`_.
+Alternatively, the package can be installed through `Anaconda could <https://anaconda.org/s-ameli/special_functions>`__.
 
 * In **Linux** and **Windows**:
   
@@ -180,7 +180,7 @@ Build and Install from Source Code
          
          sudo brew reinstall gcc
 
-   * **Windows:** Install both `Microsoft Visual C++ compiler <https://visualstudio.microsoft.com/vs/features/cplusplus/>`_ and Intel Fortran compiler (`Intel oneAPI <https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/fortran-compiler.html>`_). Open the command prompt (where you will enter the installation commands in the next step) and load the Intel compiler variables by
+   * **Windows:** Install both `Microsoft Visual C++ compiler <https://visualstudio.microsoft.com/vs/features/cplusplus/>`__ and Intel Fortran compiler (`Intel oneAPI <https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/fortran-compiler.html>`__). Open the command prompt (where you will enter the installation commands in the next step) and load the Intel compiler variables by
 
      ::
 
@@ -234,12 +234,12 @@ Python API
 ========================  =========  ===================================================================================================================
 Syntax                    Symbol     User guide
 ========================  =========  ===================================================================================================================
-``besselj(nu, z, n)``     |image06|  `Bessel function of the first kind <https://ameli.github.io/special_functions/api/besselj.html>`_
-``bessely(nu, z, n)``     |image07|  `Bessel function of the second kind <https://ameli.github.io/special_functions/api/bessely.html>`_ (Weber function)
-``besseli(nu, z, n)``     |image08|  `Modified Bessel function of the first kind <https://ameli.github.io/special_functions/api/besseli.html>`_
-``besselk(nu, z, n)``     |image09|  `Modified Bessel function of the second kind <https://ameli.github.io/special_functions/api/besselk.html>`_
-``besselh(nu, k, z, n)``  |image10|  `Bessel function of the third kind <https://ameli.github.io/special_functions/api/besselh.html>`_ (Hankel function)
-``lngamma(x)``            |image11|  `Natural logarithm of Gamma function <https://ameli.github.io/special_functions/api/lngamma.html>`_
+``besselj(nu, z, n)``     |image06|  `Bessel function of the first kind <https://ameli.github.io/special_functions/api/besselj.html>`__
+``bessely(nu, z, n)``     |image07|  `Bessel function of the second kind <https://ameli.github.io/special_functions/api/bessely.html>`__ (Weber function)
+``besseli(nu, z, n)``     |image08|  `Modified Bessel function of the first kind <https://ameli.github.io/special_functions/api/besseli.html>`__
+``besselk(nu, z, n)``     |image09|  `Modified Bessel function of the second kind <https://ameli.github.io/special_functions/api/besselk.html>`__
+``besselh(nu, k, z, n)``  |image10|  `Bessel function of the third kind <https://ameli.github.io/special_functions/api/besselh.html>`__ (Hankel function)
+``lngamma(x)``            |image11|  `Natural logarithm of Gamma function <https://ameli.github.io/special_functions/api/lngamma.html>`__
 ========================  =========  ===================================================================================================================
 
 **Typed Arguments:**
@@ -385,8 +385,8 @@ To use a complex input argument ``z`` in the Python interface, the same function
 Related Packages
 ================
 
-* `scipy.special <https://docs.scipy.org/doc/scipy/reference/special.html>`_: Many special functions were implemented in Scipy's special sub-package. This package is reimplements Bessel functions similar to ``scipy.special``, but with simplified python and cython different interfaces.
-* `G-Learn <https://github.com/ameli/glearn>`_: A python package for machine learning using Gaussian process regression. This package makes use of ``special_functions``.
+* `scipy.special <https://docs.scipy.org/doc/scipy/reference/special.html>`__: Many special functions were implemented in Scipy's special sub-package. This package is reimplements Bessel functions similar to ``scipy.special``, but with simplified python and cython different interfaces.
+* `G-Learn <https://github.com/ameli/glearn>`__: A python package for machine learning using Gaussian process regression. This package makes use of ``special_functions``.
 
 ================
 Acknowledgements
@@ -407,8 +407,8 @@ Credit
 
 This package uses the following libraries:
 
-* Amos, D. E. (1986). Algorithm 644: A portable package for Bessel functions of a complex argument and nonnegative order. ACM Trans. Math. Softw. 12, 3 (Sept. 1986), 265-273. DOI: `https://doi.org/10.1145/7921.214331 <https://doi.org/10.1145/7921.214331>`_. Available at `http://netlib.org/amos/ <http://netlib.org/amos/>`_.
-* Moshier, S. L. (1989). C language library with special functions for mathematical physics. Available at `http://www.netlib.org/cephes/index.html <http://www.netlib.org/cephes>`_.
+* Amos, D. E. (1986). Algorithm 644: A portable package for Bessel functions of a complex argument and nonnegative order. ACM Trans. Math. Softw. 12, 3 (Sept. 1986), 265-273. DOI: `https://doi.org/10.1145/7921.214331 <https://doi.org/10.1145/7921.214331>`__. Available at `http://netlib.org/amos/ <http://netlib.org/amos/>`__.
+* Moshier, S. L. (1989). C language library with special functions for mathematical physics. Available at `http://www.netlib.org/cephes/index.html <http://www.netlib.org/cephes>`__.
 
 
 .. |codecov-devel| image:: https://img.shields.io/codecov/c/github/ameli/special_functions
