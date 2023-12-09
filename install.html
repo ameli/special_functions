@@ -121,56 +121,86 @@
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head" rowspan="2"><p>Platform</p></th>
-<th class="head" colspan="3"><p>Python version</p></th>
-<th class="head" colspan="3"><p>PyPy version</p></th>
-<th class="head" rowspan="2"><p>Status</p></th>
+<th class="head" rowspan="2"><p>Arch</p></th>
+<th class="head" colspan="4"><p>Python Version</p></th>
+<th class="head" colspan="3"><p>PyPy Version</p></th>
+<th class="head" rowspan="2"><p>Continuous
+Integration</p></th>
 </tr>
 <tr class="row-even"><th class="head"><p>3.9</p></th>
 <th class="head"><p>3.10</p></th>
 <th class="head"><p>3.11</p></th>
+<th class="head"><p>3.12</p></th>
 <th class="head"><p>3.8</p></th>
 <th class="head"><p>3.9</p></th>
 <th class="head"><p>3.10</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td><p>Linux</p></td>
+<tr class="row-odd"><td rowspan="2"><p>Linux</p></td>
+<td><p>X86-64</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
-<td><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-linux"><img alt="build-linux" src="https://github.com/ameli/special_functions/workflows/build-linux/badge.svg" /></a></p></td>
+<td><p>✔</p></td>
+<td rowspan="2"><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-linux"><img alt="build-linux" src="https://github.com/ameli/special_functions/workflows/build-linux/badge.svg" /></a></p></td>
 </tr>
-<tr class="row-even"><td><p>macOS</p></td>
+<tr class="row-even"><td><p>AARCH-64 <sup>*</sup></p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
-<td><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-macos"><img alt="build-macos" src="https://github.com/ameli/special_functions/workflows/build-macos/badge.svg" /></a></p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
 </tr>
-<tr class="row-odd"><td><p>Windows</p></td>
+<tr class="row-odd"><td rowspan="2"><p>macOS</p></td>
+<td><p>X86-64</p></td>
+<td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✖</p></td>
 <td><p>✖</p></td>
 <td><p>✖</p></td>
-<td><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-windows"><img alt="build-windows" src="https://github.com/ameli/special_functions/workflows/build-windows/badge.svg" /></a></p></td>
+<td rowspan="2"><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-macos"><img alt="build-macos" src="https://github.com/ameli/special_functions/workflows/build-macos/badge.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p>ARM-64 <sup>*</sup></p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>Windows</p></td>
+<td><p>X86-64</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+<td rowspan="2"><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-windows"><img alt="build-windows" src="https://github.com/ameli/special_functions/workflows/build-windows/badge.svg" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p>ARM-64 <sup>*</sup></p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
+<td><p>✖</p></td>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<ul class="simple">
-<li><p>For the Python/PyPy versions indicated by ✔ in the above, this package can be installed using either <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code> (see <a class="reference internal" href="#installationmethods"><span class="std std-ref">installation instructions</span></a> below.)</p></li>
-<li><p>This package cannot be installed via <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code> on the Python/PyPy versions indicated by ✖ in the above table.</p></li>
-<li><p>To install on the older Python 3 versions that are not listed in the above (for example Python 3.5), you should <em>build</em> this package from the source code (see <a class="reference internal" href="#build-locally"><span class="std std-ref">build instructions</span></a>).</p></li>
-</ul>
-</div>
+<p>Python wheels for <code class="docutils literal notranslate"><span class="pre">special_functions</span></code> for all supported platforms and versions in the above are available through <a class="reference external" href="https://pypi.org/project/special_functions/">PyPI</a> and <a class="reference external" href="https://anaconda.org/s-ameli/special_functions">Anaconda Cloud</a>. If you need <code class="docutils literal notranslate"><span class="pre">special_functions</span></code> on other platforms, architectures, and Python or PyPy versions, <a class="reference external" href="https://github.com/ameli/special_functions/issues">raise an issue</a> on GitHub and we build its Python Wheel for you.</p>
+<p><sup>* Wheels compatible with the ARM-64 (also known as AARCH-64) architecture, including those for Apple Silicon M1 machines, are exclusively available for installation through pip and cannot be installed using conda.</sup></p>
 </section>
 <section id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h2>

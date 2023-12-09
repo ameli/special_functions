@@ -14,17 +14,23 @@ Successful installation and tests have been performed on the following platforms
 .. |y| unicode:: U+2714
 .. |n| unicode:: U+2716
 
-+----------+------+------+------+------+------+-------+-----------------+
-| Platform | Python version     | PyPy version        | Status          |
-+          +------+------+------+------+------+-------+                 +
-|          | 3.9  | 3.10 | 3.11 | 3.8  | 3.9  | 3.10  |                 |
-+==========+======+======+======+======+======+=======+=================+
-| Linux    | |y|  | |y|  | |y|  | |y|  | |y|  | |y|   | |build-linux|   |
-+----------+------+------+------+------+------+-------+-----------------+
-| macOS    | |y|  | |y|  | |y|  | |n|  | |n|  | |n|   | |build-macos|   |
-+----------+------+------+------+------+------+-------+-----------------+
-| Windows  | |y|  | |y|  | |y|  | |n|  | |n|  | |n|   | |build-windows| |
-+----------+------+------+------+------+------+-------+-----------------+
++----------+-------------------+-------+-------+-------+-------+-------+-------+-------+-----------------+
+| Platform | Arch              | Python Version                | PyPy Version          | Continuous      |
++          |                   +-------+-------+-------+-------+-------+-------+-------+ Integration     +
+|          |                   |  3.9  |  3.10 |  3.11 |  3.12 |  3.8  |  3.9  |  3.10 |                 |
++==========+===================+=======+=======+=======+=======+=======+=======+=======+=================+
+| Linux    | X86-64            |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  | |build-linux|   |
++          +-------------------+-------+-------+-------+-------+-------+-------+-------+                 +
+|          | AARCH-64 :sup:`*` |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |                 |
++----------+-------------------+-------+-------+-------+-------+-------+-------+-------+-----------------+
+| macOS    | X86-64            |  |y|  |  |y|  |  |y|  |  |y|  |  |n|  |  |n|  |  |n|  | |build-macos|   |
++          +-------------------+-------+-------+-------+-------+-------+-------+-------+                 +
+|          | ARM-64 :sup:`*`   |  |n|  |  |n|  |  |n|  |  |n|  |  |n|  |  |n|  |  |n|  |                 |
++----------+-------------------+-------+-------+-------+-------+-------+-------+-------+-----------------+
+| Windows  | X86-64            |  |y|  |  |y|  |  |y|  |  |y|  |  |n|  |  |n|  |  |n|  | |build-windows| |
++          +-------------------+-------+-------+-------+-------+-------+-------+-------+                 +
+|          | ARM-64 :sup:`*`   |  |y|  |  |y|  |  |y|  |  |y|  |  |n|  |  |n|  |  |n|  |                 |
++----------+-------------------+-------+-------+-------+-------+-------+-------+-------+-----------------+
 
 .. |build-linux| image:: https://github.com/ameli/special_functions/workflows/build-linux/badge.svg
    :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-linux 
@@ -33,11 +39,9 @@ Successful installation and tests have been performed on the following platforms
 .. |build-windows| image:: https://github.com/ameli/special_functions/workflows/build-windows/badge.svg
    :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-windows
 
-.. note::
+Python wheels for ``special_functions`` for all supported platforms and versions in the above are available through `PyPI <https://pypi.org/project/special_functions/>`_ and `Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_. If you need ``special_functions`` on other platforms, architectures, and Python or PyPy versions, `raise an issue <https://github.com/ameli/special_functions/issues>`_ on GitHub and we build its Python Wheel for you.
 
-    * For the Python/PyPy versions indicated by |y| in the above, this package can be installed using either ``pip`` or ``conda`` (see :ref:`installation instructions <InstallationMethods>` below.)
-    * This package cannot be installed via ``pip`` or ``conda`` on the Python/PyPy versions indicated by |n| in the above table.
-    * To install on the older Python 3 versions that are not listed in the above (for example Python 3.5), you should *build* this package from the source code (see :ref:`build instructions <Build_Locally>`).
+:sup:`* Wheels compatible with the ARM-64 (also known as AARCH-64) architecture, including those for Apple Silicon M1 machines, are exclusively available for installation through pip and cannot be installed using conda.`
 
 
 ============
