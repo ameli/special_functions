@@ -1,9 +1,9 @@
 name: deploy-pypi-test
 
 on:
-    push:
-        branches:
-            - main
+    # push:
+    #     branches:
+    #         - main
     release:
         types:
             - published
