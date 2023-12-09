@@ -17,8 +17,8 @@ linux_aarch64_task:
     image: family/docker-builder-arm64
     architecture: arm64
     platform: linux
-    cpu: 1
-    memory: 8G
+    # cpu: 1      # TEST
+    # memory: 8G  # TEST
   matrix:
     # build in a matrix because building and testing all four wheels in a
     # single task takes longer than 60 mins (the default time limit for a
