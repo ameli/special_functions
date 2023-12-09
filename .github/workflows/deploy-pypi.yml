@@ -10,7 +10,7 @@ on:
 
 jobs:
     build_wheels_x86_64:
-        name: Build wheels on ${{ matrix.os }}
+        name: Build wheels on ${{ matrix.os }} (X86_64)
         runs-on: ${{ matrix.os }}
         strategy:
             fail-fast: false
@@ -31,13 +31,6 @@ jobs:
               if: matrix.os != 'windows-latest'
               run: rm -rf /opt/hostedtoolcache 
 
-            # Docker to emulate various architectures om linux for cross compilation
-            - name: Set up QEMU
-              if: runner.os == 'Linux'
-              uses: docker/setup-qemu-action@v1
-              with:
-                platforms: all
-                
             # Build wheel for windows with CUDA enabled. Note that cibuildwheel
             # does not need manylinux docker, thuns, CUDA can be installed in
             # the github action's virtual machine using the Jimver's action
@@ -84,17 +77,17 @@ jobs:
 
             # Do not enable compiling with CUDA for macos since NIVDIA no
             # longer supports CUDA in the macos.
-            - name: Build wheels in mac (arm64)
-              if: matrix.os == 'macos-latest'
-              uses: pypa/cibuildwheel@v2.15.0
-              env:
-                  CIBW_ARCHS_MACOS: "arm64"
-                  CIBW_BUILD: "*-macosx_arm64"
-                  CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
-                  CIBW_BUILD_VERBOSITY: 1
-                  CIBW_BEFORE_BUILD: brew reinstall gcc
-              with:
-                output-dir: wheelhouse
+            # - name: Build wheels in mac (arm64)
+            #   if: matrix.os == 'macos-latest'
+            #   uses: pypa/cibuildwheel@v2.15.0
+            #   env:
+            #       CIBW_ARCHS_MACOS: "arm64"
+            #       CIBW_BUILD: "*-macosx_arm64"
+            #       CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
+            #       CIBW_BUILD_VERBOSITY: 1
+            #       CIBW_BEFORE_BUILD: brew reinstall gcc
+            #   with:
+            #     output-dir: wheelhouse
 
             # Enable compiling with CUDA, only for linux. Note that cuda must
             # be installed "inside" the manylinux docker image, not in the main
@@ -145,7 +138,7 @@ jobs:
     # This is only for linux wheels. Githun actions does not seem to work for MacOS M1 (ARM64).
     # Other repos (like numpy and scipy) use cirrus CI for ARM64 on M1.
     build_wheels_aarch64:
-        name: Build wheels on ${{ matrix.os }}
+        name: Build wheels on ${{ matrix.os }} (AARCH-64)
         runs-on: ${{ matrix.os }}
         strategy:
             fail-fast: false
@@ -162,9 +155,9 @@ jobs:
                 python-version: '3.12'
 
               # Without this, installing cuda give error: no much space left on device
-            - name: Clear Cache
-              if: matrix.os != 'windows-latest'
-              run: rm -rf /opt/hostedtoolcache 
+            # - name: Clear Cache
+            #   if: matrix.os != 'windows-latest'
+            #   run: rm -rf /opt/hostedtoolcache 
 
             # Docker to emulate various architectures om linux for cross compilation
             - name: Set up QEMU
