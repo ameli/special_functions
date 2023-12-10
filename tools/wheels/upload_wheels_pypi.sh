@@ -12,11 +12,11 @@ upload_wheels() {
     else
         # sdists are located under dist folder when built through setup.py
         if compgen -G "./dist/*.gz"; then
-            echo "Found sdist"
-            # anaconda -q -t ${TOKEN} upload --force -u ${ANACONDA_ORG} ./dist/*.gz
-            twine upload ./dist/* -u ${PYPI_USERNAME} -p ${PYPI_PASSWORD}
-
-        elif compgen -G "./wheelhouse/*.whl"; then
+        #     echo "Found sdist"
+        #     # anaconda -q -t ${TOKEN} upload --force -u ${ANACONDA_ORG} ./dist/*.gz
+        #     twine upload ./dist/* -u ${PYPI_USERNAME} -p ${PYPI_PASSWORD}
+        #
+        # elif compgen -G "./wheelhouse/*.whl"; then
             echo "Found wheel"
             # anaconda -q -t ${TOKEN} upload --force -u ${ANACONDA_ORG} ./wheelhouse/*.whl
             twine upload ./wheelhouse/* -u ${PYPI_USERNAME} -p ${PYPI_PASSWORD}

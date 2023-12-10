@@ -160,9 +160,7 @@ wheels_upload_task:
         curl https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/wheels.zip --output wheels.zip
         unzip wheels.zip
 
-        pwd
         ls
-        ls dist
         ls wheelhouse
 
         # source ./tools/wheels/upload_wheels.sh
