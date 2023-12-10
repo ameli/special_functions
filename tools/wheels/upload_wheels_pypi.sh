@@ -7,7 +7,7 @@ export PYPI_USERNAME="__token__"
 
 
 upload_wheels_pypi() {
-    if [[ -z ${PASSWORD} ]]; then
+    if [[ -z ${PYPI_PASSWORD} ]]; then
         echo no token set, not uploading
     else
         # sdists are located under dist folder when built through setup.py
