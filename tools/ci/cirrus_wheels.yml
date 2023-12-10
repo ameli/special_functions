@@ -18,8 +18,8 @@ linux_aarch64_task:
     image: family/docker-builder-arm64
     architecture: arm64
     platform: linux
-    # cpu: 1      # TEST
-    # memory: 8G  # TEST
+    cpu: 1
+    memory: 8G
   matrix:
     # build in a matrix because building and testing all four wheels in a
     # single task takes longer than 60 mins (the default time limit for a
@@ -57,6 +57,8 @@ macosx_arm64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:14
+    cpu: 1
+    memory: 8G
   matrix:
     - env:
         CIRRUS_CLONE_SUBMODULES: true
