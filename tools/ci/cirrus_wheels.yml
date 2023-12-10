@@ -114,42 +114,45 @@ wheels_upload_task:
     cpu: 1
 
   env:
-    NUMPY_STAGING_UPLOAD_TOKEN: ENCRYPTED[!5a69522ae0c2af9edb2bc1cdfeaca6292fb3666d9ecd82dca0615921834a6ce3b702352835d8bde4ea2a9ed5ef8424ac!]
-    NUMPY_NIGHTLY_UPLOAD_TOKEN: ENCRYPTED[ef04347663cfcb58d121385707e55951dc8e03b009edeed988aa4a33ba8205c54ca9980ac4da88e1adfdebff8b9d7ed4]
+    # NUMPY_STAGING_UPLOAD_TOKEN: ENCRYPTED[!5a69522ae0c2af9edb2bc1cdfeaca6292fb3666d9ecd82dca0615921834a6ce3b702352835d8bde4ea2a9ed5ef8424ac!]
+    # NUMPY_NIGHTLY_UPLOAD_TOKEN: ENCRYPTED[ef04347663cfcb58d121385707e55951dc8e03b009edeed988aa4a33ba8205c54ca9980ac4da88e1adfdebff8b9d7ed4]
+    PYPI_PASSWORD: ENCRYPTED[485f574e94e67a6d00e46a2490863b7b67059cccaf723e09c1f56af3e8b806627d3391d0a501ef7135a52590a902f7b5]
 
   upload_script: |
     apt-get update
     apt-get install -y curl wget
-    export IS_SCHEDULE_DISPATCH="false"
-    export IS_PUSH="false"
+    # export IS_SCHEDULE_DISPATCH="false"
+    # export IS_PUSH="false"
 
     # cron job
-    if [[ "$CIRRUS_CRON" == "nightly" ]]; then
-      export IS_SCHEDULE_DISPATCH="true"
-    fi
+    # if [[ "$CIRRUS_CRON" == "nightly" ]]; then
+    #   export IS_SCHEDULE_DISPATCH="true"
+    # fi
 
     # a manual build was started
-    if [[ "$CIRRUS_BUILD_SOURCE" == "api" && "$CIRRUS_COMMIT_MESSAGE" == "API build for null" ]]; then
-      export IS_SCHEDULE_DISPATCH="true"
-    fi
+    # if [[ "$CIRRUS_BUILD_SOURCE" == "api" && "$CIRRUS_COMMIT_MESSAGE" == "API build for null" ]]; then
+    #   export IS_SCHEDULE_DISPATCH="true"
+    # fi
 
     # only upload wheels to staging if it's a tag beginning with 'v' and you're
     # on a maintenance branch
-    if [[ "$CIRRUS_TAG" == v* ]] && [[ $CIRRUS_TAG != *"dev0"* ]]; then
-      export IS_PUSH="true"
-    fi
+    # if [[ "$CIRRUS_TAG" == v* ]] && [[ $CIRRUS_TAG != *"dev0"* ]]; then
+    #   export IS_PUSH="true"
+    # fi
 
-    if [[ $IS_PUSH == "true" ]] || [[ $IS_SCHEDULE_DISPATCH == "true" ]]; then
+    IS_PUSH="true"
+    # if [[ $IS_PUSH == "true" ]] || [[ $IS_SCHEDULE_DISPATCH == "true" ]]; then
+    if [[ $IS_PUSH == "true" ]]; then
         # install miniconda in the home directory. For some reason HOME isn't set by Cirrus
         export HOME=$PWD
 
         # install miniconda for uploading to anaconda
-        wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-        bash miniconda.sh -b -p $HOME/miniconda3
-        $HOME/miniconda3/bin/conda init bash
-        source $HOME/miniconda3/bin/activate
-        conda install -y anaconda-client
-
+        # wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+        # bash miniconda.sh -b -p $HOME/miniconda3
+        # $HOME/miniconda3/bin/conda init bash
+        # source $HOME/miniconda3/bin/activate
+        # conda install -y anaconda-client
+        
         # The name of the zip file is derived from the `wheels_artifact` line.
         # If you change the artifact line to `myfile_artifact` then it would be
         # called myfile.zip
@@ -157,10 +160,16 @@ wheels_upload_task:
         curl https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/wheels.zip --output wheels.zip
         unzip wheels.zip
 
-        source ./tools/wheels/upload_wheels.sh
+        pwd
+        ls
+        ls dist
+        ls wheelhouse
+
+        # source ./tools/wheels/upload_wheels.sh
+        source ./tools/wheels/upload_wheels_pypi.sh
         # IS_PUSH takes precedence over IS_SCHEDULE_DISPATCH
-        set_upload_vars
+        # set_upload_vars
 
         # Will be skipped if not a push/tag/scheduled build
-        upload_wheels
+        upload_wheels_pypi
     fi
