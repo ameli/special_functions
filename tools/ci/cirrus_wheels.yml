@@ -147,11 +147,15 @@ wheels_upload_task:
         export HOME=$PWD
 
         # install miniconda for uploading to anaconda
-        # wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-        # bash miniconda.sh -b -p $HOME/miniconda3
-        # $HOME/miniconda3/bin/conda init bash
-        # source $HOME/miniconda3/bin/activate
-        # conda install -y anaconda-client
+        wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+        bash miniconda.sh -b -p $HOME/miniconda3
+        $HOME/miniconda3/bin/conda init bash
+        source $HOME/miniconda3/bin/activate
+        conda install -y anaconda-client
+
+        which conda
+        which python
+        python -m pip install --upgrade pip
         
         # The name of the zip file is derived from the `wheels_artifact` line.
         # If you change the artifact line to `myfile_artifact` then it would be
