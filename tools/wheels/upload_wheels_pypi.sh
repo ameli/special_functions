@@ -6,7 +6,7 @@ export PYPI_USERNAME="__token__"
 # export PYPI_PASSWORD="$NUMPY_STAGING_UPLOAD_TOKEN"
 
 
-upload_wheels() {
+upload_wheels_pypi() {
     if [[ -z ${PASSWORD} ]]; then
         echo no token set, not uploading
     else
