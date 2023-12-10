@@ -1,6 +1,6 @@
 
 # Install twine
-python -m pip install twine -y
+python -m pip install twine
 
 export PYPI_USERNAME="__token__"
 # export PYPI_PASSWORD="$NUMPY_STAGING_UPLOAD_TOKEN"

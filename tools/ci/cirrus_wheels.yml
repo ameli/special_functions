@@ -153,8 +153,6 @@ wheels_upload_task:
         source $HOME/miniconda3/bin/activate
         conda install -y anaconda-client
 
-        which conda
-        which python
         python -m pip install --upgrade pip
         
         # The name of the zip file is derived from the `wheels_artifact` line.
