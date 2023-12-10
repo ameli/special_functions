@@ -115,6 +115,7 @@ wheels_upload_task:
     image: family/docker-builder
     platform: linux
     cpu: 1
+    memory: 4G
 
   env:
     # NUMPY_STAGING_UPLOAD_TOKEN: ENCRYPTED[!5a69522ae0c2af9edb2bc1cdfeaca6292fb3666d9ecd82dca0615921834a6ce3b702352835d8bde4ea2a9ed5ef8424ac!]

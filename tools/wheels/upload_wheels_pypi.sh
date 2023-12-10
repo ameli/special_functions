@@ -11,7 +11,8 @@ upload_wheels_pypi() {
         echo no token set, not uploading
     else
         # sdists are located under dist folder when built through setup.py
-        if compgen -G "./dist/*.gz"; then
+        # if compgen -G "./dist/*.gz"; then
+        if compgen -G "./wheelhouse/*.whl"; then
         #     echo "Found sdist"
         #     # anaconda -q -t ${TOKEN} upload --force -u ${ANACONDA_ORG} ./dist/*.gz
         #     twine upload ./dist/* -u ${PYPI_USERNAME} -p ${PYPI_PASSWORD}
