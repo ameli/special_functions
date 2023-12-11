@@ -1,17 +1,35 @@
 set -xe
 
 
-# ================
-# Install Anaconda
-# ================
+# ==============================
+# install anaconda linux aarch64
+# ==============================
 
-install_anaconda() {
+install_anaconda_linux_aarch64() {
 
     # install miniconda in the home directory. For some reason HOME isn't set by Cirrus
     export HOME=$PWD
 
     # install miniconda for uploading to anaconda
-    wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh -O miniconda.sh
+    bash miniconda.sh -b -p $HOME/miniconda3
+    $HOME/miniconda3/bin/conda init bash
+    source $HOME/miniconda3/bin/activate
+    conda install -y anaconda-client
+}
+
+
+# ============================
+# install anaconda macos arm64
+# ============================
+
+install_anaconda_macosx_arm64() {
+
+    # install miniconda in the home directory. For some reason HOME isn't set by Cirrus
+    export HOME=$PWD
+
+    # install miniconda for uploading to anaconda
+    wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh -O miniconda.sh
     bash miniconda.sh -b -p $HOME/miniconda3
     $HOME/miniconda3/bin/conda init bash
     source $HOME/miniconda3/bin/activate
@@ -24,7 +42,7 @@ install_anaconda() {
 
 
 # ============================
-# Build Upload Wheela Anaconda
+# build upload wheels anaconda
 # ============================
 
 build_upload_wheels_anaconda() {
@@ -60,10 +78,14 @@ build_upload_wheels_anaconda() {
 
 
 # ==================
-# Upload Wheels PyPI
+# upload wheels pypi
 # ==================
 
 upload_wheels_pypi() {
+
+    # Install pip and twine
+    python -m pip install --upgrade pip
+    python -m pip install twine
 
     PYPI_USERNAME="__token__"
 

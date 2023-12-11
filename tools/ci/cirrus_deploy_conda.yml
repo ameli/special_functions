@@ -73,7 +73,7 @@ build_conda_linux_aarch64_task:
 
   build_script: |
     source ./tools/wheels/upload_wheels_pypi.sh
-    install_anaconda
+    install_anaconda_linux_aarch64
     build_upload_wheels_anaconda
 
 
@@ -143,7 +143,7 @@ build_conda_macosx_arm64_task:
 
   build_script:
     - source ./tools/wheels/upload_wheels_pypi.sh
-    - install_anaconda
+    - install_anaconda_macosx_arm64
     - build_upload_wheels_anaconda
 
 
@@ -165,7 +165,7 @@ test_linux_aarch64_task:
 
   test_script: |
     source ./tools/wheels/upload_wheels_pypi.sh
-    install_anaconda
+    install_anaconda_linux_aarch64
     set -xe
     CONDA_PATH=$(dirname `which conda`)
     ln -s python3 ${CONDA_PATH}/python
@@ -194,7 +194,7 @@ test_macosx_arm64_task:
 
   test_script:
     - source ./tools/wheels/upload_wheels_pypi.sh
-    - install_anaconda
+    - install_anaconda_macosx_arm64
     - set -xe
     - CONDA_PATH=$(dirname `which conda`)
     - ln -s python3 ${CONDA_PATH}/python
