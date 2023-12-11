@@ -199,8 +199,8 @@ test_linux_aarch64_task:
     platform: linux
     cpu: 1
     memory: 8G
-  depends_on:
-    - wheels_upload
+  # depends_on:
+  #   - wheels_upload
   matrix:
     - env:
         PY_VER: "3.9"
@@ -212,16 +212,16 @@ test_linux_aarch64_task:
         PY_VER: "3.12"
 
   test_script: |
-    - apt update
-    - apt install -y python${PY_VER}
-    - set -xe
-    - PY_PATH=`which python`
-    - ln -s python3 ${PY_PATH}
-    - uname -m
-    - python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-    - python3 -m pip install --upgrade pip
-    - python3 -m pip install --upgrade special_functions
-    - python3 -m pip install numpy
-    - python3 -m pip install -r tests/requirements.txt
-    - mv special_functions special_functions_do_dot_import
-    - python3 -m pytest
+    apt update
+    apt install -y python${PY_VER}
+    set -xe
+    PY_PATH=`which python`
+    ln -s python3 ${PY_PATH}
+    uname -m
+    python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
+    python3 -m pip install --upgrade pip
+    python3 -m pip install --upgrade special_functions
+    python3 -m pip install numpy
+    python3 -m pip install -r tests/requirements.txt
+    mv special_functions special_functions_do_dot_import
+    python3 -m pytest
