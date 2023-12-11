@@ -66,6 +66,8 @@ build_conda_linux_aarch64_task:
     platform: linux
     cpu: 1
     memory: 8G
+  depends_on:
+    - build_wheels_linux_aarch64
   env:
     ANACONDA_TOKEN: ENCRYPTED[46301c55bb8947383f5ada690555715865045dc694dacfba2182fa482892e8ac2b1c846dc022e85ba74d8ddd8816bbca]
 
@@ -134,6 +136,8 @@ build_conda_macosx_arm64_task:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
     cpu: 1
     memory: 8G
+  depends_on:
+    - build_wheels_macosx_arm64
   env:
     ANACONDA_TOKEN: ENCRYPTED[46301c55bb8947383f5ada690555715865045dc694dacfba2182fa482892e8ac2b1c846dc022e85ba74d8ddd8816bbca]
 
@@ -141,36 +145,6 @@ build_conda_macosx_arm64_task:
     - source ./tools/wheels/upload_wheels_pypi.sh
     - install_anaconda
     - build_upload_wheels_anaconda
-
-
-# =================
-# test macosx arm64
-# =================
-
-test_macosx_arm64_task:
-  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
-  macos_instance:
-    image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
-    cpu: 1
-    memory: 8G
-  depends_on:
-    - wheels_upload
-
-  test_script:
-    - source ./tools/wheels/upload_wheels_pypi.sh
-    - install_anaconda
-    - set -xe
-    - CONDA_PATH=$(dirname `which conda`)
-    - ln -s python3 ${CONDA_PATH}/python
-    - which python3
-    - uname -m
-    - python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-    - python3 -m pip install --upgrade pip
-    - python3 -m pip install --upgrade special_functions
-    - python3 -m pip install numpy
-    - python3 -m pip install -r tests/requirements.txt
-    - mv special_functions special_functions_do_dot_import
-    - python3 -m pytest
 
 
 # ==================
@@ -187,7 +161,7 @@ test_linux_aarch64_task:
     cpu: 1
     memory: 8G
   depends_on:
-    - wheels_upload
+    - build_conda_linux_aarch64
 
   test_script: |
     source ./tools/wheels/upload_wheels_pypi.sh
@@ -203,3 +177,33 @@ test_linux_aarch64_task:
     python3 -m pip install -r tests/requirements.txt
     mv special_functions special_functions_do_dot_import
     python3 -m pytest
+
+
+# =================
+# test macosx arm64
+# =================
+
+test_macosx_arm64_task:
+  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
+  macos_instance:
+    image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
+    cpu: 1
+    memory: 8G
+  depends_on:
+    - build_conda_macosx_arm64
+
+  test_script:
+    - source ./tools/wheels/upload_wheels_pypi.sh
+    - install_anaconda
+    - set -xe
+    - CONDA_PATH=$(dirname `which conda`)
+    - ln -s python3 ${CONDA_PATH}/python
+    - which python3
+    - uname -m
+    - python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
+    - python3 -m pip install --upgrade pip
+    - python3 -m pip install --upgrade special_functions
+    - python3 -m pip install numpy
+    - python3 -m pip install -r tests/requirements.txt
+    - mv special_functions special_functions_do_dot_import
+    - python3 -m pytest
