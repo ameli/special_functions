@@ -153,7 +153,7 @@ test_macosx_arm64_task:
     cpu: 1
     memory: 8G
   depends_on:
-    - wheels_upload_task
+    - wheels_upload
   matrix:
     - env:
         PY_VER: "3.9"
