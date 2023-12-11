@@ -35,11 +35,11 @@ build_wheels_linux_aarch64_task:
         CIBW_BUILD: cp312-*
   env:
     CIRRUS_CLONE_SUBMODULES: true
-    CIBW_ARCHS: "arm64"
+    CIBW_ARCHS: "aarch64"
     # CIBW_BUILD: "*-macosx_arm64"
     CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
     CIBW_BUILD_VERBOSITY: "3"
-    CIBW_BEFORE_BUILD: "bash {project}/tools/wheels/cibw_before_build.sh {project}"
+    # CIBW_BEFORE_BUILD: "bash {project}/tools/wheels/cibw_before_build.sh {project}"
     MANYLINUX_AARCH64_IMAGE: "manylinux2014"
     ENVIRONMENT: >
       CFLAGS="-fno-strict-aliasing"
@@ -159,8 +159,8 @@ test_macosx_arm64_task:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
     cpu: 1
     memory: 8G
-  depends_on:
-    - wheels_upload
+  # depends_on:
+  #   - wheels_upload
   matrix:
     - env:
         PY_VER: "3.9"
