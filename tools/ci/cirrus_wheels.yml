@@ -213,7 +213,7 @@ test_linux_aarch64_task:
 
   test_script: |
     apt update
-    apt install -y python${PY_VER}
+    apt install -y python${PY_VER}-venv
     set -xe
     PY_PATH=`which python${PY_VER}`
     ln -s python3 ${PY_PATH}
