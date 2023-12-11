@@ -1,12 +1,35 @@
+set -xe
 
-# Install twine
-python -m pip install twine
+install_anaconda() {
 
-export PYPI_USERNAME="__token__"
-# export PYPI_PASSWORD="$NUMPY_STAGING_UPLOAD_TOKEN"
+    # install miniconda in the home directory. For some reason HOME isn't set by Cirrus
+    export HOME=$PWD
 
+    # install miniconda for uploading to anaconda
+    wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    bash miniconda.sh -b -p $HOME/miniconda3
+    $HOME/miniconda3/bin/conda init bash
+    source $HOME/miniconda3/bin/activate
+    conda install -y anaconda-client
+
+    # Install pip and twine
+    python -m pip install --upgrade pip
+    python -m pip install twine
+}
+
+build_upload_wheels_anaconda() {
+
+    anaconda login --username s-ameli --token ${ANACONDA_TOKEN}
+    conda config --set anaconda_upload yes
+    export PATH=$(conda info --root):$PATH
+    export PATH=$(conda info --root)/bin:$PATH
+    conda-build --output-folder . .
+}
 
 upload_wheels_pypi() {
+
+    PYPI_USERNAME="__token__"
+
     if [[ -z ${PYPI_PASSWORD} ]]; then
         echo no token set, not uploading
     else

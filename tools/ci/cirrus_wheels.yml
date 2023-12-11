@@ -1,10 +1,10 @@
-build_and_store_wheels: &BUILD_AND_STORE_WHEELS
-  install_cibuildwheel_script:
-    - python -m pip install cibuildwheel
-  cibuildwheel_script:
-    - cibuildwheel
-  wheels_artifacts:
-    path: "wheelhouse/*"
+# build_and_store_wheels: &BUILD_AND_STORE_WHEELS
+#   install_cibuildwheel_script:
+#     - python -m pip install cibuildwheel
+#   cibuildwheel_script:
+#     - cibuildwheel
+#   wheels_artifacts:
+#     path: "wheelhouse/*"
 
 ######################################################################
 # Build linux_aarch64 natively
@@ -53,7 +53,7 @@ build_and_store_wheels: &BUILD_AND_STORE_WHEELS
 # Build macosx_arm64 natively
 ######################################################################
 
-macosx_arm64_task:
+build_wheels_macosx_arm64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:14
@@ -72,7 +72,6 @@ macosx_arm64_task:
     #     CIBW_BUILD: cp312-*
   env:
     PATH: /opt/homebrew/opt/python@3.10/bin:/usr/local/lib:/usr/local/include:$PATH
-    CIBW_ARCHS: arm64
     # Specifying CIBW_ENVIRONMENT_MACOS overrides pyproject.toml, so include
     # all the settings from there, otherwise they're lost.
     # SDKROOT needs to be set for repackaged conda-forge gfortran compilers
@@ -82,6 +81,13 @@ macosx_arm64_task:
       RUNNER_OS=macOS
       SDKROOT=/Applications/Xcode-14.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
       LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+    CIBW_ARCHS: "arm64"
+    CIBW_BUILD: "*-macosx_arm64"
+    CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
+    CIBW_BUILD_VERBOSITY: "3"
+    CIBW_BEFORE_BUILD: "bash {project}/tools/wheels/cibw_before_build.sh {project}"
+    CIBW_TEST_SKIP: "*_universal2:arm64"
+    CIBW_ENVIRONMENT: {CFLAGS="-fno-strict-aliasing", RUNNER_OS="macOS"}  # MACOS linker doesn't support stripping symbols
 
   build_script:
     - brew install python@3.10
@@ -94,7 +100,10 @@ macosx_arm64_task:
     - uname -m
     - python -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
     - clang --version
-  <<: *BUILD_AND_STORE_WHEELS
+    - python -m pip install cibuildwheel
+    - cibuildwheel --output-dir wheelhouse
+
+  # <<: *BUILD_AND_STORE_WHEELS
 
 
 ######################################################################
@@ -109,7 +118,7 @@ wheels_upload_task:
   # which bash, etc, may not be present.
   depends_on:
     # - linux_aarch64
-    - macosx_arm64
+    - build_wheels_macosx_arm64
   compute_engine_instance:
     image_project: cirrus-images
     image: family/docker-builder
@@ -118,9 +127,8 @@ wheels_upload_task:
     memory: 4G
 
   env:
-    # NUMPY_STAGING_UPLOAD_TOKEN: ENCRYPTED[!5a69522ae0c2af9edb2bc1cdfeaca6292fb3666d9ecd82dca0615921834a6ce3b702352835d8bde4ea2a9ed5ef8424ac!]
-    # NUMPY_NIGHTLY_UPLOAD_TOKEN: ENCRYPTED[ef04347663cfcb58d121385707e55951dc8e03b009edeed988aa4a33ba8205c54ca9980ac4da88e1adfdebff8b9d7ed4]
     PYPI_PASSWORD: ENCRYPTED[485f574e94e67a6d00e46a2490863b7b67059cccaf723e09c1f56af3e8b806627d3391d0a501ef7135a52590a902f7b5]
+    ANACONDA_TOKEN: ENCRYPTED[46301c55bb8947383f5ada690555715865045dc694dacfba2182fa482892e8ac2b1c846dc022e85ba74d8ddd8816bbca]
 
   upload_script: |
     apt-get update
@@ -145,35 +153,24 @@ wheels_upload_task:
     # fi
 
     IS_PUSH="true"
-    # if [[ $IS_PUSH == "true" ]] || [[ $IS_SCHEDULE_DISPATCH == "true" ]]; then
     if [[ $IS_PUSH == "true" ]]; then
-        # install miniconda in the home directory. For some reason HOME isn't set by Cirrus
-        export HOME=$PWD
 
-        # install miniconda for uploading to anaconda
-        wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-        bash miniconda.sh -b -p $HOME/miniconda3
-        $HOME/miniconda3/bin/conda init bash
-        source $HOME/miniconda3/bin/activate
-        conda install -y anaconda-client
-
-        python -m pip install --upgrade pip
+        source ./tools/wheels/upload_wheels_pypi.sh
         
         # The name of the zip file is derived from the `wheels_artifact` line.
         # If you change the artifact line to `myfile_artifact` then it would be
         # called myfile.zip
-
         curl https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/wheels.zip --output wheels.zip
-        unzip wheels.zip
+        mkdir -p dist
+        unzip wheels.zip -d dist
 
         ls
+        echo "----------- dist"
+        ls dist
+        echo "----------- wheelhouse"
         ls wheelhouse
 
-        # source ./tools/wheels/upload_wheels.sh
-        source ./tools/wheels/upload_wheels_pypi.sh
-        # IS_PUSH takes precedence over IS_SCHEDULE_DISPATCH
-        # set_upload_vars
-
-        # Will be skipped if not a push/tag/scheduled build
+        install_anaconda
         upload_wheels_pypi
+        # build_upload_wheels_anaconda
     fi

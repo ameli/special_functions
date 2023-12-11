@@ -1,9 +1,9 @@
 name: deploy-pypi
 
 on:
-    # push:
-    #     branches:
-    #         - main
+    push:
+        branches:
+            - main
     release:
         types:
             - published
@@ -42,7 +42,9 @@ jobs:
                   CIBW_ARCHS_WINDOWS: "AMD64 x86"
                   CIBW_BUILD: "*-win_amd64"
                   CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
-                  CIBW_BUILD_VERBOSITY: 1
+                  CIBW_BUILD_VERBOSITY: 3
+                  CIBW_BEFORE_BUILD_WINDOWS: "pip install delvewheel"
+                  CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: "delvewheel repair -w {dest_dir} {wheel}"
               with:
                 output-dir: wheelhouse
 
