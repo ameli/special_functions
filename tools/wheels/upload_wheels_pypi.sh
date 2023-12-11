@@ -48,12 +48,12 @@ build_upload_wheels_anaconda() {
     conda install -y anaconda-client conda-build
 
     # Login to anaconda account
-    ANACONDA_USERNAME="s-ameli"
-    if [[ -z ${ANACONDA_API_TOKEN} ]]; then
-        echo no anaconda api token set, not uploading
-    else
-        anaconda login --username ${ANACONDA_USERNAME}
-    fi
+    # ANACONDA_USERNAME="s-ameli"
+    # if [[ -z ${ANACONDA_API_TOKEN} ]]; then
+    #     echo no anaconda api token set, not uploading
+    # else
+    #     anaconda login --username ${ANACONDA_USERNAME}
+    # fi
 
     # Upload to anaconda automatically right after each wheel is built
     conda config --set anaconda_upload yes
