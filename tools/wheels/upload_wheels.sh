@@ -35,7 +35,7 @@ install_anaconda() {
     PARENT_DIR=$(dirname $CURRENT_DIR)
 
     # install miniconda for uploading to anaconda
-    wget -q ${URL} -O ${PARENT_DIR}miniconda.sh
+    wget -q ${URL} -O ${PARENT_DIR}/miniconda.sh
     bash ${PARENT_DIR}/miniconda.sh -b -p ${PARENT_DIR}/miniconda3
     ${PARENT_DIR}/miniconda3/bin/conda init bash
     source ${PARENT_DIR}/miniconda3/bin/activate
