@@ -53,10 +53,10 @@ build_upload_wheels_anaconda() {
 
     # Login to anaconda account
     ANACONDA_USERNAME="s-ameli"
-    if [[ -z ${ANACONDA_TOKEN} ]]; then
-        echo no anaconda token set, not uploading
+    if [[ -z ${ANACONDA_API_TOKEN} ]]; then
+        echo no anaconda api token set, not uploading
     else
-        anaconda login --username ${ANACONDA_USERNAME} -t ${ANACONDA_TOKEN}
+        anaconda login --username ${ANACONDA_USERNAME}
     fi
 
     # Upload to anaconda automatically right after each wheel is built
@@ -64,7 +64,7 @@ build_upload_wheels_anaconda() {
 
     # Upload sdist
     if compgen -G "./dist/*.gz"; then
-        anaconda -q -t ${TOKEN} upload --force -u ${ANACONDA_ORG} ./dist/*.gz
+        anaconda -q -t ${ANACONDA_API_TOKEN} upload --force -u ${ANACONDA_ORG} ./dist/*.gz
     fi
 
     # Build wheels and upload them automatically
