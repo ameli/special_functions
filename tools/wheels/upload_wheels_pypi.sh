@@ -56,18 +56,19 @@ build_upload_wheels_anaconda() {
     # fi
 
     # Upload to anaconda automatically right after each wheel is built
-    conda config --set anaconda_upload yes
+    # conda config --set anaconda_upload yes
 
     # Upload sdist
     if compgen -G "./dist/*.gz"; then
-        anaconda -q -t ${ANACONDA_API_TOKEN} upload --force -u ${ANACONDA_ORG} ./dist/*.gz
+        anaconda -t ${ANACONDA_API_TOKEN} upload --force -u ${ANACONDA_ORG} ./dist/*.gz
     else
         echo "Dist files do not exist"
     fi
 
     # Build wheels and upload them automatically
     if compgen -G "./dist/*.whl"; then
-        conda-build --output-folder . .
+        conda-build --output-folder conda-bld .
+        anaconda -t ${ANACONDA_API_TOKEN} upload --force -u ${ANACONDA_ORG} ./conda-bld/*.tar.bz2
     else
         echo "Wheel files do not exist"
         return 1
