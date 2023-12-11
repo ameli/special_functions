@@ -150,13 +150,10 @@ wheels_upload_task:
     # called myfile.zip
     curl https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/wheels.zip --output wheels.zip
     mkdir -p dist
-    unzip wheels.zip -d dist
+    unzip -j wheels.zip -d dist
 
     ls
-    echo "----------- dist"
     ls dist
-    echo "----------- wheelhouse"
-    ls wheelhouse
 
     source ./tools/wheels/upload_wheels_pypi.sh
     install_anaconda
