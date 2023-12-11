@@ -31,19 +31,38 @@ install_anaconda() {
     # if we also install miniconda3 in the same directory of the package source
     # cod, when we use conda-build, it gives error as it also tries to build
     # miniconda as well as the code.
-    CURRENT_DIR=$PWD
-    PARENT_DIR=$(dirname $CURRENT_DIR)
+    # CURRENT_DIR=$PWD
+    # PARENT_DIR=$(dirname $CURRENT_DIR)
+    #
+    # # install miniconda for uploading to anaconda
+    # wget -q ${URL} -O ${PARENT_DIR}/miniconda.sh
+    # bash ${PARENT_DIR}/miniconda.sh -b -p ${PARENT_DIR}/miniconda3
+    #
+    # # Conda directories
+    # CONDA_BASE_DIR=${PARENT_DIR}/miniconda3
+    # CONDA_BIN_DIR=${CONDA_BASE_DIR}/bin
+    #
+    # # Export PATH
+    # export PATH=${CONDA_BASE_DIR}:$PATH
+    # export PATH=${CONDA_BIN_DIR}:$PATH
+    #
+    # # Initialize conda
+    # ${CONDA_BIN_DIR}/conda init bash
+    # source ${CONDA_BIN_DIR}/activate
+
+    # Install anaconda in temp directory
+    TMP_DIR="/tmp"
 
     # install miniconda for uploading to anaconda
-    wget -q ${URL} -O ${PARENT_DIR}/miniconda.sh
-    bash ${PARENT_DIR}/miniconda.sh -b -p ${PARENT_DIR}/miniconda3
+    wget -q ${URL} -O ${TMP_DIR}/miniconda.sh
+    bash ${TMP_DIR}/miniconda.sh -b -p ${TMP_DIR}/miniconda3
 
     # Conda directories
-    CONDA_DIR=${PARENT_DIR}/miniconda3
-    CONDA_BIN_DIR=${CONDA_DIR}/bin
+    CONDA_BASE_DIR=${TMP_DIR}/miniconda3
+    CONDA_BIN_DIR=${CONDA_BASE_DIR}/bin
 
     # Export PATH
-    export PATH=${CONDA_DIR}:$PATH
+    export PATH=${CONDA_BASE_DIR}:$PATH
     export PATH=${CONDA_BIN_DIR}:$PATH
 
     # Initialize conda
