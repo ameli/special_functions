@@ -94,7 +94,7 @@ test_macosx_arm64_task:
     cpu: 1
     memory: 8G
   depends_on:
-    - build_conda_macosx_arm64
+    - build_upload_conda_macosx_arm64
 
   test_script:
     - source ./tools/wheels/upload_wheels.sh
