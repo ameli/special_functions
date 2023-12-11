@@ -9,5 +9,5 @@ load("cirrus", "env", "fs", "http")
 
 def main(ctx):
 
-    # return fs.read("tools/ci/cirrus_deploy_pypi.yml")
-    return fs.read("tools/ci/cirrus_deploy_conda.yml")
+    return fs.read("tools/ci/cirrus_deploy_pypi.yml")
+    # return fs.read("tools/ci/cirrus_deploy_conda.yml")
