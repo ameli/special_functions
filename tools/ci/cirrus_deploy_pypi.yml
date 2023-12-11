@@ -7,13 +7,12 @@ build_and_store_wheels: &BUILD_AND_STORE_WHEELS
     path: "wheelhouse/*"
 
 
-# ============================
-# Build linux_aarch64 natively
-# ============================
+# =========================
+# build wheel linux aarch64
+# =========================
 
 build_wheels_linux_aarch64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
-  # arm_container:
   compute_engine_instance:
     image_project: cirrus-images
     image: family/docker-builder-arm64
@@ -32,7 +31,6 @@ build_wheels_linux_aarch64_task:
     - env:
         CIBW_BUILD: "cp312-manylinux_aarch64"
   env:
-    CIRRUS_CLONE_SUBMODULES: true
     CIBW_ARCHS: "aarch64"
     # CIBW_BUILD: "*-manylinux_aarch64"
     CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
@@ -48,15 +46,15 @@ build_wheels_linux_aarch64_task:
     apt update
     apt install -y python3-venv python-is-python3 gfortran libatlas-base-dev libgfortran5 eatmydata
     git fetch origin
-    bash ./tools/wheels/cibw_before_build.sh ${PWD}
+    # bash ./tools/wheels/cibw_before_build.sh ${PWD}
     which python
     echo $CIRRUS_CHANGE_MESSAGE
   <<: *BUILD_AND_STORE_WHEELS
 
 
-# ==================================
-# Build Wheels macosx ARM64 natively
-# ==================================
+# =========================
+# build wheels macosx arm64
+# =========================
 
 build_wheels_macosx_arm64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
@@ -74,7 +72,6 @@ build_wheels_macosx_arm64_task:
     - env:
         CIBW_BUILD: "cp312-macosx_arm64"
   env:
-    CIRRUS_CLONE_SUBMODULES: true
     PATH: /opt/homebrew/opt/python@3.10/bin:/usr/local/lib:/usr/local/include:$PATH
     # Specifying CIBW_ENVIRONMENT_MACOS overrides pyproject.toml, so include
     # all the settings from there, otherwise they're lost.
@@ -105,7 +102,7 @@ build_wheels_macosx_arm64_task:
 
 
 # =================
-# Upload all wheels
+# upload all wheels
 # =================
 
 wheels_upload_task:
@@ -139,9 +136,6 @@ wheels_upload_task:
     mkdir -p dist
     unzip -j wheels.zip -d dist
 
-    ls
-    ls dist
-
     source ./tools/wheels/upload_wheels_pypi.sh
     install_anaconda
     upload_wheels_pypi
@@ -149,7 +143,7 @@ wheels_upload_task:
 
 
 # =================
-# Test macosx ARM64
+# test macosx arm64
 # =================
 
 test_macosx_arm64_task:
@@ -185,13 +179,12 @@ test_macosx_arm64_task:
     - python3 -m pytest
 
 
-# ============================
-# Build linux_aarch64 natively
-# ============================
+# ==================
+# test linux aarch64
+# ==================
 
 test_linux_aarch64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
-  # arm_container:
   compute_engine_instance:
     image_project: cirrus-images
     image: family/docker-builder-arm64
@@ -199,8 +192,8 @@ test_linux_aarch64_task:
     platform: linux
     cpu: 1
     memory: 8G
-  # depends_on:
-  #   - wheels_upload
+  depends_on:
+    - wheels_upload
 
   test_script: |
     apt update
