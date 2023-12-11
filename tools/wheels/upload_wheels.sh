@@ -78,6 +78,7 @@ build_upload_anaconda() {
     then
         BUILD_SUBDIR="linux-aarch64"
     elif [ "$1"=="macosx_arm64" ];
+    then
         BUILD_SUBDIR="osx-arm64"
     else
         echo "OS or platform is invalid."
