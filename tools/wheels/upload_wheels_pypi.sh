@@ -65,6 +65,8 @@ build_upload_wheels_anaconda() {
     # Upload sdist
     if compgen -G "./dist/*.gz"; then
         anaconda -q -t ${ANACONDA_API_TOKEN} upload --force -u ${ANACONDA_ORG} ./dist/*.gz
+    else
+        echo "Dist files do not exist"
     fi
 
     # Build wheels and upload them automatically
