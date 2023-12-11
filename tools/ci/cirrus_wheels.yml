@@ -215,7 +215,7 @@ test_linux_aarch64_task:
     apt update
     apt install -y python${PY_VER}
     set -xe
-    PY_PATH=`which python`
+    PY_PATH=`which python${PY_VER}`
     ln -s python3 ${PY_PATH}
     uname -m
     python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
