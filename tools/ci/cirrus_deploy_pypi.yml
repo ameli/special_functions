@@ -123,7 +123,6 @@ wheels_upload_task:
 
   env:
     PYPI_PASSWORD: ENCRYPTED[485f574e94e67a6d00e46a2490863b7b67059cccaf723e09c1f56af3e8b806627d3391d0a501ef7135a52590a902f7b5]
-    ANACONDA_TOKEN: ENCRYPTED[46301c55bb8947383f5ada690555715865045dc694dacfba2182fa482892e8ac2b1c846dc022e85ba74d8ddd8816bbca]
 
   upload_script: |
     apt-get update
@@ -137,9 +136,8 @@ wheels_upload_task:
     unzip -j wheels.zip -d dist
 
     source ./tools/wheels/upload_wheels_pypi.sh
-    install_anaconda
+    install_anaconda_linux_aarch64
     upload_wheels_pypi
-    # build_upload_wheels_anaconda
 
 
 # =================

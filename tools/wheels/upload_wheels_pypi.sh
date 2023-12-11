@@ -15,7 +15,6 @@ install_anaconda_linux_aarch64() {
     bash miniconda.sh -b -p $HOME/miniconda3
     $HOME/miniconda3/bin/conda init bash
     source $HOME/miniconda3/bin/activate
-    conda install -y anaconda-client
 }
 
 
@@ -33,11 +32,6 @@ install_anaconda_macosx_arm64() {
     bash miniconda.sh -b -p $HOME/miniconda3
     $HOME/miniconda3/bin/conda init bash
     source $HOME/miniconda3/bin/activate
-    conda install -y anaconda-client
-
-    # Install pip and twine
-    python -m pip install --upgrade pip
-    python -m pip install twine
 }
 
 
@@ -50,6 +44,8 @@ build_upload_wheels_anaconda() {
     # Conda executable
     export PATH=$(conda info --root):$PATH
     export PATH=$(conda info --root)/bin:$PATH
+
+    conda install -y anaconda-client conda-build
 
     # Login to anaconda account
     ANACONDA_USERNAME="s-ameli"
