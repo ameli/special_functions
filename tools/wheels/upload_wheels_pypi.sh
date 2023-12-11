@@ -1,5 +1,10 @@
 set -xe
 
+
+# ================
+# Install Anaconda
+# ================
+
 install_anaconda() {
 
     # install miniconda in the home directory. For some reason HOME isn't set by Cirrus
@@ -17,35 +22,59 @@ install_anaconda() {
     python -m pip install twine
 }
 
+
+# ============================
+# Build Upload Wheela Anaconda
+# ============================
+
 build_upload_wheels_anaconda() {
 
-    anaconda login --username s-ameli --token ${ANACONDA_TOKEN}
-    conda config --set anaconda_upload yes
+    # Conda executable
     export PATH=$(conda info --root):$PATH
     export PATH=$(conda info --root)/bin:$PATH
-    conda-build --output-folder . .
+
+    # Login to anaconda account
+    ANACONDA_USERNAME="s-ameli"
+    if [[ -z ${ANACONDA_TOKEN} ]]; then
+        echo no anaconda token set, not uploading
+    else
+        anaconda login --username ${ANACONDA_USERNAME} --token ${ANACONDA_TOKEN}
+    fi
+
+    # Upload to anaconda automatically right after each wheel is built
+    conda config --set anaconda_upload yes
+
+    # Upload sdist
+    if compgen -G "./dist/*.gz"; then
+        anaconda -q -t ${TOKEN} upload --force -u ${ANACONDA_ORG} ./dist/*.gz
+    fi
+
+    # Build wheels and upload them automatically
+    if compgen -G "./dist/*.whl"; then
+        conda-build --output-folder . .
+    else
+        echo "Wheel files do not exist"
+        return 1
+    fi
 }
+
+
+# ==================
+# Upload Wheels PyPI
+# ==================
 
 upload_wheels_pypi() {
 
     PYPI_USERNAME="__token__"
 
     if [[ -z ${PYPI_PASSWORD} ]]; then
-        echo no token set, not uploading
+        echo no pypi password set, not uploading
     else
-        # sdists are located under dist folder when built through setup.py
-        # if compgen -G "./dist/*.gz"; then
-        if compgen -G "./wheelhouse/*.whl"; then
-        #     echo "Found sdist"
-        #     # anaconda -q -t ${TOKEN} upload --force -u ${ANACONDA_ORG} ./dist/*.gz
-        #     twine upload ./dist/* -u ${PYPI_USERNAME} -p ${PYPI_PASSWORD}
-        #
-        # elif compgen -G "./wheelhouse/*.whl"; then
+        if compgen -G "./dist/*.whl"; then
             echo "Found wheel"
-            # anaconda -q -t ${TOKEN} upload --force -u ${ANACONDA_ORG} ./wheelhouse/*.whl
-            twine upload ./wheelhouse/* -u ${PYPI_USERNAME} -p ${PYPI_PASSWORD}
+            twine upload ./dist/* -u ${PYPI_USERNAME} -p ${PYPI_PASSWORD}
         else
-            echo "Files do not exist"
+            echo "Wheel files do not exist"
             return 1
         fi
         echo "PyPI-style index: https://pypi.org"
