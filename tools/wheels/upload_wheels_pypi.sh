@@ -77,6 +77,5 @@ upload_wheels_pypi() {
             echo "Wheel files do not exist"
             return 1
         fi
-        echo "PyPI-style index: https://pypi.org"
     fi
 }
