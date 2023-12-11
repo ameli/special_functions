@@ -158,7 +158,7 @@ test_macosx_arm64_task:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
     cpu: 1
     memory: 8G
-  # depends_on:
+  depends_on:
     - wheels_upload
   matrix:
     - env:
@@ -199,6 +199,8 @@ build_wheels_linux_aarch64_task:
     platform: linux
     cpu: 1
     memory: 8G
+  depends_on:
+    - wheels_upload
   matrix:
     - env:
         PY_VER: "3.9"
