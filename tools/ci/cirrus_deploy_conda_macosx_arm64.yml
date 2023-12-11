@@ -7,9 +7,9 @@ build_and_store_wheels: &BUILD_AND_STORE_WHEELS
     path: "wheelhouse/*"
 
 
-# =========================
-# build wheel linux aarch64
-# =========================
+# ==========================
+# build wheels linux aarch64
+# ==========================
 
 build_wheels_linux_aarch64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
@@ -24,12 +24,12 @@ build_wheels_linux_aarch64_task:
     - env:
         CIBW_BUILD: "cp39-manylinux_aarch64"
         # EXPECT_CPU_FEATURES: NEON NEON_FP16 NEON_VFPV4 ASIMD ASIMDHP ASIMDDP ASIMDFHM
-    - env:
-        CIBW_BUILD: "cp310-manylinux_aarch64"
-    - env:
-        CIBW_BUILD: "cp311-manylinux_aarch64"
-    - env:
-        CIBW_BUILD: "cp312-manylinux_aarch64"
+    # - env: # TEST
+    #     CIBW_BUILD: "cp310-manylinux_aarch64"
+    # - env:
+    #     CIBW_BUILD: "cp311-manylinux_aarch64"
+    # - env:
+    #     CIBW_BUILD: "cp312-manylinux_aarch64"
   env:
     CIBW_ARCHS: "aarch64"
     # CIBW_BUILD: "*-manylinux_aarch64"
@@ -49,7 +49,39 @@ build_wheels_linux_aarch64_task:
     # bash ./tools/wheels/cibw_before_build.sh ${PWD}
     which python
     echo $CIRRUS_CHANGE_MESSAGE
+
   <<: *BUILD_AND_STORE_WHEELS
+
+
+# =========================
+# build conda linux aarch64
+# =========================
+
+build_conda_linux_aarch64_task:
+  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
+  compute_engine_instance:
+    image_project: cirrus-images
+    image: family/docker-builder-arm64
+    architecture: arm64
+    platform: linux
+    cpu: 1
+    memory: 8G
+  depends_on:
+    - build_wheels_linux_aarch64
+  env:
+    ANACONDA_API_TOKEN: ENCRYPTED[46301c55bb8947383f5ada690555715865045dc694dacfba2182fa482892e8ac2b1c846dc022e85ba74d8ddd8816bbca]
+
+  build_script: |
+    # The name of the zip file is derived from the `wheels_artifact` line.
+    # If you change the artifact line to `myfile_artifact` then it would be
+    # called myfile.zip
+    curl https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/wheels.zip --output wheels.zip
+    mkdir -p dist
+    unzip -j wheels.zip -d dist
+
+    source ./tools/wheels/upload_wheels.sh
+    install_anaconda "linux_aarch64"
+    build_upload_anaconda
 
 
 # =========================
@@ -65,12 +97,12 @@ build_wheels_macosx_arm64_task:
   matrix:
     - env:
         CIBW_BUILD: "cp39-macosx_arm64"
-    - env:
-        CIBW_BUILD: "cp310-macosx_arm64"
-    - env:
-        CIBW_BUILD: "cp311-macosx_arm64"
-    - env:
-        CIBW_BUILD: "cp312-macosx_arm64"
+    # - env: # TEST
+    #     CIBW_BUILD: "cp310-macosx_arm64"
+    # - env:
+    #     CIBW_BUILD: "cp311-macosx_arm64"
+    # - env:
+    #     CIBW_BUILD: "cp312-macosx_arm64"
   env:
     PATH: /opt/homebrew/opt/python@3.10/bin:/usr/local/lib:/usr/local/include:$PATH
     # Specifying CIBW_ENVIRONMENT_MACOS overrides pyproject.toml, so include
@@ -101,80 +133,31 @@ build_wheels_macosx_arm64_task:
   <<: *BUILD_AND_STORE_WHEELS
 
 
-# =================
-# upload all wheels
-# =================
+# ========================
+# build conda macosx arm64
+# ========================
 
-wheels_upload_task:
-  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
-  # Artifacts don't seem to be persistent from task to task.
-  # Rather than upload wheels at the end of each cibuildwheel run we do a
-  # final upload here. This is because a run may be on different OS for
-  # which bash, etc, may not be present.
-  depends_on:
-    - build_wheels_linux_aarch64
-    - build_wheels_macosx_arm64
-  compute_engine_instance:
-    image_project: cirrus-images
-    image: family/docker-builder
-    platform: linux
-    cpu: 1
-    memory: 4G
-
-  env:
-    PYPI_PASSWORD: ENCRYPTED[485f574e94e67a6d00e46a2490863b7b67059cccaf723e09c1f56af3e8b806627d3391d0a501ef7135a52590a902f7b5]
-
-  upload_script: |
-    apt-get update
-    apt-get install -y curl wget
-
-    # The name of the zip file is derived from the `wheels_artifact` line.
-    # If you change the artifact line to `myfile_artifact` then it would be
-    # called myfile.zip
-    curl https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/wheels.zip --output wheels.zip
-    mkdir -p dist
-    unzip -j wheels.zip -d dist
-
-    source ./tools/wheels/upload_wheels.sh
-    install_anaconda "linux_aarch64"
-    upload_wheels_pypi
-
-
-# =================
-# test macosx arm64
-# =================
-
-test_macosx_arm64_task:
+build_conda_macosx_arm64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
     cpu: 1
     memory: 8G
   depends_on:
-    - wheels_upload
-  matrix:
-    - env:
-        PY_VER: "3.9"
-    - env:
-        PY_VER: "3.10"
-    # - env:
-    #     PY_VER: "3.11"
-    # - env:
-    #     PY_VER: "3.12"
+    - build_wheels_macosx_arm64
+  env:
+    ANACONDA_TOKEN: ENCRYPTED[46301c55bb8947383f5ada690555715865045dc694dacfba2182fa482892e8ac2b1c846dc022e85ba74d8ddd8816bbca]
 
-  test_script:
-    - brew install python@${PY_VER}
-    - ln -s python3 /opt/homebrew/opt/python@${PY_VER}/bin/python
-    - set -xe
-    - which python3
-    - uname -m
-    - python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-    - python3 -m pip install --upgrade pip
-    - python3 -m pip install --upgrade special_functions
-    - python3 -m pip install numpy
-    - python3 -m pip install -r tests/requirements.txt
-    - mv special_functions special_functions_do_dot_import
-    - python3 -m pytest
+  build_script:
+    # The name of the zip file is derived from the `wheels_artifact` line.
+    # If you change the artifact line to `myfile_artifact` then it would be
+    # called myfile.zip
+    - curl https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/wheels.zip --output wheels.zip
+    - mkdir -p dist
+    - unzip -j wheels.zip -d dist
+    - source ./tools/wheels/upload_wheels.sh
+    - install_anaconda "macosx_arm64"
+    - build_upload_anaconda
 
 
 # ==================
@@ -191,12 +174,14 @@ test_linux_aarch64_task:
     cpu: 1
     memory: 8G
   depends_on:
-    - wheels_upload
+    - build_conda_linux_aarch64
 
   test_script: |
-    apt update
-    apt install -y python3
+    source ./tools/wheels/upload_wheels.sh
+    install_anaconda "linux_aarch64"
     set -xe
+    CONDA_PATH=$(dirname `which conda`)
+    ln -s python3 ${CONDA_PATH}/python
     uname -m
     python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
     python3 -m pip install --upgrade pip
@@ -205,3 +190,33 @@ test_linux_aarch64_task:
     python3 -m pip install -r tests/requirements.txt
     mv special_functions special_functions_do_dot_import
     python3 -m pytest
+
+
+# =================
+# test macosx arm64
+# =================
+
+test_macosx_arm64_task:
+  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
+  macos_instance:
+    image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
+    cpu: 1
+    memory: 8G
+  depends_on:
+    - build_conda_macosx_arm64
+
+  test_script:
+    - source ./tools/wheels/upload_wheels.sh
+    - install_anaconda "macosx_arm64"
+    - set -xe
+    - CONDA_PATH=$(dirname `which conda`)
+    - ln -s python3 ${CONDA_PATH}/python
+    - which python3
+    - uname -m
+    - python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
+    - python3 -m pip install --upgrade pip
+    - python3 -m pip install --upgrade special_functions
+    - python3 -m pip install numpy
+    - python3 -m pip install -r tests/requirements.txt
+    - mv special_functions special_functions_do_dot_import
+    - python3 -m pytest

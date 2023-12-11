@@ -79,7 +79,7 @@ build_conda_linux_aarch64_task:
     mkdir -p dist
     unzip -j wheels.zip -d dist
 
-    source ./tools/wheels/upload_wheels_pypi.sh
+    source ./tools/wheels/upload_wheels.sh
     install_anaconda "linux_aarch64"
     build_upload_anaconda
 
@@ -155,7 +155,7 @@ build_conda_macosx_arm64_task:
     - curl https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/wheels.zip --output wheels.zip
     - mkdir -p dist
     - unzip -j wheels.zip -d dist
-    - source ./tools/wheels/upload_wheels_pypi.sh
+    - source ./tools/wheels/upload_wheels.sh
     - install_anaconda "macosx_arm64"
     - build_upload_anaconda
 
@@ -177,7 +177,7 @@ test_linux_aarch64_task:
     - build_conda_linux_aarch64
 
   test_script: |
-    source ./tools/wheels/upload_wheels_pypi.sh
+    source ./tools/wheels/upload_wheels.sh
     install_anaconda "linux_aarch64"
     set -xe
     CONDA_PATH=$(dirname `which conda`)
@@ -206,7 +206,7 @@ test_macosx_arm64_task:
     - build_conda_macosx_arm64
 
   test_script:
-    - source ./tools/wheels/upload_wheels_pypi.sh
+    - source ./tools/wheels/upload_wheels.sh
     - install_anaconda "macosx_arm64"
     - set -xe
     - CONDA_PATH=$(dirname `which conda`)
