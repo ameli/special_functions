@@ -87,7 +87,8 @@ build_wheels_macosx_arm64_task:
     CIBW_BUILD_VERBOSITY: "3"
     CIBW_BEFORE_BUILD: "bash {project}/tools/wheels/cibw_before_build.sh {project}"
     CIBW_TEST_SKIP: "*_universal2:arm64"
-    CIBW_ENVIRONMENT: {CFLAGS="-fno-strict-aliasing", RUNNER_OS="macOS"}  # MACOS linker doesn't support stripping symbols
+    # MACOS linker doesn't support stripping symbols
+    CIBW_ENVIRONMENT: {CFLAGS="-fno-strict-aliasing", RUNNER_OS="macOS"}
 
   build_script:
     - brew install python@3.10
