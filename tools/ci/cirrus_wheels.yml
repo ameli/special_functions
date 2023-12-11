@@ -49,9 +49,9 @@ build_and_store_wheels: &BUILD_AND_STORE_WHEELS
 #   <<: *BUILD_AND_STORE_WHEELS
 
 
-# ===========================
-# Build macosx_arm64 natively
-# ===========================
+# ==================================
+# Build Wheels macosx ARM64 natively
+# ==================================
 
 build_wheels_macosx_arm64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
@@ -126,24 +126,6 @@ wheels_upload_task:
   upload_script: |
     apt-get update
     apt-get install -y curl wget
-    # export IS_SCHEDULE_DISPATCH="false"
-    # export IS_PUSH="false"
-
-    # cron job
-    # if [[ "$CIRRUS_CRON" == "nightly" ]]; then
-    #   export IS_SCHEDULE_DISPATCH="true"
-    # fi
-
-    # a manual build was started
-    # if [[ "$CIRRUS_BUILD_SOURCE" == "api" && "$CIRRUS_COMMIT_MESSAGE" == "API build for null" ]]; then
-    #   export IS_SCHEDULE_DISPATCH="true"
-    # fi
-
-    # only upload wheels to staging if it's a tag beginning with 'v' and you're
-    # on a maintenance branch
-    # if [[ "$CIRRUS_TAG" == v* ]] && [[ $CIRRUS_TAG != *"dev0"* ]]; then
-    #   export IS_PUSH="true"
-    # fi
 
     # The name of the zip file is derived from the `wheels_artifact` line.
     # If you change the artifact line to `myfile_artifact` then it would be
@@ -159,3 +141,38 @@ wheels_upload_task:
     install_anaconda
     upload_wheels_pypi
     # build_upload_wheels_anaconda
+
+# =================
+# Test macosx ARM64
+# =================
+
+test_macosx_arm64_task:
+  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
+  macos_instance:
+    image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
+    cpu: 1
+    memory: 8G
+  depends_on:
+    - wheels_upload_task
+  matrix:
+    - env:
+        PY_VER: "3.9"
+    - env:
+        PY_VER: "3.10"
+    - env:
+        PY_VER: "3.11"
+    - env:
+        PY_VER: "3.12"
+
+  test_script:
+    - brew install python@${PY_VER}
+    - ln -s python3 /opt/homebrew/opt/python@${PY_VER}/bin/python
+    - which python
+    - uname -m
+    - python -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
+    - python -m pip install --upgrade pip
+    - python -m pip install --upgrade special_functions
+    - python -m pip install numpy
+    - python -m pip install -r tests/requirements.txt
+    - mv special_functions special_functions_do_dot_import
+    - pytest
