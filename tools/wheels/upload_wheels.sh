@@ -18,7 +18,7 @@ install_anaconda() {
     if [ "$1" == "linux_aarch64" ];
     then
         URL=${MINICONDA_URL}"Miniconda3-latest-Linux-aarch64.sh"
-    elif [ "$1" == "macosx_arm64" ];
+    elif [ "$1" == "macosxxx_arm64" ];
     then
         URL=${MINICONDA_URL}"Miniconda3-latest-MacOSX-arm64.sh"
     else
@@ -102,7 +102,7 @@ build_upload_anaconda() {
     if [ "$1" == "linux_aarch64" ];
     then
         BUILD_SUBDIR="linux-aarch64"
-    elif [ "$1" == "macosx_arm64" ];
+    elif [ "$1" == "macosyyy_arm64" ];
     then
         BUILD_SUBDIR="osx-arm64"
     else
