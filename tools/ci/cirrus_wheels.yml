@@ -189,7 +189,7 @@ test_macosx_arm64_task:
 # Build linux_aarch64 natively
 # ============================
 
-build_wheels_linux_aarch64_task:
+test_linux_aarch64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   # arm_container:
   compute_engine_instance:
