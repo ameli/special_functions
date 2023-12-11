@@ -56,7 +56,7 @@ build_upload_wheels_anaconda() {
     if [[ -z ${ANACONDA_TOKEN} ]]; then
         echo no anaconda token set, not uploading
     else
-        anaconda login --username ${ANACONDA_USERNAME} --token ${ANACONDA_TOKEN}
+        anaconda login --username ${ANACONDA_USERNAME} -t ${ANACONDA_TOKEN}
     fi
 
     # Upload to anaconda automatically right after each wheel is built
