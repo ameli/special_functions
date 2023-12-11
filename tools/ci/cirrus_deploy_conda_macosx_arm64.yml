@@ -16,7 +16,7 @@ build_wheels_macosx_arm64_task:
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
     cpu: 1
-    memory: 8G
+    memory: 4G
   matrix:
     - env:
         CIBW_BUILD: "cp39-macosx_arm64"
@@ -65,7 +65,7 @@ build_upload_conda_macosx_arm64_task:
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
     cpu: 1
-    memory: 8G
+    memory: 4G
   depends_on:
     - build_wheels_macosx_arm64
   env:
@@ -92,7 +92,7 @@ test_macosx_arm64_task:
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
     cpu: 1
-    memory: 8G
+    memory: 4G
   depends_on:
     - build_upload_conda_macosx_arm64
 

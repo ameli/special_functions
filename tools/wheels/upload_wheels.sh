@@ -37,8 +37,18 @@ install_anaconda() {
     # install miniconda for uploading to anaconda
     wget -q ${URL} -O ${PARENT_DIR}/miniconda.sh
     bash ${PARENT_DIR}/miniconda.sh -b -p ${PARENT_DIR}/miniconda3
-    ${PARENT_DIR}/miniconda3/bin/conda init bash
-    source ${PARENT_DIR}/miniconda3/bin/activate
+
+    # Conda directories
+    CONDA_DIR=${PARENT_DIR}/miniconda3
+    CONDA_BIN_DIR=${CONDA_DIR}/bin
+
+    # Export PATH
+    export PATH=${CONDA_DIR}:$PATH
+    export PATH=${CONDA_BIN_DIR}:$PATH
+
+    # Initialize conda
+    ${CONDA_BIN_DIR}/conda init bash
+    source ${CONDA_BIN_DIR}/activate
 }
 
 
@@ -54,10 +64,6 @@ build_upload_anaconda() {
     # Usage:
     # build_upload_anaconda "linux_aarch64"
     # build_upload_anaconda "macosx_arm64"
-
-    # Conda executable
-    export PATH=$(conda info --root):$PATH
-    export PATH=$(conda info --root)/bin:$PATH
 
     conda install -y anaconda-client conda-build
 
