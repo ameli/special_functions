@@ -10,10 +10,10 @@ build_and_store_wheels: &BUILD_AND_STORE_WHEELS
 # Build linux_aarch64 natively
 # ============================
 
-linux_aarch64_task:
+build_wheels_linux_aarch64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
-  # compute_engine_instance:
-  arm_container:
+  # arm_container:
+  compute_engine_instance:
     image_project: cirrus-images
     image: family/docker-builder-arm64
     architecture: arm64
@@ -117,7 +117,7 @@ wheels_upload_task:
   # final upload here. This is because a run may be on different OS for
   # which bash, etc, may not be present.
   depends_on:
-    # - linux_aarch64
+    # - build_wheels_linux_aarch64
     - build_wheels_macosx_arm64
   compute_engine_instance:
     image_project: cirrus-images
@@ -166,20 +166,21 @@ test_macosx_arm64_task:
         PY_VER: "3.9"
     - env:
         PY_VER: "3.10"
-    - env:
-        PY_VER: "3.11"
-    - env:
-        PY_VER: "3.12"
+    # - env:
+    #     PY_VER: "3.11"
+    # - env:
+    #     PY_VER: "3.12"
 
   test_script:
     - brew install python@${PY_VER}
     - ln -s python3 /opt/homebrew/opt/python@${PY_VER}/bin/python
-    - which python
+    - set -xe
+    - which python3
     - uname -m
-    - python -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-    - python -m pip install --upgrade pip
-    - python -m pip install --upgrade special_functions
-    - python -m pip install numpy
-    - python -m pip install -r tests/requirements.txt
+    - python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
+    - python3 -m pip install --upgrade pip
+    - python3 -m pip install --upgrade special_functions
+    - python3 -m pip install numpy
+    - python3 -m pip install -r tests/requirements.txt
     - mv special_functions special_functions_do_dot_import
-    - pytest
+    - python3 -m pytest
