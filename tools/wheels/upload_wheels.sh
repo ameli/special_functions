@@ -122,7 +122,8 @@ upload_wheels_pypi() {
     else
         if compgen -G "./dist/*.whl"; then
             echo "Found wheel"
-            twine upload ./dist/* -u ${PYPI_USERNAME} -p ${PYPI_PASSWORD}
+            twine upload ./dist/* -u ${PYPI_USERNAME} -p ${PYPI_PASSWORD} \
+                --verbose
         else
             echo "Wheel files do not exist"
             return 1

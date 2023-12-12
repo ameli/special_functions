@@ -1,4 +1,4 @@
-build_and_store_wheels: &BUILD_AND_STORE_WHEELS
+pypi_macosx_arm64_cibw: &PYPI_MACOSX_ARM64_CIBW
   install_cibuildwheel_script:
     - python -m pip install cibuildwheel
   cibuildwheel_script:
@@ -53,7 +53,7 @@ pypi_build_wheels_macosx_arm64_task:
     - uname -m
     - python -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
     - clang --version
-  <<: *BUILD_AND_STORE_WHEELS
+  <<: *PYPI_MACOSX_ARM64_CIBW
 
 
 # ======================

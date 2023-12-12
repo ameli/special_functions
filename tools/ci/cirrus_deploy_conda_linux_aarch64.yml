@@ -1,4 +1,4 @@
-build_and_store_wheels: &BUILD_AND_STORE_WHEELS
+conda_linux_aarch64_cibw: &CONDA_LINUX_AARCH64_CIBW
   install_cibuildwheel_script:
     - python -m pip install cibuildwheel
   cibuildwheel_script:
@@ -50,7 +50,7 @@ conda_build_wheels_linux_aarch64_task:
     which python
     echo $CIRRUS_CHANGE_MESSAGE
 
-  <<: *BUILD_AND_STORE_WHEELS
+  <<: *CONDA_LINUX_AARCH64_CIBW
 
 
 # ======================================
