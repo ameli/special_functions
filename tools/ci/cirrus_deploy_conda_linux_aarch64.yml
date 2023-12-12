@@ -7,11 +7,11 @@ build_and_store_wheels: &BUILD_AND_STORE_WHEELS
     path: "wheelhouse/*"
 
 
-# ==========================
-# build wheels linux aarch64
-# ==========================
+# ================================
+# conda build wheels linux aarch64
+# ================================
 
-build_wheels_linux_aarch64_task:
+conda_build_wheels_linux_aarch64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   compute_engine_instance:
     image_project: cirrus-images
@@ -53,11 +53,11 @@ build_wheels_linux_aarch64_task:
   <<: *BUILD_AND_STORE_WHEELS
 
 
-# ================================
-# build upload conda linux aarch64
-# ================================
+# ======================================
+# conda build upload conda linux aarch64
+# ======================================
 
-build_upload_conda_linux_aarch64_task:
+conda_build_upload_conda_linux_aarch64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   compute_engine_instance:
     image_project: cirrus-images
@@ -67,7 +67,7 @@ build_upload_conda_linux_aarch64_task:
     cpu: 1
     memory: 4G
   depends_on:
-    - build_wheels_linux_aarch64
+    - conda_build_wheels_linux_aarch64
   env:
     ANACONDA_API_TOKEN: ENCRYPTED[46301c55bb8947383f5ada690555715865045dc694dacfba2182fa482892e8ac2b1c846dc022e85ba74d8ddd8816bbca]
 
@@ -84,11 +84,11 @@ build_upload_conda_linux_aarch64_task:
     build_upload_anaconda "linux_aarch64"
 
 
-# ==================
-# test linux aarch64
-# ==================
+# ========================
+# conda test linux aarch64
+# ========================
 
-test_linux_aarch64_task:
+conda_test_linux_aarch64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   compute_engine_instance:
     image_project: cirrus-images
@@ -98,7 +98,7 @@ test_linux_aarch64_task:
     cpu: 1
     memory: 4G
   depends_on:
-    - build_upload_conda_linux_aarch64
+    - conda_build_upload_conda_linux_aarch64
 
   test_script: |
     source ./tools/wheels/upload_wheels.sh

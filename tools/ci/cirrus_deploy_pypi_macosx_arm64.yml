@@ -7,11 +7,11 @@ build_and_store_wheels: &BUILD_AND_STORE_WHEELS
     path: "wheelhouse/*"
 
 
-# ===============================
-# conda build wheels macosx arm64
-# ===============================
+# ==============================
+# pypi build wheels macosx arm64
+# ==============================
 
-conda_build_wheels_macosx_arm64_task:
+pypi_build_wheels_macosx_arm64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
@@ -41,7 +41,7 @@ conda_build_wheels_macosx_arm64_task:
       LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
     CIBW_ARCHS: "arm64"
     # CIBW_BUILD: "*-macosx_arm64"
-    CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
+    CIBW_SKIP: "pp37-* cp36-* cp37-* cp38-*"
     CIBW_BUILD_VERBOSITY: "3"
     CIBW_BEFORE_BUILD: "bash {project}/tools/wheels/cibw_before_build.sh {project}"
     CIBW_TEST_SKIP: "*_universal2:arm64"
@@ -56,57 +56,76 @@ conda_build_wheels_macosx_arm64_task:
   <<: *BUILD_AND_STORE_WHEELS
 
 
-# =====================================
-# conda build upload conda macosx arm64
-# =====================================
+# ======================
+# pypi upload all wheels
+# ======================
 
-conda_build_upload_conda_macosx_arm64_task:
+pypi_wheels_upload_macosx_arm64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
-  macos_instance:
-    image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
+  # Artifacts don't seem to be persistent from task to task.
+  # Rather than upload wheels at the end of each cibuildwheel run we do a
+  # final upload here. This is because a run may be on different OS for
+  # which bash, etc, may not be present.
+  depends_on:
+    - pypi_build_wheels_macosx_arm64
+  compute_engine_instance:
+    image_project: cirrus-images
+    image: family/docker-builder
+    platform: linux
     cpu: 1
     memory: 4G
-  depends_on:
-    - conda_build_wheels_macosx_arm64
-  env:
-    ANACONDA_API_TOKEN: ENCRYPTED[46301c55bb8947383f5ada690555715865045dc694dacfba2182fa482892e8ac2b1c846dc022e85ba74d8ddd8816bbca]
 
-  build_script:
+  env:
+    PYPI_PASSWORD: ENCRYPTED[485f574e94e67a6d00e46a2490863b7b67059cccaf723e09c1f56af3e8b806627d3391d0a501ef7135a52590a902f7b5]
+
+  upload_script: |
+    apt-get update
+    apt-get install -y curl wget
+
     # The name of the zip file is derived from the `wheels_artifact` line.
     # If you change the artifact line to `myfile_artifact` then it would be
     # called myfile.zip
-    - curl https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/wheels.zip --output wheels.zip
-    - mkdir -p dist
-    - unzip -j wheels.zip -d dist
-    - source ./tools/wheels/upload_wheels.sh
-    - install_anaconda "macosx_arm64"
-    - build_upload_anaconda "macosx_arm64"
+    curl https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/wheels.zip --output wheels.zip
+    mkdir -p dist
+    unzip -j wheels.zip -d dist
+
+    source ./tools/wheels/upload_wheels.sh
+    install_anaconda "linux_x86_64"
+    upload_wheels_pypi
 
 
-# =======================
-# conda test macosx arm64
-# =======================
+# ======================
+# pypi test macosx arm64
+# ======================
 
-conda_test_macosx_arm64_task:
+pypi_test_macosx_arm64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
     cpu: 1
     memory: 4G
   depends_on:
-    - conda_build_upload_conda_macosx_arm64
+    - pypi_wheels_upload_macosx_arm64
+  matrix:
+    - env:
+        PY_VER: "3.9"
+    - env:
+        PY_VER: "3.10"
+    # - env:
+    #     PY_VER: "3.11"
+    # - env:
+    #     PY_VER: "3.12"
 
   test_script:
-    - source ./tools/wheels/upload_wheels.sh
-    - install_anaconda "macosx_arm64"
+    - brew install python@${PY_VER}
+    - ln -s python3 /opt/homebrew/opt/python@${PY_VER}/bin/python
     - set -xe
-    - CONDA_BIN_DIR=$(dirname `which conda`)
-    - PYTHON=${CONDA_BIN_DIR}/python
+    - which python3
     - uname -m
-    - ${PYTHON} -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-    - ${PYTHON} -m pip install --upgrade pip
-    - ${PYTHON} -m pip install --upgrade special_functions
-    - ${PYTHON} -m pip install numpy
-    - ${PYTHON} -m pip install -r tests/requirements.txt
+    - python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
+    - python3 -m pip install --upgrade pip
+    - python3 -m pip install --upgrade special_functions
+    - python3 -m pip install numpy
+    - python3 -m pip install -r tests/requirements.txt
     - mv special_functions special_functions_do_dot_import
-    - ${PYTHON} -m pytest
+    - python3 -m pytest

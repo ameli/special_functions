@@ -7,11 +7,11 @@ build_and_store_wheels: &BUILD_AND_STORE_WHEELS
     path: "wheelhouse/*"
 
 
-# =========================
-# build wheel linux aarch64
-# =========================
+# ==============================
+# pypi build wheel linux aarch64
+# ==============================
 
-build_wheels_linux_aarch64_task:
+pypi_build_wheels_linux_aarch64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   compute_engine_instance:
     image_project: cirrus-images
@@ -33,7 +33,7 @@ build_wheels_linux_aarch64_task:
   env:
     CIBW_ARCHS: "aarch64"
     # CIBW_BUILD: "*-manylinux_aarch64"
-    CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
+    CIBW_SKIP: "pp37-* cp36-* cp37-* cp38-*"
     CIBW_BUILD_VERBOSITY: "3"
     # CIBW_BEFORE_BUILD: "bash {project}/tools/wheels/cibw_before_build.sh {project}"
     MANYLINUX_AARCH64_IMAGE: "manylinux2014"
@@ -52,68 +52,18 @@ build_wheels_linux_aarch64_task:
   <<: *BUILD_AND_STORE_WHEELS
 
 
-# =========================
-# build wheels macosx arm64
-# =========================
+# ======================
+# pypi upload all wheels
+# ======================
 
-build_wheels_macosx_arm64_task:
-  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
-  macos_instance:
-    image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
-    cpu: 1
-    memory: 4G
-  matrix:
-    - env:
-        CIBW_BUILD: "cp39-macosx_arm64"
-    - env:
-        CIBW_BUILD: "cp310-macosx_arm64"
-    - env:
-        CIBW_BUILD: "cp311-macosx_arm64"
-    - env:
-        CIBW_BUILD: "cp312-macosx_arm64"
-  env:
-    PATH: /opt/homebrew/opt/python@3.10/bin:/usr/local/lib:/usr/local/include:$PATH
-    # Specifying CIBW_ENVIRONMENT_MACOS overrides pyproject.toml, so include
-    # all the settings from there, otherwise they're lost.
-    # SDKROOT needs to be set for repackaged conda-forge gfortran compilers
-    # supplied by isuruf.
-    # Find out SDKROOT via `xcrun --sdk macosx --show-sdk-path`
-    # MACOS linker doesn't support stripping symbols, hence we set: CFLAGS="-fno-strict-aliasing"
-    CIBW_ENVIRONMENT_MACOS: >
-      RUNNER_OS=macOS
-      CFLAGS="-fno-strict-aliasing"
-      SDKROOT=/Applications/Xcode-14.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
-      LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-    CIBW_ARCHS: "arm64"
-    # CIBW_BUILD: "*-macosx_arm64"
-    CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
-    CIBW_BUILD_VERBOSITY: "3"
-    CIBW_BEFORE_BUILD: "bash {project}/tools/wheels/cibw_before_build.sh {project}"
-    CIBW_TEST_SKIP: "*_universal2:arm64"
-
-  build_script:
-    - brew install python@3.10
-    - ln -s python3 /opt/homebrew/opt/python@3.10/bin/python
-    - which python
-    - uname -m
-    - python -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-    - clang --version
-  <<: *BUILD_AND_STORE_WHEELS
-
-
-# =================
-# upload all wheels
-# =================
-
-wheels_upload_task:
+pypi_wheels_upload_linux_aarch64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   # Artifacts don't seem to be persistent from task to task.
   # Rather than upload wheels at the end of each cibuildwheel run we do a
   # final upload here. This is because a run may be on different OS for
   # which bash, etc, may not be present.
   depends_on:
-    - build_wheels_linux_aarch64
-    - build_wheels_macosx_arm64
+    - pypi_build_wheels_linux_aarch64
   compute_engine_instance:
     image_project: cirrus-images
     image: family/docker-builder
@@ -136,52 +86,15 @@ wheels_upload_task:
     unzip -j wheels.zip -d dist
 
     source ./tools/wheels/upload_wheels.sh
-    install_anaconda "linux_aarch64"
+    install_anaconda "linux_x86_64"
     upload_wheels_pypi
-
-
-# =================
-# test macosx arm64
-# =================
-
-test_macosx_arm64_task:
-  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
-  macos_instance:
-    image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
-    cpu: 1
-    memory: 4G
-  depends_on:
-    - wheels_upload
-  matrix:
-    - env:
-        PY_VER: "3.9"
-    - env:
-        PY_VER: "3.10"
-    # - env:
-    #     PY_VER: "3.11"
-    # - env:
-    #     PY_VER: "3.12"
-
-  test_script:
-    - brew install python@${PY_VER}
-    - ln -s python3 /opt/homebrew/opt/python@${PY_VER}/bin/python
-    - set -xe
-    - which python3
-    - uname -m
-    - python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-    - python3 -m pip install --upgrade pip
-    - python3 -m pip install --upgrade special_functions
-    - python3 -m pip install numpy
-    - python3 -m pip install -r tests/requirements.txt
-    - mv special_functions special_functions_do_dot_import
-    - python3 -m pytest
 
 
 # ==================
 # test linux aarch64
 # ==================
 
-test_linux_aarch64_task:
+pypi_test_linux_aarch64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   compute_engine_instance:
     image_project: cirrus-images
@@ -191,7 +104,7 @@ test_linux_aarch64_task:
     cpu: 1
     memory: 4G
   depends_on:
-    - wheels_upload
+    - pypi_wheels_upload_linux_aarch64
 
   test_script: |
     apt update
