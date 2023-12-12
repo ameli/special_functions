@@ -113,7 +113,7 @@ conda_test_linux_aarch64_task:
     uname -m
     ${PYTHON} -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
     mv special_functions special_functions_do_dot_import
-    - conda install -c s-ameli special_functions
+    conda install -c s-ameli special_functions
     ${PYTHON} -m pip install --upgrade pip
     ${PYTHON} -m pip install numpy
     ${PYTHON} -m pip install -r tests/requirements.txt
