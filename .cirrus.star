@@ -7,7 +7,7 @@ def main(ctx):
     code3 = fs.read("tools/ci/cirrus_deploy_conda_linux_aarch64.yml")
     code4 = fs.read("tools/ci/cirrus_deploy_conda_macosx_arm64.yml")
 
-    # Return errro if any of the codes are nonzero
-    code = code1 | code2 | code 3 | code4
+    # Return error if any of the codes are nonzero
+    code = code1 or code2 or code 3 or code4
 
     return code
