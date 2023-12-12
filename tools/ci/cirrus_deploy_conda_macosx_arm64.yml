@@ -99,14 +99,14 @@ conda_test_macosx_arm64_task:
   test_script:
     - source ./tools/wheels/upload_wheels.sh
     - install_anaconda "macosx_arm64"
-    - set -xe
+    - set -x
     - CONDA_BIN_DIR=$(dirname `which conda`)
     - PYTHON=${CONDA_BIN_DIR}/python
     - uname -m
     - ${PYTHON} -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
+    - mv special_functions special_functions_do_dot_import
+    - conda install -c s-ameli special_functions
     - ${PYTHON} -m pip install --upgrade pip
-    - ${PYTHON} -m pip install --upgrade special_functions
     - ${PYTHON} -m pip install numpy
     - ${PYTHON} -m pip install -r tests/requirements.txt
-    - mv special_functions special_functions_do_dot_import
     - ${PYTHON} -m pytest

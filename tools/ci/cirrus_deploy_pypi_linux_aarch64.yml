@@ -109,12 +109,13 @@ pypi_test_linux_aarch64_task:
   test_script: |
     apt update
     apt install -y python3
-    set -xe
+    set -x
+    which python3
     uname -m
     python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
+    mv special_functions special_functions_do_dot_import
     python3 -m pip install --upgrade pip
-    python3 -m pip install --upgrade special_functions
+    python3 -m pip install --prefer-binary --upgrade special_functions
     python3 -m pip install numpy
     python3 -m pip install -r tests/requirements.txt
-    mv special_functions special_functions_do_dot_import
     python3 -m pytest
