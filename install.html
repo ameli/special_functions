@@ -123,7 +123,7 @@
 <tr class="row-odd"><th class="head" rowspan="2"><p>Platform</p></th>
 <th class="head" rowspan="2"><p>Arch</p></th>
 <th class="head" colspan="4"><p>Python Version</p></th>
-<th class="head" colspan="3"><p>PyPy Version</p></th>
+<th class="head" colspan="3"><p>PyPy Version <sup>1</sup></p></th>
 <th class="head" rowspan="2"><p>Continuous
 Integration</p></th>
 </tr>
@@ -163,9 +163,9 @@ Integration</p></th>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
 <td rowspan="2"><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-macos"><img alt="build-macos" src="https://github.com/ameli/special_functions/workflows/build-macos/badge.svg" /></a></p></td>
 </tr>
 <tr class="row-even"><td><p>ARM-64</p></td>
@@ -173,9 +173,9 @@ Integration</p></th>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
 </tr>
 <tr class="row-odd"><td rowspan="2"><p>Windows</p></td>
 <td><p>X86-64</p></td>
@@ -183,24 +183,25 @@ Integration</p></th>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
 <td rowspan="2"><p><a class="reference external" href="https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-windows"><img alt="build-windows" src="https://github.com/ameli/special_functions/workflows/build-windows/badge.svg" /></a></p></td>
 </tr>
-<tr class="row-even"><td><p>ARM-64 <sup>*</sup></p></td>
+<tr class="row-even"><td><p>ARM-64 <sup>2</sup></p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
 <td><p>✔</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
-<td><p>✖</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
+<td><p>✔</p></td>
 </tr>
 </tbody>
 </table>
 <p>Python wheels for <code class="docutils literal notranslate"><span class="pre">special_functions</span></code> for all supported platforms and versions in the above are available through <a class="reference external" href="https://pypi.org/project/special_functions/">PyPI</a> and <a class="reference external" href="https://anaconda.org/s-ameli/special_functions">Anaconda Cloud</a>. If you need <code class="docutils literal notranslate"><span class="pre">special_functions</span></code> on other platforms, architectures, and Python or PyPy versions, <a class="reference external" href="https://github.com/ameli/special_functions/issues">raise an issue</a> on GitHub and we build its Python Wheel for you.</p>
-<p><sup>* Wheels for Windows on ARM-64 architecture are exclusively available for installation through pip and cannot be installed using conda.</sup></p>
+<p><sup>1. Wheels for PyPy are exclusively available for installation through pip and cannot be installed using conda.</sup>
+<sup>2. Wheels for Windows on ARM-64 architecture are exclusively available for installation through pip and cannot be installed using conda.</sup></p>
 </section>
 <section id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h2>
