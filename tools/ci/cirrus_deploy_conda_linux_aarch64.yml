@@ -1,3 +1,14 @@
+#! /usr/bin/env python
+
+# SPDX-FileCopyrightText: Copyright 2021, Siavash Ameli <sameli@berkeley.edu>
+# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-FileType: SOURCE
+#
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the license found in the LICENSE.txt file in the root
+# directory of this source tree.
+
+
 # ========================
 # conda linux aarch64 cibw
 # ========================
@@ -39,7 +50,6 @@ conda_build_wheels_linux_aarch64_task:
     # CIBW_BUILD: "*-manylinux_aarch64"
     CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
     CIBW_BUILD_VERBOSITY: "3"
-    # CIBW_BEFORE_BUILD: "bash {project}/tools/wheels/cibw_before_build.sh {project}"
     MANYLINUX_AARCH64_IMAGE: "manylinux2014"
     ENVIRONMENT: >
       CFLAGS="-fno-strict-aliasing"
@@ -50,7 +60,6 @@ conda_build_wheels_linux_aarch64_task:
     apt update
     apt install -y python3-venv python-is-python3 gfortran libatlas-base-dev libgfortran5 eatmydata
     git fetch origin
-    # bash ./tools/wheels/cibw_before_build.sh ${PWD}
     which python
     echo $CIRRUS_CHANGE_MESSAGE
 
@@ -113,7 +122,7 @@ conda_test_linux_aarch64_task:
     uname -m
     ${PYTHON} -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
     mv special_functions special_functions_do_dot_import
-    conda install -c s-ameli special_functions
+    conda install -c s-ameli special_functions -y
     ${PYTHON} -m pip install --upgrade pip
     ${PYTHON} -m pip install numpy
     ${PYTHON} -m pip install -r tests/requirements.txt

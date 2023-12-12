@@ -1,3 +1,14 @@
+#! /usr/bin/env python
+
+# SPDX-FileCopyrightText: Copyright 2021, Siavash Ameli <sameli@berkeley.edu>
+# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-FileType: SOURCE
+#
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the license found in the LICENSE.txt file in the root
+# directory of this source tree.
+
+
 # =======================
 # conda macosx arm64 cibw
 # =======================
@@ -109,7 +120,7 @@ conda_test_macosx_arm64_task:
     - uname -m
     - ${PYTHON} -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
     - mv special_functions special_functions_do_dot_import
-    - conda install -c s-ameli special_functions
+    - conda install -c s-ameli special_functions -y
     - ${PYTHON} -m pip install --upgrade pip
     - ${PYTHON} -m pip install numpy
     - ${PYTHON} -m pip install -r tests/requirements.txt

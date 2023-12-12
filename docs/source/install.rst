@@ -10,7 +10,6 @@ Supported Platforms
 
 Successful installation and tests have been performed on the following platforms and Python/PyPy versions shown in the table below.
 
-
 .. |y| unicode:: U+2714
 .. |n| unicode:: U+2716
 
@@ -39,15 +38,12 @@ Successful installation and tests have been performed on the following platforms
 .. |build-windows| image:: https://github.com/ameli/special_functions/workflows/build-windows/badge.svg
    :target: https://github.com/ameli/special_functions/actions?query=workflow%3Abuild-windows
 
-Python wheels for ``special_functions`` for all supported platforms and versions in the above are available through `PyPI <https://pypi.org/project/special_functions/>`_ and `Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_. If you need ``special_functions`` on other platforms, architectures, and Python or PyPy versions, `raise an issue <https://github.com/ameli/special_functions/issues>`_ on GitHub and we build its Python Wheel for you.
+Python wheels for ``special_functions`` for all supported platforms and versions in the above are available through `PyPI <https://pypi.org/project/special_functions/>`__ and `Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`__. If you need ``special_functions`` on other platforms, architectures, and Python or PyPy versions, `raise an issue <https://github.com/ameli/special_functions/issues>`__ on GitHub and we build its Python Wheel for you.
 
-:sup:`1. Wheels for PyPy are exclusively available for installation through pip and cannot be installed using conda.`
-|br|
-:sup:`2. Wheels for Windows on ARM-64 architecture are exclusively available for installation through pip and cannot be installed using conda.`
+.. line-block::
 
-.. |br| raw:: html
-
-  <br/>
+    :sup:`1. Wheels for PyPy are exclusively available for installation through pip and cannot be installed using conda.`
+    :sup:`2. Wheels for Windows on ARM-64 architecture are exclusively available for installation through pip and cannot be installed using conda.`
 
 
 ============
