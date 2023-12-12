@@ -69,7 +69,7 @@ build_upload_conda_macosx_arm64_task:
   depends_on:
     - build_wheels_macosx_arm64
   env:
-    ANACONDA_TOKEN: ENCRYPTED[46301c55bb8947383f5ada690555715865045dc694dacfba2182fa482892e8ac2b1c846dc022e85ba74d8ddd8816bbca]
+    ANACONDA_API_TOKEN: ENCRYPTED[46301c55bb8947383f5ada690555715865045dc694dacfba2182fa482892e8ac2b1c846dc022e85ba74d8ddd8816bbca]
 
   build_script:
     # The name of the zip file is derived from the `wheels_artifact` line.
