@@ -100,14 +100,13 @@ test_macosx_arm64_task:
     - source ./tools/wheels/upload_wheels.sh
     - install_anaconda "macosx_arm64"
     - set -xe
-    - CONDA_PATH=$(dirname `which conda`)
-    - ln -s python3 ${CONDA_PATH}/python
-    - which python3
+    - CONDA_BIN_DIR=$(dirname `which conda`)
+    - PYTHON=${CONDA_BIN_DIR}/python
     - uname -m
-    - python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-    - python3 -m pip install --upgrade pip
-    - python3 -m pip install --upgrade special_functions
-    - python3 -m pip install numpy
-    - python3 -m pip install -r tests/requirements.txt
+    - ${PYTHON} -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
+    - ${PYTHON} -m pip install --upgrade pip
+    - ${PYTHON} -m pip install --upgrade special_functions
+    - ${PYTHON} -m pip install numpy
+    - ${PYTHON} -m pip install -r tests/requirements.txt
     - mv special_functions special_functions_do_dot_import
-    - python3 -m pytest
+    - ${PYTHON} -m pytest

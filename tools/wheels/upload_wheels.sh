@@ -7,11 +7,9 @@ set -xe
 
 install_anaconda() {
 
-    # Parameters:
-    # $1 is OS, and it can be "linux_aarch64" or "macosx_arm64
-    #
     # Usage:
     # install_anaconda "linux_aarch64"
+    # install_anaconda "linux_x86_64"
     # install_anaconda "macosx_arm64"
 
     MINICONDA_URL="https://repo.anaconda.com/miniconda/"
@@ -30,31 +28,11 @@ install_anaconda() {
     fi
 
 
-    # install miniconda in the parent directory of the current directory,
+    # install miniconda in the temp directory, not in the current directory,
     # because the source code of the package is in the current directory, and
     # if we also install miniconda3 in the same directory of the package source
-    # cod, when we use conda-build, it gives error as it also tries to build
+    # code, when we use conda-build, it gives error as it also tries to build
     # miniconda as well as the code.
-    # CURRENT_DIR=$PWD
-    # PARENT_DIR=$(dirname $CURRENT_DIR)
-    #
-    # # install miniconda for uploading to anaconda
-    # wget -q ${URL} -O ${PARENT_DIR}/miniconda.sh
-    # bash ${PARENT_DIR}/miniconda.sh -b -p ${PARENT_DIR}/miniconda3
-    #
-    # # Conda directories
-    # CONDA_BASE_DIR=${PARENT_DIR}/miniconda3
-    # CONDA_BIN_DIR=${CONDA_BASE_DIR}/bin
-    #
-    # # Export PATH
-    # export PATH=${CONDA_BASE_DIR}:$PATH
-    # export PATH=${CONDA_BIN_DIR}:$PATH
-    #
-    # # Initialize conda
-    # ${CONDA_BIN_DIR}/conda init bash
-    # source ${CONDA_BIN_DIR}/activate
-
-    # Install anaconda in temp directory
     TMP_DIR="/tmp"
 
     # install miniconda for uploading to anaconda
@@ -81,11 +59,9 @@ install_anaconda() {
 
 build_upload_anaconda() {
 
-    # Parameters:
-    # $1 is OS, and it can be "linux_aarch64" or "macosx_arm64
-    #
     # Usage:
     # build_upload_anaconda "linux_aarch64"
+    # build_upload_anaconda "linux_x86_64"
     # build_upload_anaconda "macosx_arm64"
 
     conda install -y anaconda-client conda-build

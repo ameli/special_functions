@@ -21,11 +21,11 @@ Successful installation and tests have been performed on the following platforms
 +==========+===================+=======+=======+=======+=======+=======+=======+=======+=================+
 | Linux    | X86-64            |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  | |build-linux|   |
 +          +-------------------+-------+-------+-------+-------+-------+-------+-------+                 +
-|          | AARCH-64 :sup:`*` |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |                 |
+|          | AARCH-64          |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |                 |
 +----------+-------------------+-------+-------+-------+-------+-------+-------+-------+-----------------+
 | macOS    | X86-64            |  |y|  |  |y|  |  |y|  |  |y|  |  |n|  |  |n|  |  |n|  | |build-macos|   |
 +          +-------------------+-------+-------+-------+-------+-------+-------+-------+                 +
-|          | ARM-64 :sup:`*`   |  |y|  |  |y|  |  |y|  |  |y|  |  |n|  |  |n|  |  |n|  |                 |
+|          | ARM-64            |  |y|  |  |y|  |  |y|  |  |y|  |  |n|  |  |n|  |  |n|  |                 |
 +----------+-------------------+-------+-------+-------+-------+-------+-------+-------+-----------------+
 | Windows  | X86-64            |  |y|  |  |y|  |  |y|  |  |y|  |  |n|  |  |n|  |  |n|  | |build-windows| |
 +          +-------------------+-------+-------+-------+-------+-------+-------+-------+                 +
@@ -41,7 +41,7 @@ Successful installation and tests have been performed on the following platforms
 
 Python wheels for ``special_functions`` for all supported platforms and versions in the above are available through `PyPI <https://pypi.org/project/special_functions/>`_ and `Anaconda Cloud <https://anaconda.org/s-ameli/special_functions>`_. If you need ``special_functions`` on other platforms, architectures, and Python or PyPy versions, `raise an issue <https://github.com/ameli/special_functions/issues>`_ on GitHub and we build its Python Wheel for you.
 
-:sup:`* Wheels compatible with the ARM-64 (also known as AARCH-64) architecture, including those for Apple Silicon M1 machines, are exclusively available for installation through pip and cannot be installed using conda.`
+:sup:`* Wheels for Windows on ARM-64 architecture are exclusively available for installation through pip and cannot be installed using conda.`
 
 
 ============

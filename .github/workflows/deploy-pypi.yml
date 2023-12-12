@@ -1,16 +1,16 @@
 name: deploy-pypi
 
 on:
-    # push:
-    #     branches:
-    #         - main
+    push:
+        branches:
+            - main
     release:
         types:
             - published
 
 jobs:
-    build_wheels_x86_64:
-        name: Build wheels on ${{ matrix.os }} (X86_64)
+    build_wheels:
+        name: Build wheels on ${{ matrix.os }}
         runs-on: ${{ matrix.os }}
         strategy:
             fail-fast: false
@@ -31,10 +31,7 @@ jobs:
               if: matrix.os != 'windows-latest'
               run: rm -rf /opt/hostedtoolcache 
 
-            # Build wheel for windows with CUDA enabled. Note that cibuildwheel
-            # does not need manylinux docker, thuns, CUDA can be installed in
-            # the github action's virtual machine using the Jimver's action
-            # in the previous action (see above).
+            # Build wheel for windows X86_64
             - name: Build wheels in windows (X86_64)
               if: matrix.os == 'windows-latest'
               uses: pypa/cibuildwheel@v2.15.0
@@ -48,10 +45,7 @@ jobs:
               with:
                 output-dir: wheelhouse
 
-            # Build wheel for windows with CUDA enabled. Note that cibuildwheel
-            # does not need manylinux docker, thuns, CUDA can be installed in
-            # the github action's virtual machine using the Jimver's action
-            # in the previous action (see above).
+            # Build wheel for windows ARM64
             - name: Build wheels in windows (ARM64)
               if: matrix.os == 'windows-latest'
               uses: pypa/cibuildwheel@v2.15.0
@@ -59,12 +53,14 @@ jobs:
                   CIBW_ARCHS_WINDOWS: "ARM64"
                   CIBW_BUILD: "*-win_arm64"
                   CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
-                  CIBW_BUILD_VERBOSITY: 1
+                  CIBW_BUILD_VERBOSITY: 3
+                  CIBW_BEFORE_BUILD_WINDOWS: "pip install delvewheel"
+                  CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: "delvewheel repair -w {dest_dir} {wheel}"
               with:
                 output-dir: wheelhouse
            
-            # Do not enable compiling with CUDA for macos since NIVDIA no
-            # longer supports CUDA in the macos.
+            # Build wheel for macos X86_64.
+            # Note that wheels for macos ARM64 will be built on cirrus ci (see /tools/ci)
             - name: Build wheels in mac (X86_64)
               if: matrix.os == 'macos-latest'
               uses: pypa/cibuildwheel@v2.15.0
@@ -72,38 +68,13 @@ jobs:
                   CIBW_ARCHS_MACOS: "x86_64"
                   CIBW_BUILD: "*-macosx_x86_64"
                   CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
-                  CIBW_BUILD_VERBOSITY: 1
+                  CIBW_BUILD_VERBOSITY: 3
                   CIBW_BEFORE_BUILD: brew reinstall gcc
               with:
                 output-dir: wheelhouse
 
-            # Do not enable compiling with CUDA for macos since NIVDIA no
-            # longer supports CUDA in the macos.
-            # - name: Build wheels in mac (arm64)
-            #   if: matrix.os == 'macos-latest'
-            #   uses: pypa/cibuildwheel@v2.15.0
-            #   env:
-            #       CIBW_ARCHS_MACOS: "arm64"
-            #       CIBW_BUILD: "*-macosx_arm64"
-            #       CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
-            #       CIBW_BUILD_VERBOSITY: 1
-            #       CIBW_BEFORE_BUILD: brew reinstall gcc
-            #   with:
-            #     output-dir: wheelhouse
-
-            # Enable compiling with CUDA, only for linux. Note that cuda must
-            # be installed "inside" the manylinux docker image, not in the main
-            # github virtual machine. Also, we should use manylinux2014, but
-            # not manylinux1. Because of this, we will not install CUDA with
-            # the Jimver's action (unlike we did so for the windows wheel in
-            # the above). The ``CUDA_DYNAMIC_LOADING=0`` disables dynamic
-            # loading of CUDA library. Base of this, when the wheels are
-            # created in manylinux platform, the cuda's libraries
-            # (libcudart.so, libcublas.so, libcusparse.so) will bundle to
-            # the wheel. This is increases the wheel size, bit since the
-            # anaconda cloud upload size is 1GB, the large wheel size will not
-            # be a problem. The advantage of bundling cuda libraries to the
-            # wheel is that the end-user does not have to install cuda toolkit.
+            # Build wheel for linux X86_64.
+            # Note that wheels for linux AARCH64 will be built on cirrus ci (see /tools/ci)
             - name: Build wheels in linux (X86_64)
               if: matrix.os == 'ubuntu-latest'
               uses: pypa/cibuildwheel@v2.15.0
@@ -112,96 +83,18 @@ jobs:
                   CIBW_ARCHS_LINUX: "x86_64"
                   CIBW_BUILD: "*-manylinux_x86_64"
                   CIBW_SKIP: "pp37-* cp36-* cp37-* cp38-*"
-                  CIBW_BUILD_VERBOSITY: 1
+                  CIBW_BUILD_VERBOSITY: 3
                   # CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y
               with:
                 output-dir: wheelhouse
-
-            # This does not work, the compilation takes several hours, then fails, even without enabling cuda.
-            # - name: Build wheels in linux (AARCH64)
-            #   if: matrix.os == 'ubuntu-latest'
-            #   uses: pypa/cibuildwheel@v2.15.0
-            #   env:
-            #       CIBW_MANYLINUX_AARCH64_IMAGE: manylinux2014
-            #       CIBW_ARCHS_LINUX: "aarch64"
-            #       CIBW_BUILD: "*-manylinux_aarch64"
-            #       CIBW_SKIP: "pp37* cp36-* cp37-* cp38-*"
-            #       CIBW_BUILD_VERBOSITY: 1
-            #       # CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y
-            #   with:
-            #     output-dir: wheelhouse
-            
+           
+            # Upload all wheels to an artifact
             - name: Upload artifacts
               uses: actions/upload-artifact@v3
               with:
                   path: ./wheelhouse/*.whl
                   retention-days: 1
 
-    # This is only for linux wheels. Githun actions does not seem to work for MacOS M1 (ARM64).
-    # Other repos (like numpy and scipy) use cirrus CI for ARM64 on M1.
-    build_wheels_aarch64:
-        name: Build wheels on ${{ matrix.os }} (AARCH-64)
-        runs-on: ${{ matrix.os }}
-        strategy:
-            fail-fast: false
-            matrix:
-                os: [ubuntu-latest]
-                
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-            
-            - name: Setup Python 
-              uses: actions/setup-python@v4
-              with:
-                python-version: '3.12'
-
-              # Without this, installing cuda give error: no much space left on device
-            # - name: Clear Cache
-            #   if: matrix.os != 'windows-latest'
-            #   run: rm -rf /opt/hostedtoolcache 
-
-            # Docker to emulate various architectures om linux for cross compilation
-            - name: Set up QEMU
-              if: runner.os == 'Linux'
-              uses: docker/setup-qemu-action@v1
-              with:
-                platforms: all
-                
-            # Do not enable compiling with CUDA for macos since NIVDIA no
-            # longer supports CUDA in the macos.
-            # - name: Build wheels in mac (arm64)
-            #   if: matrix.os == 'macos-latest'
-            #   uses: pypa/cibuildwheel@v2.15.0
-            #   env:
-            #       CIBW_ARCHS_MACOS: "arm64"
-            #       CIBW_BUILD: "*-macosx_arm64"
-            #       CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
-            #       CIBW_BUILD_VERBOSITY: 1
-            #       CIBW_BEFORE_BUILD: brew reinstall gcc
-            #   with:
-            #     output-dir: wheelhouse
-
-            # This does not work, the compilation takes several hours, then fails, even without enabling cuda.
-            - name: Build wheels in linux (AARCH64)
-              if: matrix.os == 'ubuntu-latest'
-              uses: pypa/cibuildwheel@v2.15.0
-              env:
-                  CIBW_MANYLINUX_AARCH64_IMAGE: manylinux2014
-                  CIBW_ARCHS_LINUX: "aarch64"
-                  CIBW_BUILD: "*-manylinux_aarch64"
-                  CIBW_SKIP: "pp37* cp36-* cp37-* cp38-*"
-                  CIBW_BUILD_VERBOSITY: 1
-                  # CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y
-              with:
-                output-dir: wheelhouse
-            
-            - name: Upload artifacts
-              uses: actions/upload-artifact@v3
-              with:
-                  path: ./wheelhouse/*.whl
-                  retention-days: 1
-                  
     build_sdist:
         name: Build source distribution
         runs-on: ubuntu-latest
@@ -226,9 +119,9 @@ jobs:
                   retention-days: 1
 
     upload_pypi:
-        needs: [build_wheels_x86_64, build_wheels_aarch64, build_sdist]
+        needs: [build_wheels, build_sdist]
         runs-on: ubuntu-latest
-        name: Publish to PyPi
+        name: Publish to PyPI
         
         # upload to PyPI on every tag starting with 'v'
         # if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
@@ -240,7 +133,7 @@ jobs:
               with:
                   name: artifact
                   path: dist
-            
+
             - name: Upload to PyPi
               uses: pypa/gh-action-pypi-publish@release/v1
               with:

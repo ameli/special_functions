@@ -19,7 +19,7 @@ build_wheels_linux_aarch64_task:
     architecture: arm64
     platform: linux
     cpu: 1
-    memory: 8G
+    memory: 4G
   matrix:
     - env:
         CIBW_BUILD: "cp39-manylinux_aarch64"
@@ -61,7 +61,7 @@ build_wheels_macosx_arm64_task:
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
     cpu: 1
-    memory: 8G
+    memory: 4G
   matrix:
     - env:
         CIBW_BUILD: "cp39-macosx_arm64"
@@ -149,7 +149,7 @@ test_macosx_arm64_task:
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
     cpu: 1
-    memory: 8G
+    memory: 4G
   depends_on:
     - wheels_upload
   matrix:
@@ -189,7 +189,7 @@ test_linux_aarch64_task:
     architecture: arm64
     platform: linux
     cpu: 1
-    memory: 8G
+    memory: 4G
   depends_on:
     - wheels_upload
 
