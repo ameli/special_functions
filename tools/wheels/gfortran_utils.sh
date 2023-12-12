@@ -147,7 +147,7 @@ if [ "$(uname)" == "Darwin" ]; then
         popd
 	if [[ "${type}" == "native" ]]; then
 	    # Link these into /usr/local so that there's no need to add rpath or -L
-	    mkdir -p /usr/local/lib
+	    sudo mkdir -p /usr/local/lib
 	    for f in libgfortran.dylib libgfortran.5.dylib libgcc_s.1.dylib libgcc_s.1.1.dylib libquadmath.dylib libquadmath.0.dylib; do
                 sudo ln -sf /opt/gfortran-darwin-${arch}-${type}/lib/$f /usr/local/lib/$f
             done
