@@ -121,13 +121,13 @@ pypi_test_macosx_arm64_task:
     - pypi_upload_wheels_macosx_arm64
   matrix:
     - env:
-        py_ver: "3.9"
+        PY_VER: "3.9"
     - env:
-        py_ver: "3.10"
+        PY_VER: "3.10"
     - env:
-        py_ver: "3.11"
+        PY_VER: "3.11"
     - env:
-        py_ver: "3.12"
+        PY_VER: "3.12"
 
   test_script:
     - brew install pyenv
