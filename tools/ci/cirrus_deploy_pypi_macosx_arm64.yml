@@ -121,18 +121,19 @@ pypi_test_macosx_arm64_task:
     - pypi_upload_wheels_macosx_arm64
   matrix:
     - env:
-        PY_VER: "3.9.0"
+        PY_VER: "3.9"
     - env:
-        PY_VER: "3.10.0"
+        PY_VER: "3.10"
     - env:
-        PY_VER: "3.11.0"
+        PY_VER: "3.11"
     - env:
-        PY_VER: "3.12.0"
+        PY_VER: "3.12"
 
   test_script:
     - brew install pyenv
-    - pyenv install ${PY_VER}
-    - pyenv local ${PY_VER}
+    - PY_VER_NAME=`pyenv install -l | grep " ${PY_VER}.*" -m 1`
+    - pyenv install ${PY_VER_NAME}
+    - pyenv local ${PY_VER_NAME}
     - eval "$(command pyenv init -)"
     - eval "$(command pyenv init --path)"
     - set -x

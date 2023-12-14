@@ -129,16 +129,7 @@ conda_test_linux_aarch64_task:
     conda create --name myenv python=${PY_VER} -y
     conda activate myenv
     which python
-    # CONDA_BIN_DIR=$(dirname `which conda`)
-    # PYTHON=${CONDA_BIN_DIR}/python
     set -x
-    # ${PYTHON} -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-    # mv special_functions special_functions_do_dot_import
-    # conda install -c s-ameli special_functions -y
-    # ${PYTHON} -m pip install --upgrade pip
-    # ${PYTHON} -m pip install numpy
-    # ${PYTHON} -m pip install -r tests/requirements.txt
-    # ${PYTHON} -m pytest
     python -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
     mv special_functions special_functions_do_dot_import
     conda install -c s-ameli special_functions -y

@@ -119,19 +119,6 @@ conda_test_macosx_arm64_task:
         PY_VER: "3.12"
 
   test_script:
-    # - source ./tools/wheels/upload_wheels.sh
-    # - install_anaconda "macosx_arm64"
-    # - set -x
-    # - CONDA_BIN_DIR=$(dirname `which conda`)
-    # - PYTHON=${CONDA_BIN_DIR}/python
-    # - uname -m
-    # - ${PYTHON} -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-    # - mv special_functions special_functions_do_dot_import
-    # - conda install -c s-ameli special_functions -y
-    # - ${PYTHON} -m pip install --upgrade pip
-    # - ${PYTHON} -m pip install numpy
-    # - ${PYTHON} -m pip install -r tests/requirements.txt
-    # - ${PYTHON} -m pytest
     - uname -m
     - source ./tools/wheels/upload_wheels.sh
     - install_anaconda "macosx_arm64"
