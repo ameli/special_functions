@@ -31,13 +31,13 @@ jobs:
               if: matrix.os != 'windows-latest'
               run: rm -rf /opt/hostedtoolcache 
 
-            # Build wheel for windows X86_64
-            - name: Build wheels in windows (X86_64)
+            # Build wheel for windows X86_64 and ARM64
+            - name: Build wheels in windows (X86_64, ARM64)
               if: matrix.os == 'windows-latest'
               uses: pypa/cibuildwheel@v2.15.0
               env:
-                  CIBW_ARCHS_WINDOWS: "AMD64 x86"
-                  CIBW_BUILD: "*-win_amd64"
+                  CIBW_ARCHS_WINDOWS: "AMD64 x86 ARM64"
+                  CIBW_BUILD: "*-win_amd64 *-win_arm64"
                   CIBW_SKIP: "pp37-* cp36-* cp37-* cp38-*"
                   CIBW_BUILD_VERBOSITY: 3
                   CIBW_BEFORE_BUILD_WINDOWS: "pip install delvewheel"
@@ -45,17 +45,6 @@ jobs:
               with:
                 output-dir: wheelhouse
 
-            # Build wheel for windows ARM64
-            - name: Build wheels in windows (ARM64)
-              if: matrix.os == 'windows-latest'
-              uses: pypa/cibuildwheel@v2.15.0
-              env:
-                  CIBW_ARCHS_WINDOWS: "ARM64"
-                  CIBW_BUILD: "*-win_arm64"
-                  CIBW_SKIP: "pp37-* cp36-* cp37-* cp38-*"
-                  CIBW_BUILD_VERBOSITY: 3
-                  CIBW_BEFORE_BUILD_WINDOWS: "pip install delvewheel"
-                  CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: "delvewheel repair -w {dest_dir} {wheel}"
               with:
                 output-dir: wheelhouse
            
@@ -87,7 +76,7 @@ jobs:
                   # CIBW_BEFORE_BUILD_LINUX: yum update; yum install gcc-gfortran openblas-devel.x86_64 lapack-devel.x86_64 -y
               with:
                 output-dir: wheelhouse
-           
+
             # Upload all wheels to an artifact
             - name: Upload artifacts
               uses: actions/upload-artifact@v3

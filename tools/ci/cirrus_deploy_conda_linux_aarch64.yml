@@ -48,8 +48,8 @@ conda_build_wheels_linux_aarch64_task:
     # CIBW_BUILD: "*-manylinux_aarch64"
     CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
     CIBW_BUILD_VERBOSITY: "3"
-    MANYLINUX_AARCH64_IMAGE: "manylinux2014"
-    ENVIRONMENT: >
+    CIBW_MANYLINUX_AARCH64_IMAGE: "manylinux2014"
+    CIBW_ENVIRONMENT: >
       CFLAGS="-fno-strict-aliasing"
       LDFLAGS="-Wl,--strip-debug"
       RUNNER_OS="Linux"

@@ -114,7 +114,7 @@ pypi_upload_wheels_macosx_arm64_task:
 pypi_test_macosx_arm64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   macos_instance:
-    image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
+    image: ghcr.io/cirruslabs/macos-monterey-base:latest
     cpu: 1
     memory: 4G
   depends_on:

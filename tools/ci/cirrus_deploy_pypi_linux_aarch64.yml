@@ -48,8 +48,8 @@ pypi_build_wheels_linux_aarch64_task:
     # CIBW_BUILD: "*-manylinux_aarch64"
     CIBW_SKIP: "pp37-* cp36-* cp37-* cp38-*"
     CIBW_BUILD_VERBOSITY: "3"
-    MANYLINUX_AARCH64_IMAGE: "manylinux2014"
-    ENVIRONMENT: >
+    CIBW_MANYLINUX_AARCH64_IMAGE: "manylinux2014"
+    CIBW_ENVIRONMENT: >
       CFLAGS="-fno-strict-aliasing"
       LDFLAGS="-Wl,--strip-debug"
       RUNNER_OS="Linux"
@@ -58,7 +58,7 @@ pypi_build_wheels_linux_aarch64_task:
     apt update
     apt install -y python3-venv python-is-python3 gfortran libatlas-base-dev libgfortran5 eatmydata
     git fetch origin
-    which python
+    which python3
     echo $CIRRUS_CHANGE_MESSAGE
   <<: *PYPI_LINUX_AARCH64_CIBW
 
