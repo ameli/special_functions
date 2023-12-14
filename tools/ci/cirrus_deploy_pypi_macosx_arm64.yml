@@ -121,24 +121,27 @@ pypi_test_macosx_arm64_task:
     - pypi_upload_wheels_macosx_arm64
   matrix:
     - env:
-        PY_VER: "3.9"
+        py_ver: "3.9"
     - env:
-        PY_VER: "3.10"
-    # - env:
-    #     PY_VER: "3.11"
-    # - env:
-    #     PY_VER: "3.12"
+        py_ver: "3.10"
+    - env:
+        py_ver: "3.11"
+    - env:
+        py_ver: "3.12"
 
   test_script:
-    - brew install python@${PY_VER}
-    - ln -s python3 /opt/homebrew/opt/python@${PY_VER}/bin/python
+    - brew install pyenv
+    - pyenv install ${PY_VER}
+    - pyenv local ${PY_VER}
+    - eval "$(command pyenv init -)"
+    - eval "$(command pyenv init --path)"
     - set -x
-    - which python3
+    - which python
     - uname -m
-    - python3 -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
+    - python -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
     - mv special_functions special_functions_do_dot_import
-    - python3 -m pip install --upgrade pip
-    - python3 -m pip install --prefer-binary --upgrade special_functions
-    - python3 -m pip install numpy
-    - python3 -m pip install -r tests/requirements.txt
-    - python3 -m pytest
+    - python -m pip install --upgrade pip
+    - python -m pip install --prefer-binary --upgrade special_functions
+    - python -m pip install numpy
+    - python -m pip install -r tests/requirements.txt
+    - python -m pytest
