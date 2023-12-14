@@ -128,6 +128,8 @@ pypi_test_linux_aarch64_task:
 
   test_script: |
     apt update
+    apt install software-properties-common -y
+    echo | add-apt-repository ppa:deadsnakes/ppa
     apt install -y python${PY_VER}
     set -x
     which python${PY_VER}

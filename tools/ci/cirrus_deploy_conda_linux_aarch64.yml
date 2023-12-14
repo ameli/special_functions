@@ -124,7 +124,7 @@ conda_test_linux_aarch64_task:
     uname -m
     source ./tools/wheels/upload_wheels.sh
     install_anaconda "linux_aarch64"
-    conda create --name myenv pythpn=${PY_VER}
+    conda create --name myenv python=${PY_VER}
     conda activate myenv
     which python
     # CONDA_BIN_DIR=$(dirname `which conda`)

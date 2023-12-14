@@ -135,7 +135,7 @@ conda_test_macosx_arm64_task:
     - uname -m
     - source ./tools/wheels/upload_wheels.sh
     - install_anaconda "macosx_arm64"
-    - conda create --name myenv pythpn=${PY_VER}
+    - conda create --name myenv python=${PY_VER}
     - conda activate myenv
     - which python
     - set -x
