@@ -27,7 +27,7 @@ conda_macosx_arm64_cibw: &CONDA_MACOSX_ARM64_CIBW
 conda_build_wheels_macosx_arm64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   macos_instance:
-    image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
+    image: ghcr.io/cirruslabs/macos-sonoma-xcode:latest
     cpu: 1
     memory: 4G
   matrix:
@@ -49,21 +49,21 @@ conda_build_wheels_macosx_arm64_task:
     # MACOS linker doesn't support stripping symbols, hence we set: CFLAGS="-fno-strict-aliasing"
     CIBW_ENVIRONMENT_MACOS: >
       RUNNER_OS=macOS
-      CFLAGS="-fno-strict-aliasing"
-      SDKROOT=/Applications/Xcode-14.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
+      SDKROOT=/Applications/Xcode-15.1.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk
       LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+      CFLAGS="-fno-strict-aliasing"
     CIBW_ARCHS: "arm64"
     # CIBW_BUILD: "*-macosx_arm64"
     CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
     CIBW_BUILD_VERBOSITY: "3"
-    CIBW_BEFORE_BUILD: "bash {project}/tools/wheels/cibw_before_build.sh {project}"
+    CIBW_BEFORE_BUILD: "bash {project}/tools/wheels/install_gfortran.sh {project}"
     CIBW_TEST_SKIP: "*_universal2:arm64"
 
   build_script:
-    - brew install python@3.10
-    - ln -s python3 /opt/homebrew/opt/python@3.10/bin/python
-    - which python
     - uname -m
+    - brew install python@3.11
+    - sudo ln -s /opt/homebrew/opt/python@3.11/bin/python3.11 /usr/local/bin/python
+    - which python
     - python -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
     - clang --version
   <<: *CONDA_MACOSX_ARM64_CIBW
@@ -76,7 +76,7 @@ conda_build_wheels_macosx_arm64_task:
 conda_build_upload_conda_macosx_arm64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   macos_instance:
-    image: ghcr.io/cirruslabs/macos-monterey-xcode:latest
+    image: ghcr.io/cirruslabs/macos-sonoma-xcode:latest
     cpu: 1
     memory: 4G
   depends_on:
@@ -103,7 +103,7 @@ conda_build_upload_conda_macosx_arm64_task:
 conda_test_macosx_arm64_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   macos_instance:
-    image: ghcr.io/cirruslabs/macos-monterey-base:latest
+    image: ghcr.io/cirruslabs/macos-sonoma-base:latest
     cpu: 1
     memory: 4G
   depends_on:
@@ -129,7 +129,7 @@ conda_test_macosx_arm64_task:
     - which python
     - set -x
     - python -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-    - mv special_functions special_functions_do_dot_import
+    - mv special_functions special_functions_do_not_import
     - conda install -c s-ameli special_functions -y
     - python -m pip install --upgrade pip
     - python -m pip install numpy

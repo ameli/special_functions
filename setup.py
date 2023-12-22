@@ -260,6 +260,8 @@ def main(argv):
             'Programming Language :: Python :: Implementation :: CPython',
             'Programming Language :: Python :: Implementation :: PyPy',
             'License :: OSI Approved :: MIT License',
+            'Operating System :: Unix',
+            'Operating System :: POSIX',
             'Operating System :: POSIX :: Linux',
             'Operating System :: Microsoft :: Windows',
             'Operating System :: MacOS',

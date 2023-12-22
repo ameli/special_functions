@@ -43,6 +43,12 @@ pypi_build_wheels_linux_aarch64_task:
         CIBW_BUILD: "cp311-manylinux_aarch64"
     - env:
         CIBW_BUILD: "cp312-manylinux_aarch64"
+    - env:
+        CIBW_BUILD: "pp38-manylinux_aarch64"
+    - env:
+        CIBW_BUILD: "pp39-manylinux_aarch64"
+    - env:
+        CIBW_BUILD: "pp310-manylinux_aarch64"
   env:
     CIBW_ARCHS: "aarch64"
     # CIBW_BUILD: "*-manylinux_aarch64"
@@ -133,7 +139,7 @@ pypi_test_linux_aarch64_task:
     which python${PY_VER}
     uname -m
     python${PY_VER} -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-    mv special_functions special_functions_do_dot_import
+    mv special_functions special_functions_do_not_import
     python${PY_VER} -m pip install --upgrade pip
     python${PY_VER} -m pip install --prefer-binary --upgrade special_functions
     python${PY_VER} -m pip install numpy
