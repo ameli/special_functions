@@ -1,9 +1,9 @@
 name: deploy-pypi
 
 on:
-    push:
-        branches:
-            - main
+    # push:
+    #     branches:
+    #         - main
     release:
         types:
             - published
@@ -50,6 +50,7 @@ jobs:
             # machine. To build ARM64 wheels, cibuildwheels uses "cross compiling". This is supported
             # possible when the build tool is "setuptools". But currently, it is not supported using meson.build.
             # Since, this package uses meson.build, as such, cross compiling for ARM64 is not possible.
+            # To read more, see: https://cibuildwheel.readthedocs.io/en/stable/faq/#windows-arm64
             # - name: Build wheels in windows (ARM64) Python ${{ matrix.python-version }}
             #   if: matrix.os == 'windows-latest'
             #   uses: pypa/cibuildwheel@v2.15.0
