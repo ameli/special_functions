@@ -27,8 +27,6 @@ Successful installation and tests have been performed on the following platforms
 |          | ARM-64            |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |                 |
 +----------+-------------------+-------+-------+-------+-------+-------+-------+-------+-----------------+
 | Windows  | X86-64            |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  | |build-windows| |
-+          +-------------------+-------+-------+-------+-------+-------+-------+-------+                 +
-|          | ARM-64 :sup:`2`   |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |  |y|  |                 |
 +----------+-------------------+-------+-------+-------+-------+-------+-------+-------+-----------------+
 
 .. |build-linux| image:: https://github.com/ameli/special_functions/workflows/build-linux/badge.svg
@@ -43,7 +41,6 @@ Python wheels for ``special_functions`` for all supported platforms and versions
 .. line-block::
 
     :sup:`1. Wheels for PyPy are exclusively available for installation through pip and cannot be installed using conda.`
-    :sup:`2. Wheels for Windows on ARM-64 architecture are exclusively available for installation through pip and cannot be installed using conda.`
 
 
 ============
