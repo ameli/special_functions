@@ -65,7 +65,7 @@ Install by either through :ref:`PyPi <Install_PyPi>`, :ref:`Conda <Install_Conda
 .. _Install_PyPi:
 
 -----------------
-Install from PyPi
+Install from PyPI
 -----------------
 
 |pypi| |format| |implementation| |pyversions|
