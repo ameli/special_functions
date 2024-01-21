@@ -72,8 +72,6 @@ pypi_build_wheels_macosx_arm64_task:
     - which python
     - python -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
     - clang --version
-    - export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
-    - echo $SDKROOT
   <<: *PYPI_MACOSX_ARM64_CIBW
 
 
