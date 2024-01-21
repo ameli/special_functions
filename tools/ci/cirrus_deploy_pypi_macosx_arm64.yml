@@ -31,20 +31,20 @@ pypi_build_wheels_macosx_arm64_task:
     cpu: 1
     memory: 4G
   matrix:
-    - env:
-        CIBW_BUILD: "cp39-macosx_arm64"
-    - env:
-        CIBW_BUILD: "cp310-macosx_arm64"
+    # - env:
+    #     CIBW_BUILD: "cp39-macosx_arm64"
+    # - env:
+    #     CIBW_BUILD: "cp310-macosx_arm64"
     - env:
         CIBW_BUILD: "cp311-macosx_arm64"
-    - env:
-        CIBW_BUILD: "cp312-macosx_arm64"
-    - env:
-        CIBW_BUILD: "pp38-macosx_arm64"
-    - env:
-        CIBW_BUILD: "pp39-macosx_arm64"
-    - env:
-        CIBW_BUILD: "pp310-macosx_arm64"
+    # - env:
+    #     CIBW_BUILD: "cp312-macosx_arm64"
+    # - env:
+    #     CIBW_BUILD: "pp38-macosx_arm64"
+    # - env:
+    #     CIBW_BUILD: "pp39-macosx_arm64"
+    # - env:
+    #     CIBW_BUILD: "pp310-macosx_arm64"
   env:
     PATH: /opt/homebrew/opt/python@3.10/bin:/usr/local/lib:/usr/local/include:$PATH
     # Specifying CIBW_ENVIRONMENT_MACOS overrides pyproject.toml, so include
@@ -55,7 +55,7 @@ pypi_build_wheels_macosx_arm64_task:
     # MACOS linker doesn't support stripping symbols, hence we set: CFLAGS="-fno-strict-aliasing"
     CIBW_ENVIRONMENT_MACOS: >
       RUNNER_OS=macOS
-      SDKROOT=/Applications/Xcode-15.1.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk
+      SDKROOT=/Applications/Xcode-15.2.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.2.sdk
       LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
       CFLAGS="-fno-strict-aliasing"
     CIBW_ARCHS: "arm64"
