@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Logrithm of Gamma Function &mdash; special functions  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=55086f7c" />
 
   
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/toggleprompt.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/toggleprompt.js?v=5801b3bb"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=ccdb6887"></script>
         <script src="../_static/js/custom.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]]}, "tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -115,10 +115,10 @@
            <div itemprop="articleBody">
              
   <section id="logrithm-of-gamma-function">
-<span id="lngamma"></span><h1>Logrithm of Gamma Function<a class="headerlink" href="#logrithm-of-gamma-function" title="Permalink to this heading"></a></h1>
+<span id="lngamma"></span><h1>Logrithm of Gamma Function<a class="headerlink" href="#logrithm-of-gamma-function" title="Link to this heading"></a></h1>
 <p>This module computes the natural logarithm of Gamma function, <span class="math notranslate nohighlight">\(\ln \Gamma(x)\)</span>, where <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span>.</p>
 <section id="syntax">
-<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this heading"></a></h2>
+<h2>Syntax<a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
 <p>This function has the following syntaxes depending on whether it is used in Python or Cython interface.</p>
 <table class="docutils align-default">
 <thead>
@@ -138,15 +138,15 @@
 <p><strong>Input Arguments:</strong></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="x">
-<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">double</span></em><a class="headerlink" href="#x" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">double</span></em><a class="headerlink" href="#x" title="Link to this definition"></a></dt>
 <dd><p>The input argument <span class="math notranslate nohighlight">\(x\)</span> of the function.</p>
 </dd></dl>
 
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
 <section id="using-in-cython-code">
-<h3>Using in Cython Code<a class="headerlink" href="#using-in-cython-code" title="Permalink to this heading"></a></h3>
+<h3>Using in Cython Code<a class="headerlink" href="#using-in-cython-code" title="Link to this heading"></a></h3>
 <p>The codes below should be used in a <code class="docutils literal notranslate"><span class="pre">.pyx</span></code> file and compiled with Cython.</p>
 <p>As shown in the codes below, the python’s global lock interpreter, or <code class="docutils literal notranslate"><span class="pre">gil</span></code>, can be optionally released inside the scope of <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">nogil:</span></code> statement. This is especially useful in parallel OpenMP environments.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># cimport module in a *.pyx file</span>
@@ -163,7 +163,7 @@
 </div>
 </section>
 <section id="using-in-python-code">
-<h3>Using in Python Code<a class="headerlink" href="#using-in-python-code" title="Permalink to this heading"></a></h3>
+<h3>Using in Python Code<a class="headerlink" href="#using-in-python-code" title="Link to this heading"></a></h3>
 <p>The codes below should be used in a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file and no compilation is required. The python’s global lock interpreter, or <code class="docutils literal notranslate"><span class="pre">gil</span></code>, cannot be released.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># import module in a *.py file</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">special_functions</span> <span class="kn">import</span> <span class="n">lngamma</span>
@@ -175,7 +175,7 @@
 </section>
 </section>
 <section id="tests">
-<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading"></a></h2>
+<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading"></a></h2>
 <p>The test script of this module is located at <a class="reference external" href="https://github.com/ameli/special_functions/blob/main/tests/test_lngamma.py"><code class="docutils literal notranslate"><span class="pre">tests/test_lngamma.py</span></code></a>. The test compares the results of this module with <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/special.html"><code class="docutils literal notranslate"><span class="pre">scipy.special</span></code></a> package (function <code class="docutils literal notranslate"><span class="pre">gamma</span></code>) for several combinations of input parameters with multiple values. Run the test by</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
@@ -186,11 +186,11 @@ span.prompt1:before {
 <span class="prompt1">python<span class="w"> </span>test_lngamma.py</span>
 </pre></div></div></section>
 <section id="algorithm">
-<h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this heading"></a></h2>
+<h2>Algorithm<a class="headerlink" href="#algorithm" title="Link to this heading"></a></h2>
 <p>This module is a wrapper around <code class="docutils literal notranslate"><span class="pre">gamma</span></code> function in the Cephes C library (see <a class="reference internal" href="../index.html#cephes-1989" id="id1"><span>[Cephes-1989]</span></a>).</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
 <div role="list" class="citation-list">
 <div class="citation" id="cephes-1989" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Cephes-1989</a><span class="fn-bracket">]</span></span>
@@ -211,7 +211,7 @@ span.prompt1:before {
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Siavash Ameli.</p>
+    <p>&#169; Copyright 2024, Siavash Ameli.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
