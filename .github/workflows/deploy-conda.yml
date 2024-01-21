@@ -31,19 +31,38 @@ jobs:
               if: matrix.os != 'windows-latest'
               run: rm -rf /opt/hostedtoolcache 
 
-            # Build wheel for windows X86_64 and ARM64
-            - name: Build wheels in windows (X86_64, ARM64) Python ${{ matrix.python-version }}
+            # Build wheel for windows X86_64
+            - name: Build wheels in windows (X86_64) Python ${{ matrix.python-version }}
               if: matrix.os == 'windows-latest'
               uses: pypa/cibuildwheel@v2.15.0
               env:
-                  CIBW_ARCHS_WINDOWS: "AMD64 x86 ARM64"
-                  CIBW_BUILD: "${{ matrix.python-version }}-win_amd64 ${{ matrix.python-version }}-win_arm64"
+                  CIBW_ARCHS_WINDOWS: "AMD64 x86"
+                  CIBW_BUILD: "${{ matrix.python-version }}-win_amd64"
                   CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
                   CIBW_BUILD_VERBOSITY: 3
                   CIBW_BEFORE_BUILD_WINDOWS: "pip install delvewheel"
                   CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: "delvewheel repair -w {dest_dir} {wheel}"
               with:
                 output-dir: wheelhouse
+
+            # Build wheel for windows ARM64 (DO NOT USE)
+            # Note: DO NOT build ARM64 for windows. The reason is that this github runner is an X86_64
+            # machine. To build ARM64 wheels, cibuildwheels uses "cross compiling". This is supported
+            # possible when the build tool is "setuptools". But currently, it is not supported using meson.build.
+            # Since, this package uses meson.build, as such, cross compiling for ARM64 is not possible.
+            # To read more, see: https://cibuildwheel.readthedocs.io/en/stable/faq/#windows-arm64
+            # - name: Build wheels in windows (ARM64) Python ${{ matrix.python-version }}
+            #   if: matrix.os == 'windows-latest'
+            #   uses: pypa/cibuildwheel@v2.15.0
+            #   env:
+            #       CIBW_ARCHS_WINDOWS: "ARM64"
+            #       CIBW_BUILD: "${{ matrix.python-version }}-win_arm64"
+            #       CIBW_SKIP: "pp37-* cp36-* cp37-* cp38-*"
+            #       CIBW_BUILD_VERBOSITY: 3
+            #       CIBW_BEFORE_BUILD_WINDOWS: "pip install delvewheel"
+            #       CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: "delvewheel repair -w {dest_dir} {wheel}"
+            #   with:
+            #     output-dir: wheelhouse
            
             # Build wheel for macos X86_64.
             # Note that wheels for macos ARM64 will be built on cirrus ci (see /tools/ci)
