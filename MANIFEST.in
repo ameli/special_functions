@@ -15,46 +15,29 @@ recursive-include special_functions *.f
 recursive-include special_functions *.mak
 recursive-include special_functions *.rsp
 
-recursive-include docs *.ipynb
-recursive-include docs *.txt
-recursive-include docs *.bat
-recursive-include docs *.css
-recursive-include docs *.js
-recursive-include docs *.py
-recursive-include docs *.rst
-recursive-include docs *.svg
-recursive-include docs *.png
-recursive-include docs Makefile
-recursive-include _modules *.rst
-recursive-exclude docs/source/images *.pdf
-
-recursive-include examples *.py
-recursive-include examples *.rst
-recursive-include notebooks *.ipynb
-recursive-include tests *.py
-recursive-include tests *.rst
-recursive-include tests *.txt
-
-recursive-include tools *.sh
-recursive-include tools *.yml
-
-include *.star
 include CHANGELOG.rst
 include README.rst
 include AUTHORS.txt
 include LICENSE.txt
 include requirements.txt
 include pyproject.toml
-include .coveragerc
-include tox.ini
-include environment.yml
 
+exclude tox.ini
+exclude environment.yml
+exclude TODO.rst
+exclude .cirrus.star
 exclude .coverage
+exclude .coveragerc
 exclude .gitattributes
 exclude .tokeignore
 
-prune .git
+prune docs
 prune tmp
-prune .tox
-prune .github
 prune conda-recipe
+prune notebooks
+prune examples
+prune tests
+prune tools
+prune .git
+prune .github
+prune .tox

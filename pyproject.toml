@@ -17,7 +17,7 @@ requires = ["meson-python", "cython>=0.29.35"]
 name = "special_functions"
 license = {file = "LICENSE.txt"}
 readme = "README.rst"
-version = "0.3.6"
+version = "0.3.7"
 authors = [
     {name = "Siavash Ameli", email = "sameli@berkeley.edu" }
 ]
