@@ -54,6 +54,7 @@ pypi_build_wheels_macosx_arm64_task:
     # Find out SDKROOT via `xcrun --sdk macosx --show-sdk-path`
     # MACOS linker doesn't support stripping symbols, hence we set: CFLAGS="-fno-strict-aliasing"
     CIBW_ENVIRONMENT_MACOS: >
+      SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
       RUNNER_OS=macOS
       LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
       CFLAGS="-fno-strict-aliasing"
@@ -72,6 +73,7 @@ pypi_build_wheels_macosx_arm64_task:
     - python -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
     - clang --version
     - export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
+    - echo $SDKROOT
   <<: *PYPI_MACOSX_ARM64_CIBW
 
 
