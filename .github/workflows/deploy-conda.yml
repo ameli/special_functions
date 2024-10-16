@@ -34,7 +34,7 @@ jobs:
             # Build wheel for windows X86_64
             - name: Build wheels in windows (X86_64) Python ${{ matrix.python-version }}
               if: matrix.os == 'windows-latest'
-              uses: pypa/cibuildwheel@v2.15.0
+              uses: pypa/cibuildwheel@v2.16.5
               env:
                   CIBW_ARCHS_WINDOWS: "AMD64 x86"
                   CIBW_BUILD: "${{ matrix.python-version }}-win_amd64"
@@ -53,7 +53,7 @@ jobs:
             # To read more, see: https://cibuildwheel.readthedocs.io/en/stable/faq/#windows-arm64
             # - name: Build wheels in windows (ARM64) Python ${{ matrix.python-version }}
             #   if: matrix.os == 'windows-latest'
-            #   uses: pypa/cibuildwheel@v2.15.0
+            #   uses: pypa/cibuildwheel@v2.16.5
             #   env:
             #       CIBW_ARCHS_WINDOWS: "ARM64"
             #       CIBW_BUILD: "${{ matrix.python-version }}-win_arm64"
@@ -68,7 +68,7 @@ jobs:
             # Note that wheels for macos ARM64 will be built on cirrus ci (see /tools/ci)
             - name: Build wheels in mac (X86_64) Python ${{ matrix.python-version }}
               if: matrix.os == 'macos-latest'
-              uses: pypa/cibuildwheel@v2.15.0
+              uses: pypa/cibuildwheel@v2.16.5
               env:
                   CIBW_ARCHS_MACOS: "x86_64"
                   CIBW_BUILD: "${{ matrix.python-version }}-macosx_x86_64"
@@ -82,7 +82,7 @@ jobs:
             # Note that wheels for linux AARCH64 will be built on cirrus ci (see /tools/ci)
             - name: Build wheels in linux (X86_64) Python ${{ matrix.python-version }}
               if: matrix.os == 'ubuntu-latest'
-              uses: pypa/cibuildwheel@v2.15.0
+              uses: pypa/cibuildwheel@v2.16.5
               env:
                   CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
                   CIBW_ARCHS_LINUX: "x86_64"
@@ -136,7 +136,7 @@ jobs:
                   path: dist
 
             - name: Setup Miniconda
-              uses: conda-incubator/setup-miniconda@v2
+              uses: conda-incubator/setup-miniconda@v3
               with:
                   miniconda-version: "latest"
                   auto-update-conda: true
@@ -175,7 +175,7 @@ jobs:
 
         steps:
             - name: Setup Miniconda
-              uses: conda-incubator/setup-miniconda@v2
+              uses: conda-incubator/setup-miniconda@v3
               with:
                   auto-update-conda: true
                   python-version: ${{ matrix.python-version }}

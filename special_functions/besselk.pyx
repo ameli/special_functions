@@ -27,9 +27,9 @@ from .cbesselk cimport _complex_besselk_real_order
 
 # Externs from Cephes library
 cdef extern from "cephes_wrapper.h":
-    double k0(double z) nogil
-    double k1(double z) nogil
-    double kn(int nu, double z) nogil
+    double k0(double z) noexcept nogil
+    double k1(double z) noexcept nogil
+    double kn(int nu, double z) noexcept nogil
 
 
 # ==========

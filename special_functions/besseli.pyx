@@ -29,8 +29,8 @@ from .cbesseli cimport _complex_besseli_real_order
 
 # Externs from Cephes library
 cdef extern from "cephes_wrapper.h":
-    double i0(double z) nogil
-    double i1(double z) nogil
+    double i0(double z) noexcept nogil
+    double i1(double z) noexcept nogil
 
 
 # ==========

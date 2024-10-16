@@ -112,7 +112,7 @@ Alternatively, the package can be installed through `Anaconda could <https://ana
   
   .. prompt:: bash
       
-      conda install -c s-ameli special_functions
+      conda install s-ameli::special_functions
 
 * In **macOS**:
   

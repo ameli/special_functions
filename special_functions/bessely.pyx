@@ -30,7 +30,7 @@ from .cbessely cimport _complex_bessely_real_order
 
 # Externs from Cephes library
 cdef extern from "cephes_wrapper.h":
-    double yn(int nu, double z) nogil
+    double yn(int nu, double z) noexcept nogil
 
 
 # ==========

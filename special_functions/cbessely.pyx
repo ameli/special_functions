@@ -40,7 +40,7 @@ cdef extern from "amos_wrapper.h":
             int* NZ,
             double* CWRKR,
             double* CWRKI,
-            int* IERR) nogil
+            int* IERR) noexcept nogil
 
 
 # ===========

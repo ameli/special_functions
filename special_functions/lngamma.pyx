@@ -21,7 +21,7 @@ from libc.math cimport INFINITY, NAN, isnan, round
 
 # Externs from Cephes library
 cdef extern from "cephes_wrapper.h":
-    double lgam(double x) nogil
+    double lgam(double x) noexcept nogil
 
 
 # ==========
